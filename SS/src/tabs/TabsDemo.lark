@@ -14,6 +14,7 @@ import org.w3c.html.title;
 import org.w3c.html.ul;
 
 public class TabsDemo implements INotifyPropertyChanged, PropertyChangeListener {
+<%
 	<html>
 		<head>
 		<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
@@ -124,6 +125,7 @@ public class TabsDemo implements INotifyPropertyChanged, PropertyChangeListener 
 			</p>
 		</body>
 	</html>
+	%>
 	public TabsDemo() {
 		this._pages = new ArrayList<Page>();
 //		for(int i=0; i<4; i++){
