@@ -1,0 +1,67 @@
+arc_to_svg.pl
+	Perl script to translate arcs based around a center point to
+	elliptical arcs parameterized for SVG
+
+fig_0601.svg
+	Figure 6-1. Result of using moveto and lineto
+
+fig_0602.svg
+	Figure 6-2. Result of using closepath
+
+fig_0603.svg
+	Figure 6-3. Result of drawing a diamond with a path
+
+fig_0604.svg
+	Figure 6-4. Variations of the elliptical arc command
+
+fig_0605.svg
+	Figure 6-5. Result of using elliptical arc
+
+fig_0606.svg
+	Figure 6-6. How graphics programs draw Bezier curves
+
+fig_0607.svg
+	Figure 6-7. Visualizing a quadratic Bezier curve
+
+fig_0608.svg
+	Figure 6-8. Quadratic polybezier curve
+
+fig_0609.svg
+	Figure 6-9. Smooth quadratic polybezier curve
+
+fig_0610.svg
+	Figure 6-10. Visualizing a cubic Bezier curve
+
+fig_0611.svg
+	Figure 6-11. Result of cubic Bezier control point combinations
+
+fig_0612.svg
+	Figure 6-12. Cubic polybezier curve
+
+fig_0613.svg
+	Figure 6-13. Smooth cubic polybezier curve
+
+fig_0614.svg
+	Figure 6-14. Result of using different fill-rule values
+
+fig_0615.svg
+	Figure 6-15. Lines and arc
+
+fig_0616.svg
+	Figure 6-16. Lines and arc with markers
+
+fig_0617.svg
+	Figure 6-17. Misplaced circular marker
+
+fig_0618.svg
+	Figure 6-18. Correctly placed circular marker
+
+fig_0619.svg
+	Figure 6-19. Incorrectly oriented markers
+
+fig_0620.svg
+	Figure 6-20. Using a single marker for all vertices
+
+svg_to_arc.pl
+	Perl script to convert an elliptical arc parameterized for SVG
+	to an elliptical arc based around a central point.

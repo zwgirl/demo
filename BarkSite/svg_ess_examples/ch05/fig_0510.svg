@@ -1,0 +1,18 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="200px" height="200px" viewBox="0 0 200 200">
+	<title>Sequence of Transformations</title>
+	<desc>Shows an object scaled and then translated.</desc>
+
+	<!-- draw axes -->
+	<line x1="0" y1="0" x2="0" y2="100" style="stroke: gray;"/>
+	<line x1="0" y1="0" x2="100" y2="0" style="stroke: gray;"/>
+
+	<rect x="10" y="10" width="20" height="15"
+    	transform="translate(30, 20) scale(2)" style="fill: #ccc;"/>
+
+	<rect x="10" y="10" width="20" height="15"
+    	transform="scale(2) translate(30, 20)"
+		style="fill: black;"/>
+</svg>

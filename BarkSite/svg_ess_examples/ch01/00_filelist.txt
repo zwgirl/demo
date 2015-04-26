@@ -1,0 +1,11 @@
+fig_0101.svg
+	Figure 1-1. Raster graphic rectangle
+	
+fig_0102.svg
+	Figure 1-2. Vector graphic rectangle
+
+fig_0114.svg
+	Figure 1-14. Stage seven - text and finished image of cat
+
+graph_paper.svg
+	Graph paper grid used by Figures 1-1 and 1-2

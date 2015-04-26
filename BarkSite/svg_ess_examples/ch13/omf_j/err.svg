@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20001102//EN" "http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd">
+<svg viewBox="0 0 350 200" height="200" width="350">
+<rect x="1" y="1" width="348" height="198" fill="none"
+	stroke="black"/>
+<text font-size="18pt" text-anchor="middle"
+	x="175" y="112">
+Unable to retrieve data.
+</text>
+</svg>

@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>OMF to SVG</title>
+</head>
+
+<body>
+<h2>OMF Graphic Display</h2>
+<form method="get"
+ action="http://localhost:8080/omf_j/servlet/Weather">
+<p>
+See weather for:
+
+<select name="call_id">
+<option value="----|----|----">Choose an airport</option>
+<option value="SABE|Buenos Aires, Argentina|America/Buenos_Aires">Buenos Aires, Argentina</option>
+<option value="KORD|Chicago/O'Hare|America/Chicago">Chicago/O'Hare</option>
+<option value="KITH|Ithaca, NY|America/New_York">Ithaca, NY</option>
+<option value="KLAX|Los Angeles Int'l|America/Los_Angeles">Los Angeles </option>
+<option value="UUEE|Moscow, Russia|Europe/Moscow">Moscow, Russia</option>
+<option value="VIDP|New Delhi, India|Asia/Calcutta">New Delhi, India</option>
+<option value="KJFK|New York/Kennedy|America/New_York">New York/Kennedy</option>
+<option value="ENGM|Oslo, Norway|Europe/Oslo">Oslo, Norway</option>
+<option value="DFFD|Ouagadougou, Burkina Faso|Africa/Ouagadougou">Ouagadougou, Burkina Faso</option>
+<option value="KSJC|San Jose|America/Los_Angeles">San Jose, California</option>
+<option value="RKSS|Seoul/Kimp'o|Asia/Seoul">Seoul/Kimp'o</option>
+<option value="YSSY|Sydney, Australia|Australia/Sydney">Sydney, Australia</option>
+</select>
+</p>
+<p>
+Format: 
+<input type="radio" name="imgtype" value="SVG"
+	checked="checked" /> SVG 
+<input type="radio" name="imgtype" value="JPG" /> JPG 
+<input type="radio" name="imgtype" value="PNG" /> PNG 
+<input type="submit" value="Show Weather Graphic" />
+</p>
+</form>
+</body>
+</html>

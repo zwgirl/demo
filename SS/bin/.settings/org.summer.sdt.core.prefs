@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+org.summer.sdt.core.compiler.codegen.inlineJsrBytecode=enabled
+org.summer.sdt.core.compiler.codegen.targetPlatform=1.8
+org.summer.sdt.core.compiler.compliance=1.8
+org.summer.sdt.core.compiler.problem.assertIdentifier=error
+org.summer.sdt.core.compiler.problem.enumIdentifier=error
+org.summer.sdt.core.compiler.source=1.8

@@ -1,0 +1,9 @@
+<Reports TStamp="997568716">
+<SYN Title='AAXX' TStamp='997573600' LatLon='37.567, 126.967' BId='471080'
+SName='RKSL, SEOUL' Elev='86'>
+<SYID>47108</SYID>
+<SYG T='22.5' TD='14.1' P='1004.1' P0='1014.1' Pd='0 0.1' Vis='22000'
+Ceiling='INF' Wind='30-70, 1.5' WX='NOSIG' Prec=' ' Clouds='44070'>
+32972 40703 10225 20141 30041 40141 50001 84070
+</SYG></SYN>
+</Reports>

@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="350" height="350" viewBox="0 0 350 350">
+   <title>Unmasked image</title>
+
+<defs>
+    <font-face font-family="bakbatn">
+        <font-face-src>
+            <font-face-uri xlink:href="kfont.svg#kfont-defn"/>
+        </font-face-src>     
+    </font-face>
+</defs>
+
+<use xlink:href="ksymbol.svg#ksymbol"/>
+
+<image xlink:href="kwanghwamun.jpg" x="72" y="92"
+    width="160" height="120"/>
+
+</svg>

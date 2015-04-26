@@ -1,0 +1,36 @@
+fig_0901.svg
+	Figure 9-1. Simple rectangular clipping; uses minicat.svg	
+
+fig_0902.svg
+	Figure 9-2. Complex path clipping
+
+fig_0903.svg
+	Figure 9-3. Use of a circular/oval clipping path
+
+fig_0904.svg
+	Figure 9-4. Effect of color values on transparency
+
+fig_0905.svg
+	Figure 9-5. Alpha value equal to opacity
+
+fig_0906.svg
+	Figure 9-6. Unmasked image; uses kfont.svg, ksymbol.svg,
+	and kwanghwamun.jpg
+
+fig_0907.svg
+	Figure 9-7. Masked image; uses kfont.svg, ksymbol.svg,
+	and kwanghwamun.jpg
+
+kfont.svg
+	Syllables from a Korean font; used by fig_0906.svg and fig_0907.svg
+
+ksymbol.svg
+	Draws the elliptical yin/yang symbol; used by fig_0906.svg and
+	fig_0907.svg
+
+kwanghwamun.jpg
+	JPEG image of Kwanghwamun castle in Seoul; used by fig_0906.svg and
+	fig_0907.svg
+
+minicat.svg
+	Small drawing of a cat; used by fig_0901.svg

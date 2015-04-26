@@ -1,0 +1,17 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="200px" height="200px" viewBox="0 0 200 200">
+	<title>Result of drawing a diamond with a path</title>
+	<desc>Drawing a diamond by many different paths</desc>
+<g transform="translate(20,20)">
+	<g style="stroke: black; fill: none;">
+		<path d="M 30 30 L 55 5 L 80 30 L 55 55 Z"/>
+		<path d="M 30 30 L 55 5 80 30 55 55 Z"/>
+		<path d="M 30 30 55 5 80 30 55 55 Z"/>
+		<path d="m 30 30 l 25 -25 l 25 25 l -25 25 z"/>
+		<path d="m 30 30 l 25 -25 25 25 -25 25 z"/>
+		<path d="m 30 30 25 -25 25 25 -25 25 z"/>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,73 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="400" height="300" viewBox="0 0 400 300">
+   <title>Result of using feComposite operators</title>
+<defs>
+
+<filter id="A_over_B" x="0%" y="0%" width="100%" height="100%">
+	<feImage xlink:href="#A" result="A"/>
+	<feComposite in="A" in2="SourceGraphic" operator="over"/>
+</filter>
+
+<filter id="A_in_B" x="0%" y="0%" width="100%" height="100%">
+	<feImage xlink:href="#A" result="A"/>
+	<feComposite in="A" in2="SourceGraphic" operator="in"/>
+</filter>
+
+<filter id="A_out_B" x="0%" y="0%" width="100%" height="100%">
+	<feImage xlink:href="#A" result="A"/>
+	<feComposite in="A" in2="SourceGraphic" operator="out"/>
+</filter>
+
+<filter id="A_atop_B" x="0%" y="0%" width="100%" height="100%">
+	<feImage xlink:href="#A" result="A"/>
+	<feComposite in="A" in2="SourceGraphic" operator="atop"/>
+</filter>
+
+<filter id="A_xor_B" x="0%" y="0%" width="100%" height="100%">
+	<feImage xlink:href="#A" result="A"/>
+	<feComposite in="A" in2="SourceGraphic" operator="xor"/>
+</filter>
+
+<filter id="A_arith_B" x="0%" y="0%" width="100%" height="100%">
+	<feImage xlink:href="#A" result="A"/>
+	<feComposite in="A" in2="SourceGraphic" operator="arithmetic"
+		k1="0.5" k2="0.5" k3="0.5" k4="0.5"/>
+</filter>
+
+<path id="A"
+	d="M0 0, 20 0, 0 20 z" style="fill: #f00;"/>
+<path id="B"
+	d="M 0 0, 20 0, 20 20 z" style="fill: #00f;"/>
+
+</defs>
+
+<g style="font-size: 9pt; text-anchor: middle;">
+	<text x="50" y="40">A</text>
+	<text x="130" y="40">B</text>
+	<text x="50" y="80">A over B</text>
+	<text x="130" y="80">A in B</text>
+	<text x="210" y="80">A out B</text>
+	<text x="50" y="120">A atop B</text>
+	<text x="130" y="120">A xor B</text>
+	<text x="210" y="120">A arithmetic B</text>
+</g>
+
+<use xlink:href="#A" transform="translate(40,10)"/>
+<use xlink:href="#B" transform="translate(120,10)"/>
+<use xlink:href="#B" style="filter: url(#A_over_B);"
+	transform="translate(40, 50)"/>
+<use xlink:href="#B" style="filter: url(#A_in_B);"
+	transform="translate(120, 50)"/>
+<use xlink:href="#B" style="filter: url(#A_out_B);"
+	transform="translate(200, 50)"/>
+<use xlink:href="#B" style="filter: url(#A_atop_B);"
+	transform="translate(40, 90)"/>
+<use xlink:href="#B" style="filter: url(#A_xor_B);"
+	transform="translate(120, 90)"/>
+<use xlink:href="#B" style="filter: url(#A_arith_B);"
+	transform="translate(200, 90)"/>
+
+</svg>

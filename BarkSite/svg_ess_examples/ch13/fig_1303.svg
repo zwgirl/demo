@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20001102//EN" "http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd">
+<svg viewBox="0 0 600 300" width="600" height="300">
+<defs>
+<marker id="arrow" markerWidth="8" markerHeight="8"
+    refX="8" refY="4" orient="auto">
+    <path d="M0 0 8 4 0 8 Z" style="fill: black;"/>
+</marker>
+<style type="text/css"><![CDATA[
+      line.arrow {
+        stroke: black;
+		marker-end: url(#arrow);
+	   }
+	   .black {
+	   	fill:none;
+		stroke:black;
+	   }
+    ]]></style>
+
+</defs>
+
+<g transform="translate(20,20)">
+<rect x="0" y="0" width="60" height="60" class="black"/>
+<text style="text-anchor: middle;" x="30" y="25">Retrieve
+	<tspan x="30" y="40">XML</tspan></text>
+
+<line x1="60" y1="30" x2="90" y2="30"
+	style="marker-end: url(#arrow); stroke: black;"/>
+
+<ellipse cx="120" cy="30" rx="30" ry="25" class="black"/>
+<text style="text-anchor: middle;" x="120" y="35">XSLT</text>
+
+<line x1="150" y1="30" x2="180" y2="30" class="arrow" />
+
+<rect x="180" y="0" width="60" height="60" class="black"/>
+<text style="text-anchor: middle;" x="210" y="35">SVG</text>
+
+<line x1="240" y1="30" x2="390" y2="30" style="stroke: black;"/>
+
+<line x1="300" y1="30" x2="300" y2="90" class="arrow"/>
+<ellipse cx="300" cy="115" rx="40" ry="25" class="black"/>
+<text x="300" y="110" style="font-size: 12px; text-anchor: middle;">PNG
+<tspan x="300" y="125">Transcode</tspan></text>
+<line x1="300" y1="140" x2="300" y2="160" class="arrow"/>
+<rect x="270" y="160" width="60" height="30" style="fill: none; stroke: black;"/>
+<text x="300" y="180" style="text-anchor: middle;">PNG</text>
+<line x1="300" y1="190" x2="300" y2="210" class="arrow"/>
+
+<line x1="390" y1="30" x2="390" y2="90" class="arrow"/>
+<ellipse cx="390" cy="115" rx="40" ry="25" class="black"/>
+<text x="390" y="110" style="font-size: 12px; text-anchor: middle;">JPG
+<tspan x="390" y="125">Transcode</tspan></text>
+<line x1="390" y1="140" x2="390" y2="160" class="arrow"/>
+
+<rect x="360" y="160" width="60" height="30" class="black"/>
+
+<text x="390" y="180" style="text-anchor: middle;">JPG</text>
+<line x1="390" y1="190" x2="390" y2="210" class="arrow"/>
+
+<line x1="210" y1="60" x2="210" y2="210" class="arrow"/>
+
+<rect x="190" y="210" width="240" height="30" class="black"/>
+<text x="310" y="230" style="text-anchor: middle;">OUTPUT</text>
+</g>
+</svg>

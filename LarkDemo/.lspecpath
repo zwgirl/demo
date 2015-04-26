@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="lark-src"/>
+	<classpathentry kind="lib" path="lark-lib/lark.lar"/>
+	<classpathentry kind="output" path="WebContent/lark"/>
+</classpath>

@@ -1,0 +1,92 @@
+@charset "utf-8";
+/* CSS Document */
+#wrapper{ width:800px; height:1250px; background-color:#ffffff;margin:0 auto;}
+
+.h_top{width:798px; height:40px;  margin:1px 1px 0px 1px;}
+#h_left{ width:147px; height:39px; background-color:#fff; margin-top:1px; float:left;}
+#h_mid{ width:360px; margin-top:18px; font-family:"Courier New", Courier, monospace; font-size:17px; float:left;text-align:center; margin-left:-16px;text-transform: lowercase; vertical-align:bottom;}
+
+#h_right{ width:284px; background-color:#fff; margin-top:1px; float:right; word-spacing: 20px;} 
+#h_right a{text-decoration:none ; color:#a03f3f; vertical-align: text-bottom !important}
+#h_right a:hover{ text-decoration:underline}
+.contaner{ width:800px; height:792px; background-color:#fff; margin-bottom:0; padding-bottom:0;}
+
+.cleft{ width:183px; height:574px; background-color:#0CF; float:left}
+.cright1{ width:615px; height:280px; background-color:#fff; float:left}
+.cright12{height: 250px; width: 615px; margin-top:65px	}
+.cright12 img{ height: 250px;width: 615px;}
+.cright2{width:615px; height:130px; background-color:#FFFFFF;float:left; margin-top: 35px; }
+	#cright21{width:195px; height:108px; background-color:#FFFFFF;float:left }
+	#cright22{width:195px; height:108px; background-color:#FFFFFF;float:left; }
+	#cright23{width:195px; height:108px; background-color:#FFFFFF;float:left; }
+	#cright24{height:108px; margin-top:0}
+.cright3{width:615px; height:259px; background-color:#999; float:left}
+.cright3 h1{ font-size:18px; padding: 0px 6px 1px 6px;}
+#cright31{width:615px; height:159px; background-color:#fff; float:left; color: #930; font-size: 18px; font-weight: bold;line-height: 18px;font-family: Verdana,Geneva,sans-serif;}	
+#cright31 p{ max-width:604px text-decoration:none; height:159px; margin-top: -20px; color:#930; padding: 0px 0px 0 5px; text-align:justify; font-family:Verdana, Geneva, sans-serif; font-size:18px;font-weight: bold;line-height: 18px; }
+#cright31 p:first-letter{  font-size: 35px;}
+
+#cright32{width:615px; height:100px; background-color:#FFF; float:left}
+#cright32 img{ height: 51px;padding: 26px 1px 0 31px;width: 111px;}
+
+.cdown{ height:120px; width:615px; background-color:#93F; float:left;}
+.cdown img { height: 122px;width: 615px;}
+#l_up{width:248px; height:465px;  background-color:#fff; float: none}
+
+#l_down{width:183px; height:293px;  background-color:#969; float: none}
+#l_down img{ height:296px; width:183px}
+
+/*Main Menu*/
+
+.nav{ width:100%;text-align:center; text-decoration:none; float:left; color:#000 }
+.nav a{ text-decoration:none; } 
+<!--.nav a  : hover{ color:#000; background-color:#fff}-->
+#mainnav{float:left; position:relative; z-index:5; text-align:center; background-color:#000; width:100%}
+#mainnav ul{  float: left;list-style: outside none none;margin: 0;padding: 16px 19px; width: 95%; }
+#mainnav ul li{float:left; width:auto; font-size:19px; line-height:25px; position:relative; padding:0 3px}
+#mainnav ul li.last{background:none;}
+#mainnav ul li a{color:#fff;float:left;font-family: 'economicabold'; padding: 4px 10px; text-decoration:none}
+ #mainnav ul li a:hover{ color:#000; background-color:#fff; text-align:center } 
+ #mainnav ul li.active a{ background:#ffffff; color:#000}
+ 
+/*Left Menu*/
+
+.leftnav {text-decoration:none;color:#FFF; width:245px; height:298px; float:left}
+.leftnav li{text-decoration:none; list-style:none; margin-left:-31px;}
+.leftnav li a:hover{ color:#000;}
+.leftnav li a{ color:#a03f3f; text-decoration:none; margin-left:3px;}
+.ul { font-size:19px; margin-left:-36px; line-height:21px; margin-top: 7px;} 
+.ul1 { font-size:19px; margin-left:-7px; line-height:21px; margin-top: 7px;} 
+
+.footer{ height:330px; width:798px; background-color:#A03F3F; text-decoration:none; list-style:none; margin-top: 38px; }
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+ 
+    div.footer{ height:317px; width:798px; background-color:#A03F3F; text-decoration:none; list-style:none; margin-top: 58px; }
+    }
+
+
+.fnav{ text-decoration:none; list-style:none; float:left ;padding: 5px 0 0; background: url(images/border.png)no-repeat scroll right center rgba(0, 0, 0, 0); width:100%}
+ .fnav ul{margin-top:15px;}
+.fl{ height:363px; width:210px; float:left}
+					
+ .fnav ul li{ text-decoration:none; list-style:none; font-size: 18px;list-style: outside none none;margin-left: -20px;padding: 6px 0 0;text-decoration: none; color:#fff}
+ .fnav ul li a{ text-decoration:none; list-style:none;color:#FFF; margin-top:3px;}
+ #fl2{ float:left;  height:335px; width:4px; margin-left:50px;margin-top: 15px;}
+ .fm{ background: url("images/border.png") no-repeat scroll right center rgba(0, 0, 0, 0);float: left;height: 299px;list-style: outside none none; margin-top: 7px;text-decoration: none;width: 264px; }  
+ .fm ul{ list-style:none; text-decoration:none; color:#FFF;}
+
+ .fm ul li{ font-size: 16px;letter-spacing: 1px;line-height: 29px;}
+ .fm li:first-child {margin-left: -6px;}
+ .fm ul li a{ list-style:none; text-decoration:none;color:#FFF; text-indent:5pxpx} 
+ #fm2{ float:left;  height:335px; width:4px; margin-left:18px;margin-top: 15px;} 
+ 
+ .fr{ text-decoration:none; float:left}
+  .fr p{margin-left:26px;margin-top: 23px;color:#FFF;line-height: 25px;}
+ .fr p a{ text-decoration:none; color:#FFF}
+ .flower{ float:left; height:82px; width:800px; background-color:#fff; margin-top:-33px}
+ #flower1{ float:left; margin-left:0px; height:82px; width:160px;}
+ #flower2{ float:left; width:638px ;height:82px;color:#a03f3f; margin-top:24px}
+ #flower2 a{ text-decoration:none; color:#a03f3f}
+ #flower2 a:hover{ text-decoration:underline}
+
+ 

@@ -1,0 +1,232 @@
+
+<html>
+<head>
+<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Knockout : Hello World example</title>
+<link href="../css/tripoli.simple.css" type="text/css" rel="stylesheet" />
+
+<link rel="stylesheet" type="text/css" href="../css/styles.css" />
+<link rel="stylesheet" type="text/css" href="../css/smallScreen.css"
+	media="only screen and (max-device-width: 800px)" />
+<link rel="shortcut icon" href="../img/favicon.ico" />
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../downloads/knockout-latest.js"></script>
+<script type="text/javascript" src="../js/cufon-yui.js"></script>
+<script type="text/javascript" src="../js/titilliummaps.font.js"></script>
+<script type="text/javascript" src="../js/json2.js"></script>
+
+<script type="text/javascript"
+	src="../js/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+<script type="text/javascript"
+	src="../js/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
+<script type="text/javascript"
+	src="../js/syntaxhighlighter_3.0.83/scripts/shBrushXml.js"></script>
+<script type="text/javascript"
+	src="../js/syntaxhighlighter_3.0.83/scripts/shBrushBash.js"></script>
+<link type="text/css" rel="stylesheet"
+	href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css" />
+
+<script type="text/javascript">
+	$(function() {
+		// Fancy fonts
+		Cufon.replace('.titillium');
+		Cufon.replace('.engraved', {
+			textShadow : 'rgba(253, 224, 217, 0.45) 1.2px 1px'
+		});
+
+		// Syntax highlighting
+		$("pre &gt; code").each(function() {
+			var codeText = $(this).text();
+			$(this).parent().text(codeText).addClass("brush:js");
+		});
+		SyntaxHighlighter.defaults['toolbar'] = false;
+		SyntaxHighlighter.defaults['gutter'] = false;
+		SyntaxHighlighter.all();
+
+		// Highlight current top menu item
+		var desiredMenuItem = '' || 'examples';
+		$(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+
+		// Highlight current left-hand-nav menu item
+		var urlFilename = location.href.match(/\/([^\/]+)$/);
+		if (urlFilename) {
+			$(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])")
+					.addClass("active");
+		}
+	});
+</script>
+
+<script type="text/javascript" src="../js/require.js"></script>
+<script type="text/javascript">
+	require.config({
+		paths : {
+			'knockout' : '../downloads/knockout-latest',
+			'text' : '../js/require.text'
+		}
+	});
+
+	// To keep the network tab clear when the visitor is running live examples,
+	// preload the following.
+	require([ 'text', 'knockout' ], function() {
+	});
+</script>
+
+</head>
+<body>
+	<div id="wrapper">
+		<div className="vspace"></div>
+		<div className="main-menu">
+			<ul>
+				<li><a rel="home" href="../index.html">Home</a></li>
+				<li><a rel="installation" href="../downloads/index.html">Download
+						/ Install</a></li>
+				<li><a rel="tutorials" href="http://learn.knockoutjs.com/">Tutorials</a></li>
+				<li><a rel="examples" href="../examples/">Live examples</a></li>
+				<li><a rel="documentation"
+					href="../documentation/introduction.html">Documentation</a></li>
+				<li><a href="http://groups.google.com/group/knockoutjs">Forum</a></li>
+				<li><a href="http://github.com/SteveSanderson/knockout">Source</a></li>
+			</ul>
+		</div>
+		<div className="clear"></div>
+		<div className="vspace"></div>
+		<div>
+			<div className="leftCol">
+				<div className="leftColBackground">&nbsp;</div>
+				<div className="leftColContents">
+					<h1>Introductory examples</h1>
+					<ul>
+						<li><strong><a href="helloWorld.html">Hello
+									world</a></strong> <small>Working with <code>ko.observable</code>
+								&amp; <code>ko.computed</code></small></li>
+						<li><strong><a href="clickCounter.html">Click
+									counter</a></strong> <small>Using declarative bindings and how KO
+								tracks dependencies automatically</small></li>
+						<li><strong><a href="simpleList.html">Simple
+									list</a></strong> <small>Working with <code>ko.observableArray</code></small>
+						</li>
+						<li><strong><a href="betterList.html">Better
+									list</a></strong> <small>Combining more behaviors</small></li>
+						<li><strong><a href="controlTypes.html">Control
+									types</a></strong> <small>Reference: All HTML control types</small></li>
+						<li><strong><a href="collections.html">Working
+									with Collections</a></strong> <small>Working with arrays, including
+								nested ones</small></li>
+						<li><strong><a href="grid.html">Paged grid</a></strong> <small>Creating
+								reusable components, i.e., plugins</small></li>
+						<li><strong><a href="animatedTransitions.html">Animated
+									transitions</a></strong> <small>Two simple ways to implement
+								animated transitions (one of which is a custom binding)</small></li>
+					</ul>
+
+					<h1>Detailed examples</h1>
+					<ul>
+						<li><strong><a href="contactsEditor.html">Contacts
+									editor</a></strong> <small>Editing a nested list</small></li>
+						<li><strong><a href="gridEditor.html">Editable
+									grid</a></strong> <small>Using the 'foreach' binding and integrating
+								with jQuery Validation</small></li>
+						<li><strong><a href="cartEditor.html">Shopping
+									cart screen</a></strong> <small>Includes nested dropdowns and a
+								string formatting function</small></li>
+					</ul>
+				</div>
+			</div>
+			<div className="rightCol">
+				<div className="example sticker">
+					<div className="content">
+						<h1>Hello World example</h1>
+						<p>
+							In this example, the two text boxes are bound to <em>observable</em>
+							variables on a data model. The “full name” display is bound to a
+							<em>computed observable</em>, whose value is calculated in terms
+							of the observables.
+						</p>
+
+						<p>Edit either text box to see the “full name” display update.
+							See the HTML source code and notice there’s no need to catch
+							“onchange” events. Knockout knows when to update the UI.</p>
+
+						<h2>Live example</h2>
+						<div className="liveExample">
+
+							<p>
+								First name: <input data_bind="value: firstName" />
+							</p>
+							<p>
+								Last name: <input data_bind="value: lastName" />
+							</p>
+							<h2>
+								Hello, <span data_bind="text: fullName"> </span>!
+							</h2>
+
+							<script type="text/javascript">
+								/*<![CDATA[*/
+								// Here's my data model
+								var ViewModel = function(first, last) {
+									this.firstName = ko.observable(first);
+									this.lastName = ko.observable(last);
+
+									this.fullName = ko.pureComputed(function() {
+										// Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
+										return this.firstName() + " "
+												+ this.lastName();
+									}, this);
+								};
+
+								ko.applyBindings(new ViewModel("Planet",
+										"Earth")); // This makes Knockout get to work
+								/*]]>*/
+							</script>
+						</div>
+
+						<h2>Source code: View</h2>
+						<pre className="brush:html">
+						&lt;p&gt;First name: &lt;input data_bind=&quot;value: firstName&quot; /&gt;&lt;/p&gt;
+						&lt;p&gt;Last name: &lt;input data_bind=&quot;value: lastName&quot; /&gt;&lt;/p&gt;
+						&lt;h2&gt;Hello, &lt;span data_bind=&quot;text: fullName&quot;&gt; &lt;/span&gt;!&lt;/h2&gt;
+						</pre>
+						<h2>Source code: View model</h2>
+						<pre className="brush:js">
+					    // Here&#39;s my data model
+					    var ViewModel = function(first, last) {
+					        this.firstName = ko.observable(first);
+					        this.lastName = ko.observable(last);
+					
+					        this.fullName = ko.pureComputed(function() {
+					            // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
+					            return this.firstName() + &quot; &quot; + this.lastName();
+					        }, this);
+					    };
+					
+					    ko.applyBindings(new ViewModel(&quot;Planet&quot;, &quot;Earth&quot;)); // This makes Knockout get to work
+					</pre>
+						<p>
+							<a href="http://jsfiddle.net/rniemeyer/LkqTU/">Try it in
+								jsFiddle</a>
+						</p>
+					</div>
+					<div className="clear"></div>
+				</div>
+			</div>
+		</div>
+		<div className="clear"></div>
+		<div className="main-menu">
+			<ul>
+				<li><a rel="home" href="../index.html">Home</a></li>
+				<li><a rel="installation" href="../downloads/index.html">Download
+						/ Install</a></li>
+				<li><a rel="tutorials" href="http://learn.knockoutjs.com/">Tutorials</a></li>
+				<li><a rel="examples" href="../examples/">Live examples</a></li>
+				<li><a rel="documentation"
+					href="../documentation/introduction.html">Documentation</a></li>
+				<li><a href="http://groups.google.com/group/knockoutjs">Forum</a></li>
+				<li><a href="http://github.com/SteveSanderson/knockout">Source</a></li>
+			</ul>
+		</div>
+		<div className="clear"></div>
+	</div>
+
+	<div id="page-footer">(c) knockoutjs.com</div>
+</body>
+</html>

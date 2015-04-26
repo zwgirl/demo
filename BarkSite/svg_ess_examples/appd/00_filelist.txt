@@ -1,0 +1,87 @@
+MLtoSVG.java
+MLtoSVG.class
+	Source and compiled code for Java program that transforms
+	Mathmetical Markup Language to SVG
+
+ParserErrorHandler.java
+ParserErrorHandler.class
+	Source and compiled code for error-handling class required by
+	MLtoSVG.java
+
+add_matrix.ml
+add_matrix.svg
+	Source and SVG for Figure D-3. Addition of two 3 by 2 matrices
+
+color_matrix.ml
+color_matrix.svg
+	Source and SVG for Figure D-18. Color transformation matrix
+
+coord.ml
+coord.svg
+	Source and SVG for Figure D-2. Coordinates expressed as a matrix
+
+coord3.ml
+coord3.svg
+	Source and SVG for Figure D-11. SVG representation of a coordinate
+
+ml.sh
+	Shell script used to convert MathML to SVG.
+	
+multiply1.ml
+multiply1.svg
+	Source and SVG for Figure D-6. First entry in multiplied matrices
+
+multiply2.ml
+multiply2.svg
+	Source and SVG for Figure D-7. Second entry in multiplied matrices
+
+multiply3.ml
+multiply3.svg
+	Source and SVG for Figure D-8. Completed multiplicaton of matrices
+
+other_transformations.ml
+other_transformations.svg
+	Source and SVG for Figure D-17. Rotate, skew x and skew y transformation
+	matrices
+
+pre_multiply.ml
+pre_multiply.svg
+	Source and SVG for Figure D-5. Two matrices to be multiplied
+
+scalar_mult.ml
+scalar_mult.svg
+	Source and SVG for Figure D-10. Multiplying a scalar by a matrix
+
+scale.ml
+scale.svg
+	Source and SVG for Figure D-13. SVG representation of scaling
+
+scale_translate1.ml
+scale_translate1.svg
+	Source and SVG for Figure D-14. Translation followed by scaling
+
+scale_translate2.ml
+scale_translate2.svg
+	Source and SVG for Figure D-15. Result of multiplying translation and
+	scaling matrices
+
+scale_translate3.ml
+scale_translate3.svg
+	Source and SVG for Figure D-16. Result of premultiplying translation and
+	scaling matrices
+
+simple_scale.ml
+simple_scale.svg
+	Source and SVG for Figure D-9. Simple scaling by multiplying matrices
+
+simple_translate.ml
+simple_translate.svg
+	Source and SVG for Figure D-4. Simple method to translate coordinates
+
+temperatures.ml
+temperatures.svg
+	Source and SVG for Figure D-1. 2 by 7 matrix of daily temperatures
+
+translate.ml
+translate.svg
+	Source and SVG for Figure D-12. SVG representation of translation
