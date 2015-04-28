@@ -3,7 +3,7 @@
   __cache["java.lang.PropertyChangeListener"] = PropertyChangeListener;
   Object.defineProperty(PropertyChangeListener.prototype, "propertyChange", {
 
-  });PropertyChangeListener.prototype.doApplyTemplate = function(parent, data, index) {};
+  });
   PropertyChangeListener.prototype.__class = new (__lc('java.lang.Class'))("java.lang.PropertyChangeListener", PropertyChangeListener, Object.prototype.__class, [], 2);
   return  PropertyChangeListener;
 })();
@@ -102,6 +102,44 @@
       }
     }).bind(this));
   };
+  INotifyPropertyChanged.prototype.addPropertyChangeListener4 = function(propNames, handler){
+    var _propertyListeners = this["__propListeners"];
+    if(_propertyListeners == null)
+    {
+      this["__propListeners"] = _propertyListeners = new Map();
+    }
+    var __coll = propNames
+    for(var __i = 0; __i < __coll.length; __i++) {
+      var propName = __coll[__i];
+      var listeners = _propertyListeners.get(propName);
+      if(listeners == null)
+      {
+        listeners = new Array();
+        _propertyListeners.set(propName, listeners);
+      }
+      listeners.push(handler);
+    }
+  };
+  INotifyPropertyChanged.prototype.removePropertyChangeListener4 = function(handler){
+    var _propertyListeners = this["__propListeners"];
+    if(_propertyListeners == null)
+    {
+      return;
+    }
+    _propertyListeners.forEach((function(listeners, key, context){
+      listeners.forEach((function(h, index, array){
+        if(handler === h)
+        {
+          listeners.splice(index, 1);
+          if(listeners.length == 0)
+          {
+            _propertyListeners.delete(key);
+          }
+          return;
+        }
+      }).bind(this));
+    }).bind(this));
+  };
   INotifyPropertyChanged.prototype.addPropertyChangeListener3 = function(predicate, handler){
     var _listeners = this["__pListeners"];
     if(_listeners == null)
@@ -123,7 +161,7 @@
         return;
       }
     }).bind(this));
-  };INotifyPropertyChanged.prototype.doApplyTemplate = function(parent, data, index) {};
+  };
   INotifyPropertyChanged.prototype.__class = new (__lc('java.lang.Class'))("java.lang.INotifyPropertyChanged", INotifyPropertyChanged, Object.prototype.__class, [], 2);
   return  INotifyPropertyChanged;
 })();
@@ -132,7 +170,7 @@
   __cache["java.lang.INotifyCollectionChanged"] = INotifyCollectionChanged;
   INotifyCollectionChanged.prototype.onCollectionChanged = function(e){
     var listeners = this["__colListeners"];
-    if(listeners == null) return;
+    if(listeners == null) return
     listeners.forEach((function(callback, index, array){
       callback(this, e);
     }).bind(this));
@@ -147,14 +185,14 @@
   };
   INotifyCollectionChanged.prototype.removeCollectionChangedListener = function(listener){
     var listeners = this["__colListeners"];
-    if(listeners == null) return;
+    if(listeners == null) return
     listeners.forEach((function(listener1, index, array){
       if(listener1 === listener)
       {
         array.splice(index, 1);
       }
     }).bind(this));
-  };INotifyCollectionChanged.prototype.doApplyTemplate = function(parent, data, index) {};
+  };
   INotifyCollectionChanged.prototype.__class = new (__lc('java.lang.Class'))("java.lang.INotifyCollectionChanged", INotifyCollectionChanged, Object.prototype.__class, [], 2);
   return  INotifyCollectionChanged;
 })();
@@ -170,7 +208,7 @@
   CollectionChangedAction.Move = new (__lc('java.lang.CollectionChangedAction'))("Move", 1);
   CollectionChangedAction.Remove = new (__lc('java.lang.CollectionChangedAction'))("Remove", 2);
   CollectionChangedAction.Replace = new (__lc('java.lang.CollectionChangedAction'))("Replace", 3);
-  CollectionChangedAction.Reset = new (__lc('java.lang.CollectionChangedAction'))("Reset", 4);CollectionChangedAction.prototype.doApplyTemplate = function(parent, data, index) {};
+  CollectionChangedAction.Reset = new (__lc('java.lang.CollectionChangedAction'))("Reset", 4);
   CollectionChangedAction.prototype.__class = new (__lc('java.lang.Class'))("java.lang.CollectionChangedAction", CollectionChangedAction, __lc("java.lang.Enum").prototype.__class, [], 3);
   return  CollectionChangedAction;
 })();
@@ -369,18 +407,18 @@
   }
   function initializeAdd(action, newItems, newStartingIndex){
     this._action = action;
-    this._newItems = (newItems == null) ? null : newItems;
+    this._newItems = newItems;
     this._newStartingIndex = newStartingIndex;
   }
   function initializeRemove(action, oldItems, oldStartingIndex){
     this._action = action;
-    this._oldItems = (oldItems == null) ? null : oldItems;
+    this._oldItems = oldItems;
     this._oldStartingIndex = oldStartingIndex;
   }
   function initializeMoveOrReplace(action, newItems, oldItems, startingIndex, oldStartingIndex){
     initializeAdd.call(this, action, newItems, startingIndex);
     initializeRemove.call(this, action, oldItems, oldStartingIndex);
-  }CollectionChangedEvent.prototype.doApplyTemplate = function(parent, data, index) {};
+  }
   CollectionChangedEvent.prototype.__class = new (__lc('java.lang.Class'))("java.lang.CollectionChangedEvent", CollectionChangedEvent, Object.prototype.__class, [], 1);
   return  CollectionChangedEvent;
 })();
@@ -395,13 +433,13 @@
     get : function() {
       return this._property;
     }
-  });PropertyChangeEvent.prototype.doApplyTemplate = function(parent, data, index) {};
+  });
   PropertyChangeEvent.prototype.__class = new (__lc('java.lang.Class'))("java.lang.PropertyChangeEvent", PropertyChangeEvent, Object.prototype.__class, [], 1);
   return  PropertyChangeEvent;
 })();
 (function(){ 
   function MarkupExtension(){};
-  __cache["java.lang.MarkupExtension"] = MarkupExtension;MarkupExtension.prototype.doApplyTemplate = function(parent, data, index) {};
+  __cache["java.lang.MarkupExtension"] = MarkupExtension;
   MarkupExtension.prototype.__class = new (__lc('java.lang.Class'))("java.lang.MarkupExtension", MarkupExtension, Object.prototype.__class, [], 2);
   return  MarkupExtension;
 })();
@@ -415,7 +453,7 @@
   UpdateSourceTrigger.values = function() { return [UpdateSourceTrigger.PropertyChanged, UpdateSourceTrigger.LostFocus, UpdateSourceTrigger.Explicit]; };
   UpdateSourceTrigger.PropertyChanged = new (__lc('java.lang.UpdateSourceTrigger'))("PropertyChanged", 0);
   UpdateSourceTrigger.LostFocus = new (__lc('java.lang.UpdateSourceTrigger'))("LostFocus", 1);
-  UpdateSourceTrigger.Explicit = new (__lc('java.lang.UpdateSourceTrigger'))("Explicit", 2);UpdateSourceTrigger.prototype.doApplyTemplate = function(parent, data, index) {};
+  UpdateSourceTrigger.Explicit = new (__lc('java.lang.UpdateSourceTrigger'))("Explicit", 2);
   UpdateSourceTrigger.prototype.__class = new (__lc('java.lang.Class'))("java.lang.UpdateSourceTrigger", UpdateSourceTrigger, __lc("java.lang.Enum").prototype.__class, [], 3);
   return  UpdateSourceTrigger;
 })();
@@ -429,7 +467,7 @@
   BindingMode.values = function() { return [BindingMode.TwoWay, BindingMode.OneWay, BindingMode.OneTime]; };
   BindingMode.TwoWay = new (__lc('java.lang.BindingMode'))("TwoWay", 0);
   BindingMode.OneWay = new (__lc('java.lang.BindingMode'))("OneWay", 1);
-  BindingMode.OneTime = new (__lc('java.lang.BindingMode'))("OneTime", 2);BindingMode.prototype.doApplyTemplate = function(parent, data, index) {};
+  BindingMode.OneTime = new (__lc('java.lang.BindingMode'))("OneTime", 2);
   BindingMode.prototype.__class = new (__lc('java.lang.Class'))("java.lang.BindingMode", BindingMode, __lc("java.lang.Enum").prototype.__class, [], 3);
   return  BindingMode;
 })();
@@ -612,7 +650,7 @@
     var length = properties.length;
     for (var i = 0; i < length - 1; i ++) 
     {
-      if(tag == null) return;
+      if(tag == null) return
       tag = tag[properties[i]];
     }
     if(this._converterTo != null)
@@ -620,7 +658,7 @@
       data = this._converterTo(data);
     }
     var oldValue = tag[properties[length - 1]];
-    if(data == oldValue)
+    if(data === oldValue)
     {
       return;
     }
@@ -638,7 +676,7 @@
     var length = properties.length;
     for (var index = 0; index < length - 1; index ++) 
     {
-      if(result == null) return null;
+      if(result == null) return null
       result = result[properties[index]];
     }
     return result[properties[length - 1]];
@@ -666,7 +704,7 @@
         break;
     default :
     }
-  };Binding.prototype.doApplyTemplate = function(parent, data, index) {};
+  };
   Binding.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Binding", Binding, Object.prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class, __lc("java.lang.PropertyChangeListener").prototype.__class], 1);
   return  Binding;
 })();
@@ -681,24 +719,12 @@
   DataContextMode.Root = new (__lc('java.lang.DataContextMode'))("Root", 0);
   DataContextMode.Template = new (__lc('java.lang.DataContextMode'))("Template", 1);
   DataContextMode.Standalone = new (__lc('java.lang.DataContextMode'))("Standalone", 2);
-  DataContextMode.Ancestor = new (__lc('java.lang.DataContextMode'))("Ancestor", 3);DataContextMode.prototype.doApplyTemplate = function(parent, data, index) {};
+  DataContextMode.Ancestor = new (__lc('java.lang.DataContextMode'))("Ancestor", 3);
   DataContextMode.prototype.__class = new (__lc('java.lang.Class'))("java.lang.DataContextMode", DataContextMode, __lc("java.lang.Enum").prototype.__class, [], 3);
   return  DataContextMode;
 })();
 (function(){ 
-  function DataContext(){
-    var args = Array.prototype.slice.call(arguments);
-    return DataContext.__f[args[args.length-1]].apply(this, args.slice(0, args.length-1));
-  }
-  DataContext.__f = {
-    "0" : function(){
-		this._mode = __lc("java.lang.DataContextMode").Root;
-		this._dataItem = __this; 
-		this._bindings = [];
-		this._dependents = [];
-		this._templates = [];
-	}, 
-    "1" : function(property) {    
+  function DataContext(options) {    
     this._mode = null;
     this._property = null;
     this._bindings = [];
@@ -716,32 +742,23 @@
         this.dataItem = superior[this.property];
       }
     }).bind(this);
-    this._mode = __lc("java.lang.DataContextMode").Ancestor;
-    this._property = property;
-  }, 
-    "2" : function(property, dataItem, mode) {    
-    this._mode = null;
-    this._property = null;
-    this._bindings = [];
-    this._dependents = [];
-    this._templates = [];
-    this._dataItem = null;
-    this._propertyChange = (function(source, e){
-      var superior = source[e.property];
-      if(superior == null)
-      {
-        this.dataItem = null;
-      }
-      else
-      {
-        this.dataItem = superior[this.property];
-      }
-    }).bind(this);
-    this._mode = mode;
-    this._property = property;
-    this._dataItem = dataItem;
+    if(options["property"] != undefined)
+    {
+      this._property = options["property"];
+    }
+    if(options["dataItem"] != undefined)
+    {
+      this._dataItem = options["dataItem"];
+    }
+    if(options["mode"] != undefined)
+    {
+      this._mode = options["mode"];
+    }
+    else
+    {
+      this._mode = __lc("java.lang.DataContextMode").Ancestor;
+    }
   }
-  };
   DataContext.prototype.__proto__ = Object.prototype;
   __cache["java.lang.DataContext"] = DataContext;
   Object.defineProperty(DataContext.prototype, "property", {
@@ -757,7 +774,7 @@
       return this._dataItem;
     }, 
     set : function(value) {
-      if(value === this._dataItem) return;
+      if(value === this._dataItem) return
       this.replaceDataItem(value);
       this._dataItem = value;
       this.dirty(value);
@@ -768,7 +785,7 @@
       return this._mode;
     }, 
     set : function(value) {
-      if(value === this._mode) return;
+      if(value === this._mode) return
       this._mode = value;
     }
   });
@@ -777,7 +794,7 @@
       return this._propertyChange;
     }
   });
-  DataContext.prototype.inject = function(target, targetProperty, targetProperty1){
+  DataContext.prototype.inject = function(target, properties){
     target.dataContext = this;
   };
   DataContext.prototype.addBinding = function(binding){
@@ -988,14 +1005,15 @@
       }
     }).bind(this));
     this._dependents.length = 0;
-  };DataContext.prototype.doApplyTemplate = function(parent, data, index) {};
-  DataContext.prototype.__class = new (__lc('java.lang.Class'))("java.lang.DataContext", DataContext, Object.prototype.__class, [__lc("java.lang.PropertyChangeListener").prototype.__class, __lc("java.lang.INotifyPropertyChanged").prototype.__class], 1);
+  };
+  DataContext.prototype.__class = new (__lc('java.lang.Class'))("java.lang.DataContext", DataContext, Object.prototype.__class, [__lc("java.lang.PropertyChangeListener").prototype.__class, __lc("java.lang.INotifyPropertyChanged").prototype.__class, __lc("java.lang.MarkupExtension").prototype.__class], 1);
   return  DataContext;
 })();
 (function(){ 
   function Template() {    
     this._rootNodes = [];
     this._data = null;
+    this._templateSetting = null;
     this._dataContextCallback = null;
   }
   Template.prototype.__proto__ = Object.prototype;
@@ -1021,11 +1039,18 @@
       this._data = value;
     }
   });
+  Object.defineProperty(Template.prototype, "templateSetting", {
+    get : function() {
+      return this._templateSetting;
+    }, 
+    set : function(value) {
+      this._templateSetting = value;
+    }
+  });
   Template.prototype.applyTemplate = function(parent, data, index){
     this.doApplyTemplate(parent, data, index);
   };
   Template.prototype.doApplyTemplate = function(parent, data, index){
-    throw new Error(0, "illegal call!");
   };
   Template.prototype.undoTemplate = function(parent){
     this._rootNodes.forEach((function(node, index, array){
@@ -1056,7 +1081,7 @@
     return this.doSelect(data);
   };
   TemplateSelector.prototype.doSelect = function(data){
-  };TemplateSelector.prototype.doApplyTemplate = function(parent, data, index) {};
+  };
   TemplateSelector.prototype.__class = new (__lc('java.lang.Class'))("java.lang.TemplateSelector", TemplateSelector, Object.prototype.__class, [], 1);
   return  TemplateSelector;
 })();
@@ -1066,6 +1091,7 @@
     this._selector = null;
     this._selectorInstance = null;
     this._property = null;
+    this._name = null;
     this._container = null;
     this._invariant = false;
     this._dataItem = null;
@@ -1101,13 +1127,13 @@
     {
       this._property = option["property"];
     }
+    if(option["name"] != null)
+    {
+      this._name = option["name"];
+    }
     if(option["invariant"] != null)
     {
       this._invariant = option["invariant"];
-    }
-    if(option["property"] != null)
-    {
-      this._property = option["property"];
     }
     if(option["dataContextCalback"] != null)
     {
@@ -1138,6 +1164,14 @@
     }, 
     set : function(value) {
       this._property = value;
+    }
+  });
+  Object.defineProperty(BaseTemplateSetting.prototype, "name", {
+    get : function() {
+      return this._name;
+    }, 
+    set : function(value) {
+      this._name = value;
     }
   });
   Object.defineProperty(BaseTemplateSetting.prototype, "invariant", {
@@ -1196,7 +1230,7 @@
     node[properties[0]] = this;
   };
   BaseTemplateSetting.prototype.unInject = function(){
-  };BaseTemplateSetting.prototype.doApplyTemplate = function(parent, data, index) {};
+  };
   BaseTemplateSetting.prototype.__class = new (__lc('java.lang.Class'))("java.lang.BaseTemplateSetting", BaseTemplateSetting, Object.prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class, __lc("java.lang.PropertyChangeListener").prototype.__class], 1);
   return  BaseTemplateSetting;
 })();
@@ -1207,7 +1241,9 @@
     this._setupDataContext = (function(node, data, index){
       if(String.isNullOrEmpty(this._property))
       {
-        node.dataContext = new (__lc('java.lang.DataContext'))(this._property, data, __lc("java.lang.DataContextMode").Ancestor, "2");
+        var options = new Object();
+        options["property"] = this._property;
+        node.dataContext = new (__lc('java.lang.DataContext'))(options);
       }
       return node;
     }).bind(this);
@@ -1265,13 +1301,13 @@
     return result;
   }
   TemplateSetting.prototype.dirty = function(){
-  };TemplateSetting.prototype.doApplyTemplate = function(parent, data, index) {};
+  };
   TemplateSetting.prototype.__class = new (__lc('java.lang.Class'))("java.lang.TemplateSetting", TemplateSetting, __lc("java.lang.BaseTemplateSetting").prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class, __lc("java.lang.PropertyChangeListener").prototype.__class], 1);
   return  TemplateSetting;
 })();
 (function(){ 
   function CollectionTemplateSetting(option) {    
-  __lc('java.lang.TemplateSetting').call(this, option);
+  __lc('java.lang.BaseTemplateSetting').call(this, option);
     this._applyTemplateCallback = null;
     this.itemsMap = new Map();
     this.onCollectionChanged = (function(sender, event){
@@ -1318,7 +1354,10 @@
       }
     }).bind(this);
     this._setupDataContext = (function(n, d, index){
-      n.dataContext = new (__lc('java.lang.DataContext'))(null, d, __lc("java.lang.DataContextMode").Standalone, "2");
+      var options = new Object();
+      options["dataItem"] = d;
+      options["mode"] = __lc("java.lang.DataContextMode").Standalone;
+      n.dataContext = new (__lc('java.lang.DataContext'))(options);
       return n;
     }).bind(this);
     if(this._dataContextCalback == null)
@@ -1330,7 +1369,7 @@
       this._applyTemplateCallback = option["applyTemplateCallback"];
     }
   }
-  CollectionTemplateSetting.prototype.__proto__ = __lc("java.lang.TemplateSetting").prototype;
+  CollectionTemplateSetting.prototype.__proto__ = __lc("java.lang.BaseTemplateSetting").prototype;
   __cache["java.lang.CollectionTemplateSetting"] = CollectionTemplateSetting;
   Object.defineProperty(CollectionTemplateSetting.prototype, "applyTemplateCallback", {
     get : function() {
@@ -1405,8 +1444,12 @@
     {
       result._dataContextCallback = this._setupDataContext;
     }
+    if(result != null)
+    {
+      result.templateSetting = this;
+    }
     return result;
-  };CollectionTemplateSetting.prototype.doApplyTemplate = function(parent, data, index) {};
-  CollectionTemplateSetting.prototype.__class = new (__lc('java.lang.Class'))("java.lang.CollectionTemplateSetting", CollectionTemplateSetting, __lc("java.lang.TemplateSetting").prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class, __lc("java.lang.PropertyChangeListener").prototype.__class], 1);
+  };
+  CollectionTemplateSetting.prototype.__class = new (__lc('java.lang.Class'))("java.lang.CollectionTemplateSetting", CollectionTemplateSetting, __lc("java.lang.BaseTemplateSetting").prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class, __lc("java.lang.PropertyChangeListener").prototype.__class], 1);
   return  CollectionTemplateSetting;
 })();

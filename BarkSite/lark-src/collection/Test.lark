@@ -9,12 +9,10 @@ import org.w3c.event.Event;
 import org.w3c.event.EventHandler;
 import org.w3c.event.MouseEvent;
 import org.w3c.event.MouseEventHandler;
-import org.w3c.html.*;
-import org.w3c.svg.*;
  
 public class Test implements Page, INotifyPropertyChanged {
 	<%
-	<html>
+	<html xmlns:lark = "http://www.lark.org/2012">
 		<head> 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 			<style>
@@ -37,23 +35,18 @@ public class Test implements Page, INotifyPropertyChanged {
 		<button onclick="addChild"  >
 			新增
 		</button>
-		<button onclick = "deleteChild"  onmouseover=function{String name="aaa"; return false;}> 
+		<button onclick = "deleteChild"  onmouseover=function{String name="aaa"; this.name = "2121"; alert("1"); return false;}>
 			删除 
 		</button> 
-			
 			<{  
 //				HTMLElement e = (HTMLElement) document.getElementById("1");
 //				e.addEventListener("blur", (Event e1) ->{
 //					return false;
 //				}, false);
 			}>
-		
 		<button onclick = "nextPage">
 			下一页
 		</button>
-			
-
-
 			<svg width="500" height="200">
 			
 				<line x1="20" y1="180" x2="20" y2="10" style="stroke:black;stroke-width:1px;"/>
@@ -75,15 +68,23 @@ public class Test implements Page, INotifyPropertyChanged {
 				<rect x="140" y="80"  width="20" height="100" fill = "green" /> 
 				<rect x="190" y="70"  width="20" height="110" fill = "red" /> 
 				<rect x="240" y="150"  width="20" height="30" fill = "red" /> 
-
 			</svg>
-
 			
+			<table> 
+			<thead className="tabs" >
+				<tr>
+				<td ><input type="checkbox" checked = {Binding property = "allSelected" mode="TwoWay" trigger="PropertyChanged"} /></td> 
+				<td>序号</td><td>姓名</td> <td>地址</td><td onmouseover=function{return false;}> 年龄</td> 
+				</tr> 
+		    </thead> 
+			<tbody className="tabs" >
+		    	<lark:collection-template name="__t" selector="FirstTemplateSelector" property="persons"/>  
+		    </tbody>
+	
+		    </table>
 		</body> 
-		 
 	</html>
 		%>
-		
 //        var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
 //        rect.setAttributeNS(null, 'x', x);
 //        rect.setAttributeNS(null, 'y', y);

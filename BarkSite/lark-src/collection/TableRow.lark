@@ -17,11 +17,9 @@ public class TableRow extends Template {
 		
 		<td>
 			<svg width="140" height="170"  xmlns:xlink="http://www.w3.org/1999/xlink">
-			<!-- guide lines -->
-			<path d="M 20 10, 20 120 M 10 30 100 30 M 10 70 100 70 M 10 110 100 110" style="stroke: gray;"/>
-			<text x="20" y="30">Simplest Text</text>
-			<text x="20" y="70" style="stroke: black;">Outlined/filled</text>
-			<text x="20" y="110" style="stroke: black; stroke-width: 0.5; fill: none;">Outlined only</text>
+			<g style="font-size: 18pt">
+			<text x="20" y="20" style="font-weight:bold;">bold</text>
+			</g>
 			</svg>
 		</td>
 	</tr> 
