@@ -260,6 +260,10 @@
     }
   };
   AbstractBindable.prototype.reset = function(){
+    for (var i = 0, length = this._childs.length; i < length; i ++) 
+    {
+      this.parentNode.removeChild(this._childs[i]);
+    }
   };
   AbstractBindable.prototype.body = function(){
     this.doBody();
@@ -1230,12 +1234,66 @@
   __lc('java.lang.AbstractBindable').call(this, parent);
     this._items = null;
     this._datas = new Array();
+    this._status = null;
     this._begin = 0;
     this._end = 0;
     this._step = 0;
     this._trace = false;
     this.onCollectionChanged = (function(sender, event){
+      switch (event.action) {
+      case __lc("java.lang.CollectionChangedAction").Add :
+          var items = event.newItems;
+          if(items == null || items.length <= 0)
+          {
+            break;
+          }
+          var start = event.newStartingIndex;
+          var __coll = items
+          for(var __i = 0; __i < __coll.length; __i++) {
+            var obj = __coll[__i];
+            var item = createItem.call(this, obj);
+            this.processChild(item);
+            this._status.count ++;
+            this._status.index ++;
+            this._status.current = obj;
+            this.bodyHandler.call(item);
+          }
+          break;
+      case __lc("java.lang.CollectionChangedAction").Remove :
+          items = event.oldItems;
+          if(items == null || items.length <= 0)
+          {
+            break;
+          }
+          var toBeRemove = new Array();
+          for (var i = 0, length = items.length; i < length; i ++) 
+          {
+            for (var j = 0, size = this._childs.length; j < size; j ++) 
+            {
+              if(this._childs[j].getDataContext("current").dataItem == items[i])
+              {
+                toBeRemove.push(this._childs[j]);
+              }
+            }
+          }
+          for (var i = 0, lengt = toBeRemove.length; i < length; i ++) 
+          {
+            this._status.count --;
+            this._status._index --;
+            toBeRemove[i].reset();
+          }
+          break;
+      }
     }).bind(this);
+    this._status = (function(){
+      var r = {__enclosing : this, __proto__: __lc('java.lang.Iterator$LoopStatus').prototype};
+      __lc('java.lang.Iterator$LoopStatus').apply(r, arguments);
+      return r;
+    }).call(this);
+    var options = new Object();
+    options["name"] = "status";
+    options["dataItem"] = this._status;
+    this.addDataContext(new (__lc('java.lang.DataContext'))(options));
   }
   Iterator.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
   __cache["java.lang.Iterator"] = Iterator;
@@ -1284,15 +1342,6 @@
     return item;
   }
   Iterator.prototype.doBody = function(){
-    var status = (function(){
-      var r = {__enclosing : this, __proto__: __lc('java.lang.Iterator$LoopStatus').prototype};
-      __lc('java.lang.Iterator$LoopStatus').apply(r, arguments);
-      return r;
-    }).call(this);
-    var options = new Object();
-    options["name"] = "status";
-    options["dataItem"] = status;
-    this.addDataContext(new (__lc('java.lang.DataContext'))(options));
     if(this.items != null)
     {
       if(__lc("java.util.Collection").prototype.__class.isInstance(this.items))
@@ -1309,20 +1358,20 @@
           {
                         continue ;;
           }
-          if(! status._first)
+          if(! this._status._first)
           {
-            status._first = true;
+            this._status._first = true;
           }
           else
           {
-            status._first = false;
+            this._status._first = false;
           }
-          status.count ++;
-          status.index ++;
-          status.current = obj;
+          this._status.count ++;
+          this._status.index ++;
+          this._status.current = obj;
           if(index == this.end || index == size)
           {
-            status._last = true;
+            this._status._last = true;
           }
           this.bodyHandler.call(item);
           if(index == this.end)
@@ -1344,21 +1393,21 @@
         this.processChild(item);
         if(i == this._begin)
         {
-          status.first = true;
+          this._status.first = true;
         }
         else
         {
-          status.first = false;
+          this._status.first = false;
         }
         if(i + this._step > this._end)
         {
-          status.last = true;
+          this._status.last = true;
         }
         else
         {
-          status.last = false;
+          this._status.last = false;
         }
-        status.count ++;
+        this._status.count ++;
         this.bodyHandler.call(item);
       }
     }

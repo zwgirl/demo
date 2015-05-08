@@ -6,7 +6,7 @@ public class TableRow extends Template {
 	<%
 	<tr style.backgroundColor={Binding property="selected" mode="TwoWay"} onclick="click">
 		<td>
-			<input type="checkbox" checked = {Binding property="selected" mode="TwoWay" trigger="PropertyChanged"}/>
+			<input type="checkbox" checked = {Binding property="selected" mode="TwoWay" trigger="PropertyChanged" context="current"}/>
 		</td>
 		<td textContent = {Binding property="index" context="status"}></td> 
 		<td>

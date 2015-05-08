@@ -67,7 +67,7 @@ public class Test implements Page, INotifyPropertyChanged {
 		<button onclick="addChild"  >
 			新增
 		</button>
-		<button onclick = "deleteChild"  onmouseover=function{String name="aaa"; this.name = "2121"; alert("1"); return false;}>
+		<button onclick = "deleteChild" >
 			删除 
 		</button> 
 			<{  
