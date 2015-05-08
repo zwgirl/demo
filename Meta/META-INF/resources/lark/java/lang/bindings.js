@@ -1,4 +1,276 @@
 (function(){ 
+  function Bindable(){};
+  __cache["java.lang.Bindable"] = Bindable;
+  Object.defineProperty(Bindable.prototype, "parentNode", {
+    get : function() {
+    }, 
+    set : function(value) {
+    }
+  });
+  Object.defineProperty(Bindable.prototype, "logicParent", {
+    get : function() {
+    }, 
+    set : function(value) {
+    }
+  });
+  Bindable.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Bindable", Bindable, Object.prototype.__class, [], 2);
+  return  Bindable;
+})();
+(function(){ 
+  function Tag(){};
+  __cache["java.lang.Tag"] = Tag;
+  Object.defineProperty(Tag.prototype, "bodyHandler", {
+    get : function() {
+    }, 
+    set : function(value) {
+    }
+  });
+  Tag.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Tag", Tag, Object.prototype.__class, [], 2);
+  return  Tag;
+})();
+(function(){ 
+  function AbstractBindable(parent) {    
+    this._childs = null;
+    this._parent = null;
+    this._parent = parent;
+  }
+  AbstractBindable.prototype.__proto__ = Object.prototype;
+  __cache["java.lang.AbstractBindable"] = AbstractBindable;
+  Object.defineProperty(AbstractBindable.prototype, "parentNode", {
+    get : function() {
+      return this._parent;
+    }, 
+    set : function(value) {
+      this._parent = value;
+    }
+  });
+  Object.defineProperty(AbstractBindable.prototype, "logicParent", {
+    get : function() {
+      return this["_logicParent"];
+    }, 
+    set : function(value) {
+      this["_logicParent"] = value;
+    }
+  });
+  Object.defineProperty(AbstractBindable.prototype, "bodyHandler", {
+    get : function() {
+      return this["_bodyHandler"];
+    }, 
+    set : function(value) {
+      this["_bodyHandler"] = value;
+    }
+  });
+  AbstractBindable.prototype.appendChild = function(child){
+    this.processChild(child);
+    return this.parentNode.appendChild(child);
+  };
+  AbstractBindable.prototype.processChild = function(child){
+    if(this._childs == null)
+    {
+      this._childs = [];
+    }
+    this._childs.push(child);
+    child["_logicParent"] = this;
+    return child;
+  };
+  AbstractBindable.prototype.getBinding = function(properties){
+    var bindings = this["__bindings"];
+    if(bindings == null)
+    {
+      return null;
+    }
+    return bindings.get(properties.join("."));
+  };
+  AbstractBindable.prototype.setBinding = function(properties, binding){
+    var bindings = this["__bindings"];
+    if(bindings == null)
+    {
+      this["__bindings"] = bindings = new Map();
+    }
+    var old = bindings.get(properties.join("."));
+    if(old === binding)
+    {
+      return;
+    }
+    if(old != null)
+    {
+      old.unInject(this);
+    }
+    bindings.set(properties.join("."), binding);
+    binding.inject(this, properties);
+  };
+  AbstractBindable.prototype.removeBinding = function(properties){
+    var bindings = this["__bindings"];
+    if(bindings == null)
+    {
+      return false;
+    }
+    var old = bindings.get(properties.join("."));
+    if(old == null)
+    {
+      return false;
+    }
+    if(old != null)
+    {
+      old.unInject(this);
+    }
+    bindings.delete(properties.join("."));
+    return true;
+  };
+  AbstractBindable.prototype.attach = function(binding){
+  };
+  AbstractBindable.prototype.detach = function(binding){
+  };
+  AbstractBindable.prototype.update = function(binding){
+    var data = this.getDataContext(binding.context).dataItem;
+    if(! String.isNullOrEmpty(binding.property))
+    {
+      data = data == null ? null : data[binding.property];
+    }
+    var tag = this;
+    var properties = binding.targetProperties;
+    var length = properties.length;
+    for (var i = 0; i < length - 1; i ++) 
+    {
+      if(tag == null) return
+      tag = tag[properties[i]];
+    }
+    if(binding.converterTo != null)
+    {
+      data = binding.converterTo(data);
+    }
+    var oldValue = tag[properties[length - 1]];
+    if(data === oldValue)
+    {
+      return;
+    }
+    if(binding.updateTargetCallback != null)
+    {
+      binding.updateTargetCallback(this, properties, data);
+    }
+    else
+    {
+      tag[properties[length - 1]] = data;
+    }
+  };
+  AbstractBindable.prototype.getDataContext = function(name){
+    if(String.isNullOrEmpty(name))
+    {
+      return null;
+    }
+    var contexts = this["__contexts"];
+    if(contexts != null)
+    {
+      var result = contexts.get(name);
+      if(result != null)
+      {
+        return result;
+      }
+    }
+    if(this.logicParent != null)
+    {
+      return this.logicParent.getDataContext(name);
+    }
+    else if(this.parentNode != null)
+    {
+      return this.parentNode.getDataContext(name);
+    }
+    return null;
+  };
+  AbstractBindable.prototype.addDataContext = function(context){
+    var contexts = this["__contexts"];
+    if(contexts == null)
+    {
+      this["__contexts"] = contexts = new Map();
+    }
+    var old = contexts.get(name);
+    if(old != null)
+    {
+      old.moveDependentTo(context);
+    }
+    contexts.set(context.name, context);
+    if(context.name == "ROOT" || context.name == "TEMPLATE")
+    {
+      return;
+    }
+    if(this.logicParent != null)
+    {
+      var parent = this.logicParent.getDataContext(context.ancestor);
+      if(parent != null)
+      {
+        parent.addDependent(context);
+      }
+      else
+      {
+        console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+      }
+    }
+    else if(this.parentNode != null)
+    {
+      var parent = this.parentNode.getDataContext(context.ancestor);
+      if(parent != null)
+      {
+        parent.addDependent(context);
+      }
+      else
+      {
+        console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+      }
+    }
+  };
+  AbstractBindable.prototype.removeDataContext = function(name){
+    if(String.isNullOrEmpty(name))
+    {
+      return;
+    }
+    var contexts = this["__contexts"];
+    if(contexts == null)
+    {
+      return;
+    }
+    var context = contexts.get(name);
+    if(context != null)
+    {
+      context.clearDependents();
+      if(this.logicParent != null)
+      {
+        var parent = this.logicParent.getDataContext(context.ancestor);
+        if(parent != null)
+        {
+          parent.addDependent(context);
+        }
+        else
+        {
+          console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+        }
+      }
+      else if(this.parentNode != null)
+      {
+        var parent = this.parentNode.getDataContext(context.ancestor);
+        if(parent != null)
+        {
+          parent.addDependent(context);
+        }
+        else
+        {
+          console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+        }
+      }
+      contexts.delete(name);
+    }
+  };
+  AbstractBindable.prototype.reset = function(){
+  };
+  AbstractBindable.prototype.body = function(){
+    this.doBody();
+  };
+  AbstractBindable.prototype.doBody = function(){
+    this.bodyHandler();
+  };
+  AbstractBindable.prototype.__class = new (__lc('java.lang.Class'))("java.lang.AbstractBindable", AbstractBindable, Object.prototype.__class, [__lc("java.lang.Bindable").prototype.__class, __lc("java.lang.Tag").prototype.__class], 1);
+  return  AbstractBindable;
+})();
+(function(){ 
   function PropertyChangeListener(){};
   __cache["java.lang.PropertyChangeListener"] = PropertyChangeListener;
   Object.defineProperty(PropertyChangeListener.prototype, "propertyChange", {
@@ -43,7 +315,7 @@
       }).bind(this));
     }
   };
-  INotifyPropertyChanged.prototype.addPropertyChangeListener1 = function(handler){
+  INotifyPropertyChanged.prototype.addAllPropertyChangeListener = function(handler){
     var _listeners = this["__listeners"];
     if(_listeners == null)
     {
@@ -51,7 +323,7 @@
     }
     _listeners.push(handler);
   };
-  INotifyPropertyChanged.prototype.removePropertyChangeListener1 = function(handler){
+  INotifyPropertyChanged.prototype.removeAllPropertyChangeListener = function(handler){
     var _listeners = this["__listeners"];
     if(_listeners == null)
     {
@@ -102,7 +374,7 @@
       }
     }).bind(this));
   };
-  INotifyPropertyChanged.prototype.addPropertyChangeListener4 = function(propNames, handler){
+  INotifyPropertyChanged.prototype.addPropertyChangeListeners = function(propNames, handler){
     var _propertyListeners = this["__propListeners"];
     if(_propertyListeners == null)
     {
@@ -120,7 +392,7 @@
       listeners.push(handler);
     }
   };
-  INotifyPropertyChanged.prototype.removePropertyChangeListener4 = function(handler){
+  INotifyPropertyChanged.prototype.removePropertyChangeListeners = function(handler){
     var _propertyListeners = this["__propListeners"];
     if(_propertyListeners == null)
     {
@@ -473,10 +745,11 @@
 })();
 (function(){ 
   function Binding(options) {    
-    this._mode = null;
-    this._trigger = null;
+    this._context = null;
     this._property = null;
     this._target = null;
+    this._mode = null;
+    this._trigger = null;
     this._trace = false;
     this._targetProperties = null;
     this._updateTargetCallback = null;
@@ -484,12 +757,7 @@
     this._converterTo = null;
     this._converterFrom = null;
     this._propertyChange = (function(source, evt){
-      var data = source;
-      if(! String.isNullOrEmpty(this._property))
-      {
-        data = source[evt.property];
-      }
-      this.setTargetProperty(this._targetProperties, data);
+      this._target.update(this);
     }).bind(this);
     this.updateSource = (function(event){
       var value = this.getProperty(event.target, this._targetProperties);
@@ -497,7 +765,7 @@
       {
         value = this._converterFrom(value);
       }
-      return this._target.dataContext.updateSource(this._property, value, this._updateSourceCallback);
+      return this._target.getDataContext(this._context).updateSource(this._property, value, this._updateSourceCallback);
     }).bind(this);
     if(options["property"] != undefined)
     {
@@ -514,6 +782,14 @@
     else
     {
       this._mode = __lc("java.lang.BindingMode").OneTime;
+    }
+    if(options["context"] != undefined)
+    {
+      this._context = options["context"];
+    }
+    else
+    {
+      this._context = "ROOT";
     }
     if(options["trigger"] != undefined)
     {
@@ -548,6 +824,14 @@
     }, 
     set : function(value) {
       this._property = value;
+    }
+  });
+  Object.defineProperty(Binding.prototype, "targetProperties", {
+    get : function() {
+      return this._targetProperties;
+    }, 
+    set : function(value) {
+      this._targetProperties = value;
     }
   });
   Object.defineProperty(Binding.prototype, "trace", {
@@ -606,6 +890,14 @@
       this._converterFrom = value;
     }
   });
+  Object.defineProperty(Binding.prototype, "context", {
+    get : function() {
+      return this._context;
+    }, 
+    set : function(value) {
+      this._context = value;
+    }
+  });
   Object.defineProperty(Binding.prototype, "propertyChange", {
     get : function() {
       return this._propertyChange;
@@ -616,59 +908,21 @@
     this._targetProperties = targetProperties;
     switch (this._mode) {
     case __lc("java.lang.BindingMode").TwoWay :
-        if(HTMLElement.prototype.__class.isInstance(target))
-        {
-          this.attachTarget(this._target);
-        }
+        target.attach(this);
     case __lc("java.lang.BindingMode").OneWay :
-        this._target.dataContext.addBinding(this);
+        target.getDataContext(this.context).addBinding(this);
+        target.setBinding(targetProperties, this);
     case __lc("java.lang.BindingMode").OneTime :
-        this.updateTarget(this._target, targetProperties, this._target.dataContext.dataItem);
+        target.update(this);
     }
   };
-  Binding.prototype.unInject = function(){
+  Binding.prototype.unInject = function(target){
     switch (this._mode) {
     case __lc("java.lang.BindingMode").TwoWay :
-        if(HTMLElement.prototype.__class.isInstance(this._target))
-        {
-          this.detachTarget(this._target);
-        }
+        target.detach(this);
     case __lc("java.lang.BindingMode").OneWay :
-        this._target.dataContext.removeBinding(this);
+        target.removeBinding(this._targetProperties);
     case __lc("java.lang.BindingMode").OneTime :
-    }
-  };
-  Binding.prototype.updateTarget = function(target, properties, data){
-    if(! String.isNullOrEmpty(this.property))
-    {
-      data = data == null ? null : data[this.property];
-    }
-    this.setTargetProperty(this._targetProperties, data);
-  };
-  Binding.prototype.setTargetProperty = function(properties, data){
-    var tag = this._target;
-    var length = properties.length;
-    for (var i = 0; i < length - 1; i ++) 
-    {
-      if(tag == null) return
-      tag = tag[properties[i]];
-    }
-    if(this._converterTo != null)
-    {
-      data = this._converterTo(data);
-    }
-    var oldValue = tag[properties[length - 1]];
-    if(data === oldValue)
-    {
-      return;
-    }
-    if(this._updateTargetCallback != null)
-    {
-      this._updateTargetCallback(this._target, properties, data);
-    }
-    else
-    {
-      tag[properties[length - 1]] = data;
     }
   };
   Binding.prototype.getProperty = function(target, properties){
@@ -681,55 +935,16 @@
     }
     return result[properties[length - 1]];
   };
-  Binding.prototype.attachTarget = function(target){
-    switch (this._trigger) {
-    case __lc("java.lang.UpdateSourceTrigger").LostFocus :
-        target.addEventListener("blur", this.updateSource, false);
-        break;
-    case __lc("java.lang.UpdateSourceTrigger").PropertyChanged :
-        target.addEventListener("input", this.updateSource, false);
-        target.addEventListener("change", this.updateSource, false);
-        break;
-    default :
-    }
-  };
-  Binding.prototype.detachTarget = function(target){
-    switch (this._trigger) {
-    case __lc("java.lang.UpdateSourceTrigger").LostFocus :
-        target.removeEventListener("blur", this.updateSource, false);
-        break;
-    case __lc("java.lang.UpdateSourceTrigger").PropertyChanged :
-        target.removeEventListener("input", this.updateSource, false);
-        target.removeEventListener("change", this.updateSource, false);
-        break;
-    default :
-    }
-  };
   Binding.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Binding", Binding, Object.prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class, __lc("java.lang.PropertyChangeListener").prototype.__class], 1);
   return  Binding;
 })();
 (function(){ 
-  function DataContextMode() {    
-  __lc('java.lang.Enum').call(this, arguments[arguments.length-2], arguments[arguments.length-1]);
-  }
-  DataContextMode.prototype.__proto__ = __lc("java.lang.Enum").prototype;
-  __cache["java.lang.DataContextMode"] = DataContextMode;
-  DataContextMode.valueOf = function(name) { return DataContextMode[name]; };
-  DataContextMode.values = function() { return [DataContextMode.Root, DataContextMode.Template, DataContextMode.Standalone, DataContextMode.Ancestor]; };
-  DataContextMode.Root = new (__lc('java.lang.DataContextMode'))("Root", 0);
-  DataContextMode.Template = new (__lc('java.lang.DataContextMode'))("Template", 1);
-  DataContextMode.Standalone = new (__lc('java.lang.DataContextMode'))("Standalone", 2);
-  DataContextMode.Ancestor = new (__lc('java.lang.DataContextMode'))("Ancestor", 3);
-  DataContextMode.prototype.__class = new (__lc('java.lang.Class'))("java.lang.DataContextMode", DataContextMode, __lc("java.lang.Enum").prototype.__class, [], 3);
-  return  DataContextMode;
-})();
-(function(){ 
   function DataContext(options) {    
-    this._mode = null;
+    this._name = null;
     this._property = null;
+    this._ancestor = null;
     this._bindings = [];
-    this._dependents = [];
-    this._templates = [];
+    this._dependents = new Map();
     this._dataItem = null;
     this._propertyChange = (function(source, e){
       var superior = source[e.property];
@@ -750,18 +965,43 @@
     {
       this._dataItem = options["dataItem"];
     }
-    if(options["mode"] != undefined)
+    if(options["name"] != undefined)
     {
-      this._mode = options["mode"];
+      this._name = options["name"];
     }
     else
     {
-      this._mode = __lc("java.lang.DataContextMode").Ancestor;
+      throw new Error(0, "DataContext name may not be null!");
+    }
+    if(options["ancestor"] != undefined)
+    {
+      this._ancestor = options["ancestor"];
+    }
+    else
+    {
+      if(this._name != "ROOT") this._ancestor = "ROOT"
     }
   }
   DataContext.prototype.__proto__ = Object.prototype;
   __cache["java.lang.DataContext"] = DataContext;
+  Object.defineProperty(DataContext.prototype, "name", {
+    get : function() {
+      return this._name;
+    }, 
+    set : function(value) {
+      if(value === this._name) return
+      this._name = value;
+    }
+  });
   Object.defineProperty(DataContext.prototype, "property", {
+    get : function() {
+      return this._ancestor;
+    }, 
+    set : function(value) {
+      this._ancestor = value;
+    }
+  });
+  Object.defineProperty(DataContext.prototype, "ancestor", {
     get : function() {
       return this._property;
     }, 
@@ -780,22 +1020,13 @@
       this.dirty(value);
     }
   });
-  Object.defineProperty(DataContext.prototype, "mode", {
-    get : function() {
-      return this._mode;
-    }, 
-    set : function(value) {
-      if(value === this._mode) return
-      this._mode = value;
-    }
-  });
   Object.defineProperty(DataContext.prototype, "propertyChange", {
     get : function() {
       return this._propertyChange;
     }
   });
   DataContext.prototype.inject = function(target, properties){
-    target.dataContext = this;
+    target.addDataContext(this);
   };
   DataContext.prototype.addBinding = function(binding){
     this._bindings.push(binding);
@@ -806,7 +1037,7 @@
       {
         if(__lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
         {
-          __lc("java.lang.INotifyPropertyChanged").prototype.addPropertyChangeListener1.call(this._dataItem, binding.propertyChange);
+          __lc("java.lang.INotifyPropertyChanged").prototype.addAllPropertyChangeListener.call(this._dataItem, binding.propertyChange);
         }
       }
     }
@@ -831,7 +1062,7 @@
       __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this, "dataItem", binding.propertyChange);
       if(binding.trace)
       {
-        __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener1.call(this, binding.propertyChange);
+        __lc("java.lang.INotifyPropertyChanged").prototype.removeAllPropertyChangeListener.call(this, binding.propertyChange);
       }
     }
     else
@@ -842,44 +1073,8 @@
       }
     }
   };
-  DataContext.prototype.addTemplateSetting = function(ts){
-    this._templates.push(ts);
-    if(String.isNullOrEmpty(ts.property))
-    {
-      __lc("java.lang.INotifyPropertyChanged").prototype.addPropertyChangeListener.call(this, "dataItem", ts.propertyChange);
-      ts.dataItem = this._dataItem;
-    }
-    else
-    {
-      if(__lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
-      {
-        __lc("java.lang.INotifyPropertyChanged").prototype.addPropertyChangeListener.call(this._dataItem, ts.property, ts.propertyChange);
-      }
-      ts.dataItem = this._dataItem != null ? this._dataItem[ts.property] : null;
-    }
-  };
-  DataContext.prototype.removeTemplateSetting = function(ts){
-    this._templates.forEach((function(ts1, index, array){
-      if(ts == ts1)
-      {
-        this._templates.splice(index, 1);
-        return;
-      }
-    }).bind(this));
-    if(String.isNullOrEmpty(ts.property))
-    {
-      __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this, "dataItem", ts.propertyChange);
-    }
-    else
-    {
-      if(__lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
-      {
-        __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this._dataItem, ts.property, ts.propertyChange);
-      }
-    }
-  };
   DataContext.prototype.addDependent = function(dependent){
-    this._dependents.push(dependent);
+    this._dependents.set(dependent.name, dependent);
     if(this._dataItem != null)
     {
       dependent.dataItem = this.dataItem[dependent.property];
@@ -890,56 +1085,41 @@
     }
   };
   DataContext.prototype.removeDependent = function(dependent){
-    this._dependents.forEach((function(dc, index, array){
-      if(dc === dependent)
-      {
-        this._dependents.splice(index, 1);
-        return;
-      }
-    }).bind(this));
+    this._dependents.delete(dependent.name);
+  };
+  DataContext.prototype.moveDependentTo = function(target){
+  };
+  DataContext.prototype.clearDependents = function(){
   };
   DataContext.prototype.dirty = function(data){
     this._bindings.forEach((function(binding, index, array){
       binding.propertyChange(this.dataItem, new (__lc('java.lang.PropertyChangeEvent'))(binding.property));
     }).bind(this));
-    this._dependents.forEach((function(dc, index, array){
+    this._dependents.forEach((function(dc, name, map){
       dc.propertyChange(this.dataItem, new (__lc('java.lang.PropertyChangeEvent'))(dc.property));
-    }).bind(this));
-    this._templates.forEach((function(ts, index, array){
-      ts.propertyChange(this.dataItem, new (__lc('java.lang.PropertyChangeEvent'))(ts.property));
     }).bind(this));
   };
   DataContext.prototype.replaceDataItem = function(newDataItem){
     if(this._dataItem != null && __lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
     {
       var oldPc = this._dataItem;
-      for (var i = 0, length = this._dependents.length; i < length; i ++) 
-      {
-        __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(oldPc, this._dependents[i].property, this._dependents[i].propertyChange);
-      }
+      this._dependents.forEach((function(dc, name, map){
+        __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(oldPc, dc.property, dc.propertyChange);
+      }).bind(this));
       for (var i = 0, length = this._bindings.length; i < length; i ++) 
       {
         __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(oldPc, this._bindings[i].property, this._bindings[i].propertyChange);
-      }
-      for (var i = 0, length = this._templates.length; i < length; i ++) 
-      {
-        __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(oldPc, this._templates[i].property, this._templates[i].propertyChange);
       }
     }
     if(newDataItem != null && __lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(newDataItem))
     {
       var newPc = newDataItem;
-      for (var i = 0, length = this._dependents.length; i < length; i ++) 
-      {
-        __lc("java.lang.INotifyPropertyChanged").prototype.addPropertyChangeListener.call(newPc, this._dependents[i].property, this._dependents[i].propertyChange);
-      }
+      this._dependents.forEach((function(dc, name, map){
+        __lc("java.lang.INotifyPropertyChanged").prototype.addPropertyChangeListener.call(newPc, dc.property, dc.propertyChange);
+      }).bind(this));
       for (var i = 0, length = this._bindings.length; i < length; i ++) 
       {
         __lc("java.lang.INotifyPropertyChanged").prototype.addPropertyChangeListener.call(newPc, this._bindings[i].property, this._bindings[i].propertyChange);
-      }
-      for (var i = 0, length = this._templates.length; i < length; i ++) 
-      {
-        __lc("java.lang.INotifyPropertyChanged").prototype.addPropertyChangeListener.call(newPc, this._templates[i].property, this._templates[i].propertyChange);
       }
     }
   };
@@ -963,20 +1143,6 @@
     return true;
   };
   DataContext.prototype.reset = function(){
-    this._templates.forEach((function(ts, index, array){
-      if(String.isNullOrEmpty(ts.property))
-      {
-        __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this, "dataItem", ts.propertyChange);
-      }
-      else
-      {
-        if(__lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
-        {
-          __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this._dataItem, ts.property, ts.propertyChange);
-        }
-      }
-    }).bind(this));
-    this._templates.length = 0;
     this._bindings.forEach((function(binding, index, array){
       if(String.isNullOrEmpty(binding.property))
       {
@@ -991,47 +1157,304 @@
       }
     }).bind(this));
     this._bindings.length = 0;
-    this._dependents.forEach((function(dataContext, index, array){
-      if(String.isNullOrEmpty(dataContext.property))
+    this._dependents.forEach((function(dc, name, map){
+      if(String.isNullOrEmpty(dc.property))
       {
-        __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this, "dataItem", dataContext.propertyChange);
+        __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this, "dataItem", dc.propertyChange);
       }
       else
       {
         if(__lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
         {
-          __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this._dataItem, dataContext.property, dataContext.propertyChange);
+          __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this._dataItem, dc.property, dc.propertyChange);
         }
       }
     }).bind(this));
-    this._dependents.length = 0;
+    this._dependents.clear();
   };
   DataContext.prototype.__class = new (__lc('java.lang.Class'))("java.lang.DataContext", DataContext, Object.prototype.__class, [__lc("java.lang.PropertyChangeListener").prototype.__class, __lc("java.lang.INotifyPropertyChanged").prototype.__class, __lc("java.lang.MarkupExtension").prototype.__class], 1);
   return  DataContext;
 })();
 (function(){ 
-  function Template() {    
-    this._rootNodes = [];
-    this._data = null;
-    this._templateSetting = null;
-    this._dataContextCallback = null;
+  function Template(parent) {    
+  __lc('java.lang.AbstractBindable').call(this, parent);
+    var options = new Object();
+    options["name"] = "TEMPLATE";
+    options["dataItem"] = this;
+    this.addDataContext(new (__lc('java.lang.DataContext'))(options));
   }
-  Template.prototype.__proto__ = Object.prototype;
+  Template.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
   __cache["java.lang.Template"] = Template;
-  Object.defineProperty(Template.prototype, "dataContextCallback", {
+  Template.prototype.body = function(){
+    this.doBody();
+  };
+  Template.prototype.doBody = function(){
+  };
+  Template.prototype.removeBody = function(parent){
+    this._childs.forEach((function(node, index, array){
+    }).bind(this));
+  };
+  Template.prototype.before = function(){
+  };
+  Template.prototype.after = function(node){
+    return node;
+  };Template.prototype.doBody = function() {};
+  Template.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Template", Template, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  return  Template;
+})();
+(function(){ 
+  function Router(options) {    
+    this._page = null;
+    if(options["page"] != undefined)
+    {
+      this._page = options["page"];
+    }
+  }
+  Router.prototype.__proto__ = Object.prototype;
+  __cache["java.lang.Router"] = Router;
+  Object.defineProperty(Router.prototype, "page", {
     get : function() {
-      return this._dataContextCallback;
+      return this._page;
     }, 
     set : function(value) {
-      this._dataContextCallback = value;
+      this._page = value;
     }
   });
-  Object.defineProperty(Template.prototype, "rootNodes", {
+  Router.prototype.inject = function(target, properties){
+  };
+  Router.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Router", Router, Object.prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class], 1);
+  return  Router;
+})();
+(function(){ 
+  function Iterator(parent) {    
+  __lc('java.lang.AbstractBindable').call(this, parent);
+    this._items = null;
+    this._datas = new Array();
+    this._begin = 0;
+    this._end = 0;
+    this._step = 0;
+    this._trace = false;
+    this.onCollectionChanged = (function(sender, event){
+    }).bind(this);
+  }
+  Iterator.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
+  __cache["java.lang.Iterator"] = Iterator;
+  Object.defineProperty(Iterator.prototype, "begin", {
     get : function() {
-      return this._rootNodes;
+      return this._begin;
+    }, 
+    set : function(value) {
+      this._begin = value;
     }
   });
-  Object.defineProperty(Template.prototype, "data", {
+  Object.defineProperty(Iterator.prototype, "end", {
+    get : function() {
+      return this._end;
+    }, 
+    set : function(value) {
+      this._end = value;
+    }
+  });
+  Object.defineProperty(Iterator.prototype, "step", {
+    get : function() {
+      return this._step;
+    }, 
+    set : function(value) {
+      this._step = value;
+    }
+  });
+  Object.defineProperty(Iterator.prototype, "items", {
+    get : function() {
+      return this._items;
+    }, 
+    set : function(value) {
+      this._items = value;
+    }
+  });
+  function createItem(data){
+    var item = (function(){
+      var r = {__enclosing : this, __proto__: __lc('java.lang.Iterator$Item').prototype};
+      __lc('java.lang.Iterator$Item').apply(r, arguments);
+      return r;
+    }).call(this, this.parentNode);
+    var options = new Object();
+    options["name"] = "current";
+    options["dataItem"] = data;
+    item.addDataContext(new (__lc('java.lang.DataContext'))(options));
+    return item;
+  }
+  Iterator.prototype.doBody = function(){
+    var status = (function(){
+      var r = {__enclosing : this, __proto__: __lc('java.lang.Iterator$LoopStatus').prototype};
+      __lc('java.lang.Iterator$LoopStatus').apply(r, arguments);
+      return r;
+    }).call(this);
+    var options = new Object();
+    options["name"] = "status";
+    options["dataItem"] = status;
+    this.addDataContext(new (__lc('java.lang.DataContext'))(options));
+    if(this.items != null)
+    {
+      if(__lc("java.util.Collection").prototype.__class.isInstance(this.items))
+      {
+        var index = 0;
+        var size = this.items.size;
+        var __coll = this.items, __i = __coll.iterator();
+        while(__i.hasNext()) {
+          var obj = __i.next();
+          this._datas.push(obj);
+          var item = createItem.call(this, obj);
+          this.processChild(item);
+          if(index ++ < this._begin)
+          {
+                        continue ;;
+          }
+          if(! status._first)
+          {
+            status._first = true;
+          }
+          else
+          {
+            status._first = false;
+          }
+          status.count ++;
+          status.index ++;
+          status.current = obj;
+          if(index == this.end || index == size)
+          {
+            status._last = true;
+          }
+          this.bodyHandler.call(item);
+          if(index == this.end)
+          {
+            break;
+          }
+        }
+        if(__lc("java.util.ObservableCollection", "java.util.ObservableCollection").prototype.__class.isInstance(this.items))
+        {
+          __lc("java.lang.INotifyCollectionChanged").prototype.addCollectionChangedListener.call(this.items, this.onCollectionChanged);
+        }
+      }
+    }
+    else if(this._end > - 1)
+    {
+      for (var i = this._begin; i < this._end; i+=this._step) 
+      {
+        var item = createItem.call(this, null);
+        this.processChild(item);
+        if(i == this._begin)
+        {
+          status.first = true;
+        }
+        else
+        {
+          status.first = false;
+        }
+        if(i + this._step > this._end)
+        {
+          status.last = true;
+        }
+        else
+        {
+          status.last = false;
+        }
+        status.count ++;
+        this.bodyHandler.call(item);
+      }
+    }
+  };
+  Iterator.LoopStatus = (function(){
+    function LoopStatus() {      
+      this._current = null;
+      this._index = 0;
+      this._first = false;
+      this._last = false;
+      this._count = 1;
+    }
+    LoopStatus.prototype.__proto__ = Object.prototype;
+    __cache["java.lang.Iterator$LoopStatus"] = LoopStatus;
+    Object.defineProperty(LoopStatus.prototype, "current", {
+      get : function() {
+        return this._current;
+      }, 
+      set : function(value) {
+        this._current = value;
+      }
+    });
+    Object.defineProperty(LoopStatus.prototype, "index", {
+      get : function() {
+        return this._index;
+      }, 
+      set : function(value) {
+        this._index = value;
+      }
+    });
+    Object.defineProperty(LoopStatus.prototype, "count", {
+      get : function() {
+        return this._count;
+      }, 
+      set : function(value) {
+        this._count = value;
+      }
+    });
+    Object.defineProperty(LoopStatus.prototype, "first", {
+      get : function() {
+        return this._first;
+      }, 
+      set : function(value) {
+        this._first = value;
+      }
+    });
+    Object.defineProperty(LoopStatus.prototype, "last", {
+      get : function() {
+        return this._last;
+      }, 
+      set : function(value) {
+        this._last = value;
+      }
+    });
+    Object.defineProperty(LoopStatus.prototype, "begin", {
+      get : function() {
+        return this.__enclosing._begin;
+      }
+    });
+    Object.defineProperty(LoopStatus.prototype, "end", {
+      get : function() {
+        return this.__enclosing._end;
+      }
+    });
+    Object.defineProperty(LoopStatus.prototype, "step", {
+      get : function() {
+        return this.__enclosing._step;
+      }
+    });
+    LoopStatus.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Iterator$LoopStatus", LoopStatus, Object.prototype.__class, [], 1);
+    return  LoopStatus;
+    return LoopStatus;
+  })();
+  Iterator.Item = (function(){
+    function Item(parent) {      
+    __lc('java.lang.AbstractBindable').call(this, parent);
+    }
+    Item.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
+    __cache["java.lang.Iterator$Item"] = Item;
+    Item.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Iterator$Item", Item, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+    return  Item;
+    return Item;
+  })();
+  Iterator.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Iterator", Iterator, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  return  Iterator;
+})();
+(function(){ 
+  function Choose(parent) {    
+  __lc('java.lang.AbstractBindable').call(this, parent);
+    this._data = null;
+    this._converter = null;
+    this._otherwise = true;
+  }
+  Choose.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
+  __cache["java.lang.Choose"] = Choose;
+  Object.defineProperty(Choose.prototype, "data", {
     get : function() {
       return this._data;
     }, 
@@ -1039,126 +1462,149 @@
       this._data = value;
     }
   });
-  Object.defineProperty(Template.prototype, "templateSetting", {
+  Object.defineProperty(Choose.prototype, "converter", {
     get : function() {
-      return this._templateSetting;
+      return this._converter;
     }, 
     set : function(value) {
-      this._templateSetting = value;
+      this._converter = value;
     }
   });
-  Template.prototype.applyTemplate = function(parent, data, index){
-    this.doApplyTemplate(parent, data, index);
-  };
-  Template.prototype.doApplyTemplate = function(parent, data, index){
-  };
-  Template.prototype.undoTemplate = function(parent){
-    this._rootNodes.forEach((function(node, index, array){
-      parent.removeChild(node);
-    }).bind(this));
-  };
-  Template.prototype.setupDataContext = function(node, data, index){
-    if(this._dataContextCallback != null)
+  Choose.prototype.test = function(value){
+    if(this._data == null)
     {
-      return this._dataContextCallback(node, data, index);
+      return false;
     }
-    return node;
+    var result = false;
+    if(this._converter != null)
+    {
+      result = this._converter(this._data) == value;
+    }
+    else
+    {
+      result = this._data == value;
+    }
+    if(result)
+    {
+      this._otherwise = false;
+    }
+    return result;
   };
-  Template.prototype.before = function(data, index){
-  };
-  Template.prototype.after = function(node, data, index){
-    return node;
-  };Template.prototype.doApplyTemplate = function(parent, data, index) {};
-  Template.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Template", Template, Object.prototype.__class, [], 1);
-  return  Template;
+  Choose.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Choose", Choose, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  return  Choose;
 })();
 (function(){ 
-  function TemplateSelector() {    
+  function When(parent) {    
+  __lc('java.lang.AbstractBindable').call(this, parent);
+    this._value = null;
   }
-  TemplateSelector.prototype.__proto__ = Object.prototype;
-  __cache["java.lang.TemplateSelector"] = TemplateSelector;
-  TemplateSelector.prototype.select = function(data){
-    return this.doSelect(data);
+  When.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
+  __cache["java.lang.When"] = When;
+  Object.defineProperty(When.prototype, "value", {
+    get : function() {
+      return this._value;
+    }, 
+    set : function(value) {
+      this._value = value;
+    }
+  });
+  When.prototype.doBody = function(){
+    if(this._value == null)
+    {
+      return;
+    }
+    if(! __lc("java.lang.Choose").prototype.__class.isInstance(this.logicParent))
+    {
+      return;
+    }
+    var choose = this.logicParent;
+    if(choose.test(this.value))
+    {
+      this.bodyHandler(parent);
+    }
   };
-  TemplateSelector.prototype.doSelect = function(data){
-  };
-  TemplateSelector.prototype.__class = new (__lc('java.lang.Class'))("java.lang.TemplateSelector", TemplateSelector, Object.prototype.__class, [], 1);
-  return  TemplateSelector;
+  When.prototype.__class = new (__lc('java.lang.Class'))("java.lang.When", When, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  return  When;
 })();
 (function(){ 
-  function BaseTemplateSetting(option) {    
-    this._template = null;
-    this._selector = null;
-    this._selectorInstance = null;
+  function Otherwise(parent) {    
+  __lc('java.lang.AbstractBindable').call(this, parent);
+  }
+  Otherwise.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
+  __cache["java.lang.Otherwise"] = Otherwise;
+  Otherwise.prototype.doBody = function(){
+    if(! __lc("java.lang.Choose").prototype.__class.isInstance(this.logicParent))
+    {
+      return;
+    }
+    var choose = this.logicParent;
+    if(choose["_otherwise"])
+    {
+      this.bodyHandler(parent);
+    }
+  };
+  Otherwise.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Otherwise", Otherwise, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  return  Otherwise;
+})();
+(function(){ 
+  function If(parent) {    
+  __lc('java.lang.AbstractBindable').call(this, parent);
+    this._data = null;
+    this._test = null;
+  }
+  If.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
+  __cache["java.lang.If"] = If;
+  Object.defineProperty(If.prototype, "data", {
+    get : function() {
+      return this._data;
+    }, 
+    set : function(value) {
+      this._data = value;
+    }
+  });
+  Object.defineProperty(If.prototype, "test", {
+    get : function() {
+      return this._test;
+    }, 
+    set : function(value) {
+      this._test = value;
+    }
+  });
+  If.prototype.doBody = function(){
+    if(this._test == null)
+    {
+      if(this._data)
+      {
+        this.bodyHandler(parent);
+      }
+    }
+    else
+    {
+      if(this._test())
+      {
+        this.bodyHandler(parent);
+      }
+    }
+  };
+  If.prototype.__class = new (__lc('java.lang.Class'))("java.lang.If", If, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  return  If;
+})();
+(function(){ 
+  function ParameterBinding() {    
+    this._context = null;
     this._property = null;
-    this._name = null;
-    this._container = null;
-    this._invariant = false;
-    this._dataItem = null;
-    this._dataContextCalback = null;
-    this._propertyChange = (function(source, event){
-      var data = source[event.property];
-      if(data != null)
-      {
-        if(String.isNullOrEmpty(this.property))
-        {
-          this._dataItem = data;
-        }
-        else
-        {
-          this.dataItem = data[this.property];
-        }
-      }
-      else
-      {
-        this._dataItem = null;
-      }
-    }).bind(this);
-    if(option["template"] != null)
-    {
-      this._template = option["template"];
-    }
-    if(option["selector"] != null)
-    {
-      this.selector = option["selector"];
-      this._selectorInstance = this._selector.newInstance();
-    }
-    if(option["property"] != null)
-    {
-      this._property = option["property"];
-    }
-    if(option["name"] != null)
-    {
-      this._name = option["name"];
-    }
-    if(option["invariant"] != null)
-    {
-      this._invariant = option["invariant"];
-    }
-    if(option["dataContextCalback"] != null)
-    {
-      this._dataContextCalback = option["dataContextCalback"];
-    }
   }
-  BaseTemplateSetting.prototype.__proto__ = Object.prototype;
-  __cache["java.lang.BaseTemplateSetting"] = BaseTemplateSetting;
-  Object.defineProperty(BaseTemplateSetting.prototype, "template", {
+  ParameterBinding.prototype.__proto__ = Object.prototype;
+  __cache["java.lang.ParameterBinding"] = ParameterBinding;
+  Object.defineProperty(ParameterBinding.prototype, "context", {
     get : function() {
-      return this._template;
+      return this._context;
     }, 
     set : function(value) {
-      this._template = value;
+      this._context = value;
     }
   });
-  Object.defineProperty(BaseTemplateSetting.prototype, "selector", {
-    get : function() {
-      return this._selector;
-    }, 
-    set : function(value) {
-      this._selector = value;
-    }
-  });
-  Object.defineProperty(BaseTemplateSetting.prototype, "property", {
+  Object.defineProperty(ParameterBinding.prototype, "property", {
     get : function() {
       return this._property;
     }, 
@@ -1166,290 +1612,96 @@
       this._property = value;
     }
   });
-  Object.defineProperty(BaseTemplateSetting.prototype, "name", {
-    get : function() {
-      return this._name;
-    }, 
-    set : function(value) {
-      this._name = value;
-    }
-  });
-  Object.defineProperty(BaseTemplateSetting.prototype, "invariant", {
-    get : function() {
-      return this._invariant;
-    }, 
-    set : function(value) {
-      this._invariant = value;
-    }
-  });
-  Object.defineProperty(BaseTemplateSetting.prototype, "container", {
-    get : function() {
-      return this._container;
-    }
-  });
-  Object.defineProperty(BaseTemplateSetting.prototype, "dataItem", {
-    get : function() {
-      return this._dataItem;
-    }, 
-    set : function(value) {
-      if(this._dataItem === value)
-      {
-        return;
-      }
-      this._dataItem = value;
-      this.dirty();
-    }
-  });
-  Object.defineProperty(BaseTemplateSetting.prototype, "dataContextCalback", {
-    get : function() {
-      return this._dataContextCalback;
-    }, 
-    set : function(value) {
-      this._dataContextCalback = value;
-    }
-  });
-  Object.defineProperty(BaseTemplateSetting.prototype, "propertyChange", {
-    get : function() {
-      return this._propertyChange;
-    }
-  });
-  BaseTemplateSetting.prototype.dirty = function(){
+  ParameterBinding.prototype.inject = function(target, properties){
   };
-  BaseTemplateSetting.prototype.applyTemplate = function(){
-    this.internalApplyTemplate(this._dataItem, - 1);
-  };
-  BaseTemplateSetting.prototype.setupDataContext = function(current, data, index){
-    return current;
-  };
-  BaseTemplateSetting.prototype.internalApplyTemplate = function(data, index){
-  };
-  BaseTemplateSetting.prototype.undoTemplate = function(){
-  };
-  BaseTemplateSetting.prototype.inject = function(node, properties){
-    this._container = node;
-    node[properties[0]] = this;
-  };
-  BaseTemplateSetting.prototype.unInject = function(){
-  };
-  BaseTemplateSetting.prototype.__class = new (__lc('java.lang.Class'))("java.lang.BaseTemplateSetting", BaseTemplateSetting, Object.prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class, __lc("java.lang.PropertyChangeListener").prototype.__class], 1);
-  return  BaseTemplateSetting;
+  ParameterBinding.prototype.__class = new (__lc('java.lang.Class'))("java.lang.ParameterBinding", ParameterBinding, Object.prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class], 1);
+  return  ParameterBinding;
 })();
 (function(){ 
-  function TemplateSetting(option) {    
-  __lc('java.lang.BaseTemplateSetting').call(this, option);
-    this._templateInstance = null;
-    this._setupDataContext = (function(node, data, index){
-      if(String.isNullOrEmpty(this._property))
-      {
-        var options = new Object();
-        options["property"] = this._property;
-        node.dataContext = new (__lc('java.lang.DataContext'))(options);
-      }
-      return node;
-    }).bind(this);
-    if(this._dataContextCalback == null)
-    {
-      this._dataContextCalback = this._setupDataContext;
-    }
-  }
-  TemplateSetting.prototype.__proto__ = __lc("java.lang.BaseTemplateSetting").prototype;
-  __cache["java.lang.TemplateSetting"] = TemplateSetting;
-  TemplateSetting.prototype.applyTemplate = function(){
-    this.internalApplyTemplate(this._dataItem, - 1);
+  function Parameters(){};
+  __cache["java.lang.Parameters"] = Parameters;
+  Parameters.prototype.URL = function(){
+    return "";
   };
-  TemplateSetting.prototype.internalApplyTemplate = function(data, index){
-    if(this._templateInstance == null)
-    {
-      this._templateInstance = createTemplate.call(this, data);
-    }
-    else
-    {
-      if(this._selectorInstance != null)
-      {
-        var newTemp = createTemplate.call(this, data);
-        if(newTemp.getClass().id == this._templateInstance.getClass().id)
-        {
-          return;
-        }
-        this.undoTemplate();
-        this._templateInstance = newTemp;
-      }
-      else
-      {
-        return;
-      }
-    }
-    if(this._templateInstance != null) this._templateInstance.applyTemplate(this.container, data, index)
+  Parameters.prototype.inject = function(a, property, bindings){
   };
-  TemplateSetting.prototype.undoTemplate = function(){
-    if(this._templateInstance != null) this._templateInstance.undoTemplate(this.container)
-  };
-  function createTemplate(data){
-    var result = null;
-    if(this._selectorInstance != null)
-    {
-      result = this._selectorInstance.select(data);
-    }
-    else
-    {
-      result = this.template.newInstance();
-    }
-    if(result != null)
-    {
-      result._dataContextCallback = this._setupDataContext;
-    }
-    return result;
-  }
-  TemplateSetting.prototype.dirty = function(){
-  };
-  TemplateSetting.prototype.__class = new (__lc('java.lang.Class'))("java.lang.TemplateSetting", TemplateSetting, __lc("java.lang.BaseTemplateSetting").prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class, __lc("java.lang.PropertyChangeListener").prototype.__class], 1);
-  return  TemplateSetting;
+  Parameters.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Parameters", Parameters, Object.prototype.__class, [], 2);
+  return  Parameters;
 })();
 (function(){ 
-  function CollectionTemplateSetting(option) {    
-  __lc('java.lang.BaseTemplateSetting').call(this, option);
-    this._applyTemplateCallback = null;
-    this.itemsMap = new Map();
-    this.onCollectionChanged = (function(sender, event){
-      switch (event.action) {
-      case __lc("java.lang.CollectionChangedAction").Add :
-          var items = event.newItems;
-          if(items == null || items.length <= 0)
-          {
-            break;
-          }
-          var start = event.newStartingIndex;
-          var __coll = items
-          for(var __i = 0; __i < __coll.length; __i++) {
-            var item = __coll[__i];
-            var template = this.createTemplate(item);
-            template.applyTemplate(this._container, item, start ++);
-            this.itemsMap.set(item, template);
-          }
-          break;
-      case __lc("java.lang.CollectionChangedAction").Reset :
-          this.undoTemplate();
-          break;
-      case __lc("java.lang.CollectionChangedAction").Remove :
-          var toBeRemoved = [];
-          var __coll0 = event.oldItems
-          for(var __i0 = 0; __i0 < __coll0.length; __i0++) {
-            var item = __coll0[__i0];
-            var temp = this.itemsMap.get(item);
-            temp.undoTemplate(this._container);
-            this.itemsMap.delete(item);
-          }
-          break;
-      case __lc("java.lang.CollectionChangedAction").Replace :
-          var newItem = event.newItems[0];
-          var old = event.oldItems[0];
-          var oldTemp = this.itemsMap.get(old);
-          var newTemp = this.createTemplate(newItem);
-          if(newTemp == null || newTemp.getClass().id != oldTemp.getClass().id)
-          {
-            oldTemp.undoTemplate(this._container);
-            newTemp.applyTemplate(this._container, newItem, event.newStartingIndex);
-          }
-      case __lc("java.lang.CollectionChangedAction").Move :
-      }
-    }).bind(this);
-    this._setupDataContext = (function(n, d, index){
-      var options = new Object();
-      options["dataItem"] = d;
-      options["mode"] = __lc("java.lang.DataContextMode").Standalone;
-      n.dataContext = new (__lc('java.lang.DataContext'))(options);
-      return n;
-    }).bind(this);
-    if(this._dataContextCalback == null)
+  function ProxyPrrameter(bindings) {    
+    this._page = null;
+    this._target = null;
+    this._parameters = new Map();
+    if(bindings != null)
     {
-      this._dataContextCalback = this._setupDataContext;
-    }
-    if(option["applyTemplateCallback"] != null)
-    {
-      this._applyTemplateCallback = option["applyTemplateCallback"];
+      bindings.forEach((function(value, index, array){
+      }).bind(this));
     }
   }
-  CollectionTemplateSetting.prototype.__proto__ = __lc("java.lang.BaseTemplateSetting").prototype;
-  __cache["java.lang.CollectionTemplateSetting"] = CollectionTemplateSetting;
-  Object.defineProperty(CollectionTemplateSetting.prototype, "applyTemplateCallback", {
-    get : function() {
-      return this._applyTemplateCallback;
-    }, 
-    set : function(value) {
-      this._applyTemplateCallback = value;
-    }
-  });
-  CollectionTemplateSetting.prototype.dirty = function(){
-    this.undoTemplate();
-    if(this._dataItem != null)
-    {
-      if(__lc("java.lang.INotifyCollectionChanged").prototype.__class.isInstance(this._dataItem))
+  ProxyPrrameter.prototype.__proto__ = Object.prototype;
+  __cache["java.lang.ProxyPrrameter"] = ProxyPrrameter;
+  ProxyPrrameter.prototype.URL = function(){
+    var r = "";
+    var and = false;
+    this._parameters.forEach((function(value, key, _this){
+      if(and)
       {
-        __lc("java.lang.INotifyCollectionChanged").prototype.removeCollectionChangedListener.call(this._dataItem, this.onCollectionChanged);
+        key+='&';
       }
-    }
-    if(this._dataItem != null)
-    {
-      if(__lc("java.lang.INotifyCollectionChanged").prototype.__class.isInstance(this._dataItem))
-      {
-        __lc("java.lang.INotifyCollectionChanged").prototype.addCollectionChangedListener.call(this._dataItem, this.onCollectionChanged);
-      }
-      this.applyTemplate();
-    }
-  };
-  CollectionTemplateSetting.prototype.applyTemplate = function(){
-    if(this._applyTemplateCallback != null)
-    {
-      this._applyTemplateCallback(this._dataItem);
-    }
-    else
-    {
-      if(__lc("java.util.Collection").prototype.__class.isInstance(this._dataItem))
-      {
-        var index = 0;
-        var __coll = this._dataItem, __i = __coll.iterator();
-        while(__i.hasNext()) {
-          var item = __i.next();
-          this.internalApplyTemplate(item, index ++);
-        }
-      }
-    }
-  };
-  CollectionTemplateSetting.prototype.internalApplyTemplate = function(data, index){
-    var template = this.createTemplate(data);
-    if(template == null)
-    {
-      return;
-    }
-    template.applyTemplate(this.container, data, index);
-    this.itemsMap.set(data, template);
-  };
-  CollectionTemplateSetting.prototype.undoTemplate = function(){
-    this.itemsMap.forEach((function(temp, data, map){
-      temp.undoTemplate(this.container);
+      key = key + '=' + encodeURIComponent(value);
+      and = true;
     }).bind(this));
-    this.itemsMap.clear();
+    return r;
   };
-  CollectionTemplateSetting.prototype.createTemplate = function(data){
-    var result = null;
-    if(this._selectorInstance != null)
+  ProxyPrrameter.prototype.inject = function(a, prop, bindings){
+    this._target = a;
+    if(bindings != null)
     {
-      result = this._selectorInstance.select(data);
+      bindings.forEach((function(binding, index, array){
+        update.call(this, binding);
+      }).bind(this));
     }
-    else
+  };
+  function update(binding){
+    var context = Node.prototype.getDataContext.call(this._target, binding.context);
+    this._parameters.set(binding.context, context[binding.property]);
+  }
+  ProxyPrrameter.prototype.__class = new (__lc('java.lang.Class'))("java.lang.ProxyPrrameter", ProxyPrrameter, Object.prototype.__class, [__lc("java.lang.Parameters").prototype.__class], 1);
+  return  ProxyPrrameter;
+})();
+(function(){ 
+  function Page(){};
+  __cache["java.lang.Page"] = Page;
+  Page.prototype.encodeRequest = function(parameters){
+    var r = "";
+    var and = false;
+    parameters.forEach((function(value, key, _this){
+      if(and)
+      {
+        key+='&';
+      }
+      key = key + '=' + encodeURIComponent(value);
+      and = true;
+    }).bind(this));
+    return r;
+  };
+  Page.prototype.getRequestParameter = function(search){
+    var result = new Map();
+    if(String.isNullOrEmpty(location.search))
     {
-      if(this.template != null) result = this.template.newInstance()
+      return null;
     }
-    if(result != null)
-    {
-      result._dataContextCallback = this._setupDataContext;
-    }
-    if(result != null)
-    {
-      result.templateSetting = this;
-    }
+    var parts = search.split("&");
+    parts.forEach((function(value, index, _this){
+      var assign = value.split("=");
+      result.set(assign[0], assign[1]);
+    }).bind(this));
     return result;
   };
-  CollectionTemplateSetting.prototype.__class = new (__lc('java.lang.Class'))("java.lang.CollectionTemplateSetting", CollectionTemplateSetting, __lc("java.lang.BaseTemplateSetting").prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class, __lc("java.lang.PropertyChangeListener").prototype.__class], 1);
-  return  CollectionTemplateSetting;
+  Page.prototype.toURL = function(){
+    return this.getClass().toURL();
+  };
+  Page.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Page", Page, Object.prototype.__class, [__lc("java.lang.Parameters").prototype.__class], 2);
+  return  Page;
 })();

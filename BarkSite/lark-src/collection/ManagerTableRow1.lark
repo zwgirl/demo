@@ -3,18 +3,16 @@ package collection;
 
 import org.w3c.event.*;
 
-public class ManagerTableRow extends Template { 
+public class ManagerTableRow1 extends Template { 
 	<%
 	<tr style.backgroundColor={Binding property="selected" mode="TwoWay"} onclick="click">
 		<td>
 			<input type="text" value = {Binding property="name" mode="TwoWay" trigger="PropertyChanged"}/>
-		</td>
-		<ManagerTableRow1 />
+		</td> 
 
-	</tr>  
-	<ManagerTableRow1 /> 
+	</tr>   
 	%> 
-	public ManagerTableRow(Bindable parent) { 
+	public ManagerTableRow1(Bindable parent) { 
 		super(parent);
 	}
 

@@ -1,7 +1,7 @@
 (function(){ 
-  __cache["org.w3c.html.html"] = html;
-  html.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.html", html, Object.prototype.__class, [html.prototype.__class], 2);
-  return  html;
+  __cache["org.w3c.html.HTMLHtmlElement"] = HTMLHtmlElement;
+  HTMLHtmlElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLHtmlElement", HTMLHtmlElement, Object.prototype.__class, [HTMLHtmlElement.prototype.__class], 2);
+  return  HTMLHtmlElement;
 })();
 (function(){ 
   __cache["org.w3c.html.HTMLCollection"] = HTMLCollection;
@@ -41,131 +41,115 @@
 })();
 (function(){ 
   __cache["org.w3c.html.HTMLElement"] = HTMLElement;
-  Object.defineProperty(HTMLElement.prototype, "template", {
-    get : function() {
-      return this["__template"] == undefined ? null : this["__template"];
-    }, 
-    set : function(value) {
-      this["__template"] = value;
+  HTMLElement.prototype.attach = function(binding){
+    switch (binding.trigger) {
+    case __lc("java.lang.UpdateSourceTrigger").LostFocus :
+        this.addEventListener("blur", binding.updateSource, false);
+        break;
+    case __lc("java.lang.UpdateSourceTrigger").PropertyChanged :
+        this.addEventListener("input", binding.updateSource, false);
+        this.addEventListener("change", binding.updateSource, false);
+        break;
+    default :
     }
-  });
-  Object.defineProperty(HTMLElement.prototype, "itemTemplate", {
-    get : function() {
-      return this["__itemTemplate"] == undefined ? null : this["__itemTemplate"];
-    }, 
-    set : function(value) {
-      this["__itemTemplate"] = value;
+  };
+  HTMLElement.prototype.detach = function(binding){
+    switch (binding.trigger) {
+    case __lc("java.lang.UpdateSourceTrigger").LostFocus :
+        this.removeEventListener("blur", binding.updateSource, false);
+        break;
+    case __lc("java.lang.UpdateSourceTrigger").PropertyChanged :
+        this.removeEventListener("input", binding.updateSource, false);
+        this.removeEventListener("change", binding.updateSource, false);
+        break;
+    default :
     }
-  });
-  Object.defineProperty(HTMLElement.prototype, "dataContext", {
-    get : function() {
-      if(this["__dataContext"] === undefined)
-      {
-        return this.parentNode.dataContext;
-      }
-      else
-      {
-        return this["__dataContext"];
-      }
-    }, 
-    set : function(value) {
-      if(this["__dataContext"] == value)
-      {
-        return;
-      }
-      this["__dataContext"] = value;
-    }
-  });
+  };
   HTMLElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLElement", HTMLElement, Object.prototype.__class, [HTMLElement.prototype.__class, HTMLElement.prototype.__class], 2);
   return  HTMLElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.base"] = base;
-  base.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.base", base, Object.prototype.__class, [base.prototype.__class], 2);
-  return  base;
+  __cache["org.w3c.html.HTMLBaseElement"] = HTMLBaseElement;
+  HTMLBaseElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLBaseElement", HTMLBaseElement, Object.prototype.__class, [HTMLBaseElement.prototype.__class], 2);
+  return  HTMLBaseElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.link"] = link;
-  link.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.link", link, Object.prototype.__class, [link.prototype.__class], 2);
-  return  link;
+  __cache["org.w3c.html.HTMLLinkElement"] = HTMLLinkElement;
+  HTMLLinkElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLLinkElement", HTMLLinkElement, Object.prototype.__class, [HTMLLinkElement.prototype.__class], 2);
+  return  HTMLLinkElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.meta"] = meta;
-  meta.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.meta", meta, Object.prototype.__class, [meta.prototype.__class], 2);
-  return  meta;
+  __cache["org.w3c.html.HTMLMetaElement"] = HTMLMetaElement;
+  HTMLMetaElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLMetaElement", HTMLMetaElement, Object.prototype.__class, [HTMLMetaElement.prototype.__class], 2);
+  return  HTMLMetaElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.style"] = style;
-  style.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.style", style, Object.prototype.__class, [style.prototype.__class], 2);
-  return  style;
+  __cache["org.w3c.html.HTMLStyleElement"] = HTMLStyleElement;
+  HTMLStyleElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLStyleElement", HTMLStyleElement, Object.prototype.__class, [HTMLStyleElement.prototype.__class], 2);
+  return  HTMLStyleElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.script"] = script;
-  script.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.script", script, Object.prototype.__class, [script.prototype.__class], 2);
-  return  script;
+  __cache["org.w3c.html.HTMLScriptElement"] = HTMLScriptElement;
+  HTMLScriptElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLScriptElement", HTMLScriptElement, Object.prototype.__class, [HTMLScriptElement.prototype.__class], 2);
+  return  HTMLScriptElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.body"] = body;
-  body.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.body", body, Object.prototype.__class, [body.prototype.__class], 2);
-  return  body;
+  __cache["org.w3c.html.HTMLBodyElement"] = HTMLBodyElement;
+  HTMLBodyElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLBodyElement", HTMLBodyElement, Object.prototype.__class, [HTMLBodyElement.prototype.__class], 2);
+  return  HTMLBodyElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.head"] = head;
-  head.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.head", head, Object.prototype.__class, [head.prototype.__class], 2);
-  return  head;
+  __cache["org.w3c.html.HTMLHeadElement"] = HTMLHeadElement;
+  HTMLHeadElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLHeadElement", HTMLHeadElement, Object.prototype.__class, [HTMLHeadElement.prototype.__class], 2);
+  return  HTMLHeadElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.title"] = title;
-  title.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.title", title, Object.prototype.__class, [title.prototype.__class], 2);
-  return  title;
+  __cache["org.w3c.html.HTMLTitleElement"] = HTMLTitleElement;
+  HTMLTitleElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLTitleElement", HTMLTitleElement, Object.prototype.__class, [HTMLTitleElement.prototype.__class], 2);
+  return  HTMLTitleElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.blockquote"] = blockquote;
-  blockquote.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.blockquote", blockquote, Object.prototype.__class, [blockquote.prototype.__class], 2);
-  return  blockquote;
+  __cache["org.w3c.html.HTMLQuoteElement"] = HTMLQuoteElement;
+  HTMLQuoteElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLQuoteElement", HTMLQuoteElement, Object.prototype.__class, [HTMLQuoteElement.prototype.__class], 2);
+  return  HTMLQuoteElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.ul"] = ul;
-  ul.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.ul", ul, Object.prototype.__class, [ul.prototype.__class], 2);
-  return  ul;
+  __cache["org.w3c.html.HTMLOListElement"] = HTMLOListElement;
+  HTMLOListElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLOListElement", HTMLOListElement, Object.prototype.__class, [HTMLOListElement.prototype.__class], 2);
+  return  HTMLOListElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.ol"] = ol;
-  ol.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.ol", ol, Object.prototype.__class, [ol.prototype.__class], 2);
-  return  ol;
+  __cache["org.w3c.html.HTMLLIElement"] = HTMLLIElement;
+  HTMLLIElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLLIElement", HTMLLIElement, Object.prototype.__class, [HTMLLIElement.prototype.__class], 2);
+  return  HTMLLIElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.li"] = li;
-  li.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.li", li, Object.prototype.__class, [li.prototype.__class], 2);
-  return  li;
-})();
-(function(){ 
-  __cache["org.w3c.html.a"] = a;
-  Object.defineProperty(a.prototype, "page", {
+  __cache["org.w3c.html.HTMLAnchorElement"] = HTMLAnchorElement;
+  Object.defineProperty(HTMLAnchorElement.prototype, "route", {
     get : function() {
-      return this["__page"];
+      return this["__route"];
     }, 
     set : function(value) {
-      this["__page"] = value;
+      this["__route"] = value;
     }
   });
-  a.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.a", a, Object.prototype.__class, [a.prototype.__class], 2);
-  return  a;
+  HTMLAnchorElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLAnchorElement", HTMLAnchorElement, Object.prototype.__class, [HTMLAnchorElement.prototype.__class], 2);
+  return  HTMLAnchorElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.time"] = time;
-  time.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.time", time, Object.prototype.__class, [time.prototype.__class], 2);
-  return  time;
+  __cache["org.w3c.html.HTMLTimeElement"] = HTMLTimeElement;
+  HTMLTimeElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLTimeElement", HTMLTimeElement, Object.prototype.__class, [HTMLTimeElement.prototype.__class], 2);
+  return  HTMLTimeElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.progress"] = progress;
-  progress.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.progress", progress, Object.prototype.__class, [progress.prototype.__class], 2);
-  return  progress;
+  __cache["org.w3c.html.HTMLProgressElement"] = HTMLProgressElement;
+  HTMLProgressElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLProgressElement", HTMLProgressElement, Object.prototype.__class, [HTMLProgressElement.prototype.__class], 2);
+  return  HTMLProgressElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.meter"] = meter;
-  meter.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.meter", meter, Object.prototype.__class, [meter.prototype.__class], 2);
-  return  meter;
+  __cache["org.w3c.html.HTMLMeterElement"] = HTMLMeterElement;
+  HTMLMeterElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLMeterElement", HTMLMeterElement, Object.prototype.__class, [HTMLMeterElement.prototype.__class], 2);
+  return  HTMLMeterElement;
 })();
 (function(){ 
   __cache["org.w3c.html.HTMLModElement"] = HTMLModElement;
@@ -173,37 +157,37 @@
   return  HTMLModElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.img"] = img;
-  img.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.img", img, Object.prototype.__class, [img.prototype.__class], 2);
-  return  img;
+  __cache["org.w3c.html.HTMLImageElement"] = HTMLImageElement;
+  HTMLImageElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLImageElement", HTMLImageElement, Object.prototype.__class, [HTMLImageElement.prototype.__class], 2);
+  return  HTMLImageElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.iframe"] = iframe;
-  iframe.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.iframe", iframe, Object.prototype.__class, [iframe.prototype.__class], 2);
-  return  iframe;
+  __cache["org.w3c.html.HTMLIFrameElement"] = HTMLIFrameElement;
+  HTMLIFrameElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLIFrameElement", HTMLIFrameElement, Object.prototype.__class, [HTMLIFrameElement.prototype.__class], 2);
+  return  HTMLIFrameElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.embed"] = embed;
-  embed.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.embed", embed, Object.prototype.__class, [embed.prototype.__class], 2);
-  return  embed;
+  __cache["org.w3c.html.HTMLEmbedElement"] = HTMLEmbedElement;
+  HTMLEmbedElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLEmbedElement", HTMLEmbedElement, Object.prototype.__class, [HTMLEmbedElement.prototype.__class], 2);
+  return  HTMLEmbedElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.object"] = object;
-  Object.defineProperty(object.prototype, "validationMessage", {
+  __cache["org.w3c.html.HTMLObjectElement"] = HTMLObjectElement;
+  Object.defineProperty(HTMLObjectElement.prototype, "validationMessage", {
 
   });
-  object.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.object", object, Object.prototype.__class, [object.prototype.__class], 2);
-  return  object;
+  HTMLObjectElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLObjectElement", HTMLObjectElement, Object.prototype.__class, [HTMLObjectElement.prototype.__class], 2);
+  return  HTMLObjectElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.param"] = param;
-  param.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.param", param, Object.prototype.__class, [param.prototype.__class], 2);
-  return  param;
+  __cache["org.w3c.html.HTMLParamElement"] = HTMLParamElement;
+  HTMLParamElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLParamElement", HTMLParamElement, Object.prototype.__class, [HTMLParamElement.prototype.__class], 2);
+  return  HTMLParamElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.source"] = source;
-  source.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.source", source, Object.prototype.__class, [source.prototype.__class], 2);
-  return  source;
+  __cache["org.w3c.html.HTMLSourceElement"] = HTMLSourceElement;
+  HTMLSourceElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLSourceElement", HTMLSourceElement, Object.prototype.__class, [HTMLSourceElement.prototype.__class], 2);
+  return  HTMLSourceElement;
 })();
 (function(){ 
   __cache["org.w3c.html.HTMLMediaElement"] = HTMLMediaElement;
@@ -221,14 +205,14 @@
   return  HTMLMediaElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.video"] = video;
-  video.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.video", video, Object.prototype.__class, [video.prototype.__class], 2);
-  return  video;
+  __cache["org.w3c.html.HTMLVideoElement"] = HTMLVideoElement;
+  HTMLVideoElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLVideoElement", HTMLVideoElement, Object.prototype.__class, [HTMLVideoElement.prototype.__class], 2);
+  return  HTMLVideoElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.audio"] = audio;
-  audio.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.audio", audio, Object.prototype.__class, [audio.prototype.__class], 2);
-  return  audio;
+  __cache["org.w3c.html.HTMLAudioElement"] = HTMLAudioElement;
+  HTMLAudioElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLAudioElement", HTMLAudioElement, Object.prototype.__class, [HTMLAudioElement.prototype.__class], 2);
+  return  HTMLAudioElement;
 })();
 (function(){ 
   __cache["org.w3c.html.CueRangeCallback"] = CueRangeCallback;
@@ -253,9 +237,9 @@
   return  TimeRanges;
 })();
 (function(){ 
-  __cache["org.w3c.html.canvas"] = canvas;
-  canvas.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.canvas", canvas, Object.prototype.__class, [canvas.prototype.__class], 2);
-  return  canvas;
+  __cache["org.w3c.html.HTMLCanvasElement"] = HTMLCanvasElement;
+  HTMLCanvasElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLCanvasElement", HTMLCanvasElement, Object.prototype.__class, [HTMLCanvasElement.prototype.__class], 2);
+  return  HTMLCanvasElement;
 })();
 (function(){ 
   function FileCallback(){};
@@ -300,33 +284,33 @@
   return  CanvasPixelArray;
 })();
 (function(){ 
-  __cache["org.w3c.html.map"] = map;
-  map.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.map", map, Object.prototype.__class, [map.prototype.__class], 2);
-  return  map;
+  __cache["org.w3c.html.HTMLMapElement"] = HTMLMapElement;
+  HTMLMapElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLMapElement", HTMLMapElement, Object.prototype.__class, [HTMLMapElement.prototype.__class], 2);
+  return  HTMLMapElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.area"] = area;
-  Object.defineProperty(area.prototype, "relList", {
+  __cache["org.w3c.html.HTMLAreaElement"] = HTMLAreaElement;
+  Object.defineProperty(HTMLAreaElement.prototype, "relList", {
 
   });
-  area.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.area", area, Object.prototype.__class, [area.prototype.__class], 2);
-  return  area;
+  HTMLAreaElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLAreaElement", HTMLAreaElement, Object.prototype.__class, [HTMLAreaElement.prototype.__class], 2);
+  return  HTMLAreaElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.table"] = table;
-  Object.defineProperty(table.prototype, "tHead", {
+  __cache["org.w3c.html.HTMLTableElement"] = HTMLTableElement;
+  Object.defineProperty(HTMLTableElement.prototype, "tHead", {
 
   });
-  Object.defineProperty(table.prototype, "tFoot", {
+  Object.defineProperty(HTMLTableElement.prototype, "tFoot", {
 
   });
-  table.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.table", table, Object.prototype.__class, [table.prototype.__class], 2);
-  return  table;
+  HTMLTableElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLTableElement", HTMLTableElement, Object.prototype.__class, [HTMLTableElement.prototype.__class], 2);
+  return  HTMLTableElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.caption"] = caption;
-  caption.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.caption", caption, Object.prototype.__class, [caption.prototype.__class], 2);
-  return  caption;
+  __cache["org.w3c.html.HTMLTableCaptionElement"] = HTMLTableCaptionElement;
+  HTMLTableCaptionElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLTableCaptionElement", HTMLTableCaptionElement, Object.prototype.__class, [HTMLTableCaptionElement.prototype.__class], 2);
+  return  HTMLTableCaptionElement;
 })();
 (function(){ 
   __cache["org.w3c.html.HTMLTableColElement"] = HTMLTableColElement;
@@ -339,9 +323,9 @@
   return  HTMLTableSectionElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.tr"] = tr;
-  tr.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.tr", tr, Object.prototype.__class, [tr.prototype.__class], 2);
-  return  tr;
+  __cache["org.w3c.html.HTMLTableRowElement"] = HTMLTableRowElement;
+  HTMLTableRowElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLTableRowElement", HTMLTableRowElement, Object.prototype.__class, [HTMLTableRowElement.prototype.__class], 2);
+  return  HTMLTableRowElement;
 })();
 (function(){ 
   __cache["org.w3c.html.HTMLTableCellElement"] = HTMLTableCellElement;
@@ -349,72 +333,72 @@
   return  HTMLTableCellElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.td"] = td;
-  td.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.td", td, Object.prototype.__class, [td.prototype.__class], 2);
-  return  td;
+  __cache["org.w3c.html.HTMLTableDataCellElement"] = HTMLTableDataCellElement;
+  HTMLTableDataCellElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLTableDataCellElement", HTMLTableDataCellElement, Object.prototype.__class, [HTMLTableDataCellElement.prototype.__class], 2);
+  return  HTMLTableDataCellElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.th"] = th;
-  th.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.th", th, Object.prototype.__class, [th.prototype.__class], 2);
-  return  th;
+  __cache["org.w3c.html.HTMLTableHeaderCellElement"] = HTMLTableHeaderCellElement;
+  HTMLTableHeaderCellElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLTableHeaderCellElement", HTMLTableHeaderCellElement, Object.prototype.__class, [HTMLTableHeaderCellElement.prototype.__class], 2);
+  return  HTMLTableHeaderCellElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.form"] = form;
-  form.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.form", form, Object.prototype.__class, [form.prototype.__class], 2);
-  return  form;
+  __cache["org.w3c.html.HTMLFormElement"] = HTMLFormElement;
+  HTMLFormElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLFormElement", HTMLFormElement, Object.prototype.__class, [HTMLFormElement.prototype.__class], 2);
+  return  HTMLFormElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.fieldset"] = fieldset;
-  Object.defineProperty(fieldset.prototype, "form", {
+  __cache["org.w3c.html.HTMLFieldSetElement"] = HTMLFieldSetElement;
+  Object.defineProperty(HTMLFieldSetElement.prototype, "form", {
 
   });
-  fieldset.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.fieldset", fieldset, Object.prototype.__class, [fieldset.prototype.__class], 2);
-  return  fieldset;
+  HTMLFieldSetElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLFieldSetElement", HTMLFieldSetElement, Object.prototype.__class, [HTMLFieldSetElement.prototype.__class], 2);
+  return  HTMLFieldSetElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.label"] = label;
-  label.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.label", label, Object.prototype.__class, [label.prototype.__class], 2);
-  return  label;
+  __cache["org.w3c.html.HTMLLabelElement"] = HTMLLabelElement;
+  HTMLLabelElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLLabelElement", HTMLLabelElement, Object.prototype.__class, [HTMLLabelElement.prototype.__class], 2);
+  return  HTMLLabelElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.input"] = input;
-  input.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.input", input, Object.prototype.__class, [input.prototype.__class], 2);
-  return  input;
+  __cache["org.w3c.html.HTMLInputElement"] = HTMLInputElement;
+  HTMLInputElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLInputElement", HTMLInputElement, Object.prototype.__class, [HTMLInputElement.prototype.__class], 2);
+  return  HTMLInputElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.button"] = button;
-  button.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.button", button, Object.prototype.__class, [button.prototype.__class], 2);
-  return  button;
+  __cache["org.w3c.html.HTMLButtonElement"] = HTMLButtonElement;
+  HTMLButtonElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLButtonElement", HTMLButtonElement, Object.prototype.__class, [HTMLButtonElement.prototype.__class], 2);
+  return  HTMLButtonElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.select"] = select;
-  select.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.select", select, Object.prototype.__class, [select.prototype.__class], 2);
-  return  select;
+  __cache["org.w3c.html.HTMLSelectElement"] = HTMLSelectElement;
+  HTMLSelectElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLSelectElement", HTMLSelectElement, Object.prototype.__class, [HTMLSelectElement.prototype.__class], 2);
+  return  HTMLSelectElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.datalist"] = datalist;
-  datalist.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.datalist", datalist, Object.prototype.__class, [datalist.prototype.__class], 2);
-  return  datalist;
+  __cache["org.w3c.html.HTMLDataListElement"] = HTMLDataListElement;
+  HTMLDataListElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLDataListElement", HTMLDataListElement, Object.prototype.__class, [HTMLDataListElement.prototype.__class], 2);
+  return  HTMLDataListElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.optgroup"] = optgroup;
-  optgroup.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.optgroup", optgroup, Object.prototype.__class, [optgroup.prototype.__class], 2);
-  return  optgroup;
+  __cache["org.w3c.html.HTMLOptGroupElement"] = HTMLOptGroupElement;
+  HTMLOptGroupElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLOptGroupElement", HTMLOptGroupElement, Object.prototype.__class, [HTMLOptGroupElement.prototype.__class], 2);
+  return  HTMLOptGroupElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.option"] = option;
-  option.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.option", option, Object.prototype.__class, [option.prototype.__class], 2);
-  return  option;
+  __cache["org.w3c.html.HTMLOptionElement"] = HTMLOptionElement;
+  HTMLOptionElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLOptionElement", HTMLOptionElement, Object.prototype.__class, [HTMLOptionElement.prototype.__class], 2);
+  return  HTMLOptionElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.textarea"] = textarea;
-  textarea.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.textarea", textarea, Object.prototype.__class, [textarea.prototype.__class], 2);
-  return  textarea;
+  __cache["org.w3c.html.HTMLTextAreaElement"] = HTMLTextAreaElement;
+  HTMLTextAreaElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLTextAreaElement", HTMLTextAreaElement, Object.prototype.__class, [HTMLTextAreaElement.prototype.__class], 2);
+  return  HTMLTextAreaElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.output"] = output;
-  output.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.output", output, Object.prototype.__class, [output.prototype.__class], 2);
-  return  output;
+  __cache["org.w3c.html.HTMLOutputElement"] = HTMLOutputElement;
+  HTMLOutputElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLOutputElement", HTMLOutputElement, Object.prototype.__class, [HTMLOutputElement.prototype.__class], 2);
+  return  HTMLOutputElement;
 })();
 (function(){ 
   __cache["org.w3c.html.ValidityState"] = ValidityState;
@@ -432,11 +416,6 @@
   return  HTMLCommandElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.HTMLBrowserButtonElement"] = HTMLBrowserButtonElement;
-  HTMLBrowserButtonElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLBrowserButtonElement", HTMLBrowserButtonElement, Object.prototype.__class, [HTMLBrowserButtonElement.prototype.__class], 2);
-  return  HTMLBrowserButtonElement;
-})();
-(function(){ 
   __cache["org.w3c.html.HTMLMenuElement"] = HTMLMenuElement;
   HTMLMenuElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLMenuElement", HTMLMenuElement, Object.prototype.__class, [HTMLMenuElement.prototype.__class], 2);
   return  HTMLMenuElement;
@@ -447,9 +426,9 @@
   return  Command;
 })();
 (function(){ 
-  __cache["org.w3c.html.legend"] = legend;
-  legend.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.legend", legend, Object.prototype.__class, [legend.prototype.__class], 2);
-  return  legend;
+  __cache["org.w3c.html.HTMLLegendElement"] = HTMLLegendElement;
+  HTMLLegendElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLLegendElement", HTMLLegendElement, Object.prototype.__class, [HTMLLegendElement.prototype.__class], 2);
+  return  HTMLLegendElement;
 })();
 (function(){ 
   __cache["org.w3c.html.BarProp"] = BarProp;
@@ -577,29 +556,29 @@
   return  MediaModeAbstractView;
 })();
 (function(){ 
-  __cache["org.w3c.html.div"] = div;
-  div.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.div", div, Object.prototype.__class, [div.prototype.__class], 2);
-  return  div;
+  __cache["org.w3c.html.HTMLDivElement"] = HTMLDivElement;
+  HTMLDivElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLDivElement", HTMLDivElement, Object.prototype.__class, [HTMLDivElement.prototype.__class], 2);
+  return  HTMLDivElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.span"] = span;
-  span.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.span", span, Object.prototype.__class, [span.prototype.__class], 2);
-  return  span;
+  __cache["org.w3c.html.HTMLSpanElement"] = HTMLSpanElement;
+  HTMLSpanElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLSpanElement", HTMLSpanElement, Object.prototype.__class, [HTMLSpanElement.prototype.__class], 2);
+  return  HTMLSpanElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.pre"] = pre;
-  pre.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.pre", pre, Object.prototype.__class, [pre.prototype.__class], 2);
-  return  pre;
+  __cache["org.w3c.html.HTMLPreElement"] = HTMLPreElement;
+  HTMLPreElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLPreElement", HTMLPreElement, Object.prototype.__class, [HTMLPreElement.prototype.__class], 2);
+  return  HTMLPreElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.hr"] = hr;
-  hr.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.hr", hr, Object.prototype.__class, [hr.prototype.__class], 2);
-  return  hr;
+  __cache["org.w3c.html.HTMLHRElement"] = HTMLHRElement;
+  HTMLHRElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLHRElement", HTMLHRElement, Object.prototype.__class, [HTMLHRElement.prototype.__class], 2);
+  return  HTMLHRElement;
 })();
 (function(){ 
-  __cache["org.w3c.html.p"] = p;
-  p.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.p", p, Object.prototype.__class, [p.prototype.__class], 2);
-  return  p;
+  __cache["org.w3c.html.HTMLParagraphElement"] = HTMLParagraphElement;
+  HTMLParagraphElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLParagraphElement", HTMLParagraphElement, Object.prototype.__class, [HTMLParagraphElement.prototype.__class], 2);
+  return  HTMLParagraphElement;
 })();
 (function(){ 
   __cache["org.w3c.html.HTMLDListElement"] = HTMLDListElement;
@@ -681,320 +660,8 @@
   return  template;
 })();
 (function(){ 
-  function br(){ };
-  __cache["org.w3c.html.br"] = br;
-  br.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.br", br, Object.prototype.__class, [br.prototype.__class], 2);
-  return  br;
-})();
-(function(){ 
-  function wbr(){ };
-  __cache["org.w3c.html.wbr"] = wbr;
-  wbr.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.wbr", wbr, Object.prototype.__class, [wbr.prototype.__class], 2);
-  return  wbr;
-})();
-(function(){ 
-  function dd(){ };
-  __cache["org.w3c.html.dd"] = dd;
-  dd.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.dd", dd, Object.prototype.__class, [dd.prototype.__class], 2);
-  return  dd;
-})();
-(function(){ 
-  function dl(){ };
-  __cache["org.w3c.html.dl"] = dl;
-  dl.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.dl", dl, Object.prototype.__class, [dl.prototype.__class], 2);
-  return  dl;
-})();
-(function(){ 
-  function dt(){ };
-  __cache["org.w3c.html.dt"] = dt;
-  dt.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.dt", dt, Object.prototype.__class, [dt.prototype.__class], 2);
-  return  dt;
-})();
-(function(){ 
-  function figure(){ };
-  __cache["org.w3c.html.figure"] = figure;
-  figure.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.figure", figure, Object.prototype.__class, [figure.prototype.__class], 2);
-  return  figure;
-})();
-(function(){ 
-  function figcaption(){ };
-  __cache["org.w3c.html.figcaption"] = figcaption;
-  figcaption.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.figcaption", figcaption, Object.prototype.__class, [figcaption.prototype.__class], 2);
-  return  figcaption;
-})();
-(function(){ 
-  function main(){ };
-  __cache["org.w3c.html.main"] = main;
-  main.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.main", main, Object.prototype.__class, [main.prototype.__class], 2);
-  return  main;
-})();
-(function(){ 
-  function article(){ };
-  __cache["org.w3c.html.article"] = article;
-  article.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.article", article, Object.prototype.__class, [article.prototype.__class], 2);
-  return  article;
-})();
-(function(){ 
-  function section(){ };
-  __cache["org.w3c.html.section"] = section;
-  section.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.section", section, Object.prototype.__class, [section.prototype.__class], 2);
-  return  section;
-})();
-(function(){ 
-  function nav(){ };
-  __cache["org.w3c.html.nav"] = nav;
-  nav.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.nav", nav, Object.prototype.__class, [nav.prototype.__class], 2);
-  return  nav;
-})();
-(function(){ 
-  function aside(){ };
-  __cache["org.w3c.html.aside"] = aside;
-  aside.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.aside", aside, Object.prototype.__class, [aside.prototype.__class], 2);
-  return  aside;
-})();
-(function(){ 
-  function header(){ };
-  __cache["org.w3c.html.header"] = header;
-  header.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.header", header, Object.prototype.__class, [header.prototype.__class], 2);
-  return  header;
-})();
-(function(){ 
-  function footer(){ };
-  __cache["org.w3c.html.footer"] = footer;
-  footer.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.footer", footer, Object.prototype.__class, [footer.prototype.__class], 2);
-  return  footer;
-})();
-(function(){ 
-  function address(){ };
-  __cache["org.w3c.html.address"] = address;
-  address.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.address", address, Object.prototype.__class, [address.prototype.__class], 2);
-  return  address;
-})();
-(function(){ 
-  function em(){ };
-  __cache["org.w3c.html.em"] = em;
-  em.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.em", em, Object.prototype.__class, [em.prototype.__class], 2);
-  return  em;
-})();
-(function(){ 
-  function strong(){ };
-  __cache["org.w3c.html.strong"] = strong;
-  strong.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.strong", strong, Object.prototype.__class, [strong.prototype.__class], 2);
-  return  strong;
-})();
-(function(){ 
-  function small(){ };
-  __cache["org.w3c.html.small"] = small;
-  small.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.small", small, Object.prototype.__class, [small.prototype.__class], 2);
-  return  small;
-})();
-(function(){ 
-  function s(){ };
-  __cache["org.w3c.html.s"] = s;
-  s.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.s", s, Object.prototype.__class, [s.prototype.__class], 2);
-  return  s;
-})();
-(function(){ 
-  function cite(){ };
-  __cache["org.w3c.html.cite"] = cite;
-  cite.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.cite", cite, Object.prototype.__class, [cite.prototype.__class], 2);
-  return  cite;
-})();
-(function(){ 
-  function q(){ };
-  __cache["org.w3c.html.q"] = q;
-  q.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.q", q, Object.prototype.__class, [q.prototype.__class], 2);
-  return  q;
-})();
-(function(){ 
-  function dfn(){ };
-  __cache["org.w3c.html.dfn"] = dfn;
-  dfn.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.dfn", dfn, Object.prototype.__class, [dfn.prototype.__class], 2);
-  return  dfn;
-})();
-(function(){ 
-  function abbr(){ };
-  __cache["org.w3c.html.abbr"] = abbr;
-  abbr.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.abbr", abbr, Object.prototype.__class, [abbr.prototype.__class], 2);
-  return  abbr;
-})();
-(function(){ 
-  function code(){ };
-  __cache["org.w3c.html.code"] = code;
-  code.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.code", code, Object.prototype.__class, [code.prototype.__class], 2);
-  return  code;
-})();
-(function(){ 
-  function var(){ };
-  __cache["org.w3c.html.var"] = var;
-  var.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.var", var, Object.prototype.__class, [var.prototype.__class], 2);
-  return  var;
-})();
-(function(){ 
-  function samp(){ };
-  __cache["org.w3c.html.samp"] = samp;
-  samp.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.samp", samp, Object.prototype.__class, [samp.prototype.__class], 2);
-  return  samp;
-})();
-(function(){ 
-  function kbd(){ };
-  __cache["org.w3c.html.kbd"] = kbd;
-  kbd.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.kbd", kbd, Object.prototype.__class, [kbd.prototype.__class], 2);
-  return  kbd;
-})();
-(function(){ 
-  function sub(){ };
-  __cache["org.w3c.html.sub"] = sub;
-  sub.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.sub", sub, Object.prototype.__class, [sub.prototype.__class], 2);
-  return  sub;
-})();
-(function(){ 
-  function sup(){ };
-  __cache["org.w3c.html.sup"] = sup;
-  sup.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.sup", sup, Object.prototype.__class, [sup.prototype.__class], 2);
-  return  sup;
-})();
-(function(){ 
-  function i(){ };
-  __cache["org.w3c.html.i"] = i;
-  i.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.i", i, Object.prototype.__class, [i.prototype.__class], 2);
-  return  i;
-})();
-(function(){ 
-  function b(){ };
-  __cache["org.w3c.html.b"] = b;
-  b.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.b", b, Object.prototype.__class, [b.prototype.__class], 2);
-  return  b;
-})();
-(function(){ 
-  function u(){ };
-  __cache["org.w3c.html.u"] = u;
-  u.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.u", u, Object.prototype.__class, [u.prototype.__class], 2);
-  return  u;
-})();
-(function(){ 
-  function mark(){ };
-  __cache["org.w3c.html.mark"] = mark;
-  mark.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.mark", mark, Object.prototype.__class, [mark.prototype.__class], 2);
-  return  mark;
-})();
-(function(){ 
-  function ruby(){ };
-  __cache["org.w3c.html.ruby"] = ruby;
-  ruby.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.ruby", ruby, Object.prototype.__class, [ruby.prototype.__class], 2);
-  return  ruby;
-})();
-(function(){ 
-  function rb(){ };
-  __cache["org.w3c.html.rb"] = rb;
-  rb.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.rb", rb, Object.prototype.__class, [rb.prototype.__class], 2);
-  return  rb;
-})();
-(function(){ 
-  function rt(){ };
-  __cache["org.w3c.html.rt"] = rt;
-  rt.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.rt", rt, Object.prototype.__class, [rt.prototype.__class], 2);
-  return  rt;
-})();
-(function(){ 
-  function rtc(){ };
-  __cache["org.w3c.html.rtc"] = rtc;
-  rtc.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.rtc", rtc, Object.prototype.__class, [rtc.prototype.__class], 2);
-  return  rtc;
-})();
-(function(){ 
-  function rp(){ };
-  __cache["org.w3c.html.rp"] = rp;
-  rp.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.rp", rp, Object.prototype.__class, [rp.prototype.__class], 2);
-  return  rp;
-})();
-(function(){ 
-  function bdi(){ };
-  __cache["org.w3c.html.bdi"] = bdi;
-  bdi.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.bdi", bdi, Object.prototype.__class, [bdi.prototype.__class], 2);
-  return  bdi;
-})();
-(function(){ 
-  function bdo(){ };
-  __cache["org.w3c.html.bdo"] = bdo;
-  bdo.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.bdo", bdo, Object.prototype.__class, [bdo.prototype.__class], 2);
-  return  bdo;
-})();
-(function(){ 
-  function ins(){ };
-  __cache["org.w3c.html.ins"] = ins;
-  ins.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.ins", ins, Object.prototype.__class, [ins.prototype.__class], 2);
-  return  ins;
-})();
-(function(){ 
-  function del(){ };
-  __cache["org.w3c.html.del"] = del;
-  del.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.del", del, Object.prototype.__class, [del.prototype.__class], 2);
-  return  del;
-})();
-(function(){ 
-  function tbody(){ };
-  __cache["org.w3c.html.tbody"] = tbody;
-  tbody.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.tbody", tbody, Object.prototype.__class, [tbody.prototype.__class], 2);
-  return  tbody;
-})();
-(function(){ 
-  function thead(){ };
-  __cache["org.w3c.html.thead"] = thead;
-  thead.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.thead", thead, Object.prototype.__class, [thead.prototype.__class], 2);
-  return  thead;
-})();
-(function(){ 
-  function tfoot(){ };
-  __cache["org.w3c.html.tfoot"] = tfoot;
-  tfoot.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.tfoot", tfoot, Object.prototype.__class, [tfoot.prototype.__class], 2);
-  return  tfoot;
-})();
-(function(){ 
-  function colgroup(){ };
-  __cache["org.w3c.html.colgroup"] = colgroup;
-  colgroup.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.colgroup", colgroup, Object.prototype.__class, [colgroup.prototype.__class], 2);
-  return  colgroup;
-})();
-(function(){ 
-  function col(){ };
-  __cache["org.w3c.html.col"] = col;
-  col.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.col", col, Object.prototype.__class, [col.prototype.__class], 2);
-  return  col;
-})();
-(function(){ 
-  function h1(){ };
-  __cache["org.w3c.html.h1"] = h1;
-  h1.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.h1", h1, Object.prototype.__class, [h1.prototype.__class], 2);
-  return  h1;
-})();
-(function(){ 
-  function h2(){ };
-  __cache["org.w3c.html.h2"] = h2;
-  h2.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.h2", h2, Object.prototype.__class, [h2.prototype.__class], 2);
-  return  h2;
-})();
-(function(){ 
-  function h3(){ };
-  __cache["org.w3c.html.h3"] = h3;
-  h3.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.h3", h3, Object.prototype.__class, [h3.prototype.__class], 2);
-  return  h3;
-})();
-(function(){ 
-  function h4(){ };
-  __cache["org.w3c.html.h4"] = h4;
-  h4.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.h4", h4, Object.prototype.__class, [h4.prototype.__class], 2);
-  return  h4;
-})();
-(function(){ 
-  function h5(){ };
-  __cache["org.w3c.html.h5"] = h5;
-  h5.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.h5", h5, Object.prototype.__class, [h5.prototype.__class], 2);
-  return  h5;
-})();
-(function(){ 
-  function h6(){ };
-  __cache["org.w3c.html.h6"] = h6;
-  h6.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.h6", h6, Object.prototype.__class, [h6.prototype.__class], 2);
-  return  h6;
+  function HTMLBRElement(){ };
+  __cache["org.w3c.html.HTMLBRElement"] = HTMLBRElement;
+  HTMLBRElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.html.HTMLBRElement", HTMLBRElement, Object.prototype.__class, [HTMLBRElement.prototype.__class], 2);
+  return  HTMLBRElement;
 })();

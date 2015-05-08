@@ -21,116 +21,219 @@
 })();
 (function(){ 
   __cache["org.w3c.dom.Node"] = Node;
-  Object.defineProperty(Node.prototype, "template", {
+  Object.defineProperty(Node.prototype, "logicParent", {
     get : function() {
-      return this["__template"] == undefined ? null : this["__template"];
+      return this["_logicParent"];
     }, 
     set : function(value) {
-      var old = this["__template"];
-      if(old == value)
-      {
-        return;
-      }
-      if(old != null)
-      {
-        old.undoTemplate();
-        old.unInject();
-        this.dataContext.removeTemplateSetting(value);
-      }
-      this["__template"] = value;
-      this.dataContext.addTemplateSetting(value);
+      this["_logicParent"] = value;
     }
   });
-  Object.defineProperty(Node.prototype, "dataContext", {
-    get : function() {
-      if(this["__dataContext"] === undefined)
-      {
-        return this.parentNode.dataContext;
-      }
-      else
-      {
-        return this["__dataContext"];
-      }
-    }, 
-    set : function(value) {
-      var old = this["__dataContext"];
-      if(old === value)
-      {
-        return;
-      }
-      var pDc = this.parentNode.dataContext;
-      if(old != null)
-      {
-        pDc.removeDependent(old);
-      }
-      this["__dataContext"] = value;
-      switch (value.mode) {
-      case __lc("java.lang.DataContextMode").Ancestor :
-          break;
-      case __lc("java.lang.DataContextMode").Root :
-          document.documentElement.dataContext.addDependent(value);
-          return;
-      case __lc("java.lang.DataContextMode").Standalone :
-          return;
-      case __lc("java.lang.DataContextMode").Template :
-          return;
-      }
-      if(value == null)
-      {
-        return;
-      }
-      pDc.addDependent(value);
-      if(pDc.dataItem != null)
-      {
-        value.dataItem = pDc.dataItem[value.property];
-      }
-    }
-  });
-  Node.prototype.getBinding = function(prop1, prop2){
-    if(this["__bindings"] == null)
+  Node.prototype.getBinding = function(properties){
+    var bindings = this["__bindings"];
+    if(bindings == null)
     {
       return null;
     }
-    return this["__bindings"][prop1 + "." + prop2];
+    return bindings.get(properties.join("."));
   };
-  Node.prototype.setBinding = function(roperties, binding){
-    if(this["__bindings"] != null)
+  Node.prototype.setBinding = function(properties, binding){
+    var bindings = this["__bindings"];
+    if(bindings == null)
     {
-      this["__bindings"] = new Array();
+      this["__bindings"] = bindings = new Map();
     }
-    var old = this["__bindings"][roperties.join(".")];
+    var old = bindings.get(properties.join("."));
     if(old === binding)
     {
       return;
     }
     if(old != null)
     {
-      old.unInject();
+      old.unInject(this);
     }
-    this["__bindings"][roperties.join(".")] = binding;
-    if(binding != null)
+    bindings.set(properties.join("."), binding);
+    binding.inject(this, properties);
+  };
+  Node.prototype.removeBinding = function(properties){
+    var bindings = this["__bindings"];
+    if(bindings == null)
     {
-      binding.inject(this, roperties);
+      return false;
+    }
+    var old = bindings.get(properties.join("."));
+    if(old == null)
+    {
+      return false;
+    }
+    if(old != null)
+    {
+      old.unInject(this);
+    }
+    bindings.delete(properties.join("."));
+    return true;
+  };
+  Node.prototype.attach = function(binding){
+    switch (binding.trigger) {
+    case __lc("java.lang.UpdateSourceTrigger").LostFocus :
+        this.addEventListener("blur", binding.updateSource, false);
+        break;
+    case __lc("java.lang.UpdateSourceTrigger").PropertyChanged :
+        this.addEventListener("input", binding.updateSource, false);
+        this.addEventListener("change", binding.updateSource, false);
+        break;
+    default :
     }
   };
-  Node.prototype.addTemplate = function(template){
-    var templates = this["__templates"];
-    if(templates == null)
-    {
-      this["__templates"] = templates = new Map();
+  Node.prototype.detach = function(binding){
+    switch (binding.trigger) {
+    case __lc("java.lang.UpdateSourceTrigger").LostFocus :
+        this.removeEventListener("blur", binding.updateSource, false);
+        break;
+    case __lc("java.lang.UpdateSourceTrigger").PropertyChanged :
+        this.removeEventListener("input", binding.updateSource, false);
+        this.removeEventListener("change", binding.updateSource, false);
+        break;
+    default :
     }
-    template["_container"] = this;
-    templates.set(template.name, template);
-    this.dataContext.addTemplateSetting(template);
   };
-  Node.prototype.removeTemplate = function(name){
-    var templates = this["__templates"];
-    if(templates != null)
+  Node.prototype.update = function(binding){
+    var data = Node.prototype.getDataContext.call(this, binding.context).dataItem;
+    if(! String.isNullOrEmpty(binding.property))
     {
-      this.dataContext.removeTemplateSetting(this.template);
-      return templates.delete(name);
+      data = data == null ? null : data[binding.property];
     }
-    return false;
+    var tag = this;
+    var properties = binding.targetProperties;
+    var length = properties.length;
+    for (var i = 0; i < length - 1; i ++) 
+    {
+      if(tag == null) return
+      tag = tag[properties[i]];
+    }
+    if(binding.converterTo != null)
+    {
+      data = binding.converterTo(data);
+    }
+    var oldValue = tag[properties[length - 1]];
+    if(data === oldValue)
+    {
+      return;
+    }
+    if(binding.updateTargetCallback != null)
+    {
+      binding.updateTargetCallback(this, properties, data);
+    }
+    else
+    {
+      tag[properties[length - 1]] = data;
+    }
+  };
+  Node.prototype.getDataContext = function(name){
+    if(String.isNullOrEmpty(name))
+    {
+      return null;
+    }
+    var contexts = this["__contexts"];
+    if(contexts != null)
+    {
+      var result = contexts.get(name);
+      if(result != null)
+      {
+        return result;
+      }
+    }
+    if(this.logicParent != null)
+    {
+      return this.logicParent.getDataContext(name);
+    }
+    else if(this.parentNode != null)
+    {
+      return Node.prototype.getDataContext.call(this.parentNode, name);
+    }
+    return null;
+  };
+  Node.prototype.addDataContext = function(context){
+    var contexts = this["__contexts"];
+    if(contexts == null)
+    {
+      this["__contexts"] = contexts = new Map();
+    }
+    var old = contexts.get(name);
+    if(old != null)
+    {
+      old.moveDependentTo(context);
+    }
+    contexts.set(context.name, context);
+    if(context.name == "ROOT" || context.name == "TEMPLATE")
+    {
+      return;
+    }
+    if(this.logicParent != null)
+    {
+      var parent = this.logicParent.getDataContext(context.ancestor);
+      if(parent != null)
+      {
+        parent.addDependent(context);
+      }
+      else
+      {
+        console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+      }
+    }
+    else if(this.parentNode != null)
+    {
+      var parent = Node.prototype.getDataContext.call(this.parentNode, context.ancestor);
+      if(parent != null)
+      {
+        parent.addDependent(context);
+      }
+      else
+      {
+        console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+      }
+    }
+  };
+  Node.prototype.removeDataContext = function(name){
+    if(String.isNullOrEmpty(name))
+    {
+      return;
+    }
+    var contexts = this["__contexts"];
+    if(contexts == null)
+    {
+      return;
+    }
+    var context = contexts.get(name);
+    if(context != null)
+    {
+      context.clearDependents();
+      if(this.logicParent != null)
+      {
+        var parent = this.logicParent.getDataContext(context.ancestor);
+        if(parent != null)
+        {
+          parent.addDependent(context);
+        }
+        else
+        {
+          console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+        }
+      }
+      else if(this.parentNode != null)
+      {
+        var parent = Node.prototype.getDataContext.call(this.parentNode, context.ancestor);
+        if(parent != null)
+        {
+          parent.addDependent(context);
+        }
+        else
+        {
+          console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+        }
+      }
+      contexts.delete(name);
+    }
   };
   Node.prototype.reset = function(){
     var children = this.childNodes;
@@ -144,7 +247,7 @@
       dc.reset();
     }
   };
-  Node.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.Node", Node, Object.prototype.__class, [], 2);
+  Node.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.Node", Node, Object.prototype.__class, [Node.prototype.__class, __lc("java.lang.Bindable").prototype.__class], 2);
   return  Node;
 })();
 (function(){ 

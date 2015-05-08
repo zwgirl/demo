@@ -8,12 +8,12 @@ public class TableRow extends Template {
 		<td>
 			<input type="checkbox" checked = {Binding property="selected" mode="TwoWay" trigger="PropertyChanged"}/>
 		</td>
-		<td textContent = {Binding property="ordinal"}></td> 
-		<td >  
-			<a href="#" textContent = {Binding property="name"}> </a>
+		<td textContent = {Binding property="index" context="status"}></td> 
+		<td>
+			<a href="#" textContent = {Binding property="name" context="current"}> </a>
 		</td>
-		<td textContent = {Binding property="address"}></td>  
-		<td textContent = {Binding property="age"}></td>
+		<td textContent = {Binding property="address" context="current"}></td>  
+		<td textContent = {Binding property="age" context="current"}></td>
 		
 		<td>
 			<svg width="140" height="170"  xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -24,7 +24,8 @@ public class TableRow extends Template {
 		</td>
 	</tr> 
 	%>
-	public TableRow() { 
+	public TableRow(Bindable parent) { 
+		super(parent);
 	}
 
 	MouseEventHandler click = (MouseEvent e) ->{

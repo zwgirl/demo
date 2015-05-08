@@ -18,8 +18,8 @@ public class SaleDetailPage implements Page, INotifyPropertyChanged {
 			    border: 5px solid red;   
 			}  
 			</style>
-		</head> 
-		<body >  
+		</head>
+		<body >
 		<table> 
 			<thead className="tabs" >
 				<tr>
@@ -28,11 +28,13 @@ public class SaleDetailPage implements Page, INotifyPropertyChanged {
 				</tr> 
 		    </thead> 
 			<tbody className="tabs" template = {CollectionTemplateSetting property = "saleDetails" template = "Record" }>
+		    </tbody>
+			<tbody className="tabs" id="1111" >
 				<tr>
 					<td colSpan=4> 总计 </td>
 					<td textContent={Binding property = "grandTotal" mode="OneWay"}> 0.0 </td>
 				</tr>
-		    </tbody>
+			</tbody>
 		</table>		
 		<button onclick="add" >
 			新增
@@ -40,7 +42,13 @@ public class SaleDetailPage implements Page, INotifyPropertyChanged {
 		<button onclick = "delete">
 			删除 
 		</button> 
+			<a href="/lark/summary/Hello.html" route={Router page="Hello"}>测试</a>
+			
+		<button onclick = function{location.href="/lark/summary/Hello.html"; return false;}>
+			隐藏 
+		</button> 
 		</body> 
+		
 	</html>
 	%>
 	
@@ -56,6 +64,16 @@ public class SaleDetailPage implements Page, INotifyPropertyChanged {
 			}
 		});
 	}
+	
+	boolean flag = false;
+	MouseEventHandler fold = (MouseEvent event)->{
+		if(flag){
+			document.getElementById("1111").style.display="table-row-group";
+		} else {
+			document.getElementById("1111").style.display="none";
+		}
+		flag = !flag;
+	};
 	
 	PropertyChange changeHandler = (Object source, PropertyChangeEvent evt)->{
 		notifyChanged("grandTotal");

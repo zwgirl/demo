@@ -111,6 +111,9 @@
   Class.prototype.newInstance = function(){
 	  	return new (this._factory)();
   	};
+  Class.prototype.toURL = function(){
+    return this._name.split(".").join("/").concat(".html");
+  };
   Class.CLASS = 0x1;
   Class.INTERFACE = 0x2;
   Class.ENUM = 0x4;
@@ -254,13 +257,11 @@
   return  Function;
 })();
 (function(){ 
-//  Math.prototype.__proto__ = Object.prototype;
   __cache["java.lang.Math"] = Math;
   Object.defineProperty(Math, "SQRT2", {
 
   });
-//  Math.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Math", Math, Object.prototype.__class, [], 1);
-  return  Math;
+
 })();
 (function(){ 
   Number.prototype.__proto__ = Object.prototype;
@@ -458,10 +459,8 @@
   return  CloneNotSupportedException;
 })();
 (function(){ 
-//  arguments.prototype.__proto__ = Object.prototype;
   __cache["java.lang.arguments"] = arguments;
-//  arguments.prototype.__class = new (__lc('java.lang.Class'))("java.lang.arguments", arguments, Object.prototype.__class, [], 1);
-  return  arguments;
+
 })();
 (function(){ 
   Set.prototype.__proto__ = Object.prototype;
@@ -609,12 +608,6 @@
   return  JSON;
 })();
 (function(){ 
-  function Page(){ };
-  __cache["java.lang.Page"] = Page;
-  Page.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Page", Page, Object.prototype.__class, [], 2);
-  return  Page;
-})();
-(function(){ 
   function xlink() {    
   }
   xlink.prototype.__proto__ = Object.prototype;
@@ -622,19 +615,43 @@
   Object.defineProperty(xlink, "href", {
 
   });
+  Object.defineProperty(xlink, "type", {
+
+  });
+  Object.defineProperty(xlink, "role", {
+
+  });
+  Object.defineProperty(xlink, "show", {
+
+  });
   xlink.xmlns = "http://www.w3.org/1999/xlink";
   xlink.prototype.__class = new (__lc('java.lang.Class'))("java.lang.xlink", xlink, Object.prototype.__class, [], 1);
   return  xlink;
 })();
 (function(){ 
-  function x() {    
+  function lark() {    
   }
-  x.prototype.__proto__ = Object.prototype;
-  __cache["java.lang.x"] = x;
-  Object.defineProperty(x, "name", {
+  lark.prototype.__proto__ = Object.prototype;
+  __cache["java.lang.lark"] = lark;
+  Object.defineProperty(lark, "name", {
 
   });
-  x.xmlns = "http://www.lark.org/2015/x";
-  x.prototype.__class = new (__lc('java.lang.Class'))("java.lang.x", x, Object.prototype.__class, [], 1);
-  return  x;
+  lark.xmlns = "http://www.lark.org/2015/x";
+  lark.prototype.__class = new (__lc('java.lang.Class'))("java.lang.lark", lark, Object.prototype.__class, [], 1);
+  return  lark;
+})();
+(function(){ 
+  function xml() {    
+  }
+  xml.prototype.__proto__ = Object.prototype;
+  __cache["java.lang.xml"] = xml;
+  Object.defineProperty(xml, "lang", {
+
+  });
+  Object.defineProperty(xml, "space", {
+
+  });
+  xml.xmlns = "http://www.w3c.org/xml";
+  xml.prototype.__class = new (__lc('java.lang.Class'))("java.lang.xml", xml, Object.prototype.__class, [], 1);
+  return  xml;
 })();

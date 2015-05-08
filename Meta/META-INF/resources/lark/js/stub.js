@@ -5,11 +5,7 @@ var __lc = function(cls, file){
 	
 	file = file ? file : cls;
 	var xhr = new XMLHttpRequest();
-//	console.log(window.location.pathname);
-//	console.log(file.split('.').join('/').concat(".js"));
-//	xhr.open('get', '/' + file.split('.').join('/').concat(".js"), false);
 	xhr.open('get', '/lark/' + file.split('.').join('/').concat(".js"), false);
-//	xhr.open('get', '/' + file.concat(".lc"), false);
 	xhr.send(null);
 	var node = document.createElement('script');
 	node.type = 'text/javascript'; 

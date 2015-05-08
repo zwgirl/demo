@@ -12,24 +12,56 @@ import org.w3c.event.MouseEventHandler;
  
 public class Test implements Page, INotifyPropertyChanged {
 	<%
-	<html xmlns:lark = "http://www.lark.org/2012">
+	<html xmlns:lark = "http://www.lark.org/2012"> 
 		<head> 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 			<style>
 			.rect {
-			    border: 5px solid red;   
+			    border: 5px solid red;
 			}  
-			</style> 
+			</style>
 		</head> 
-		<body >    
+		<body > 
+			<Iterator items={Binding property="persons"}>
+				<h1 textContent = {Binding property="name" context="current"} />
+			</Iterator>
+			<If data={Binding property="flag" }>
+				<p>
+				skahsja 
+				</p> 
+				<h1>  h1 </h1>
+			</If> 
+	
+			<Choose data={Binding property="age" }>
+				<When value=71>
+					<p> 
+					age 
+					</p>
+					<h1>  Age </h1>
+				</When>
+				<Otherwise>
+					<h1>
+					Otherwise
+					</h1>
+				</Otherwise>
+			</Choose>
+			<input type="text" value = {Binding property = "name" mode="TwoWay" trigger="PropertyChanged"} />
+			<input type="text" value = {Binding property = "name" mode="TwoWay" trigger="PropertyChanged"} />
+			
 			<table> 
-			<thead className="tabs" >
+			<thead className="tabs" >  
 				<tr>
-				<td ><input type="checkbox" checked = {Binding property = "allSelected" mode="TwoWay" trigger="PropertyChanged"} /></td> 
+				<td ></td> 
 				<td>序号</td><td>姓名</td> <td>地址</td><td onmouseover=function{return false;}> 年龄</td> 
 				</tr> 
 		    </thead> 
-			<tbody className="tabs" template = {CollectionTemplateSetting property = "persons" selector = "FirstTemplateSelector" }>
+		    <tbody>
+				<ManagerTableRow /> 
+		    </tbody>
+			<tbody className="tabs" >
+				<Iterator items = {Binding property="persons"}>
+					<TableRow />
+				</Iterator>
 		    </tbody>
 		</table>
 		<button onclick="addChild"  >
@@ -77,50 +109,16 @@ public class Test implements Page, INotifyPropertyChanged {
 				<td>序号</td><td>姓名</td> <td>地址</td><td onmouseover=function{return false;}> 年龄</td> 
 				</tr> 
 		    </thead> 
+		    <!--
 			<tbody className="tabs" >
 		    	<lark:collection-template name="__t" selector="FirstTemplateSelector" property="persons"/>  
 		    </tbody>
+		    -->
 	
 		    </table>
 		</body> 
 	</html>
 		%>
-//        var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
-//        rect.setAttributeNS(null, 'x', x);
-//        rect.setAttributeNS(null, 'y', y);
-//        rect.setAttributeNS(null, 'width', wd);
-//        rect.setAttributeNS(null, 'height', ht);
-//        rect.setAttributeNS(null, 'fill', "red");
-//        svg.appendChild(rect);
-	    // On y Axis
-//        for (var i = 0; i < totalLabelOnYAxis +1; i++) {
-//            markerVal = i * numMarkers;
-//            markerValHt = i * numMarkers * svgcHeight;
-//            var xMarkers = svgcMarginSpace - 5;
-//            var yMarkers = svgcMarginHeight - (markerValHt / maximumDataValue);
-//
-//            textelement = document.createElementNS("http://www.w3.org/2000/svg", 'text');
-//            textelement.setAttribute('dx', xMarkers-40);
-//            textelement.setAttribute('dy',yMarkers);
-//            txtnode = document.createTextNode(markerVal);
-//            textelement.appendChild(txtnode);
-//            svg.appendChild(textelement);
-//        }
-//
-//        //On x Axis
-//        for (var i = 0; i < totalChartBars; i++) {
-//            arrVal = populationArray[i].split(",");
-//            name = arrVal[0];
-//            markerXPosition = svgcMarginSpace + bcMargin + (i * (bcWidth + bcMargin)) + (bcWidth / 2);
-//            markerYPosition = svgcMarginHeight + 20;
-//
-//            textelement = document.createElementNS("http://www.w3.org/2000/svg", 'text');
-//            textelement.setAttribute('dx', markerXPosition);
-//            textelement.setAttribute('dy', markerYPosition);
-//            txtnode = document.createTextNode(name);
-//            textelement.appendChild(txtnode);
-//            svg.appendChild(textelement);
-//        }
 
 		/**
 		*@see Test#name
@@ -145,6 +143,20 @@ public class Test implements Page, INotifyPropertyChanged {
 				}
 				this._name = value;
 				notifyChanged("name");
+			}
+		}
+		
+		private boolean _flag = true;
+		public boolean flag{
+			&{
+				return this._flag;
+			}
+			+{
+				if(this._flag === value){
+					return;
+				}
+				this._flag = value;
+				notifyChanged("flag");
 			}
 		}
 		
@@ -244,7 +256,7 @@ public class Test implements Page, INotifyPropertyChanged {
 			if(persons != null){ 
 				persons.clear(); 
 			}
-			persons.addAll(nextPage);  
+			persons.addAll(nextPage); 
 		};
 		
 		native void  ggg() /*-{
@@ -252,17 +264,17 @@ public class Test implements Page, INotifyPropertyChanged {
 		}-*/;
 } 
 
-class FirstTemplateSelector extends TemplateSelector{
-
-	@Override
-	protected Template doSelect(Object data) {
-		if(data instanceof Manager){
-			return new ManagerTableRow();
-		}  else if(data instanceof Person){
-			return new TableRow();
-		}
-		return null;
-	}
-	
-}
+//class FirstTemplateSelector extends TemplateSelector{
+//
+//	@Override
+//	protected Template doSelect(Object data) {
+//		if(data instanceof Manager){
+//			return new ManagerTableRow();
+//		}  else if(data instanceof Person){
+//			return new TableRow();
+//		}
+//		return null;
+//	}
+//	
+//}
 
