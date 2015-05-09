@@ -5,13 +5,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.ObservableCollection;
 
-import org.w3c.dom.Text;
 import org.w3c.event.Event;
 import org.w3c.event.EventHandler;
 import org.w3c.event.MouseEvent;
 import org.w3c.event.MouseEventHandler;
  
-public class Test implements Page, INotifyPropertyChanged {
+public class Test1 implements Page, INotifyPropertyChanged {
 	<%
 	<html xmlns:lark = "http://www.lark.org/2012"> 
 		<head> 
@@ -20,64 +19,90 @@ public class Test implements Page, INotifyPropertyChanged {
 			.rect {
 			    border: 5px solid red;
 			}  
-			</style> 
-		</head> 
-		<body >
-
+			</style>
+		</head>
+		<body > 
+			<Iterator items={Binding property="persons"}>
+				<h1 textContent = {Binding property="name" context="current"} />
+			</Iterator>
+			<If data={Binding property="flag" }>
+				<p>
+				skahsja 
+				</p> 
+				<h1>  h1 </h1>
+			</If> 
+	
+			<Choose data={Binding property="age" }>
+				<When value=71>
+					<p> 
+					age 
+					</p>
+					<h1>  Age </h1>
+				</When>
+				<Otherwise>
+					<h1>
+					Otherwise
+					</h1>
+				</Otherwise>
+			</Choose>
+			<input type="text" value = {Binding property = "name" mode="TwoWay" trigger="PropertyChanged"} />
+			<input type="text" value = {Binding property = "name" mode="TwoWay" trigger="PropertyChanged"} />
+			
+			<table> 
+			<thead className="tabs" >  
+				<tr>
+				<td ></td> 
+				<td>序号</td><td>姓名</td> <td>地址</td><td onmouseover=function{return false;}> 年龄</td> 
+				</tr> 
+		    </thead> 
+		    <tbody>
+				<ManagerTableRow /> 
+		    </tbody>
+			<tbody className="tabs" >
+				<Iterator items = {Binding property="persons"}>
+					<TableRow />
+				</Iterator>
+		    </tbody>
+		</table>
 		<button onclick="addChild"  >
 			新增
 		</button>
 		<button onclick = "deleteChild" >
 			删除 
-		</button>
-
+		</button> 
+			<{  
+//				HTMLElement e = (HTMLElement) document.getElementById("1");
+//				e.addEventListener("blur", (Event e1) ->{
+//					return false;
+//				}, false);
+			}>
 		<button onclick = "nextPage">
-			下一页  
+			下一页
 		</button>
 			<svg width="500" height="200">
 				
 				<line x1="20" y1="180" x2="400" y2="180" style="stroke:black;stroke-width:1px;"/>
-				<Iterator begin=30 end = 300 step = 50 >
-					<!--
-					<text x={Binding property="count" context="status" converteTo=function {return false;}} y=200>2001</text>
-					-->
-					<text x={Binding property="count" context="status" converteTo="converteX"} y=200>2001</text>
-				</Iterator>
+				<XAxis />
 				<!--
-				<text x="30" y="200">2001</text> 
+				<text x="30" y="200">2001</text>
 				<text x="80" y="200">2002</text>
 				<text x="130" y="200">2003</text>
 				<text x="180" y="200">2004</text>
-				<text x="230" y="200">2004</text> 
-				<text x=1 y={Binding property="count" context="status" converteTo=function {return false;}} >
-				<Text textContent ="10" />
-			</text>
+				<text x="230" y="200">2004</text>
 				-->
 				
 				<line x1="20" y1="180" x2="20" y2="10" style="stroke:black;stroke-width:1px;"/>
-				<Iterator begin=30 end =300 step = 50 >
-					<text x=1 y={Binding property="count" context="status" converteTo="converteY"} >
-						<Text data ={Binding property="count" context="status" converteTo="converteY"} />
-					</text> 
-				</Iterator>
-				<!--
-				<text x="1" y="150"><Text>10</Text></text>
+				<text x="1" y="150">10</text>
 				<text x="1" y="120">20</text>
 				<text x="1" y="90">30</text>
 				<text x="1" y="60">40</text>
 				<text x="1" y="30">50</text>
 				
-				<rect x="40" y="110"  width="20" height={Binding property="age" mode="OneTime"} fill = "red" />
+				<rect x="40" y="110"  width="20" height.baseVal.value={Binding property="age" mode="OneTime"} fill = "red" />
 				<rect x="90" y="10"  width="20" height="170" fill = "blue" /> 
 				<rect x="140" y="80"  width="20" height="100" fill = "green" /> 
 				<rect x="190" y="70"  width="20" height="110" fill = "red" /> 
 				<rect x="240" y="150"  width="20" height="30" fill = "red" /> 
-				-->
-				<Iterator begin=30 end =300 step = 50 >
-					<rect x={Binding property="count" context="status" converteTo="converteX"} 
-						y={Binding property="count" context="status" converteTo="converteRectY"} 
-						width="20" height={Binding property="count" mode="OneTime" context="status" converteTo="converteHeight"} fill = "red" />
-				</Iterator>
 			</svg>
 			
 			<table> 
@@ -99,31 +124,15 @@ public class Test implements Page, INotifyPropertyChanged {
 		%>
 
 		/**
-		*@see Test#name
+		*@see Test1#name
 		 */ 
-		public Test(){
+		public Test1(){
 			_persons.add(new Person("1", "张三", "山东高密", 65));
 			_persons.add(new Manager("4", "经理3", "山东高密2", 65));
 			_persons.add(new Person("2", "张三1", "山东高密1", 65));
 			_persons.add(new Person("3", "张三2", "山东高密2", 65));
 			_persons.add(new Manager("4", "经理111", "山东高密2", 65));
 		}
-		
-		public ConverterFunction converteX = (Object data)->{
-			return 30+((int)data-1)*50;
-		};
-		
-		public ConverterFunction converteY = (Object data)->{
-			return 150-((int)data-1)*30;
-		};
-		
-		public ConverterFunction converteHeight = (Object data)->{
-			return 150-((int)data-1)*30;
-		};
-		
-		public ConverterFunction converteRectY = (Object data)->{
-			return 150-((int)data-1)*30;
-		};
 		
 		private String _name = "sss";
 		
@@ -154,7 +163,7 @@ public class Test implements Page, INotifyPropertyChanged {
 			}
 		}
 		
-		private int _age = 70; 
+		private int _age = 70;
 		public int age{
 			&{
 				return this._age;

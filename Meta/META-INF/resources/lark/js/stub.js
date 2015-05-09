@@ -252,7 +252,8 @@ $.a = function(p,c){
 	return p.appendChild(c);
 }
 $.attr = function(n,attr,value){
-	n.setAttributeNS(null, attr, value);
+//	n.setAttributeNS(null, attr, value);
+	n.setAttribute(attr, value);
 }
 $.attrNS = function(ns,n,attr,value){
 	n.setAttributeNS(ns,attr,value);

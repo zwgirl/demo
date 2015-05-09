@@ -135,9 +135,9 @@
       if(tag == null) return
       tag = tag[properties[i]];
     }
-    if(binding.converterTo != null)
+    if(binding.converteTo != null)
     {
-      data = binding.converterTo(data);
+      data = binding.converteTo(data);
     }
     var oldValue = tag[properties[length - 1]];
     if(data === oldValue)
@@ -260,16 +260,35 @@
     }
   };
   AbstractBindable.prototype.reset = function(){
-    for (var i = 0, length = this._childs.length; i < length; i ++) 
+    if(this._childs != null)
     {
-      this.parentNode.removeChild(this._childs[i]);
+      this._childs.forEach((function(child, index, array){
+        child.reset();
+      }).bind(this));
     }
+    var bindings = this["__bindings"];
+    if(bindings != null)
+    {
+      bindings.forEach((function(binding, key, map){
+        binding.reset();
+      }).bind(this));
+    }
+    var contexts = this["__contexts"];
+    contexts.forEach((function(context, key, mapObj){
+      context.reset(this);
+    }).bind(this));
   };
   AbstractBindable.prototype.body = function(){
     this.doBody();
   };
   AbstractBindable.prototype.doBody = function(){
     this.bodyHandler();
+  };
+  AbstractBindable.prototype.setAttribute = function(name, value){
+    this[name] = value;
+  };
+  AbstractBindable.prototype.setAttributeNS = function(namespaceURI, qualifiedName, value){
+    this[name] = value;
   };
   AbstractBindable.prototype.__class = new (__lc('java.lang.Class'))("java.lang.AbstractBindable", AbstractBindable, Object.prototype.__class, [__lc("java.lang.Bindable").prototype.__class, __lc("java.lang.Tag").prototype.__class], 1);
   return  AbstractBindable;
@@ -758,16 +777,16 @@
     this._targetProperties = null;
     this._updateTargetCallback = null;
     this._updateSourceCallback = null;
-    this._converterTo = null;
-    this._converterFrom = null;
+    this._converteTo = null;
+    this._converteFrom = null;
     this._propertyChange = (function(source, evt){
       this._target.update(this);
     }).bind(this);
     this.updateSource = (function(event){
       var value = this.getProperty(event.target, this._targetProperties);
-      if(this._converterFrom != null)
+      if(this._converteFrom != null)
       {
-        value = this._converterFrom(value);
+        value = this._converteFrom(value);
       }
       return this._target.getDataContext(this._context).updateSource(this._property, value, this._updateSourceCallback);
     }).bind(this);
@@ -811,13 +830,13 @@
     {
       this._updateSourceCallback = options["updateSourceCallback"];
     }
-    if(options["converterTo"] != undefined)
+    if(options["converteTo"] != undefined)
     {
-      this._converterTo = (options["converterTo"]);
+      this._converteTo = (options["converteTo"]);
     }
-    if(options["converterFrom"] != undefined)
+    if(options["converteFrom"] != undefined)
     {
-      this._converterFrom = (options["converterFrom"]);
+      this._converteFrom = (options["converteFrom"]);
     }
   }
   Binding.prototype.__proto__ = Object.prototype;
@@ -878,20 +897,20 @@
       this._updateSourceCallback = value;
     }
   });
-  Object.defineProperty(Binding.prototype, "converterTo", {
+  Object.defineProperty(Binding.prototype, "converteTo", {
     get : function() {
-      return this._converterTo;
+      return this._converteTo;
     }, 
     set : function(value) {
-      this._converterTo = value;
+      this._converteTo = value;
     }
   });
-  Object.defineProperty(Binding.prototype, "converterFrom", {
+  Object.defineProperty(Binding.prototype, "converteFrom", {
     get : function() {
-      return this._converterFrom;
+      return this._converteFrom;
     }, 
     set : function(value) {
-      this._converterFrom = value;
+      this._converteFrom = value;
     }
   });
   Object.defineProperty(Binding.prototype, "context", {
@@ -939,6 +958,25 @@
     }
     return result[properties[length - 1]];
   };
+  Binding.prototype.reset = function(){
+    if(this.context != null)
+    {
+      var ancestor = this._target.getDataContext(this.context);
+      if(ancestor != null)
+      {
+        ancestor.removeBinding(this);
+      }
+    }
+    else
+    {
+      var ancestor = this._target.getDataContext("ROOT");
+      if(ancestor != null)
+      {
+        ancestor.removeBinding(this);
+      }
+    }
+    this._target.detach(this);
+  };
   Binding.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Binding", Binding, Object.prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class, __lc("java.lang.PropertyChangeListener").prototype.__class], 1);
   return  Binding;
 })();
@@ -948,7 +986,7 @@
     this._property = null;
     this._ancestor = null;
     this._bindings = [];
-    this._dependents = new Map();
+    this._dependents = new Array();
     this._dataItem = null;
     this._propertyChange = (function(source, e){
       var superior = source[e.property];
@@ -1078,7 +1116,7 @@
     }
   };
   DataContext.prototype.addDependent = function(dependent){
-    this._dependents.set(dependent.name, dependent);
+    this._dependents.push(dependent);
     if(this._dataItem != null)
     {
       dependent.dataItem = this.dataItem[dependent.property];
@@ -1089,7 +1127,12 @@
     }
   };
   DataContext.prototype.removeDependent = function(dependent){
-    this._dependents.delete(dependent.name);
+    this._dependents.forEach((function(dc, index, array){
+      if(dc == dependent)
+      {
+        this._dependents.splice(index, 1);
+      }
+    }).bind(this));
   };
   DataContext.prototype.moveDependentTo = function(target){
   };
@@ -1099,7 +1142,7 @@
     this._bindings.forEach((function(binding, index, array){
       binding.propertyChange(this.dataItem, new (__lc('java.lang.PropertyChangeEvent'))(binding.property));
     }).bind(this));
-    this._dependents.forEach((function(dc, name, map){
+    this._dependents.forEach((function(dc, index, array){
       dc.propertyChange(this.dataItem, new (__lc('java.lang.PropertyChangeEvent'))(dc.property));
     }).bind(this));
   };
@@ -1107,7 +1150,7 @@
     if(this._dataItem != null && __lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
     {
       var oldPc = this._dataItem;
-      this._dependents.forEach((function(dc, name, map){
+      this._dependents.forEach((function(dc, index, array){
         __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(oldPc, dc.property, dc.propertyChange);
       }).bind(this));
       for (var i = 0, length = this._bindings.length; i < length; i ++) 
@@ -1118,7 +1161,7 @@
     if(newDataItem != null && __lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(newDataItem))
     {
       var newPc = newDataItem;
-      this._dependents.forEach((function(dc, name, map){
+      this._dependents.forEach((function(dc, index, array){
         __lc("java.lang.INotifyPropertyChanged").prototype.addPropertyChangeListener.call(newPc, dc.property, dc.propertyChange);
       }).bind(this));
       for (var i = 0, length = this._bindings.length; i < length; i ++) 
@@ -1146,35 +1189,23 @@
     }
     return true;
   };
-  DataContext.prototype.reset = function(){
-    this._bindings.forEach((function(binding, index, array){
-      if(String.isNullOrEmpty(binding.property))
+  DataContext.prototype.reset = function(target){
+    if(this.ancestor != null)
+    {
+      var ancestor = target.getDataContext(this.ancestor);
+      if(ancestor != null)
       {
-        __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this, "dataItem", binding.propertyChange);
+        ancestor.removeDependent(this);
       }
-      else
+    }
+    else
+    {
+      var ancestor = target.getDataContext("ROOT");
+      if(ancestor != null)
       {
-        if(__lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
-        {
-          __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this._dataItem, binding.property, binding.propertyChange);
-        }
+        ancestor.removeDependent(this);
       }
-    }).bind(this));
-    this._bindings.length = 0;
-    this._dependents.forEach((function(dc, name, map){
-      if(String.isNullOrEmpty(dc.property))
-      {
-        __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this, "dataItem", dc.propertyChange);
-      }
-      else
-      {
-        if(__lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
-        {
-          __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this._dataItem, dc.property, dc.propertyChange);
-        }
-      }
-    }).bind(this));
-    this._dependents.clear();
+    }
   };
   DataContext.prototype.__class = new (__lc('java.lang.Class'))("java.lang.DataContext", DataContext, Object.prototype.__class, [__lc("java.lang.PropertyChangeListener").prototype.__class, __lc("java.lang.INotifyPropertyChanged").prototype.__class, __lc("java.lang.MarkupExtension").prototype.__class], 1);
   return  DataContext;
@@ -1354,6 +1385,7 @@
           this._datas.push(obj);
           var item = createItem.call(this, obj);
           this.processChild(item);
+          this._status.index = index;
           if(index ++ < this._begin)
           {
                         continue ;;
@@ -1367,7 +1399,6 @@
             this._status._first = false;
           }
           this._status.count ++;
-          this._status.index ++;
           this._status.current = obj;
           if(index == this.end || index == size)
           {
@@ -1387,10 +1418,11 @@
     }
     else if(this._end > - 1)
     {
-      for (var i = this._begin; i < this._end; i+=this._step) 
+      for (var i = this._begin, index = 0; i < this._end; i+=this._step) 
       {
         var item = createItem.call(this, null);
         this.processChild(item);
+        this._status.index = index ++;
         if(i == this._begin)
         {
           this._status.first = true;

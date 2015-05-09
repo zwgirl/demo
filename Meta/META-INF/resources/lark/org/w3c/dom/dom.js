@@ -109,13 +109,35 @@
     for (var i = 0; i < length - 1; i ++) 
     {
       if(tag == null) return
-      tag = tag[properties[i]];
+      if(tag["setAttribute"] != null)
+      {
+        tag = tag.getAttribute(properties[i]);
+      }
+      else if(tag["getProperty"] != null)
+      {
+        tag = tag.getPropertyValue(properties[length - 1]);
+      }
+      else
+      {
+        tag = tag[properties[i]];
+      }
     }
-    if(binding.converterTo != null)
+    if(binding.converteTo != null)
     {
-      data = binding.converterTo(data);
+      data = binding.converteTo(data);
     }
     var oldValue = tag[properties[length - 1]];
+    if(oldValue === undefined)
+    {
+      if(tag["getAttribute"] != null)
+      {
+        oldValue = tag.getAttribute(properties[length - 1]);
+      }
+      else if(tag["getProperty"] != null)
+      {
+        oldValue = tag.getPropertyValue(properties[length - 1]);
+      }
+    }
     if(data === oldValue)
     {
       return;
@@ -126,7 +148,18 @@
     }
     else
     {
-      tag[properties[length - 1]] = data;
+      if(tag["setAttribute"] != null)
+      {
+        tag.setAttribute(properties[length - 1], data);
+      }
+      else if(tag["setProperty"] != null)
+      {
+        tag.getPropertyValue(properties[length - 1]);
+      }
+      else
+      {
+        tag[properties[length - 1]] = data;
+      }
     }
   };
   Node.prototype.getDataContext = function(name){
@@ -235,17 +268,54 @@
       contexts.delete(name);
     }
   };
+  Node.prototype.addLogicChild = function(child){
+    var tags = this["_logicChilds"];
+    if(tags == null)
+    {
+      this["_logicChilds"] = tags = new Array();
+    }
+    tags.push(child);
+  };
+  Node.prototype.remmoveLogicChild = function(child){
+    var tags = this["_logicChilds"];
+    if(tags != null)
+    {
+      tags.forEach((function(tag, index, array){
+        if(tag == child)
+        {
+          tags.splice(index, 1);
+        }
+      }).bind(this));
+    }
+  };
   Node.prototype.reset = function(){
-    var children = this.childNodes;
-    for (var i = 0, len = children.length; i < len; i ++) 
+    while (this.firstChild != null)
+
     {
-      Node.prototype.reset.call(children[i]);
+      Node.prototype.reset.call(this.firstChild);
     }
-    var dc = this["__dataContext"];
-    if(dc != null)
+    var bindings = this["__bindings"];
+    if(bindings != null)
     {
-      dc.reset();
+      bindings.forEach((function(binding, key, map){
+        binding.reset();
+      }).bind(this));
     }
+    var contexts = this["__contexts"];
+    if(contexts != null)
+    {
+      contexts.forEach((function(context, key, mapObj){
+        context.reset(this);
+      }).bind(this));
+    }
+    var tags = this["_logicChilds"];
+    if(tags != null)
+    {
+      tags.forEach((function(tag, index, array){
+        tag.reset();
+      }).bind(this));
+    }
+    this.parentNode.removeChild(this);
   };
   Node.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.Node", Node, Object.prototype.__class, [Node.prototype.__class, __lc("java.lang.Bindable").prototype.__class], 2);
   return  Node;
