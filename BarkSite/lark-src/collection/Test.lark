@@ -34,241 +34,187 @@ public class Test implements Page, INotifyPropertyChanged {
 		<button onclick = "nextPage">
 			下一页  
 		</button>
-			<svg width="500" height="200">
-				
-				<line x1="20" y1="180" x2="400" y2="180" style="stroke:black;stroke-width:1px;"/>
-				<Iterator begin=30 end = 300 step = 50 >
-					<!--
-					<text x={Binding property="count" context="status" converteTo=function {return false;}} y=200>2001</text>
-					-->
-					<text x={Binding property="count" context="status" converteTo="converteX"} y=200>2001</text>
-				</Iterator>
-				<!--
-				<text x="30" y="200">2001</text> 
-				<text x="80" y="200">2002</text>
-				<text x="130" y="200">2003</text>
-				<text x="180" y="200">2004</text>
-				<text x="230" y="200">2004</text> 
-				<text x=1 y={Binding property="count" context="status" converteTo=function {return false;}} >
-				<Text textContent ="10" />
-			</text>
-				-->
-				
-				<line x1="20" y1="180" x2="20" y2="10" style="stroke:black;stroke-width:1px;"/>
-				<Iterator begin=30 end =300 step = 50 >
-					<text x=1 y={Binding property="count" context="status" converteTo="converteY"} >
-						<Text data ={Binding property="count" context="status" converteTo="converteY"} />
-					</text> 
-				</Iterator>
-				<!--
-				<text x="1" y="150"><Text>10</Text></text>
-				<text x="1" y="120">20</text>
-				<text x="1" y="90">30</text>
-				<text x="1" y="60">40</text>
-				<text x="1" y="30">50</text>
-				
-				<rect x="40" y="110"  width="20" height={Binding property="age" mode="OneTime"} fill = "red" />
-				<rect x="90" y="10"  width="20" height="170" fill = "blue" /> 
-				<rect x="140" y="80"  width="20" height="100" fill = "green" /> 
-				<rect x="190" y="70"  width="20" height="110" fill = "red" /> 
-				<rect x="240" y="150"  width="20" height="30" fill = "red" /> 
-				-->
-				<Iterator begin=30 end =300 step = 50 >
-					<rect x={Binding property="count" context="status" converteTo="converteX"} 
-						y={Binding property="count" context="status" converteTo="converteRectY"} 
-						width="20" height={Binding property="count" mode="OneTime" context="status" converteTo="converteHeight"} fill = "red" />
-				</Iterator>
-			</svg>
+		<svg width="500" height="200">
+			<line x1="20" y1="180" x2="400" y2="180" style="stroke:black;stroke-width:1px;"/>
+			<!--
+			<Iterator begin=30 end = 300 step = 50 >
+				<text x={Binding property="count" context="status" converteTo="converteX"} y=200>2001</text>
+			</Iterator>
+			-->
+			<XAxis />
 			
-			<table> 
-			<thead className="tabs" >
-				<tr>
-				<td ><input type="checkbox" checked = {Binding property = "allSelected" mode="TwoWay" trigger="PropertyChanged"} /></td> 
-				<td>序号</td><td>姓名</td> <td>地址</td><td onmouseover=function{return false;}> 年龄</td> 
-				</tr> 
-		    </thead> 
-		    <!--
-			<tbody className="tabs" >
-		    	<lark:collection-template name="__t" selector="FirstTemplateSelector" property="persons"/>  
-		    </tbody>
-		    -->
-	
-		    </table>
+			<line x1="20" y1="180" x2="20" y2="10" style="stroke:black;stroke-width:1px;"/>
+			<!-- 
+			<Iterator begin=30 end =300 step = 50 >
+				<text x=1 y={Binding property="count" context="status" converteTo="converteY"} >
+					<Text data ={Binding property="count" context="status" converteTo="converteY"} />
+				</text> 
+			</Iterator>
+			<Iterator begin=30 end =300 step = 50 >
+				<rect x={Binding property="count" context="status" converteTo="converteX"} 
+					y={Binding property="count" context="status" converteTo="converteRectY"} 
+					width="20" height={Binding property="count" mode="OneTime" context="status" converteTo="converteHeight"} fill = "red" />
+			</Iterator>
+			-->
+		</svg>
 		</body> 
 	</html>
-		%>
+	%>
 
-		/**
-		*@see Test#name
-		 */ 
-		public Test(){
-			_persons.add(new Person("1", "张三", "山东高密", 65));
-			_persons.add(new Manager("4", "经理3", "山东高密2", 65));
-			_persons.add(new Person("2", "张三1", "山东高密1", 65));
-			_persons.add(new Person("3", "张三2", "山东高密2", 65));
-			_persons.add(new Manager("4", "经理111", "山东高密2", 65));
+	/**
+	*@see Test#name
+	 */ 
+	public Test(){
+		_persons.add(new Person("1", "张三", "山东高密", 65));
+		_persons.add(new Manager("4", "经理3", "山东高密2", 65));
+		_persons.add(new Person("2", "张三1", "山东高密1", 65));
+		_persons.add(new Person("3", "张三2", "山东高密2", 65));
+		_persons.add(new Manager("4", "经理111", "山东高密2", 65));
+	}
+	
+	public ConverterFunction converteX = (Object data)->{
+		return 30+((int)data-1)*50;
+	};
+	
+	public ConverterFunction converteY = (Object data)->{
+		return 150-((int)data-1)*30;
+	};
+	
+	public ConverterFunction converteHeight = (Object data)->{
+		return 150-((int)data-1)*30;
+	};
+	
+	public ConverterFunction converteRectY = (Object data)->{
+		return 150-((int)data-1)*30;
+	};
+	
+	private String _name = "sss";
+	
+	public String name{
+		&{
+			return this._name;
+		}
+		+{
+			if(this._name === value){
+				return;
+			}
+			this._name = value;
+			notifyChanged("name");
+		}
+	}
+	
+	private boolean _flag = true;
+	public boolean flag{
+		&{
+			return this._flag;
+		}
+		+{
+			if(this._flag === value){
+				return;
+			}
+			this._flag = value;
+			notifyChanged("flag");
+		}
+	}
+	
+	private int _age = 70; 
+	public int age{
+		&{
+			return this._age;
+		}
+		+{
+			if(this._age === value){
+				return;
+			}
+			this._age = value;
+			notifyChanged("age");
+		}
+	}
+	
+	private int _width = 18;
+	public int width{
+		&{
+			return this._width;
+		}
+		+{
+			if(this._width === value){
+				return;
+			}
+			this._width = value;
+			notifyChanged("width");
+		}
+	}
+	
+	private int _height = 18;
+	public int height{
+		&{
+			return this._height;
+		}
+		+{
+			if(this._height === value){
+				return;
+			}
+			this._height = value;
+			notifyChanged("height");
+		}
+	}
+	
+	EventHandler h = (Event e)->{
+		alert("Hello world");
+	};
+	
+	@Override
+	public String toString() {
+		return this._name + "2" + "; age : " + this._age;
+	}
+	
+	public ConverterFunction to=(Object data) ->{
+		return data + "px";
+	};
+	
+	public ConverterFunction from=(Object data) ->{
+		return data;
+	};
+	
+	private Collection<Person> _persons = new ObservableCollection<>();
+	public Collection<Person> persons{
+		&{
+			return this._persons;
+		}
+		+{
+			this._persons = value; 
+		}
+	}
+	 
+	public MouseEventHandler addChild = (MouseEvent event)->{
+		persons.add(new Manager("child1", "新增张三", "山东高密新增", 35));
+	};
+	 
+	public MouseEventHandler deleteChild =  (MouseEvent event)->{
+		List<Person> toBeDeleted = new ArrayList<Person>();
+		for(Person p : persons){
+			if(p.selected){
+				toBeDeleted.add(p);
+			} 
 		}
 		
-		public ConverterFunction converteX = (Object data)->{
-			return 30+((int)data-1)*50;
-		};
-		
-		public ConverterFunction converteY = (Object data)->{
-			return 150-((int)data-1)*30;
-		};
-		
-		public ConverterFunction converteHeight = (Object data)->{
-			return 150-((int)data-1)*30;
-		};
-		
-		public ConverterFunction converteRectY = (Object data)->{
-			return 150-((int)data-1)*30;
-		};
-		
-		private String _name = "sss";
-		
-		public String name{
-			&{
-				return this._name;
-			}
-			+{
-				if(this._name === value){
-					return;
-				}
-				this._name = value;
-				notifyChanged("name");
-			}
+		if(toBeDeleted.size>0){
+			persons.removeAll(toBeDeleted);
 		}
+	};
+	
+	public MouseEventHandler nextPage =  (MouseEvent event)->{
+		ObservableCollection<Person> nextPage = new ObservableCollection<Person>();
+		nextPage.add(new Person("11" + Math.random(), "张三1" + Math.random(), "山东高密", 65));
+		nextPage.add(new Person("21" + Math.random(), "张三11" + Math.random(), "山东高密1", 65));
+		nextPage.add(new Person("31" + Math.random(), "张三21" + Math.random(), "山东高密2", 65));
+		nextPage.add(new Person("41" + Math.random(), "张三31" + Math.random(), "山东高密2", 65)); 
 		
-		private boolean _flag = true;
-		public boolean flag{
-			&{
-				return this._flag;
-			}
-			+{
-				if(this._flag === value){
-					return;
-				}
-				this._flag = value;
-				notifyChanged("flag");
-			}
+		if(persons != null){ 
+			persons.clear(); 
 		}
-		
-		private int _age = 70; 
-		public int age{
-			&{
-				return this._age;
-			}
-			+{
-				if(this._age === value){
-					return;
-				}
-				this._age = value;
-				notifyChanged("age");
-			}
-		}
-		
-		private int _width = 18;
-		public int width{
-			&{
-				return this._width;
-			}
-			+{
-				if(this._width === value){
-					return;
-				}
-				this._width = value;
-				notifyChanged("width");
-			}
-		}
-		
-		private int _height = 18;
-		public int height{
-			&{
-				return this._height;
-			}
-			+{
-				if(this._height === value){
-					return;
-				}
-				this._height = value;
-				notifyChanged("height");
-			}
-		}
-		
-		EventHandler h = (Event e)->{
-			alert("Hello world");
-		};
-		
-		@Override
-		public String toString() {
-			return this._name + "2" + "; age : " + this._age;
-		}
-		
-		public ConverterFunction to=(Object data) ->{
-			return data + "px";
-		};
-		
-		public ConverterFunction from=(Object data) ->{
-			return data;
-		};
-		
-		private Collection<Person> _persons = new ObservableCollection<>();
-		public Collection<Person> persons{
-			&{
-				return this._persons;
-			}
-			+{
-				this._persons = value; 
-			}
-		}
-		 
-		public MouseEventHandler addChild = (MouseEvent event)->{
-			persons.add(new Manager("child1", "新增张三", "山东高密新增", 35));
-		};
-		 
-		public MouseEventHandler deleteChild =  (MouseEvent event)->{
-			List<Person> toBeDeleted = new ArrayList<Person>();
-			for(Person p : persons){
-				if(p.selected){
-					toBeDeleted.add(p);
-				} 
-			}
-			
-			if(toBeDeleted.size>0){
-				persons.removeAll(toBeDeleted);
-			}
-		};
-		
-		public MouseEventHandler nextPage =  (MouseEvent event)->{
-			ObservableCollection<Person> nextPage = new ObservableCollection<Person>();
-			nextPage.add(new Person("11" + Math.random(), "张三1" + Math.random(), "山东高密", 65));
-			nextPage.add(new Person("21" + Math.random(), "张三11" + Math.random(), "山东高密1", 65));
-			nextPage.add(new Person("31" + Math.random(), "张三21" + Math.random(), "山东高密2", 65));
-			nextPage.add(new Person("41" + Math.random(), "张三31" + Math.random(), "山东高密2", 65)); 
-			
-			if(persons != null){ 
-				persons.clear(); 
-			}
-			persons.addAll(nextPage); 
-		};
-		
-		native void  ggg() /*-{
-		
-		}-*/;
+		persons.addAll(nextPage); 
+	};
 } 
 
-//class FirstTemplateSelector extends TemplateSelector{
-//
-//	@Override
-//	protected Template doSelect(Object data) {
-//		if(data instanceof Manager){
-//			return new ManagerTableRow();
-//		}  else if(data instanceof Person){
-//			return new TableRow();
-//		}
-//		return null;
-//	}
-//	
-//}
 
