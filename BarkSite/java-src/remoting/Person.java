@@ -8,9 +8,14 @@ public class Person {
   private String _address;
   private String _photoPath;
   private ArrayList<Object> _datas;
+  private Object[] _child;
+  
+  public Person(){
+	  
+  }
   
   public Person(String name, int age){
-	  this._name = name; 
+	  this._name = name;
 	  this._age = age;
   }
 
@@ -55,6 +60,13 @@ public class Person {
   public void setDatas(ArrayList<Object> value) {
     this._datas = value;
   }
+
+  public Object[]  getChild() {
+    return this._child;
+  }
+  public void setChild(Object[] value) {
+    this._child = value;
+  }
   static {
     org.bark.remoting.SerializerFactory.getInstance().register(Person.class, new org.bark.remoting.Serializer(){
       @Override
@@ -66,6 +78,7 @@ public class Person {
         builder = __o._address == null ? builder.addNull("_address") : builder.add("_address", __o._address);
         builder = __o._photoPath == null ? builder.addNull("_photoPath") : builder.add("_photoPath", __o._photoPath);
         builder = __o._datas == null ? builder.addNull("_datas") : builder.add("_datas", handler.shared(__o._datas));
+        builder = __o._child == null ? builder.addNull("_child") : builder.add("_child", handler.shared(__o._child));
       }
     });
     org.bark.remoting.DeserializerFactory.getInstance().register(Person.class, new org.bark.remoting.Deserializer(){
@@ -79,6 +92,7 @@ public class Person {
         __o._address = jsonObj.get("_address") == javax.json.JsonValue.NULL ? null : jsonObj.getString("_address");
         __o._photoPath = jsonObj.get("_photoPath") == javax.json.JsonValue.NULL ? null : jsonObj.getString("_photoPath");
         __o._datas = jsonObj.get("_datas") == javax.json.JsonValue.NULL ? null : (  ArrayList<Object>)handlers[jsonObj.getInt("_datas")];
+        __o._child = jsonObj.get("_child") == javax.json.JsonValue.NULL ? null : (Object[])handlers[jsonObj.getInt("_child")];
         return obj;
       }
     });

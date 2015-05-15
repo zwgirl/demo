@@ -6,30 +6,30 @@
   ArrayList.__f = {
     "0" : function() {    
   __lc("java.util.AbstractList", "java.util.AbstractList").call(this);
-    this.elementData = null;
-    this.elementData = new Array();
+    this.elements = null;
+    this.elements = new Array();
   }, 
     "1" : function(initialCapacity) {    
   __lc("java.util.AbstractList", "java.util.AbstractList").call(this);
-    this.elementData = null;
+    this.elements = null;
     if(initialCapacity < 0) throw new (__lc("java.lang.IllegalArgumentException", "java.lang.buildins"))("Illegal Capacity: " + initialCapacity)
-    this.elementData = new Array();
+    this.elements = new Array();
   }, 
     "2" : function(c) {    
   __lc("java.util.AbstractList", "java.util.AbstractList").call(this);
-    this.elementData = null;
-    this.elementData = c.toArray();
+    this.elements = null;
+    this.elements = c.toArray();
   }
   };
   ArrayList.prototype.__proto__ = __lc("java.util.AbstractList", "java.util.AbstractList").prototype;
   __cache["java.util.ArrayList"] = ArrayList;
   Object.defineProperty(ArrayList.prototype, "size", {
     get : function() {
-      return this.elementData.length;
+      return this.elements.length;
     }
   });
   ArrayList.prototype.isEmpty = function(){
-    return this.elementData.length == 0;
+    return this.elements.length == 0;
   };
   ArrayList.prototype.contains = function(o){
     return this.indexOf(o) >= 0;
@@ -37,26 +37,26 @@
   ArrayList.prototype.indexOf = function(o){
     if(o == null)
     {
-      for (var i = 0; i < this.elementData.length; i ++) 
-        if(this.elementData[i] == null) return i
+      for (var i = 0; i < this.elements.length; i ++) 
+        if(this.elements[i] == null) return i
     }
     else
     {
-      for (var i = 0; i < this.elementData.length; i ++) 
-        if(o === this.elementData[i]) return i
+      for (var i = 0; i < this.elements.length; i ++) 
+        if(o === this.elements[i]) return i
     }
     return - 1;
   };
   ArrayList.prototype.lastIndexOf = function(o){
     if(o == null)
     {
-      for (var i = this.elementData.length - 1; i >= 0; i --) 
-        if(this.elementData[i] == null) return i
+      for (var i = this.elements.length - 1; i >= 0; i --) 
+        if(this.elements[i] == null) return i
     }
     else
     {
-      for (var i = this.elementData.length - 1; i >= 0; i --) 
-        if(o === this.elementData[i]) return i
+      for (var i = this.elements.length - 1; i >= 0; i --) 
+        if(o === this.elements[i]) return i
     }
     return - 1;
   };
@@ -64,36 +64,36 @@
     throw new Error();
   };
   ArrayList.prototype.toArray = function(){
-    return this.elementData.slice();
+    return this.elements.slice();
   };
   ArrayList.prototype.get = function(index){
     rangeCheck.call(this, index);
-    return this.elementData[index];
+    return this.elements[index];
   };
   ArrayList.prototype.set = function(index, element){
     rangeCheck.call(this, index);
-    var oldValue = this.elementData[index];
-    this.elementData[index] = element;
+    var oldValue = this.elements[index];
+    this.elements[index] = element;
     return oldValue;
   };
   ArrayList.prototype.add = function(e){
-    this.elementData[this.elementData.length ++] = e;
+    this.elements[this.elements.length ++] = e;
   };
   ArrayList.prototype.addAt = function(index, element){
     rangeCheckForAdd.call(this, index);
-    this.elementData.splice(index, 0, element);
+    this.elements.splice(index, 0, element);
   };
   ArrayList.prototype.removeAt = function(index){
     rangeCheck.call(this, index);
-    var oldValue = this.elementData[index];
-    this.elementData.splice(index, 1);
+    var oldValue = this.elements[index];
+    this.elements.splice(index, 1);
     return oldValue;
   };
   ArrayList.prototype.remove = function(o){
     if(o == null)
     {
-      for (var index = 0; index < this.elementData.length; index ++) 
-        if(this.elementData[index] == null)
+      for (var index = 0; index < this.elements.length; index ++) 
+        if(this.elements[index] == null)
         {
           fastRemove.call(this, index);
           return true;
@@ -101,8 +101,8 @@
     }
     else
     {
-      for (var index = 0; index < this.elementData.length; index ++) 
-        if(o === this.elementData[index])
+      for (var index = 0; index < this.elements.length; index ++) 
+        if(o === this.elements[index])
         {
           fastRemove.call(this, index);
           return true;
@@ -111,10 +111,10 @@
     return false;
   };
   function fastRemove(index){
-    this.elementData.splice(index, 1);
+    this.elements.splice(index, 1);
   }
   ArrayList.prototype.clear = function(){
-    this.elementData.length = 0;
+    this.elements.length = 0;
   };
   ArrayList.prototype.addAll = function(c){
     internalAddAllAt.call(this, 0, c.toArray());
@@ -124,22 +124,22 @@
     internalAddAllAt.call(this, index, c.toArray());
   };
   function internalAddAllAt(index, a){
-    var t1 = this.elementData.slice(0, index);
-    var t2 = this.elementData.slice(index);
-    this.elementData = t1.concat(a).concat(t2);
+    var t1 = this.elements.slice(0, index);
+    var t2 = this.elements.slice(index);
+    this.elements = t1.concat(a).concat(t2);
     return a.length != 0;
   }
   ArrayList.prototype.removeRange = function(fromIndex, toIndex){
-    this.elementData.splice(fromIndex, toIndex - fromIndex);
+    this.elements.splice(fromIndex, toIndex - fromIndex);
   };
   function rangeCheck(index){
-    if(index >= this.elementData.length) throw new Error(0, "Index out of boundsException! " + outOfBoundsMsg.call(this, index))
+    if(index >= this.elements.length) throw new Error(0, "Index out of boundsException! " + outOfBoundsMsg.call(this, index))
   }
   function rangeCheckForAdd(index){
-    if(index > this.elementData.length || index < 0) throw new Error(0, "Index out of boundsException! " + outOfBoundsMsg.call(this, index))
+    if(index > this.elements.length || index < 0) throw new Error(0, "Index out of boundsException! " + outOfBoundsMsg.call(this, index))
   }
   function outOfBoundsMsg(index){
-    return "Index: " + index + ", Size: " + this.elementData.length;
+    return "Index: " + index + ", Size: " + this.elements.length;
   }
   ArrayList.prototype.removeAll = function(c){
     if(c == null) throw new Error(0, "c may not be null!")
@@ -150,7 +150,7 @@
     return batchRemove.call(this, c, true);
   };
   function batchRemove(c, complement){
-    var elementData = this.elementData;
+    var elementData = this.elements;
     var r = 0;
     var w = 0;
     var modified = false;
@@ -176,7 +176,7 @@
     return modified;
   }
   ArrayList.prototype.listIteratorAt = function(index){
-    if(index < 0 || index > this.elementData.length) throw new Error(0, "Index out of boundsException! " + outOfBoundsMsg.call(this, index))
+    if(index < 0 || index > this.elements.length) throw new Error(0, "Index out of boundsException! " + outOfBoundsMsg.call(this, index))
     return (function(){
       var r = {__enclosing : this, __proto__: __lc('java.util.ArrayList$ListItr').prototype};
       __lc('java.util.ArrayList$ListItr').apply(r, arguments);
@@ -198,7 +198,7 @@
     }).call(this);
   };
   ArrayList.prototype.subList = function(fromIndex, toIndex){
-    ArrayList.subListRangeCheck(fromIndex, toIndex, this.elementData.length);
+    ArrayList.subListRangeCheck(fromIndex, toIndex, this.elements.length);
     return (function(){
       var r = {__enclosing : this, __proto__: __lc('java.util.ArrayList$SubList').prototype};
       __lc('java.util.ArrayList$SubList').apply(r, arguments);
@@ -211,19 +211,19 @@
     if(fromIndex > toIndex) throw new (__lc("java.lang.IllegalArgumentException", "java.lang.buildins"))("fromIndex(" + fromIndex + ") > toIndex(" + toIndex + ")")
   };
   ArrayList.prototype.forEach = function(action){
-    var size = this.elementData.length;
+    var size = this.elements.length;
     for (var i = 0; i < size; i ++) 
     {
-      action(this.elementData[i]);
+      action(this.elements[i]);
     }
   };
   ArrayList.prototype.removeIf = function(filter){
     var removeCount = 0;
     var removeSet = new (__lc("java.util.BitSet", "java.util.BitSet"))(this.size);
-    var size = this.elementData.length;
+    var size = this.elements.length;
     for (var i = 0; i < size; i ++) 
     {
-      var element = this.elementData[i];
+      var element = this.elements[i];
       if(filter(element))
       {
         removeSet.set(i);
@@ -237,24 +237,24 @@
       for (var i = 0, j = 0; (i < size) && (j < newSize); i ++, j ++) 
       {
         i = removeSet.nextClearBit(i);
-        this.elementData[j] = this.elementData[i];
+        this.elements[j] = this.elements[i];
       }
       for (var k = newSize; k < size; k ++) 
       {
-        this.elementData[k] = null;
+        this.elements[k] = null;
       }
     }
     return anyToRemove;
   };
   ArrayList.prototype.replaceAll = function(operator){
-    var size = this.elementData.length;
+    var size = this.elements.length;
     for (var i = 0; i < size; i ++) 
     {
-      this.elementData[i] = operator(this.elementData[i]);
+      this.elements[i] = operator(this.elements[i]);
     }
   };
   ArrayList.prototype.sort = function(c){
-    this.elementData.sort(c);
+    this.elements.sort(c);
   };
   ArrayList.Itr = (function(){
     function Itr() {      
@@ -264,12 +264,12 @@
     Itr.prototype.__proto__ = Object.prototype;
     __cache["java.util.ArrayList$Itr"] = Itr;
     Itr.prototype.hasNext = function(){
-      return this.cursor != this.__enclosing.elementData.length;
+      return this.cursor != this.__enclosing.elements.length;
     };
     Itr.prototype.next = function(){
       var i = this.cursor;
-      if(i >= this.__enclosing.elementData.length) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
-      var elementData = this.__enclosing.elementData;
+      if(i >= this.__enclosing.elements.length) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
+      var elementData = this.__enclosing.elements;
       this.cursor = i + 1;
       return elementData[this.lastRet = i];
     };
@@ -281,13 +281,13 @@
     };
     Itr.prototype.forEachRemaining = function(consumer){
       if(consumer == null) throw new Error(1, "consumer may not be null!")
-      var size = this.__enclosing.elementData.length;
+      var size = this.__enclosing.elements.length;
       var i = this.cursor;
       if(i >= size)
       {
         return;
       }
-      var elementData = this.__enclosing.elementData;
+      var elementData = this.__enclosing.elements;
       while (i != size)
 
       {
@@ -319,7 +319,7 @@
     ListItr.prototype.previous = function(){
       var i = this.cursor - 1;
       if(i < 0) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
-      var elementData = this.__enclosing.elementData;
+      var elementData = this.__enclosing.elements;
       this.cursor = i;
       return elementData[this.lastRet = i];
     };
@@ -358,13 +358,13 @@
     });
     SubList.prototype.set = function(index, e){
       rangeCheck.call(this, index);
-      var oldValue = this.__enclosing.elementData[this.offset + index];
-      this.__enclosing.elementData[this.offset + index] = e;
+      var oldValue = this.__enclosing.elements[this.offset + index];
+      this.__enclosing.elements[this.offset + index] = e;
       return oldValue;
     };
     SubList.prototype.get = function(index){
       rangeCheck.call(this, index);
-      return this.__enclosing.elementData[this.offset + index];
+      return this.__enclosing.elements[this.offset + index];
     };
     SubList.prototype.add = function(index, e){
       rangeCheckForAdd.call(this, index);
@@ -407,7 +407,7 @@
         Anonym.prototype.next = function(){
           var i = this.cursor;
           if(i >= this.__enclosing.size) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
-          var elementData = this.__enclosing__enclosing.elementData;
+          var elementData = this.__enclosing__enclosing.elements;
           this.cursor = i + 1;
           return elementData[offset + (this.lastRet = i)];
         };
@@ -417,7 +417,7 @@
         Anonym.prototype.previous = function(){
           var i = this.cursor - 1;
           if(i < 0) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
-          var elementData = this.__enclosing__enclosing.elementData;
+          var elementData = this.__enclosing__enclosing.elements;
           this.cursor = i;
           return elementData[offset + (this.lastRet = i)];
         };
@@ -429,7 +429,7 @@
           {
             return;
           }
-          var elementData = this.__enclosing__enclosing.elementData;
+          var elementData = this.__enclosing__enclosing.elements;
           while (i != size)
 
           {
@@ -488,15 +488,15 @@
   ArrayList.prototype.__readObject = function(json, handlers, obj) {
     __lc("java.util.AbstractList", "java.util.AbstractList").prototype.__readObject(json, handlers, obj);
     var __propVal = null;
-        __propVal = json["elementData"];
-    obj["elementData"] = __propVal == null ? null : handlers[__propVal];
+        __propVal = json["elements"];
+    obj["elements"] = __propVal == null ? null : handlers[__propVal];
   };
   ArrayList.prototype.__writeObject = function(obj, handlers) {
     __lc("java.util.AbstractList", "java.util.AbstractList").prototype.__writeObject(obj, handlers);
     var __r = {"__clazz" : "java.util.ArrayList"};
     var __propVal = null;
-    __propVal = obj["elementData"];
-    __r["elementData"] = __propVal == null ? null : handlers.shared(__propVal);
+    __propVal = obj["elements"];
+    __r["elements"] = __propVal == null ? null : handlers.shared(__propVal);
     return __r;
   };
   ArrayList.prototype.__class = new (__lc('java.lang.Class'))("java.util.ArrayList", ArrayList, __lc("java.util.AbstractList", "java.util.AbstractList").prototype.__class, [__lc("java.util.List", "java.util.List").prototype.__class, __lc("java.lang.Cloneable").prototype.__class], 1);

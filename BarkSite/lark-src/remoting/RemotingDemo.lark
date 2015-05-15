@@ -1,5 +1,6 @@
 package remoting;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.w3c.event.MouseEvent;
@@ -26,23 +27,21 @@ public class RemotingDemo implements Page{
 //		alert(PersonService.sayHello("Lark"));
 //		alert(PersonService.get("Lark").name);
 		
-//		ArrayList<Object> datas = new ArrayList<Object>();
-//		datas.add(10);
-//		
-//		datas.add("String");
-//		
-//		datas.add(10.0);
-//		
+		ArrayList<Object> datas = new ArrayList<Object>();
+		datas.add(10);
+		datas.add("String");
+		datas.add(new Person("Mike", 18, "GD", null));
+		
 //		ArrayList result = PersonService.collection(datas);
-//		alert((String)result.get(0));
+//		alert(((Person)result.get(2)).name);
 		
 		HashMap<Object, Object> map = new HashMap();
-		map.put(10, "10");
-		map.put(20, "30");
+		map.put(10, new Person("Mike", 18, "GD", null));
+		map.put("20", datas);
 		map.put(30, "30");
 		
 		map = PersonService.map(map);
-		alert((String)map.get("10"));
+		alert(((Person)((ArrayList)map.get("20")).get(2)).name);
 	};
 	
 	String name{

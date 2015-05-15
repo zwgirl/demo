@@ -91,6 +91,8 @@ LarkOutput.prototype.writeObject0 = function(obj, handlers){
 		this.writeHashSet(r, obj, handlers);
 	} else if(clazz.name == "java.util.HashMap"){
 		this.writeHashMap(r, obj, handlers);
+	} else if(clazz.name == "java.util.ArrayList"){
+		this.writeArrayList(r, obj, handlers);
 	} else if(clazz.isEnum){
 		r["value"] = obj == null ? null : obj.name;
 	} else if(clazz.isArray){
@@ -104,7 +106,7 @@ LarkOutput.prototype.writeObject0 = function(obj, handlers){
 	return r;
 };
 
-LarkOutput.prototype.writeArray = function(array, handler){
+LarkOutput.prototype.writeArray = function(array, handlers){
 	var r = {"__clazz":"[Ljava.lang.Object;"};
 	var data = [];
 	for(var i = 0, length = array.length; i<length; i++){
@@ -114,7 +116,7 @@ LarkOutput.prototype.writeArray = function(array, handler){
 			continue;
 		} 
 		
-		data[i] = handlers.shared(obj);
+		data[i] = handlers.shared(element);
 	}
 	r["value"] = data;
 	return r;
@@ -215,7 +217,9 @@ LarkInput.prototype.readObject = function (json){
 		if(done[i].prototype.__class.name == "java.util.HashMap"){
 			this.readHashMap(array[i], references, references[i]);
 		} else if(done[i].prototype.__class.name == "java.util.HashSet"){
-			this.readHashMap(array[i], references, references[i]);
+			this.readHashSet(array[i], references, references[i]);
+		} else if(done[i].prototype.__class.name == "java.util.ArrayList"){
+			this.readArrayList(array[i], references, references[i]);
 		} else {
 			done[i].prototype.__readObject(array[i], references, references[i]);
 		}
@@ -238,12 +242,12 @@ LarkInput.prototype.readArray = function(object, references, array){
 LarkInput.prototype.readHashMap = function(json, handlers, obj) {
 	var entries = json["value"]
 	if(entries){
-		for(var i = 0;length=eniries.length;i<length;i++){
-			obj.set(references[eniries[i][0]], references[entries[i][1]]);
+		for(var i = 0,length=entries.length;i<length;i++){
+			obj.put(handlers[entries[i][0]], handlers[entries[i][1]]);
 		}
 	}
 };
-LarkInput.prototype.writeHashMap = function(json, obj, handlers) {
+LarkOutput.prototype.writeHashMap = function(json, obj, handlers) {
     var map = obj["_map"];
     var entries = [];
 	map.forEach(function(value, key, mapObj){
@@ -256,24 +260,47 @@ LarkInput.prototype.writeHashMap = function(json, obj, handlers) {
 	json["value"] = entries;
 };
 
-//HashSet
-//{__class : "java.util.HashSet", value=[ref1,...refn]}
-LarkInput.prototype.readHashSet = function(obj, handlers, obj) {
-	var items = json["value"]
-	if(items){
-		for(var i = 0;length=eniries.length;i<length;i++){
-			obj.add(references[items[i]]]);
+//ArrayList
+//{__class : "java.util.ArrayList", value=[[kRef1,vRef1], [kRef2, vRef2]...]
+LarkInput.prototype.readArrayList = function(json, handlers, obj) {
+	var array = json["value"]
+	if(array){
+		var elements = [];
+		for(var i = 0,length=array.length;i<length;i++){
+			elements.push(handlers[array[i]]);
 		}
+		obj["elements"] = elements;
 	}
 };
-LarkInput.prototype.writeHashSet = function(json, obj, handlers) {
+LarkOutput.prototype.writeArrayList = function(json, obj, handlers) {
+  var array = obj["elements"];
+  var elements = [];
+  array.forEach(function(value, i){
+		elements.push(value == null ? null : handlers.shared(value));
+  });
+  json["value"] = elements;
+};
+
+LarkOutput.prototype.writeHashSet = function(json, obj, handlers) {
     var items = [];
 	var set = obj["_set"];
-	set.forEach((value, index, array)->{
+	set.forEach(function(value, index, array){
 		items.push(handlers.shared(value));
 	});
 	json["value"] = items;
 };
+
+//HashSet
+//{__class : "java.util.HashSet", value=[ref1,...refn]}
+LarkInput.prototype.readHashSet = function(json, handlers, obj) {
+	var items = json["value"]
+	if(items){
+		for(var i = 0,length=items.length;i<length;i++){
+			obj.add(handlers[items[i]]);
+		}
+	}
+};
+
 
 function __invoke(remotingModel){
 	var xhr = new XMLHttpRequest();

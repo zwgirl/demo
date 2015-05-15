@@ -9,7 +9,7 @@ public interface PersonService {
 	
 	Person get(String name);
 	
-	ArrayList<Object> collection(ArrayList<Object> datas);
+	ArrayList<Object> collection(ArrayList<Object> datas); 
 
 	HashMap<Object, Object> map(HashMap<Object, Object> map);
 }
