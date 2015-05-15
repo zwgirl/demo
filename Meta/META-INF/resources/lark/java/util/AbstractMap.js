@@ -21,7 +21,7 @@
 
       {
         var e = i.next();
-        if(e.getValue() == null) return true;
+        if(e.getValue() == null) return true
       }
     }
     else
@@ -30,7 +30,7 @@
 
       {
         var e = i.next();
-        if(value.equals(e.getValue())) return true;
+        if(value.equals(e.getValue())) return true
       }
     }
     return false;
@@ -43,7 +43,7 @@
 
       {
         var e = i.next();
-        if(e.getKey() == null) return true;
+        if(e.getKey() == null) return true
       }
     }
     else
@@ -52,7 +52,7 @@
 
       {
         var e = i.next();
-        if(key.equals(e.getKey())) return true;
+        if(key.equals(e.getKey())) return true
       }
     }
     return false;
@@ -65,7 +65,7 @@
 
       {
         var e = i.next();
-        if(e.getKey() == null) return e.getValue();
+        if(e.getKey() == null) return e.getValue()
       }
     }
     else
@@ -74,13 +74,13 @@
 
       {
         var e = i.next();
-        if(key.equals(e.getKey())) return e.getValue();
+        if(key.equals(e.getKey())) return e.getValue()
       }
     }
     return null;
   };
   AbstractMap.prototype.put = function(key, value){
-    throw new (__lc('java.lang.UnsupportedOperationException'))();
+    throw new (__lc("java.lang.UnsupportedOperationException", "java.lang.buildins"))();
   };
   AbstractMap.prototype.remove = function(key){
     var i = this.entrySet().iterator();
@@ -107,7 +107,7 @@
     if(correctEntry != null)
     {
       oldValue = correctEntry.getValue();
-      __lc("java.util.Iterator").prototype.remove.call(i);
+      __lc("java.util.Iterator", "java.util.Iterator").prototype.remove.call(i);
     }
     return oldValue;
   };
@@ -126,11 +126,11 @@
     {
       this.keySet = new ((function() {
         function Anonym() {          
-        __lc('java.util.AbstractSet').call(this);
+        __lc("java.util.AbstractSet", "java.util.AbstractSet").call(this);
         }
-        Anonym.prototype.__proto__ = __lc("java.util.AbstractSet").prototype;
+        Anonym.prototype.__proto__ = __lc("java.util.AbstractSet", "java.util.AbstractSet").prototype;
         __cache["java.util.AbstractMap$1"] = Anonym;
-        Object.defineProperty(.prototype, "size", {
+        Object.defineProperty(Anonym.prototype, "size", {
           get : function() {
             return this.__enclosing.size;
           }
@@ -149,9 +149,9 @@
               return this.i.next().getKey();
             };
             Anonym.prototype.remove = function(){
-              __lc("java.util.Iterator").prototype.remove.call(this.i);
+              __lc("java.util.Iterator", "java.util.Iterator").prototype.remove.call(this.i);
             };
-            Anonym.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractMap$1$1", Anonym, Object.prototype.__class, [__lc("java.util.Iterator").prototype.__class], 1);
+            Anonym.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractMap$1$1", Anonym, Object.prototype.__class, [__lc("java.util.Iterator", "java.util.Iterator").prototype.__class], 1);
             return  Anonym;
             return ;
           })())();
@@ -165,7 +165,7 @@
         Anonym.prototype.contains = function(k){
           return this.__enclosing.containsKey(k);
         };
-        Anonym.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractMap$1", Anonym, __lc("java.util.AbstractSet").prototype.__class, [], 1);
+        Anonym.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractMap$1", Anonym, __lc("java.util.AbstractSet", "java.util.AbstractSet").prototype.__class, [], 1);
         return  Anonym;
         return ;
       })())();
@@ -177,11 +177,11 @@
     {
       this.values = new ((function() {
         function Anonym() {          
-        __lc('java.util.AbstractCollection').call(this);
+        __lc("java.util.AbstractCollection", "java.util.AbstractCollection").call(this);
         }
-        Anonym.prototype.__proto__ = __lc("java.util.AbstractCollection").prototype;
+        Anonym.prototype.__proto__ = __lc("java.util.AbstractCollection", "java.util.AbstractCollection").prototype;
         __cache["java.util.AbstractMap$2"] = Anonym;
-        Object.defineProperty(.prototype, "size", {
+        Object.defineProperty(Anonym.prototype, "size", {
           get : function() {
             return this.__enclosing.size;
           }
@@ -200,9 +200,9 @@
               return this.i.next().getValue();
             };
             Anonym.prototype.remove = function(){
-              __lc("java.util.Iterator").prototype.remove.call(this.i);
+              __lc("java.util.Iterator", "java.util.Iterator").prototype.remove.call(this.i);
             };
-            Anonym.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractMap$2$1", Anonym, Object.prototype.__class, [__lc("java.util.Iterator").prototype.__class], 1);
+            Anonym.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractMap$2$1", Anonym, Object.prototype.__class, [__lc("java.util.Iterator", "java.util.Iterator").prototype.__class], 1);
             return  Anonym;
             return ;
           })())();
@@ -216,7 +216,7 @@
         Anonym.prototype.contains = function(v){
           return this.__enclosing.containsValue(v);
         };
-        Anonym.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractMap$2", Anonym, __lc("java.util.AbstractCollection").prototype.__class, [], 1);
+        Anonym.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractMap$2", Anonym, __lc("java.util.AbstractCollection", "java.util.AbstractCollection").prototype.__class, [], 1);
         return  Anonym;
         return ;
       })())();
@@ -226,10 +226,10 @@
   AbstractMap.prototype.entrySet = function(){
   };
   AbstractMap.prototype.equals = function(o){
-    if(o == this) return true;
-    if(! __lc("java.util.Map").prototype.__class.isInstance(o)) return false;
+    if(o == this) return true
+    if(! __lc("java.util.Map", "java.util.Map").prototype.__class.isInstance(o)) return false
     var m = o;
-    if(m.size != this.size) return false;
+    if(m.size != this.size) return false
     try
     {
       var i = this.entrySet().iterator();
@@ -241,11 +241,11 @@
         var value = e.getValue();
         if(value == null)
         {
-          if(! m.get(key) == null && m.containsKey(key)) return false;
+          if(! m.get(key) == null && m.containsKey(key)) return false
         }
         else
         {
-          if(! value.equals(m.get(key))) return false;
+          if(! value.equals(m.get(key))) return false
         }
       }
     }catch(unused)
@@ -258,12 +258,12 @@
     var h = 0;
     var i = this.entrySet().iterator();
     while (i.hasNext())
-      h = i.next().hashCode();
+      h+=i.next().hashCode();
     return h;
   };
   AbstractMap.prototype.toString = function(){
     var i = this.entrySet().iterator();
-    if(! i.hasNext()) return "{}";
+    if(! i.hasNext()) return "{}"
     var sb = new Array();
     sb.push("{");
     for (; ; ) 
@@ -325,9 +325,9 @@
       return oldValue;
     };
     SimpleEntry.prototype.equals = function(o){
-      if(! Map.Entry.prototype.__class.isInstance(o)) return false;
+      if(! Map.Entry.prototype.__class.isInstance(o)) return false
       var e = o;
-      return __lc("java.util.AbstractMap").eq.call(this, this.key, e.getKey()) && __lc("java.util.AbstractMap").eq.call(this, this.value, e.getValue());
+      return __lc("java.util.AbstractMap", "java.util.AbstractMap").eq.call(this, this.key, e.getKey()) && __lc("java.util.AbstractMap", "java.util.AbstractMap").eq.call(this, this.value, e.getValue());
     };
     SimpleEntry.prototype.hashCode = function(){
       return (this.key == null ? 0 : this.key.hashCode()) ^ (this.value == null ? 0 : this.value.hashCode());
@@ -367,12 +367,12 @@
       return this.value;
     };
     SimpleImmutableEntry.prototype.setValue = function(value){
-      throw new (__lc('java.lang.UnsupportedOperationException'))();
+      throw new (__lc("java.lang.UnsupportedOperationException", "java.lang.buildins"))();
     };
     SimpleImmutableEntry.prototype.equals = function(o){
-      if(! Map.Entry.prototype.__class.isInstance(o)) return false;
+      if(! Map.Entry.prototype.__class.isInstance(o)) return false
       var e = o;
-      return __lc("java.util.AbstractMap").eq.call(this, this.key, e.getKey()) && __lc("java.util.AbstractMap").eq.call(this, this.value, e.getValue());
+      return __lc("java.util.AbstractMap", "java.util.AbstractMap").eq.call(this, this.key, e.getKey()) && __lc("java.util.AbstractMap", "java.util.AbstractMap").eq.call(this, this.value, e.getValue());
     };
     SimpleImmutableEntry.prototype.hashCode = function(){
       return (this.key == null ? 0 : this.key.hashCode()) ^ (this.value == null ? 0 : this.value.hashCode());
@@ -384,6 +384,14 @@
     return  SimpleImmutableEntry;
     return SimpleImmutableEntry;
   })();
-  AbstractMap.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractMap", AbstractMap, Object.prototype.__class, [__lc("java.util.Map").prototype.__class], 1);
+  AbstractMap.prototype.__readObject = function(json, handlers, obj) {
+    var __propVal = null;
+  };
+  AbstractMap.prototype.__writeObject = function(obj, handlers) {
+    var __r = {"__clazz" : "java.util.AbstractMap"};
+    var __propVal = null;
+    return __r;
+  };
+  AbstractMap.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractMap", AbstractMap, Object.prototype.__class, [__lc("java.util.Map", "java.util.Map").prototype.__class], 1);
   return  AbstractMap;
 })();

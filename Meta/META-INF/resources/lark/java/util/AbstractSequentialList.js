@@ -1,8 +1,8 @@
 (function(){ 
   function AbstractSequentialList() {    
-  __lc('java.util.AbstractList').call(this);
+  __lc("java.util.AbstractList", "java.util.AbstractList").call(this);
   }
-  AbstractSequentialList.prototype.__proto__ = __lc("java.util.AbstractList").prototype;
+  AbstractSequentialList.prototype.__proto__ = __lc("java.util.AbstractList", "java.util.AbstractList").prototype;
   __cache["java.util.AbstractSequentialList"] = AbstractSequentialList;
   AbstractSequentialList.prototype.get = function(index){
     try
@@ -39,7 +39,7 @@
     {
       var e = this.listIteratorAt(index);
       var outCast = e.next();
-      __lc("java.util.Iterator").prototype.remove.call(e);
+      __lc("java.util.Iterator", "java.util.Iterator").prototype.remove.call(e);
       return outCast;
     }catch(exc)
     {
@@ -49,16 +49,13 @@
   AbstractSequentialList.prototype.addAllAt = function(index, c){
     try
     {
-      var modified = false;
       var e1 = this.listIteratorAt(index);
       var e2 = c.iterator();
       while (e2.hasNext())
 
       {
         e1.add(e2.next());
-        modified = true;
       }
-      return modified;
     }catch(exc)
     {
       throw new Error(0, "index out of bound !");
@@ -69,6 +66,10 @@
   };
   AbstractSequentialList.prototype.listIteratorAt = function(index){
   };
-  AbstractSequentialList.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractSequentialList", AbstractSequentialList, __lc("java.util.AbstractList").prototype.__class, [], 1);
+  AbstractSequentialList.prototype.__readObject = function(json, handlers, obj) {
+    __lc("java.util.AbstractList", "java.util.AbstractList").prototype.__readObject(json, handlers, obj);};
+  AbstractSequentialList.prototype.__writeObject = function(obj, handlers) {
+    __lc("java.util.AbstractList", "java.util.AbstractList").prototype.__writeObject(obj, handlers);};
+  AbstractSequentialList.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractSequentialList", AbstractSequentialList, __lc("java.util.AbstractList", "java.util.AbstractList").prototype.__class, [], 1);
   return  AbstractSequentialList;
 })();

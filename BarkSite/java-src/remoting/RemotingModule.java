@@ -11,5 +11,4 @@ public class RemotingModule implements Module{
 	public void configure(Binder binder) {
 		binder.bind(PersonService.class).to(PersonServiceImpl.class);
 	}
-	
 }

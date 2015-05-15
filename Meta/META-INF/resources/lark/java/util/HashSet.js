@@ -1,62 +1,58 @@
 (function(){ 
-  function HashSet(){
-    var args = Array.prototype.slice.call(arguments);
-    return HashSet.__f[args[args.length-1]].apply(this, args.slice(0, args.length-1));
+  function HashSet() {    
+    this.map = null;
+    this.map = new Set();
   }
-  HashSet.__f = {
-    "null" : function() {    
-  __lc('java.util.AbstractSet').call(this);
-    this.map = null;
-    this.map = new (__lc('java.util.HashMap'))();
-  }, 
-    "null" : function(c) {    
-  __lc('java.util.AbstractSet').call(this);
-    this.map = null;
-    this.map = new (__lc('java.util.HashMap'))(Math.max(c.size / 0.75 + 1, 16));
-    this.addAll(c);
-  }, 
-    "null" : function(initialCapacity, loadFactor) {    
-  __lc('java.util.AbstractSet').call(this);
-    this.map = null;
-    this.map = new (__lc('java.util.HashMap'))(initialCapacity, loadFactor);
-  }, 
-    "null" : function(initialCapacity) {    
-  __lc('java.util.AbstractSet').call(this);
-    this.map = null;
-    this.map = new (__lc('java.util.HashMap'))(initialCapacity);
-  }, 
-    "null" : function(initialCapacity, loadFactor, dummy) {    
-  __lc('java.util.AbstractSet').call(this);
-    this.map = null;
-    this.map = new (__lc('java.util.LinkedHashMap'))(initialCapacity, loadFactor);
-  }
-  };
-  HashSet.prototype.__proto__ = __lc("java.util.AbstractSet").prototype;
+  HashSet.prototype.__proto__ = Object.prototype;
   __cache["java.util.HashSet"] = HashSet;
   Object.defineProperty(HashSet.prototype, "size", {
     get : function() {
       return this.map.size;
     }
   });
-  HashSet.prototype.iterator = function(){
-    return this.map.keySet().iterator();
-  };
   HashSet.prototype.isEmpty = function(){
-    return this.map.isEmpty();
+    return this.map.size == 0;
   };
   HashSet.prototype.contains = function(o){
-    return this.map.containsKey(o);
+    return this.map.has(o);
   };
   HashSet.prototype.add = function(e){
-    return this.map.put(e, HashSet.PRESENT) == null;
+    this.map.add(e);
   };
   HashSet.prototype.remove = function(o){
-    return this.map.remove(o) == HashSet.PRESENT;
+    return this.map.delete(o);
   };
   HashSet.prototype.clear = function(){
     this.map.clear();
   };
-  HashSet.PRESENT = new Object();
-  HashSet.prototype.__class = new (__lc('java.lang.Class'))("java.util.HashSet", HashSet, __lc("java.util.AbstractSet").prototype.__class, [__lc("java.util.Set").prototype.__class, __lc("java.lang.Cloneable").prototype.__class], 1);
+  HashSet.prototype.toArray = function(){
+    return null;
+  };
+  HashSet.prototype.containsAll = function(c){
+    return false;
+  };
+  HashSet.prototype.addAll = function(c){
+  };
+  HashSet.prototype.removeAll = function(c){
+  };
+  HashSet.prototype.retainAll = function(c){
+    return false;
+  };
+  HashSet.prototype.iterator = function(){
+    return null;
+  };
+  HashSet.prototype.__readObject = function(json, handlers, obj) {
+    var __propVal = null;
+        __propVal = json["map"];
+    obj["map"] = __propVal == null ? null : handlers[__propVal];
+  };
+  HashSet.prototype.__writeObject = function(obj, handlers) {
+    var __r = {"__clazz" : "java.util.HashSet"};
+    var __propVal = null;
+    __propVal = obj["map"];
+    __r["map"] = __propVal == null ? null : handlers.shared(__propVal);
+    return __r;
+  };
+  HashSet.prototype.__class = new (__lc('java.lang.Class'))("java.util.HashSet", HashSet, Object.prototype.__class, [__lc("java.util.Set", "java.util.Set").prototype.__class], 1);
   return  HashSet;
 })();

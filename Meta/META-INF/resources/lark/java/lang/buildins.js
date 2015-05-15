@@ -112,7 +112,7 @@
 	  	return new (this._factory)();
   	};
   Class.prototype.toURL = function(){
-    return this._name.split(".").join("/").concat(".html");
+    return "/lark/" + this._name.split(".").join("/").concat(".html");
   };
   Class.CLASS = 0x1;
   Class.INTERFACE = 0x2;

@@ -46,7 +46,6 @@ LarkOutput.prototype.write = function(obj){
 		var references = referenceProcessor.references();
 		var length = references.length, i = 1;
 		while(i < references.length){
-//			array[i] = this.writeObject0(references[i++], referenceProcessor);
 			var other = references[i];
 			if(other.getClass().isArray){
 				array[i++] = this.writeArray(other, referenceProcessor);
@@ -70,29 +69,33 @@ LarkOutput.prototype.writeObject0 = function(obj, handlers){
 		r["value"] = obj;
 	} else if(clazz === Number.prototype.__class){
 		r["value"] = obj;
-	} else if(clazz.name === "java.lang.Byte"){
+	} else if(clazz.name == "java.lang.Byte"){
 		r["value"] = obj;
-	} else if(clazz.name === "java.lang.Sort"){
+	} else if(clazz.name == "java.lang.Sort"){
 		r["value"] = obj;
-	} else if(clazz.name === "java.lang.Character"){
+	} else if(clazz.name == "java.lang.Character"){
 		r["value"] = obj;
-	} else if(clazz.name === "java.lang.Integer"){
+	} else if(clazz.name == "java.lang.Integer"){
 		r["value"] = obj;
-	} else if(clazz.name === "java.lang.Long"){
+	} else if(clazz.name == "java.lang.Long"){
 		r["value"] = obj;
-	} else if(clazz.name === "java.lang.Float"){
+	} else if(clazz.name == "java.lang.Float"){
 		r["value"] = obj;
-	} else if(clazz.name === "java.lang.Double"){
+	} else if(clazz.name == "java.lang.Double"){
 		r["value"] = obj;
-	} else if(clazz.name === "java.lang.Boolean"){
+	} else if(clazz.name == "java.lang.Boolean"){
 		r["value"] = obj;
-	} else if(clazz.name === "java.lang.Class"){
-		var r = {"__clazz":"java.lang.Class"};
+	} else if(clazz.name == "java.lang.Class"){
 		r["value"] = obj.name;
+	} else if(clazz.name == "java.util.HashSet"){
+		this.writeHashSet(r, obj, handlers);
+	} else if(clazz.name == "java.util.HashMap"){
+		this.writeHashMap(r, obj, handlers);
 	} else if(clazz.isEnum){
 		r["value"] = obj == null ? null : obj.name;
 	} else if(clazz.isArray){
 		r["value"] = obj == null ? null : handlers.shared(obj);
+		element
 	} else if(clazz === Object.prototype.__class){
 		r["value"] = obj == null ? null : handlers.shared(obj);
 	} else {
@@ -108,9 +111,10 @@ LarkOutput.prototype.writeArray = function(array, handler){
 		var element = array[i];
 		if(element == null){
 			data[i] = null;
-		} else {
-			data[i] = handler.shared(element);
-		}
+			continue;
+		} 
+		
+		data[i] = handlers.shared(obj);
 	}
 	r["value"] = data;
 	return r;
@@ -146,39 +150,45 @@ LarkInput.prototype.readObject = function (json){
 		var clazzName = array[i]["__clazz"];
 		if(clazzName[0] == '['){
 			references[i] = [];
-			done[i] == Array;
+			done[i] = Array;
 		} else {
 			var clazz = __lc(clazzName);
-			if(clazz === Number){
+			if(clazz.prototype.__class.name == "java.util.HashMap"){
+				done[i] = clazz;
+				references[i] = new clazz();
+			} else if(clazz.prototype.__class.name == "java.util.HashSet"){
+				done[i] = clazz;
+				references[i] = new clazz();
+			} else if(clazz === Number){
 				references[i] = array[i]["value"];
 			} else if(clazz == String){
 				references[i] = array[i]["value"];
 			} else if(clazz == Date){
 				references[i] = new Date(array[i]["value"]);
-			} else if(clazz.name === "java.lang.Byte"){
+			} else if(clazz.prototype.__class.name == "java.lang.Byte"){
 				references[i] = new (__lc("java.lang.Byte"))(array[i]["value"]);
-			} else if(clazz.name === "java.lang.Short"){
+			} else if(clazz.prototype.__class.name == "java.lang.Short"){
 				references[i] = new (__lc("java.lang.Short"))(array[i]["value"]);
-			} else if(clazz.name === "java.lang.Character"){
+			} else if(clazz.prototype.__class.name == "java.lang.Character"){
 				references[i] = new (__lc("java.lang.Character"))(array[i]["value"]);
-			} else if(clazz.name === "java.lang.Integer"){
+			} else if(clazz.prototype.__class.name == "java.lang.Integer"){
 				references[i] = new (__lc("java.lang.Integer"))(array[i]["value"]);
-			} else if(clazz.name === "java.lang.Long"){
+			} else if(clazz.prototype.__class.name == "java.lang.Long"){
 				references[i] = new (__lc("java.lang.Long"))(array[i]["value"]);
-			} else if(clazz.name === "java.lang.Float"){
+			} else if(clazz.prototype.__class.name == "java.lang.Float"){
 				references[i] = new (__lc("java.lang.Float"))(array[i]["value"]);
-			} else if(clazz.name === "java.lang.Double"){
+			} else if(clazz.prototype.__class.name == "java.lang.Double"){
 				references[i] = new (__lc("java.lang.Double"))(array[i]["value"]);
-			} else if(clazz.name === "java.lang.Boolean"){
+			} else if(clazz.prototype.__class.name == "java.lang.Boolean"){
 				references[i] = new Boolean(array[i]["value"]);
-			} else if(clazz.name === "java.lang.Class"){
+			} else if(clazz.prototype.__class.name == "java.lang.Class"){
 				references[i] = __lc(array[i]["value"]).prototype.__class;
 			} else if(clazz.prototype.__class.isArray){
 				references[i] = [];
 			} else if(clazz.prototype.__class.isEnum){
 				references[i] = clazz.factory.valueOf(array[i]["value"]);
 			} else {
-				var ref = new clazz();
+				var ref = new clazz(0);
 				ref.__proto__ = clazz.prototype;
 				done[i] = clazz;
 				references[i] = ref;
@@ -191,9 +201,22 @@ LarkInput.prototype.readObject = function (json){
 			continue;
 		}
 		
-		if(done[i].isArray){
+		if(done[i] === Array){
 			this.readArray(array[i], references, references[i]);
-		} else{
+			done[i] = null;
+		}
+	}
+	
+	for(var i=0, length = array.length; i<length; i++){
+		if(!done[i]){
+			continue;
+		}
+		
+		if(done[i].prototype.__class.name == "java.util.HashMap"){
+			this.readHashMap(array[i], references, references[i]);
+		} else if(done[i].prototype.__class.name == "java.util.HashSet"){
+			this.readHashMap(array[i], references, references[i]);
+		} else {
 			done[i].prototype.__readObject(array[i], references, references[i]);
 		}
 	}
@@ -204,11 +227,52 @@ LarkInput.prototype.readObject = function (json){
 //Array
 LarkInput.prototype.readArray = function(object, references, array){
 	var data = object["value"];
-	for(var i=0; i<array.length; i++){
+	for(var i=0, length = (data == null ? 0 : data.length); i<length; i++){
 		array[i] = references[data[i]];
 	}
 	
 	return array;
+};
+//HashMap
+//{__class : "java.util.HashMap", value=[[kRef1,vRef1], [kRef2, vRef2]...]
+LarkInput.prototype.readHashMap = function(json, handlers, obj) {
+	var entries = json["value"]
+	if(entries){
+		for(var i = 0;length=eniries.length;i<length;i++){
+			obj.set(references[eniries[i][0]], references[entries[i][1]]);
+		}
+	}
+};
+LarkInput.prototype.writeHashMap = function(json, obj, handlers) {
+    var map = obj["_map"];
+    var entries = [];
+	map.forEach(function(value, key, mapObj){
+		var entry = [
+			         key == null ? null : handlers.shared(key),
+			         value == null ? null : handlers.shared(value)
+			        ];
+		entries.push(entry);
+	});
+	json["value"] = entries;
+};
+
+//HashSet
+//{__class : "java.util.HashSet", value=[ref1,...refn]}
+LarkInput.prototype.readHashSet = function(obj, handlers, obj) {
+	var items = json["value"]
+	if(items){
+		for(var i = 0;length=eniries.length;i<length;i++){
+			obj.add(references[items[i]]]);
+		}
+	}
+};
+LarkInput.prototype.writeHashSet = function(json, obj, handlers) {
+    var items = [];
+	var set = obj["_set"];
+	set.forEach((value, index, array)->{
+		items.push(handlers.shared(value));
+	});
+	json["value"] = items;
 };
 
 function __invoke(remotingModel){
@@ -252,7 +316,6 @@ $.a = function(p,c){
 	return p.appendChild(c);
 }
 $.attr = function(n,attr,value){
-//	n.setAttributeNS(null, attr, value);
 	n.setAttribute(attr, value);
 }
 $.attrNS = function(ns,n,attr,value){

@@ -1,7 +1,9 @@
 package collection;
 
 
-import org.w3c.event.*;
+import org.w3c.dom.Node;
+import org.w3c.event.MouseEvent;
+import org.w3c.event.MouseEventHandler;
 
 public class ManagerTableRow1 extends Template { 
 	<%
@@ -12,7 +14,7 @@ public class ManagerTableRow1 extends Template {
 
 	</tr>   
 	%> 
-	public ManagerTableRow1(Bindable parent) { 
+	public ManagerTableRow1(Node parent) { 
 		super(parent);
 	}
 

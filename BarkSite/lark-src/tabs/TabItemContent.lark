@@ -1,0 +1,37 @@
+package tabs;
+
+import org.w3c.dom.Node;
+import org.w3c.html.HTMLElement;
+
+public class TabItemContent extends Template{
+	<%
+    <div style.display = {Binding property = "selected1" mode = "OneWay"} >
+    	<h3 dataContext = {DataContext property = "poem" name="poem"} textContent={Binding property="author" context="poem"}></h3>
+    	<div id="flexContainer" dataContext = {DataContext property = "poem" name="poem1"}>
+			<div className="item">
+    			<img src = {Binding property="img"} />
+    		</div>
+    		<div className="item">
+				<ul>
+					<li textContent = {Binding property="first"}></li>
+					<li textContent = {Binding property="second"}></li>
+					<li textContent = {Binding property="three"}></li>
+					<li textContent = {Binding property="four"}></li>
+				</ul>
+    		</div>
+		</div>
+    </div>
+    %>
+	public TabItemContent(Node parent) {
+		super(parent);
+	} 
+
+	UpdateTargetCallback callback = (Object target, Array<String> tagProperties, Object value)->{
+		if((Boolean)value == true){
+			((HTMLElement)target).style.display = "block";
+		} else {
+			((HTMLElement)target).style.display = "none";
+		}
+	};
+}
+  

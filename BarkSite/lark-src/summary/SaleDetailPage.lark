@@ -27,7 +27,10 @@ public class SaleDetailPage implements Page, INotifyPropertyChanged {
 				<td>序号</td><td>品名</td> <td>数量</td><td>单价</td><td onmouseover=function{return false;}> 小计</td> 
 				</tr> 
 		    </thead> 
-			<tbody className="tabs" template = {CollectionTemplateSetting property = "saleDetails" template = "Record" }>
+			<tbody className="tabs" >
+				<Iterator items = {Binding property = "saleDetails" }>
+					<Record />
+				</Iterator>
 		    </tbody>
 			<tbody className="tabs" id="1111" >
 				<tr>
@@ -132,17 +135,11 @@ public class SaleDetailPage implements Page, INotifyPropertyChanged {
 	 
 	public MouseEventHandler delete =  (MouseEvent event)->{
 		List<SaleDetail> toBeDeleted = new ArrayList<SaleDetail>();
-//		for(SaleDetail p : _saleDetails){
-//			if(p.selected){
-//				toBeDeleted.add(p);
-//			} 
-//		}
 		
 		if(toBeDeleted.size>0){
 			_saleDetails.removeAll(toBeDeleted);
 		}
 	};
-
 }
 
 class Record extends Template {
@@ -151,25 +148,30 @@ class Record extends Template {
 		<td>
 		<input type="checkbox" />
 		</td>
-		<td dataContext={DataContext property="ordinal" mode="Root"} textContent = {Binding}>
+		<td textContent = {Binding property="ordinal"  context = "current"}>
 		</td>
 		<td>
-			<input type="text" value = {Binding property="name" mode="TwoWay" trigger="PropertyChanged"}/>
+			<input type="text" value = {Binding property="name" mode="TwoWay" trigger="PropertyChanged" context = "current"}/>
 		</td>
 		<td>
-			<input type="text" value = {Binding property="quantity" mode="TwoWay" trigger="PropertyChanged"}/>
+			<input type="text" value = {Binding property="quantity" mode="TwoWay" trigger="PropertyChanged" context = "current"}/>
 		</td> 
-		<td textContent = {Binding property="unitPrice"}></td>  
-		<td textContent = {Binding property="summary" mode="OneWay"}></td>
+		<td textContent = {Binding property="unitPrice" context = "current"}></td>  
+		<td textContent = {Binding property="summary" mode="OneWay" context = "current"}></td>
 		<td>
-			<a href="javascript:void(0)" onclick = "click"> X </a>
+			<a href="javascript:void(0)" onclick = "removeItem"> X </a>
 		</td>
 	</tr> 
 	%>
 	
-	MouseEventHandler click = (MouseEvent event)->{
+	protected Record(Node parent) {
+		super(parent);
+	}
+
+	MouseEventHandler removeItem = (MouseEvent event)->{
 		Node node = (Node) event.target;
-		((ObservableCollection<SaleDetail>)this.templateSetting.dataItem).remove(node.dataContext.dataItem);
+		SaleDetailPage page = (SaleDetailPage) node.getDataContext("ROOT").dataItem;
+		page.saleDetails.remove(node.getDataContext("current").dataItem);
 	};
 }
 
@@ -182,7 +184,7 @@ class SaleDetail implements INotifyPropertyChanged{
 		this._name = name;
 		this._unitPrice = unitPrice;
 		this._quantity = quantity;
-		addPropertyChangeListener4(new String[]{"quantity", "unitPrice"}, changeHandler);
+		addPropertyChangeListeners(new String[]{"quantity", "unitPrice"}, changeHandler);
 	}
 	
 	public String name{

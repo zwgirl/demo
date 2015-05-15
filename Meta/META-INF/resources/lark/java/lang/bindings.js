@@ -13,6 +13,12 @@
     set : function(value) {
     }
   });
+  Object.defineProperty(Bindable.prototype, "dataContext", {
+    get : function() {
+    }, 
+    set : function(value) {
+    }
+  });
   Bindable.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Bindable", Bindable, Object.prototype.__class, [], 2);
   return  Bindable;
 })();
@@ -31,17 +37,26 @@
 (function(){ 
   function AbstractBindable(parent) {    
     this._childs = null;
-    this._parent = null;
-    this._parent = parent;
+    this._parentNode = null;
+    this._parentNode = parent;
   }
   AbstractBindable.prototype.__proto__ = Object.prototype;
   __cache["java.lang.AbstractBindable"] = AbstractBindable;
-  Object.defineProperty(AbstractBindable.prototype, "parentNode", {
+  Object.defineProperty(AbstractBindable.prototype, "dataContext", {
     get : function() {
-      return this._parent;
+      return this["__context"];
     }, 
     set : function(value) {
-      this._parent = value;
+      this["__context"] = value;
+      this.addDataContext(value);
+    }
+  });
+  Object.defineProperty(AbstractBindable.prototype, "parentNode", {
+    get : function() {
+      return this._parentNode;
+    }, 
+    set : function(value) {
+      this._parentNode = value;
     }
   });
   Object.defineProperty(AbstractBindable.prototype, "logicParent", {
@@ -61,7 +76,6 @@
     }
   });
   AbstractBindable.prototype.appendChild = function(child){
-    this.processChild(child);
     return this.parentNode.appendChild(child);
   };
   AbstractBindable.prototype.processChild = function(child){
@@ -173,7 +187,7 @@
     }
     else if(this.parentNode != null)
     {
-      return this.parentNode.getDataContext(name);
+      return Node.prototype.getDataContext.call(this.parentNode, name);
     }
     return null;
   };
@@ -207,7 +221,7 @@
     }
     else if(this.parentNode != null)
     {
-      var parent = this.parentNode.getDataContext(context.ancestor);
+      var parent = Node.prototype.getDataContext.call(this.parentNode, context.ancestor);
       if(parent != null)
       {
         parent.addDependent(context);
@@ -246,7 +260,7 @@
       }
       else if(this.parentNode != null)
       {
-        var parent = this.parentNode.getDataContext(context.ancestor);
+        var parent = Node.prototype.getDataContext.call(this.parentNode, context.ancestor);
         if(parent != null)
         {
           parent.addDependent(context);
@@ -278,11 +292,11 @@
       context.reset(this);
     }).bind(this));
   };
-  AbstractBindable.prototype.body = function(){
-    this.doBody();
+  AbstractBindable.prototype.body = function(context){
+    this.doBody(this.parentNode, this, context);
   };
-  AbstractBindable.prototype.doBody = function(){
-    this.bodyHandler();
+  AbstractBindable.prototype.doBody = function(parentNode, logicParent, context){
+    this.bodyHandler(this.parentNode, this, context);
   };
   AbstractBindable.prototype.setAttribute = function(name, value){
     this[name] = value;
@@ -779,6 +793,7 @@
     this._updateSourceCallback = null;
     this._converteTo = null;
     this._converteFrom = null;
+    this._attribute = false;
     this._propertyChange = (function(source, evt){
       this._target.update(this);
     }).bind(this);
@@ -794,9 +809,9 @@
     {
       this._property = options["property"];
     }
-    if(options["trace"] != undefined)
+    if(options["attribute"] != undefined)
     {
-      this._trace = options["trace"];
+      this._attribute = options["attribute"];
     }
     if(options["mode"] != undefined)
     {
@@ -805,6 +820,10 @@
     else
     {
       this._mode = __lc("java.lang.BindingMode").OneTime;
+    }
+    if(options["trace"] != undefined)
+    {
+      this._trace = options["trace"];
     }
     if(options["context"] != undefined)
     {
@@ -855,6 +874,14 @@
     }, 
     set : function(value) {
       this._targetProperties = value;
+    }
+  });
+  Object.defineProperty(Binding.prototype, "attribute", {
+    get : function() {
+      return this._attribute;
+    }, 
+    set : function(value) {
+      this._attribute = value;
     }
   });
   Object.defineProperty(Binding.prototype, "trace", {
@@ -1213,6 +1240,7 @@
 (function(){ 
   function Template(parent) {    
   __lc('java.lang.AbstractBindable').call(this, parent);
+    this["__isTemplate"] = true;
     var options = new Object();
     options["name"] = "TEMPLATE";
     options["dataItem"] = this;
@@ -1220,20 +1248,10 @@
   }
   Template.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
   __cache["java.lang.Template"] = Template;
-  Template.prototype.body = function(){
-    this.doBody();
-  };
-  Template.prototype.doBody = function(){
-  };
   Template.prototype.removeBody = function(parent){
     this._childs.forEach((function(node, index, array){
     }).bind(this));
-  };
-  Template.prototype.before = function(){
-  };
-  Template.prototype.after = function(node){
-    return node;
-  };Template.prototype.doBody = function() {};
+  };Template.prototype.doBody = function(__p, __l, __ctx) {};
   Template.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Template", Template, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
   return  Template;
 })();
@@ -1287,7 +1305,7 @@
             this._status.count ++;
             this._status.index ++;
             this._status.current = obj;
-            this.bodyHandler.call(item);
+            this.bodyHandler(this.parentNode, item, this["__ctx"]);
           }
           break;
       case __lc("java.lang.CollectionChangedAction").Remove :
@@ -1372,7 +1390,8 @@
     item.addDataContext(new (__lc('java.lang.DataContext'))(options));
     return item;
   }
-  Iterator.prototype.doBody = function(){
+  Iterator.prototype.doBody = function(parentNode, logicParent, context){
+    this["__ctx"] = context;
     if(this.items != null)
     {
       if(__lc("java.util.Collection").prototype.__class.isInstance(this.items))
@@ -1404,7 +1423,7 @@
           {
             this._status._last = true;
           }
-          this.bodyHandler.call(item);
+          this.bodyHandler(parentNode, item, context);
           if(index == this.end)
           {
             break;
@@ -1440,7 +1459,7 @@
           this._status.last = false;
         }
         this._status.count ++;
-        this.bodyHandler.call(item);
+        this.bodyHandler(parentNode, item, context);
       }
     }
   };
@@ -1589,7 +1608,7 @@
       this._value = value;
     }
   });
-  When.prototype.doBody = function(){
+  When.prototype.doBody = function(parentNode, logicParent, context){
     if(this._value == null)
     {
       return;
@@ -1601,7 +1620,7 @@
     var choose = this.logicParent;
     if(choose.test(this.value))
     {
-      this.bodyHandler(parent);
+      this.bodyHandler(parentNode, this, context);
     }
   };
   When.prototype.__class = new (__lc('java.lang.Class'))("java.lang.When", When, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
@@ -1613,7 +1632,7 @@
   }
   Otherwise.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
   __cache["java.lang.Otherwise"] = Otherwise;
-  Otherwise.prototype.doBody = function(){
+  Otherwise.prototype.doBody = function(parentNode, logicParent, context){
     if(! __lc("java.lang.Choose").prototype.__class.isInstance(this.logicParent))
     {
       return;
@@ -1621,7 +1640,7 @@
     var choose = this.logicParent;
     if(choose["_otherwise"])
     {
-      this.bodyHandler(parent);
+      this.bodyHandler(parentNode, this, context);
     }
   };
   Otherwise.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Otherwise", Otherwise, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
@@ -1651,19 +1670,19 @@
       this._test = value;
     }
   });
-  If.prototype.doBody = function(){
+  If.prototype.doBody = function(parentNode, logicParent, context){
     if(this._test == null)
     {
       if(this._data)
       {
-        this.bodyHandler(parent);
+        this.bodyHandler(parentNode, this, context);
       }
     }
     else
     {
       if(this._test())
       {
-        this.bodyHandler(parent);
+        this.bodyHandler(parentNode, this, context);
       }
     }
   };
@@ -1671,118 +1690,79 @@
   return  If;
 })();
 (function(){ 
-  function ParameterBinding() {    
-    this._context = null;
-    this._property = null;
+  function ParameterUtils() {    
   }
-  ParameterBinding.prototype.__proto__ = Object.prototype;
-  __cache["java.lang.ParameterBinding"] = ParameterBinding;
-  Object.defineProperty(ParameterBinding.prototype, "context", {
-    get : function() {
-      return this._context;
-    }, 
-    set : function(value) {
-      this._context = value;
-    }
-  });
-  Object.defineProperty(ParameterBinding.prototype, "property", {
-    get : function() {
-      return this._property;
-    }, 
-    set : function(value) {
-      this._property = value;
-    }
-  });
-  ParameterBinding.prototype.inject = function(target, properties){
-  };
-  ParameterBinding.prototype.__class = new (__lc('java.lang.Class'))("java.lang.ParameterBinding", ParameterBinding, Object.prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class], 1);
-  return  ParameterBinding;
-})();
-(function(){ 
-  function Parameters(){};
-  __cache["java.lang.Parameters"] = Parameters;
-  Parameters.prototype.URL = function(){
-    return "";
-  };
-  Parameters.prototype.inject = function(a, property, bindings){
-  };
-  Parameters.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Parameters", Parameters, Object.prototype.__class, [], 2);
-  return  Parameters;
-})();
-(function(){ 
-  function ProxyPrrameter(bindings) {    
-    this._page = null;
-    this._target = null;
-    this._parameters = new Map();
-    if(bindings != null)
-    {
-      bindings.forEach((function(value, index, array){
-      }).bind(this));
-    }
-  }
-  ProxyPrrameter.prototype.__proto__ = Object.prototype;
-  __cache["java.lang.ProxyPrrameter"] = ProxyPrrameter;
-  ProxyPrrameter.prototype.URL = function(){
+  ParameterUtils.prototype.__proto__ = Object.prototype;
+  __cache["java.lang.ParameterUtils"] = ParameterUtils;
+  ParameterUtils.encodeRequest = function(parameters){
     var r = "";
     var and = false;
-    this._parameters.forEach((function(value, key, _this){
+    parameters.forEach((function(value, key, map){
       if(and)
       {
-        key+='&';
+        r+='&';
       }
-      key = key + '=' + encodeURIComponent(value);
+      r+=key + '=' + encodeURIComponent(value);
       and = true;
-    }).bind(this));
+    }).bind(ParameterUtils));
     return r;
   };
-  ProxyPrrameter.prototype.inject = function(a, prop, bindings){
-    this._target = a;
-    if(bindings != null)
-    {
-      bindings.forEach((function(binding, index, array){
-        update.call(this, binding);
-      }).bind(this));
-    }
+  ParameterUtils.getRequestParameter = function(search){
+    var result = new Map();
+    var parts = search.split("&");
+    parts.forEach((function(value, index, _this){
+      var assign = value.split("=");
+      result.set(decodeURIComponent(assign[0]), decodeURIComponent(assign[1]));
+    }).bind(ParameterUtils));
+    return result;
   };
-  function update(binding){
-    var context = Node.prototype.getDataContext.call(this._target, binding.context);
-    this._parameters.set(binding.context, context[binding.property]);
+  ParameterUtils.prototype.__class = new (__lc('java.lang.Class'))("java.lang.ParameterUtils", ParameterUtils, Object.prototype.__class, [], 1);
+  return  ParameterUtils;
+})();
+(function(){ 
+  function ProxyPage(page, target) {    
+  __lc('java.lang.AbstractBindable').call(this, null);
+    this._page = null;
+    this._target = null;
+    this._propValues = new Map();
+    this._page = page;
+    this._target = target;
   }
-  ProxyPrrameter.prototype.__class = new (__lc('java.lang.Class'))("java.lang.ProxyPrrameter", ProxyPrrameter, Object.prototype.__class, [__lc("java.lang.Parameters").prototype.__class], 1);
-  return  ProxyPrrameter;
+  ProxyPage.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
+  __cache["java.lang.ProxyPage"] = ProxyPage;
+  ProxyPage.prototype.URL = function(){
+    return this._page.toURL();
+  };
+  ProxyPage.prototype.set = function(name, value){
+    this._propValues.set(name, value);
+  };
+  ProxyPage.prototype.update = function(binding){
+    var context = Node.prototype.getDataContext.call(this._target, binding.context);
+    if(context != null)
+    {
+      var dataItem = context.dataItem;
+      this._propValues.set(binding.property, dataItem == null ? null : dataItem[binding.property]);
+    }
+    else
+    {
+      this._propValues.set(binding.property, null);
+    }
+    update.call(this);
+  };
+  ProxyPage.prototype.inject = function(target, properties){
+    update.call(this);
+  };
+  function update(){
+    this._target.href = this.URL() + "?" + __lc("java.lang.ParameterUtils").encodeRequest(this._propValues);
+  }
+  ProxyPage.prototype.__class = new (__lc('java.lang.Class'))("java.lang.ProxyPage", ProxyPage, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  return  ProxyPage;
 })();
 (function(){ 
   function Page(){};
   __cache["java.lang.Page"] = Page;
-  Page.prototype.encodeRequest = function(parameters){
-    var r = "";
-    var and = false;
-    parameters.forEach((function(value, key, _this){
-      if(and)
-      {
-        key+='&';
-      }
-      key = key + '=' + encodeURIComponent(value);
-      and = true;
-    }).bind(this));
-    return r;
+  Page.prototype.inject = function(a, properties){
   };
-  Page.prototype.getRequestParameter = function(search){
-    var result = new Map();
-    if(String.isNullOrEmpty(location.search))
-    {
-      return null;
-    }
-    var parts = search.split("&");
-    parts.forEach((function(value, index, _this){
-      var assign = value.split("=");
-      result.set(assign[0], assign[1]);
-    }).bind(this));
-    return result;
-  };
-  Page.prototype.toURL = function(){
-    return this.getClass().toURL();
-  };
-  Page.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Page", Page, Object.prototype.__class, [__lc("java.lang.Parameters").prototype.__class], 2);
+  Page.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Page", Page, Object.prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class], 2);
   return  Page;
 })();

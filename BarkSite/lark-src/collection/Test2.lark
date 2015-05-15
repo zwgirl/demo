@@ -5,99 +5,41 @@ import java.util.Collection;
 import java.util.List;
 import java.util.ObservableCollection;
 
-import org.w3c.dom.Text;
 import org.w3c.event.Event;
 import org.w3c.event.EventHandler;
 import org.w3c.event.MouseEvent;
 import org.w3c.event.MouseEventHandler;
  
-public class Test implements Page, INotifyPropertyChanged {
+public class Test2 implements Page, INotifyPropertyChanged {
 	<%
 	<html xmlns:lark = "http://www.lark.org/2012"> 
 		<head> 
-		<meta http-equiv="pragma" content="no-cache" /> 
-		<meta http-equiv="cache-control" content="no-cache, must-revalidate" /> 
-		<meta http-equiv="expires" content="wed, 26 feb 1997 08:21:57 gmt" /> 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 			<style>
 			.rect {
 			    border: 5px solid red;
 			}  
-			</style> 
+			</style>
 		</head>
-		<body >
-		
-		<a href = {Test1 age=10 flag={Binding property="flag"} width=10 }> 测试 </a> 
-		
-		<button onclick="addChild"  >
-			新增
-		</button>
-		<button onclick = "deleteChild" > 
-			删除 
-		</button>
-
-		<button onclick = "nextPage">
-			下一页  
-		</button>
-			<table>
-				<tbody>
-					<Iterator items = {Binding property = "persons"}>
-						<TableRow />
-					</Iterator>
-				</tbody>
-			</table>
-		<svg width="500" height="200">
-			<line x1="20" y1="180" x2="400" y2="180" style="stroke:black;stroke-width:1px;"/>
-			<!--
-			<Iterator begin=30 end = 300 step = 50 >
-				<text x={Binding property="count" context="status" converteTo="converteX"} y=200>2001</text>
+		<body style="2121"> 
+			<Iterator items={Binding property="persons"}>
+				<h1 textContent = {Binding property="name" context="current"} />
 			</Iterator>
-			-->
-			<XAxis /> 
 			
-			<line x1="20" y1="180" x2="20" y2="10" style="stroke:black;stroke-width:1px;"/>
-		
-			<Iterator begin=30 end =300 step = 50 >
-				<text x=1 y={Binding property="count" context="status" converteTo="converteY"} >
-					<Text data ={Binding property="count" context="status" converteTo="converteY"} />
-				</text> 
-			</Iterator>
-			<Iterator begin=30 end =300 step = 50 >
-				<rect x={Binding property="count" context="status" converteTo="converteX"} 
-					y={Binding property="count" context="status" converteTo="converteRectY"} 
-					width="20" height={Binding property="count" mode="OneTime" context="status" converteTo="converteHeight"} fill = "red" />
-			</Iterator>
-		</svg>
 		</body> 
 	</html>
 	%>
 
 	/**
-	*@see Test#name
+	*@see Test2#name
 	 */ 
-	public Test(){
+	public Test2(){
 		_persons.add(new Person("1", "张三", "山东高密", 65));
 		_persons.add(new Manager("4", "经理3", "山东高密2", 65));
 		_persons.add(new Person("2", "张三1", "山东高密1", 65));
 		_persons.add(new Person("3", "张三2", "山东高密2", 65));
 		_persons.add(new Manager("4", "经理111", "山东高密2", 65));
 	}
-	
-	public ConverterFunction converteX = (Object data)->{
-		return 30+((int)data-1)*50;
-	};
-	
-	public ConverterFunction converteY = (Object data)->{
-		return 150-((int)data-1)*30;
-	};
-	
-	public ConverterFunction converteHeight = (Object data)->{
-		return 150-((int)data-1)*30;
-	};
-	
-	public ConverterFunction converteRectY = (Object data)->{
-		return 150-((int)data-1)*30;
-	};
 	
 	private String _name = "sss";
 	
@@ -128,7 +70,7 @@ public class Test implements Page, INotifyPropertyChanged {
 		}
 	}
 	
-	private int _age = 70; 
+	private int _age = 70;
 	public int age{
 		&{
 			return this._age;
@@ -226,6 +168,23 @@ public class Test implements Page, INotifyPropertyChanged {
 		}
 		persons.addAll(nextPage); 
 	};
+	
+	native void  ggg() /*-{
+	
+	}-*/;
 } 
 
+//class FirstTemplateSelector extends TemplateSelector{
+//
+//	@Override
+//	protected Template doSelect(Object data) {
+//		if(data instanceof Manager){
+//			return new ManagerTableRow();
+//		}  else if(data instanceof Person){
+//			return new TableRow();
+//		}
+//		return null;
+//	}
+//	
+//}
 

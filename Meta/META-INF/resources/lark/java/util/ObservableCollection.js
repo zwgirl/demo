@@ -4,15 +4,15 @@
     return ObservableCollection.__f[args[args.length-1]].apply(this, args.slice(0, args.length-1));
   }
   ObservableCollection.__f = {
-    "1" : function() {    
-  __lc('java.util.ArrayList').call(this, "2");
+    "0" : function() {    
+  __lc("java.util.ArrayList", "java.util.ArrayList").call(this, "0");
   }, 
-    "2" : function(list) {    
-  __lc('java.util.ArrayList').call(this, "2");
+    "1" : function(list) {    
+  __lc("java.util.ArrayList", "java.util.ArrayList").call(this, "0");
     copyFrom.call(this, list);
   }, 
-    "3" : function(collection) {    
-  __lc('java.util.ArrayList').call(this, "2");
+    "2" : function(collection) {    
+  __lc("java.util.ArrayList", "java.util.ArrayList").call(this, "0");
     if(collection == null) throw new Error(0, "collection may not be null!")
     copyFrom.call(this, collection);
   }
@@ -56,14 +56,10 @@
     return false;
   };
   ObservableCollection.prototype.add = function(t){
-    if(__lc("java.util.ArrayList", "java.util.ArrayList").prototype.add.call(this, t))
-    {
-      var i = this.size;
-      __lc("java.lang.INotifyPropertyChanged").prototype.notifyChanged.call(this, ObservableCollection.SIZE);
-      onCollectionChanged3.call(this, __lc("java.lang.CollectionChangedAction").Add, t, - 1);
-      return true;
-    }
-    return false;
+    __lc("java.util.ArrayList", "java.util.ArrayList").prototype.add.call(this, t);
+    var i = this.size;
+    __lc("java.lang.INotifyPropertyChanged").prototype.notifyChanged.call(this, ObservableCollection.SIZE);
+    onCollectionChanged3.call(this, __lc("java.lang.CollectionChangedAction").Add, t, - 1);
   };
   ObservableCollection.prototype.addAt = function(index, item){
     __lc("java.util.ArrayList", "java.util.ArrayList").prototype.addAt.call(this, index, item);
@@ -71,17 +67,15 @@
     onCollectionChanged3.call(this, __lc("java.lang.CollectionChangedAction").Add, item, index);
   };
   ObservableCollection.prototype.addAll = function(c){
-    return this.addAllAt(0, c);
+    this.addAllAt(0, c);
   };
   ObservableCollection.prototype.addAllAt = function(index, c){
-    var result = __lc("java.util.ArrayList", "java.util.ArrayList").prototype.addAllAt.call(this, index, c);
-    __lc("java.lang.INotifyCollectionChanged").prototype.onCollectionChanged.call(this, new (__lc('java.lang.CollectionChangedEvent'))(__lc("java.lang.CollectionChangedAction").Add, c.toArray(), index, "5"));
-    return result;
+    __lc("java.util.ArrayList", "java.util.ArrayList").prototype.addAllAt.call(this, index, c);
+    __lc("java.lang.INotifyCollectionChanged").prototype.onCollectionChanged.call(this, new (__lc("java.lang.CollectionChangedEvent", "java.lang.bindings"))(__lc("java.lang.CollectionChangedAction").Add, c.toArray(), index, "5"));
   };
   ObservableCollection.prototype.removeAll = function(c){
-    var result = __lc("java.util.ArrayList", "java.util.ArrayList").prototype.removeAll.call(this, c);
-    __lc("java.lang.INotifyCollectionChanged").prototype.onCollectionChanged.call(this, new (__lc('java.lang.CollectionChangedEvent'))(__lc("java.lang.CollectionChangedAction").Remove, c.toArray(), 0, "5"));
-    return result;
+    __lc("java.util.ArrayList", "java.util.ArrayList").prototype.removeAll.call(this, c);
+    __lc("java.lang.INotifyCollectionChanged").prototype.onCollectionChanged.call(this, new (__lc("java.lang.CollectionChangedEvent", "java.lang.bindings"))(__lc("java.lang.CollectionChangedAction").Remove, c.toArray(), 0, "5"));
   };
   ObservableCollection.prototype.set = function(index, item){
     var originalItem = this.get(index);
@@ -96,18 +90,18 @@
     onCollectionChanged4.call(this, __lc("java.lang.CollectionChangedAction").Move, removedItem, newIndex, oldIndex);
   };
   function onCollectionChanged3(action, item, index){
-    __lc("java.lang.INotifyCollectionChanged").prototype.onCollectionChanged.call(this, new (__lc('java.lang.CollectionChangedEvent'))(action, item, index, "3"));
+    __lc("java.lang.INotifyCollectionChanged").prototype.onCollectionChanged.call(this, new (__lc("java.lang.CollectionChangedEvent", "java.lang.bindings"))(action, item, index, "3"));
   }
   function onCollectionChanged4(action, item, index, oldIndex){
-    __lc("java.lang.INotifyCollectionChanged").prototype.onCollectionChanged.call(this, new (__lc('java.lang.CollectionChangedEvent'))(action, item, index, oldIndex, "10"));
+    __lc("java.lang.INotifyCollectionChanged").prototype.onCollectionChanged.call(this, new (__lc("java.lang.CollectionChangedEvent", "java.lang.bindings"))(action, item, index, oldIndex, "10"));
   }
   function onCollectionChanged41(action, oldItem, newItem, index){
-    __lc("java.lang.INotifyCollectionChanged").prototype.onCollectionChanged.call(this, new (__lc('java.lang.CollectionChangedEvent'))(action, newItem, oldItem, index, "7"));
+    __lc("java.lang.INotifyCollectionChanged").prototype.onCollectionChanged.call(this, new (__lc("java.lang.CollectionChangedEvent", "java.lang.bindings"))(action, newItem, oldItem, index, "7"));
   }
   function onCollectionReset(){
-    __lc("java.lang.INotifyCollectionChanged").prototype.onCollectionChanged.call(this, new (__lc('java.lang.CollectionChangedEvent'))(__lc("java.lang.CollectionChangedAction").Reset, "1"));
+    __lc("java.lang.INotifyCollectionChanged").prototype.onCollectionChanged.call(this, new (__lc("java.lang.CollectionChangedEvent", "java.lang.bindings"))(__lc("java.lang.CollectionChangedAction").Reset, "1"));
   }
-  ObservableCollection.SIZE = "size";ObservableCollection.prototype.doApplyTemplate = function(parent, data, index) {};
-  ObservableCollection.prototype.__class = new (__lc('java.lang.Class'))("java.util.ObservableCollection", ObservableCollection, __lc("java.util.ArrayList", "java.util.ArrayList").prototype.__class, [__lc("java.lang.INotifyCollectionChanged").prototype.__class, __lc("java.util.List").prototype.__class, __lc("java.lang.INotifyPropertyChanged").prototype.__class], 1);
+  ObservableCollection.SIZE = "size";
+  ObservableCollection.prototype.__class = new (__lc('java.lang.Class'))("java.util.ObservableCollection", ObservableCollection, __lc("java.util.ArrayList", "java.util.ArrayList").prototype.__class, [__lc("java.lang.INotifyCollectionChanged").prototype.__class, __lc("java.util.List", "java.util.List").prototype.__class, __lc("java.lang.INotifyPropertyChanged").prototype.__class], 1);
   return  ObservableCollection;
 })();

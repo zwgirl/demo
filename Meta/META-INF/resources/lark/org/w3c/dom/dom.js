@@ -21,6 +21,15 @@
 })();
 (function(){ 
   __cache["org.w3c.dom.Node"] = Node;
+  Object.defineProperty(Node.prototype, "dataContext", {
+    get : function() {
+      return this["__context"];
+    }, 
+    set : function(value) {
+      this["__context"] = value;
+      Node.prototype.addDataContext.call(this, value);
+    }
+  });
   Object.defineProperty(Node.prototype, "logicParent", {
     get : function() {
       return this["_logicParent"];
@@ -108,36 +117,21 @@
     var length = properties.length;
     for (var i = 0; i < length - 1; i ++) 
     {
-      if(tag == null) return
-      if(tag["setAttribute"] != null)
+      if(binding.attribute)
       {
         tag = tag.getAttribute(properties[i]);
-      }
-      else if(tag["getProperty"] != null)
-      {
-        tag = tag.getPropertyValue(properties[length - 1]);
       }
       else
       {
         tag = tag[properties[i]];
       }
+      if(tag == null) return
     }
     if(binding.converteTo != null)
     {
       data = binding.converteTo(data);
     }
-    var oldValue = tag[properties[length - 1]];
-    if(oldValue === undefined)
-    {
-      if(tag["getAttribute"] != null)
-      {
-        oldValue = tag.getAttribute(properties[length - 1]);
-      }
-      else if(tag["getProperty"] != null)
-      {
-        oldValue = tag.getPropertyValue(properties[length - 1]);
-      }
-    }
+    var oldValue = binding.attribute ? tag.getAttribute(properties[length - 1]) : tag[properties[length - 1]];
     if(data === oldValue)
     {
       return;
@@ -148,13 +142,9 @@
     }
     else
     {
-      if(tag["setAttribute"] != null)
+      if(binding.attribute)
       {
         tag.setAttribute(properties[length - 1], data);
-      }
-      else if(tag["setProperty"] != null)
-      {
-        tag.getPropertyValue(properties[length - 1]);
       }
       else
       {

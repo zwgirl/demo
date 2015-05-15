@@ -4,13 +4,14 @@
   Object.defineProperty(Map.prototype, "size", {
 
   });
-  Map.Entry = (function(){
-    function Entry(){};
-    __cache["java.util.Map$Entry"] = Entry;
-    Entry.prototype.__class = new (__lc('java.lang.Class'))("java.util.Map$Entry", Entry, Object.prototype.__class, [], 2);
-    return  Entry;
-    return Entry;
-  })();
+  Map.prototype.__readObject = function(json, handlers, obj) {
+    var __propVal = null;
+  };
+  Map.prototype.__writeObject = function(obj, handlers) {
+    var __r = {"__clazz" : "java.util.Map"};
+    var __propVal = null;
+    return __r;
+  };
   Map.prototype.__class = new (__lc('java.lang.Class'))("java.util.Map", Map, Object.prototype.__class, [], 2);
   return  Map;
 })();

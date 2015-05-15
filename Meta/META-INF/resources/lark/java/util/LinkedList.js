@@ -5,16 +5,15 @@
   }
   LinkedList.__f = {
     "null" : function() {    
-  __lc('java.util.AbstractSequentialList').call(this);
+  __lc("java.util.AbstractSequentialList", "java.util.AbstractSequentialList").call(this);
     this._size = 0;
     this.first = null;
     this.last = null;
   }, 
     "null" : function(c) {    
-LinkedList.call(this);
     this._size = 0;
     this.first = null;
-    this.last = null;
+    this.last = null;  __lc("java.util.LinkedList", "java.util.LinkedList").call(this);
     this.addAll(c);
   }
   };
@@ -111,22 +110,22 @@ LinkedList.call(this);
   };
   LinkedList.prototype.getFirst = function(){
     var f = this.first;
-    if(f == null) throw new (__lc('java.util.NoSuchElementException'))()
+    if(f == null) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
     return f.item;
   };
   LinkedList.prototype.getLast = function(){
     var l = this.last;
-    if(l == null) throw new (__lc('java.util.NoSuchElementException'))()
+    if(l == null) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
     return l.item;
   };
   LinkedList.prototype.removeFirst = function(){
     var f = this.first;
-    if(f == null) throw new (__lc('java.util.NoSuchElementException'))()
+    if(f == null) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
     return unlinkFirst.call(this, f);
   };
   LinkedList.prototype.removeLast = function(){
     var l = this.last;
-    if(l == null) throw new (__lc('java.util.NoSuchElementException'))()
+    if(l == null) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
     return unlinkLast.call(this, l);
   };
   LinkedList.prototype.addFirst = function(e){
@@ -143,7 +142,6 @@ LinkedList.call(this);
   };
   LinkedList.prototype.add = function(e){
     this.linkLast(e);
-    return true;
   };
   LinkedList.prototype.remove = function(o){
     if(o == null)
@@ -171,13 +169,12 @@ LinkedList.call(this);
     return false;
   };
   LinkedList.prototype.addAll = function(c){
-    return this.addAllAt(this.size, c);
+    this.addAllAt(this.size, c);
   };
   LinkedList.prototype.addAllAt = function(index, c){
     checkPositionIndex.call(this, index);
     var a = c.toArray();
     var numNew = a.length;
-    if(numNew == 0) return false;
     var pred;
     var succ;
     if(index == this.size)
@@ -212,8 +209,7 @@ LinkedList.call(this);
       pred.next = succ;
       succ.prev = pred;
     }
-    this._size = numNew;
-    return true;
+    this._size+=numNew;
   };
   LinkedList.prototype.clear = function(){
     for (var x = this.first; x != null; ) 
@@ -284,7 +280,7 @@ LinkedList.call(this);
     {
       for (var x = this.first; x != null; x = x.next) 
       {
-        if(x.item == null) return index;
+        if(x.item == null) return index
         index ++;
       }
     }
@@ -292,7 +288,7 @@ LinkedList.call(this);
     {
       for (var x = this.first; x != null; x = x.next) 
       {
-        if(o.equals(x.item)) return index;
+        if(o.equals(x.item)) return index
         index ++;
       }
     }
@@ -305,7 +301,7 @@ LinkedList.call(this);
       for (var x = this.last; x != null; x = x.prev) 
       {
         index --;
-        if(x.item == null) return index;
+        if(x.item == null) return index
       }
     }
     else
@@ -313,7 +309,7 @@ LinkedList.call(this);
       for (var x = this.last; x != null; x = x.prev) 
       {
         index --;
-        if(o.equals(x.item)) return index;
+        if(o.equals(x.item)) return index
       }
     }
     return - 1;
@@ -333,7 +329,7 @@ LinkedList.call(this);
     return this.removeFirst();
   };
   LinkedList.prototype.offer = function(e){
-    return this.add(e);
+    this.add(e);
   };
   LinkedList.prototype.offerFirst = function(e){
     this.addFirst(e);
@@ -446,7 +442,7 @@ LinkedList.call(this);
       return this.nextIndex < this.__enclosing.size;
     };
     ListItr.prototype.next = function(){
-      if(! this.hasNext()) throw new (__lc('java.util.NoSuchElementException'))()
+      if(! this.hasNext()) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
       this.lastReturned = this.next;
       this.next = this.next.next;
       this.nextIndex ++;
@@ -456,7 +452,7 @@ LinkedList.call(this);
       return this.nextIndex > 0;
     };
     ListItr.prototype.previous = function(){
-      if(! this.hasPrevious()) throw new (__lc('java.util.NoSuchElementException'))()
+      if(! this.hasPrevious()) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
       this.lastReturned = this.next = (this.next == null) ? this.__enclosing.last : this.next.prev;
       this.nextIndex --;
       return this.lastReturned.item;
@@ -468,7 +464,7 @@ LinkedList.call(this);
       return this.nextIndex - 1;
     };
     ListItr.prototype.remove = function(){
-      if(this.lastReturned == null) throw new (__lc('java.lang.IllegalStateException'))()
+      if(this.lastReturned == null) throw new (__lc("java.lang.IllegalStateException", "java.lang.buildins"))()
       var lastNext = this.lastReturned.next;
       this.__enclosing.unlink(this.lastReturned);
       if(this.next == this.lastReturned) this.next = lastNext
@@ -476,7 +472,7 @@ LinkedList.call(this);
       this.lastReturned = null;
     };
     ListItr.prototype.set = function(e){
-      if(this.lastReturned == null) throw new (__lc('java.lang.IllegalStateException'))()
+      if(this.lastReturned == null) throw new (__lc("java.lang.IllegalStateException", "java.lang.buildins"))()
       this.lastReturned.item = e;
     };
     ListItr.prototype.add = function(e){
@@ -485,7 +481,7 @@ LinkedList.call(this);
       else this.__enclosing.linkBefore(e, this.next)
       this.nextIndex ++;
     };
-    ListItr.prototype.__class = new (__lc('java.lang.Class'))("java.util.LinkedList$ListItr", ListItr, Object.prototype.__class, [__lc("java.util.ListIterator").prototype.__class], 1);
+    ListItr.prototype.__class = new (__lc('java.lang.Class'))("java.util.LinkedList$ListItr", ListItr, Object.prototype.__class, [__lc("java.util.ListIterator", "java.util.ListIterator").prototype.__class], 1);
     return  ListItr;
     return ListItr;
   })();
@@ -523,10 +519,20 @@ LinkedList.call(this);
     DescendingIterator.prototype.remove = function(){
       this.itr.remove();
     };
-    DescendingIterator.prototype.__class = new (__lc('java.lang.Class'))("java.util.LinkedList$DescendingIterator", DescendingIterator, Object.prototype.__class, [__lc("java.util.Iterator").prototype.__class], 1);
+    DescendingIterator.prototype.__class = new (__lc('java.lang.Class'))("java.util.LinkedList$DescendingIterator", DescendingIterator, Object.prototype.__class, [__lc("java.util.Iterator", "java.util.Iterator").prototype.__class], 1);
     return  DescendingIterator;
     return DescendingIterator;
   })();
-  LinkedList.prototype.__class = new (__lc('java.lang.Class'))("java.util.LinkedList", LinkedList, __lc("java.util.AbstractSequentialList", "java.util.AbstractSequentialList").prototype.__class, [__lc("java.util.List").prototype.__class, __lc("java.util.Deque").prototype.__class, __lc("java.lang.Cloneable").prototype.__class], 1);
+  LinkedList.prototype.__readObject = function(json, handlers, obj) {
+    __lc("java.util.AbstractSequentialList", "java.util.AbstractSequentialList").prototype.__readObject(json, handlers, obj);
+    var __propVal = null;
+  };
+  LinkedList.prototype.__writeObject = function(obj, handlers) {
+    __lc("java.util.AbstractSequentialList", "java.util.AbstractSequentialList").prototype.__writeObject(obj, handlers);
+    var __r = {"__clazz" : "java.util.LinkedList"};
+    var __propVal = null;
+    return __r;
+  };
+  LinkedList.prototype.__class = new (__lc('java.lang.Class'))("java.util.LinkedList", LinkedList, __lc("java.util.AbstractSequentialList", "java.util.AbstractSequentialList").prototype.__class, [__lc("java.util.List", "java.util.List").prototype.__class, __lc("java.util.Deque", "java.util.Deque").prototype.__class, __lc("java.lang.Cloneable").prototype.__class], 1);
   return  LinkedList;
 })();

@@ -1,10 +1,14 @@
 package collection;
 
-import org.w3c.event.*;
+import org.w3c.dom.Node;
+import org.w3c.dom.Text;
+import org.w3c.event.MouseEvent;
+import org.w3c.event.MouseEventHandler;
 
 public class TableRow extends Template {  
 	<%
 	<tr style.backgroundColor={Binding property="selected" mode="TwoWay"} onclick="click">
+		
 		<td>
 			<input type="checkbox" checked = {Binding property="selected" mode="TwoWay" trigger="PropertyChanged" context="current"}/>
 		</td>
@@ -16,15 +20,15 @@ public class TableRow extends Template {
 		<td textContent = {Binding property="age" context="current"}></td>
 		
 		<td>
-			<svg width="140" height="170"  xmlns:xlink="http://www.w3.org/1999/xlink">
+			<svg width="240" height="170"  xmlns:xlink="http://www.w3.org/1999/xlink">
 			<g style="font-size: 18pt">
-			<text x="20" y="20" style="font-weight:bold;">bold</text>
+			<text x="20" y="20" style="font-weight:bold;"><Text textContent = {Binding property="name" context="current"}/></text>
 			</g>
 			</svg>
 		</td>
-	</tr> 
+	</tr>
 	%>
-	public TableRow(Bindable parent) { 
+	public TableRow(Node parent) { 
 		super(parent);
 	}
 

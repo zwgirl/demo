@@ -5,10 +5,10 @@
   }
   NoSuchElementException.__f = {
     "null" : function() {    
-  __lc('java.lang.RuntimeException').call(this, "1");
+  __lc("java.lang.RuntimeException", "java.lang.buildins").call(this, "1");
   }, 
     "null" : function(s) {    
-  __lc('java.lang.RuntimeException').call(thiss, "2");
+  __lc("java.lang.RuntimeException", "java.lang.buildins").call(this, s, "2");
   }
   };
   NoSuchElementException.prototype.__proto__ = __lc("java.lang.RuntimeException").prototype;

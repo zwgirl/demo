@@ -77,4 +77,7 @@ class Person implements INotifyPropertyChanged{
 			notifyChanged("selected");
 		}
 	}
+	
+	private Person[] _child;
+	public Person[] child{}
 }

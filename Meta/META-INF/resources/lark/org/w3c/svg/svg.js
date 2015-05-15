@@ -891,6 +891,24 @@
 })();
 (function(){ 
   __cache["org.w3c.svg.SVGFontElement"] = SVGFontElement;
+  Object.defineProperty(SVGFontElement.prototype, "horizOriginX", {
+
+  });
+  Object.defineProperty(SVGFontElement.prototype, "horizOriginY", {
+
+  });
+  Object.defineProperty(SVGFontElement.prototype, "horizAdvX", {
+
+  });
+  Object.defineProperty(SVGFontElement.prototype, "vertOriginX", {
+
+  });
+  Object.defineProperty(SVGFontElement.prototype, "vertOriginY", {
+
+  });
+  Object.defineProperty(SVGFontElement.prototype, "vertAdvY", {
+
+  });
   SVGFontElement.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.svg.SVGFontElement", SVGFontElement, Object.prototype.__class, [SVGFontElement.prototype.__class, SVGFontElement.prototype.__class, SVGFontElement.prototype.__class], 2);
   return  SVGFontElement;
 })();

@@ -15,6 +15,10 @@ public class Test1 implements Page, INotifyPropertyChanged {
 	<html xmlns:lark = "http://www.lark.org/2012"> 
 		<head> 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+		<meta http-equiv="pragma" content="no-cache" /> 
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" /> 
+		<meta http-equiv="expires" content="wed, 26 feb 1997 08:21:57 gmt" /> 
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 			<style>
 			.rect {
 			    border: 5px solid red;
@@ -49,7 +53,7 @@ public class Test1 implements Page, INotifyPropertyChanged {
 			<input type="text" value = {Binding property = "name" mode="TwoWay" trigger="PropertyChanged"} />
 			
 			<table> 
-			<thead className="tabs" >  
+			<thead className="tabs" >
 				<tr>
 				<td ></td> 
 				<td>序号</td><td>姓名</td> <td>地址</td><td onmouseover=function{return false;}> 年龄</td> 
@@ -79,7 +83,7 @@ public class Test1 implements Page, INotifyPropertyChanged {
 		<button onclick = "nextPage">
 			下一页
 		</button>
-			<svg width="500" height="200">
+			<svg width="500" height="200" style="2121">
 				
 				<line x1="20" y1="180" x2="400" y2="180" style="stroke:black;stroke-width:1px;"/>
 				<XAxis />

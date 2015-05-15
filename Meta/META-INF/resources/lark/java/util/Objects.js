@@ -7,9 +7,9 @@
     return (a == b) || (a != null && a.equals(b));
   };
   Objects.deepEquals = function(a, b){
-    if(a == b) return true;
-    else if(a == null || b == null) return false;
-    else return __lc("java.util.Arrays").deepEquals0(a, b);
+    if(a == b) return true
+    else if(a == null || b == null) return false
+    else return __lc("java.util.Arrays", "java.util.Arrays").deepEquals0(a, b)
   };
   Objects.hashCode = function(o){
     return o != null ? o.hashCode() : 0;
@@ -18,11 +18,11 @@
     return (o != null) ? o.toString() : nullDefault;
   };
   Objects.requireNonNull = function(obj){
-    if(obj == null) throw new (__lc('java.lang.NullPointerException'))()
+    if(obj == null) throw new (__lc("java.lang.NullPointerException", "java.lang.buildins"))()
     return obj;
   };
   Objects.requireNonNull = function(obj, message){
-    if(obj == null) throw new (__lc('java.lang.NullPointerException'))(message)
+    if(obj == null) throw new (__lc("java.lang.NullPointerException", "java.lang.buildins"))(message)
     return obj;
   };
   Objects.isNull = function(obj){
