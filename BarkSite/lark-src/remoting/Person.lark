@@ -2,8 +2,6 @@ package remoting;
 
 import java.util.ArrayList;
 
-import collection.Person;
-
 @RemotingBean
 public class Person {
 
@@ -99,5 +97,12 @@ public class Person {
 	}
 	
 	private Person[] _child;
-	public Person[] child{}
+	public Person[] child{
+		&{
+			return this._child;
+		}
+		+{
+			this._child = value;
+		}
+	}
 }
