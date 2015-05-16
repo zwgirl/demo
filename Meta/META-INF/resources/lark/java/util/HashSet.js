@@ -26,7 +26,11 @@
     this._set.clear();
   };
   HashSet.prototype.toArray = function(){
-    return null;
+    var array = new Array();
+    this._set.forEach((function(item, sameItem, s){
+      array.push(item);
+    }).bind(this));
+    return array;
   };
   HashSet.prototype.containsAll = function(c){
     return false;

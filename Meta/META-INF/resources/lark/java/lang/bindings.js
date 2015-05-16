@@ -136,7 +136,12 @@
   AbstractBindable.prototype.detach = function(binding){
   };
   AbstractBindable.prototype.update = function(binding){
-    var data = this.getDataContext(binding.context).dataItem;
+    var dc = this.getDataContext(binding.context);
+    if(dc == null)
+    {
+      console.log("the context[" + binding.context + "] does not exists!");
+    }
+    var data = dc.dataItem;
     if(! String.isNullOrEmpty(binding.property))
     {
       data = data == null ? null : data[binding.property];
@@ -203,7 +208,7 @@
       old.moveDependentTo(context);
     }
     contexts.set(context.name, context);
-    if(context.name == "ROOT" || context.name == "TEMPLATE")
+    if(context.name == "ROOT" || context.name == "TEMPLATE" || context.ancestor == null)
     {
       return;
     }
@@ -216,7 +221,7 @@
       }
       else
       {
-        console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+        console.log("the " + context.ancestor + " ancestor DataContext of DataContext[" + context.name + "] does not exists!");
       }
     }
     else if(this.parentNode != null)
@@ -228,7 +233,7 @@
       }
       else
       {
-        console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+        console.log("the " + context.ancestor + " ancestor DataContext of DataContext[" + context.name + "] does not exists!");
       }
     }
   };
@@ -255,7 +260,7 @@
         }
         else
         {
-          console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+          console.log("the ancestor DataContext with name " + context.ancestor + " in DataContext[" + context.name + "] does not exists!");
         }
       }
       else if(this.parentNode != null)
@@ -267,7 +272,7 @@
         }
         else
         {
-          console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+          console.log("the ancestor DataContext with name " + context.ancestor + " in DataContext[" + context.name + "] does not exists!");
         }
       }
       contexts.delete(name);
@@ -320,7 +325,7 @@
   function INotifyPropertyChanged(){};
   __cache["java.lang.INotifyPropertyChanged"] = INotifyPropertyChanged;
   INotifyPropertyChanged.prototype.notifyChanged = function(property){
-    var event = new (__lc('java.lang.PropertyChangeEvent'))(property);
+    var event = new (__lc("java.lang.PropertyChangeEvent", "java.lang.bindings"))(property);
     var _listeners = this["__listeners"];
     if(_listeners != null)
     {
@@ -507,17 +512,17 @@
 })();
 (function(){ 
   function CollectionChangedAction() {    
-  __lc('java.lang.Enum').call(this, arguments[arguments.length-2], arguments[arguments.length-1]);
+  __lc("java.lang.Enum", "java.lang.buildins").call(this, arguments[arguments.length-2], arguments[arguments.length-1]);
   }
   CollectionChangedAction.prototype.__proto__ = __lc("java.lang.Enum").prototype;
   __cache["java.lang.CollectionChangedAction"] = CollectionChangedAction;
   CollectionChangedAction.valueOf = function(name) { return CollectionChangedAction[name]; };
   CollectionChangedAction.values = function() { return [CollectionChangedAction.Add, CollectionChangedAction.Move, CollectionChangedAction.Remove, CollectionChangedAction.Replace, CollectionChangedAction.Reset]; };
-  CollectionChangedAction.Add = new (__lc('java.lang.CollectionChangedAction'))("Add", 0);
-  CollectionChangedAction.Move = new (__lc('java.lang.CollectionChangedAction'))("Move", 1);
-  CollectionChangedAction.Remove = new (__lc('java.lang.CollectionChangedAction'))("Remove", 2);
-  CollectionChangedAction.Replace = new (__lc('java.lang.CollectionChangedAction'))("Replace", 3);
-  CollectionChangedAction.Reset = new (__lc('java.lang.CollectionChangedAction'))("Reset", 4);
+  CollectionChangedAction.Add = new (__lc("java.lang.CollectionChangedAction", "java.lang.bindings"))("Add", 0);
+  CollectionChangedAction.Move = new (__lc("java.lang.CollectionChangedAction", "java.lang.bindings"))("Move", 1);
+  CollectionChangedAction.Remove = new (__lc("java.lang.CollectionChangedAction", "java.lang.bindings"))("Remove", 2);
+  CollectionChangedAction.Replace = new (__lc("java.lang.CollectionChangedAction", "java.lang.bindings"))("Replace", 3);
+  CollectionChangedAction.Reset = new (__lc("java.lang.CollectionChangedAction", "java.lang.bindings"))("Reset", 4);
   CollectionChangedAction.prototype.__class = new (__lc('java.lang.Class'))("java.lang.CollectionChangedAction", CollectionChangedAction, __lc("java.lang.Enum").prototype.__class, [], 3);
   return  CollectionChangedAction;
 })();
@@ -754,29 +759,29 @@
 })();
 (function(){ 
   function UpdateSourceTrigger() {    
-  __lc('java.lang.Enum').call(this, arguments[arguments.length-2], arguments[arguments.length-1]);
+  __lc("java.lang.Enum", "java.lang.buildins").call(this, arguments[arguments.length-2], arguments[arguments.length-1]);
   }
   UpdateSourceTrigger.prototype.__proto__ = __lc("java.lang.Enum").prototype;
   __cache["java.lang.UpdateSourceTrigger"] = UpdateSourceTrigger;
   UpdateSourceTrigger.valueOf = function(name) { return UpdateSourceTrigger[name]; };
   UpdateSourceTrigger.values = function() { return [UpdateSourceTrigger.PropertyChanged, UpdateSourceTrigger.LostFocus, UpdateSourceTrigger.Explicit]; };
-  UpdateSourceTrigger.PropertyChanged = new (__lc('java.lang.UpdateSourceTrigger'))("PropertyChanged", 0);
-  UpdateSourceTrigger.LostFocus = new (__lc('java.lang.UpdateSourceTrigger'))("LostFocus", 1);
-  UpdateSourceTrigger.Explicit = new (__lc('java.lang.UpdateSourceTrigger'))("Explicit", 2);
+  UpdateSourceTrigger.PropertyChanged = new (__lc("java.lang.UpdateSourceTrigger", "java.lang.bindings"))("PropertyChanged", 0);
+  UpdateSourceTrigger.LostFocus = new (__lc("java.lang.UpdateSourceTrigger", "java.lang.bindings"))("LostFocus", 1);
+  UpdateSourceTrigger.Explicit = new (__lc("java.lang.UpdateSourceTrigger", "java.lang.bindings"))("Explicit", 2);
   UpdateSourceTrigger.prototype.__class = new (__lc('java.lang.Class'))("java.lang.UpdateSourceTrigger", UpdateSourceTrigger, __lc("java.lang.Enum").prototype.__class, [], 3);
   return  UpdateSourceTrigger;
 })();
 (function(){ 
   function BindingMode() {    
-  __lc('java.lang.Enum').call(this, arguments[arguments.length-2], arguments[arguments.length-1]);
+  __lc("java.lang.Enum", "java.lang.buildins").call(this, arguments[arguments.length-2], arguments[arguments.length-1]);
   }
   BindingMode.prototype.__proto__ = __lc("java.lang.Enum").prototype;
   __cache["java.lang.BindingMode"] = BindingMode;
   BindingMode.valueOf = function(name) { return BindingMode[name]; };
   BindingMode.values = function() { return [BindingMode.TwoWay, BindingMode.OneWay, BindingMode.OneTime]; };
-  BindingMode.TwoWay = new (__lc('java.lang.BindingMode'))("TwoWay", 0);
-  BindingMode.OneWay = new (__lc('java.lang.BindingMode'))("OneWay", 1);
-  BindingMode.OneTime = new (__lc('java.lang.BindingMode'))("OneTime", 2);
+  BindingMode.TwoWay = new (__lc("java.lang.BindingMode", "java.lang.bindings"))("TwoWay", 0);
+  BindingMode.OneWay = new (__lc("java.lang.BindingMode", "java.lang.bindings"))("OneWay", 1);
+  BindingMode.OneTime = new (__lc("java.lang.BindingMode", "java.lang.bindings"))("OneTime", 2);
   BindingMode.prototype.__class = new (__lc('java.lang.Class'))("java.lang.BindingMode", BindingMode, __lc("java.lang.Enum").prototype.__class, [], 3);
   return  BindingMode;
 })();
@@ -1064,18 +1069,18 @@
   });
   Object.defineProperty(DataContext.prototype, "property", {
     get : function() {
-      return this._ancestor;
-    }, 
-    set : function(value) {
-      this._ancestor = value;
-    }
-  });
-  Object.defineProperty(DataContext.prototype, "ancestor", {
-    get : function() {
       return this._property;
     }, 
     set : function(value) {
       this._property = value;
+    }
+  });
+  Object.defineProperty(DataContext.prototype, "ancestor", {
+    get : function() {
+      return this._ancestor;
+    }, 
+    set : function(value) {
+      this._ancestor = value;
     }
   });
   Object.defineProperty(DataContext.prototype, "dataItem", {
@@ -1167,10 +1172,10 @@
   };
   DataContext.prototype.dirty = function(data){
     this._bindings.forEach((function(binding, index, array){
-      binding.propertyChange(this.dataItem, new (__lc('java.lang.PropertyChangeEvent'))(binding.property));
+      binding.propertyChange(this.dataItem, new (__lc("java.lang.PropertyChangeEvent", "java.lang.bindings"))(binding.property));
     }).bind(this));
     this._dependents.forEach((function(dc, index, array){
-      dc.propertyChange(this.dataItem, new (__lc('java.lang.PropertyChangeEvent'))(dc.property));
+      dc.propertyChange(this.dataItem, new (__lc("java.lang.PropertyChangeEvent", "java.lang.bindings"))(dc.property));
     }).bind(this));
   };
   DataContext.prototype.replaceDataItem = function(newDataItem){
@@ -1239,12 +1244,12 @@
 })();
 (function(){ 
   function Template(parent) {    
-  __lc('java.lang.AbstractBindable').call(this, parent);
+  __lc("java.lang.AbstractBindable", "java.lang.bindings").call(this, parent);
     this["__isTemplate"] = true;
     var options = new Object();
     options["name"] = "TEMPLATE";
     options["dataItem"] = this;
-    this.addDataContext(new (__lc('java.lang.DataContext'))(options));
+    this.addDataContext(new (__lc("java.lang.DataContext", "java.lang.bindings"))(options));
   }
   Template.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
   __cache["java.lang.Template"] = Template;
@@ -1280,7 +1285,7 @@
 })();
 (function(){ 
   function Iterator(parent) {    
-  __lc('java.lang.AbstractBindable').call(this, parent);
+  __lc("java.lang.AbstractBindable", "java.lang.bindings").call(this, parent);
     this._items = null;
     this._datas = new Array();
     this._status = null;
@@ -1342,7 +1347,7 @@
     var options = new Object();
     options["name"] = "status";
     options["dataItem"] = this._status;
-    this.addDataContext(new (__lc('java.lang.DataContext'))(options));
+    this.addDataContext(new (__lc("java.lang.DataContext", "java.lang.bindings"))(options));
   }
   Iterator.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
   __cache["java.lang.Iterator"] = Iterator;
@@ -1387,14 +1392,14 @@
     var options = new Object();
     options["name"] = "current";
     options["dataItem"] = data;
-    item.addDataContext(new (__lc('java.lang.DataContext'))(options));
+    item.addDataContext(new (__lc("java.lang.DataContext", "java.lang.bindings"))(options));
     return item;
   }
   Iterator.prototype.doBody = function(parentNode, logicParent, context){
     this["__ctx"] = context;
     if(this.items != null)
     {
-      if(__lc("java.util.Collection").prototype.__class.isInstance(this.items))
+      if(__lc("java.util.Collection", "java.util.Collection").prototype.__class.isInstance(this.items))
       {
         var index = 0;
         var size = this.items.size;
@@ -1534,7 +1539,7 @@
   })();
   Iterator.Item = (function(){
     function Item(parent) {      
-    __lc('java.lang.AbstractBindable').call(this, parent);
+    __lc("java.lang.AbstractBindable", "java.lang.bindings").call(this, parent);
     }
     Item.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
     __cache["java.lang.Iterator$Item"] = Item;
@@ -1547,7 +1552,7 @@
 })();
 (function(){ 
   function Choose(parent) {    
-  __lc('java.lang.AbstractBindable').call(this, parent);
+  __lc("java.lang.AbstractBindable", "java.lang.bindings").call(this, parent);
     this._data = null;
     this._converter = null;
     this._otherwise = true;
@@ -1595,7 +1600,7 @@
 })();
 (function(){ 
   function When(parent) {    
-  __lc('java.lang.AbstractBindable').call(this, parent);
+  __lc("java.lang.AbstractBindable", "java.lang.bindings").call(this, parent);
     this._value = null;
   }
   When.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
@@ -1628,7 +1633,7 @@
 })();
 (function(){ 
   function Otherwise(parent) {    
-  __lc('java.lang.AbstractBindable').call(this, parent);
+  __lc("java.lang.AbstractBindable", "java.lang.bindings").call(this, parent);
   }
   Otherwise.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
   __cache["java.lang.Otherwise"] = Otherwise;
@@ -1648,7 +1653,7 @@
 })();
 (function(){ 
   function If(parent) {    
-  __lc('java.lang.AbstractBindable').call(this, parent);
+  __lc("java.lang.AbstractBindable", "java.lang.bindings").call(this, parent);
     this._data = null;
     this._test = null;
   }
@@ -1721,7 +1726,7 @@
 })();
 (function(){ 
   function ProxyPage(page, target) {    
-  __lc('java.lang.AbstractBindable').call(this, null);
+  __lc("java.lang.AbstractBindable", "java.lang.bindings").call(this, null);
     this._page = null;
     this._target = null;
     this._propValues = new Map();

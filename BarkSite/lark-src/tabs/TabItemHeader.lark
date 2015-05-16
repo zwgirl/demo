@@ -4,12 +4,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.event.MouseEvent;
 import org.w3c.event.MouseEventHandler;
-import org.w3c.html.HTMLElement;
 
 public class TabItemHeader extends Template{
 	<%
-	    <li className={Binding property="selected1" mode = "OneWay" } onclick="OnClick">
-	    	<a href="#" textContent = {Binding property="header"}></a>
+	    <li className={Binding property="selected1" mode = "OneWay" context="current"} onclick="OnClick">
+	    	<a href="#" textContent = {Binding property="header" context="current"}></a>
 	    </li>
     %>
 	public TabItemHeader(Node parent) {
@@ -17,15 +16,15 @@ public class TabItemHeader extends Template{
 	}
 
 	MouseEventHandler OnClick=(MouseEvent event) ->{
-		Page p =(Page) ((Element) event.target).getDataContext("current").dataItem;
+		TabPage p =(TabPage) ((Element) event.target).getDataContext("current").dataItem;
 		p.selected1  = true;
 	};
 	
-	UpdateTargetCallback callback = (Object target, String[] properties, Object value)->{
-		if((Boolean)value == true){
-			((HTMLElement)target).className = "selected";
-		} else {
-			((HTMLElement)target).className = "";
-		}
-	};
-}
+//	UpdateTargetCallback callback = (Object target, String[] properties, Object value)->{
+//		if((Boolean)value == true){
+//			((HTMLElement)target).className = "selected";
+//		} else { 
+//			((HTMLElement)target).className = "";
+//		}
+//	}; 
+} 

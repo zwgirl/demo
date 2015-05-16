@@ -2,6 +2,7 @@ package remoting;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class PersonServiceImpl implements PersonService {
 
@@ -30,6 +31,11 @@ public class PersonServiceImpl implements PersonService {
 			System.out.println("receive key = " + key + " : " + map.get(key));
 		}
 		return map;
+	}
+
+	@Override
+	public HashSet<String> d(HashSet<String> set) {
+		return set;
 	}
 
 }

@@ -2,6 +2,7 @@ package remoting;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import org.w3c.event.MouseEvent;
 import org.w3c.event.MouseEventHandler;
@@ -10,7 +11,7 @@ public class RemotingDemo implements Page{
 	<%
 	<html>
 		<head>
-		<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Lark Remoting Demo</title>
 	
 		</head>
@@ -41,7 +42,17 @@ public class RemotingDemo implements Page{
 		map.put(30, "30");
 		
 		map = PersonService.map(map);
-		alert(((Person)((ArrayList)map.get("20")).get(2)).name);
+//		alert(((Person)((ArrayList)map.get("20")).get(2)).name);
+		
+		HashSet<String> set = new HashSet<String>();
+		set.add("2121");
+		set.add("11111");
+		set = PersonService.d(set);
+		alert(set.toArray()[0]);
+		
+		Array<Person> ps = new Array<Person>();
+		Person p = ps[10];
+		
 	};
 	
 	String name{

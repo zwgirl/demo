@@ -107,7 +107,13 @@
     }
   };
   Node.prototype.update = function(binding){
-    var data = Node.prototype.getDataContext.call(this, binding.context).dataItem;
+    var dc = Node.prototype.getDataContext.call(this, binding.context);
+    if(dc == null)
+    {
+      console.log("the binding context[" + binding.context + "]" + "does not exists");
+      return;
+    }
+    var data = dc.dataItem;
     if(! String.isNullOrEmpty(binding.property))
     {
       data = data == null ? null : data[binding.property];
@@ -182,13 +188,13 @@
     {
       this["__contexts"] = contexts = new Map();
     }
-    var old = contexts.get(name);
+    var old = contexts.get(context.name);
     if(old != null)
     {
       old.moveDependentTo(context);
     }
     contexts.set(context.name, context);
-    if(context.name == "ROOT" || context.name == "TEMPLATE")
+    if(context.name == "ROOT" || context.name == "TEMPLATE" || context.ancestor == null)
     {
       return;
     }
@@ -201,7 +207,7 @@
       }
       else
       {
-        console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+        console.log("the ancestor DataContext with [" + context.ancestor + "] in DataContext[" + context.name + "] does not exists!");
       }
     }
     else if(this.parentNode != null)
@@ -213,7 +219,7 @@
       }
       else
       {
-        console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+        console.log("the ancestor DataContext with [" + context.ancestor + "] in DataContext[" + context.name + "] does not exists!");
       }
     }
   };
@@ -311,13 +317,11 @@
   return  Node;
 })();
 (function(){ 
-  function NodeList(){};
   __cache["org.w3c.dom.NodeList"] = NodeList;
   NodeList.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.NodeList", NodeList, Object.prototype.__class, [], 2);
   return  NodeList;
 })();
 (function(){ 
-  function NamedNodeMap(){};
   __cache["org.w3c.dom.NamedNodeMap"] = NamedNodeMap;
   NamedNodeMap.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.NamedNodeMap", NamedNodeMap, Object.prototype.__class, [], 2);
   return  NamedNodeMap;
