@@ -110,7 +110,7 @@
     var dc = Node.prototype.getDataContext.call(this, binding.context);
     if(dc == null)
     {
-      console.log("the binding context[" + binding.context + "]" + "does not exists");
+      console.log("the binding context[" + binding.context + "] in target[" + binding["_target"]["nodeName"] + "] with property[" + binding.targetProperties.join("-") + "] does not exists");
       return;
     }
     var data = dc.dataItem;
@@ -144,7 +144,7 @@
     }
     if(binding.updateTargetCallback != null)
     {
-      binding.updateTargetCallback(this, properties, data);
+      binding.updateTargetCallback(this, properties[0], properties[1], data);
     }
     else
     {
@@ -194,7 +194,7 @@
       old.moveDependentTo(context);
     }
     contexts.set(context.name, context);
-    if(context.name == "ROOT" || context.name == "TEMPLATE" || context.ancestor == null)
+    if(context["_standalone"])
     {
       return;
     }
@@ -237,28 +237,31 @@
     if(context != null)
     {
       context.clearDependents();
-      if(this.logicParent != null)
+      if(! context["_standalone"])
       {
-        var parent = this.logicParent.getDataContext(context.ancestor);
-        if(parent != null)
+        if(this.logicParent != null)
         {
-          parent.addDependent(context);
+          var parent = this.logicParent.getDataContext(context.ancestor);
+          if(parent != null)
+          {
+            parent.addDependent(context);
+          }
+          else
+          {
+            console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+          }
         }
-        else
+        else if(this.parentNode != null)
         {
-          console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
-        }
-      }
-      else if(this.parentNode != null)
-      {
-        var parent = Node.prototype.getDataContext.call(this.parentNode, context.ancestor);
-        if(parent != null)
-        {
-          parent.addDependent(context);
-        }
-        else
-        {
-          console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+          var parent = Node.prototype.getDataContext.call(this.parentNode, context.ancestor);
+          if(parent != null)
+          {
+            parent.addDependent(context);
+          }
+          else
+          {
+            console.log("ancestor of DataContext[" + context.ancestor + "] does not exists!");
+          }
         }
       }
       contexts.delete(name);

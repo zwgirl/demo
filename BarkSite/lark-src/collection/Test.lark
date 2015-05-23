@@ -77,10 +77,10 @@ public class Test implements Page, INotifyPropertyChanged {
 	 */ 
 	public Test(){
 		_persons.add(new Person("1", "张三", "山东高密", 65));
-		_persons.add(new Manager("4", "经理3", "山东高密2", 65));
-		_persons.add(new Person("2", "张三1", "山东高密1", 65));
-		_persons.add(new Person("3", "张三2", "山东高密2", 65));
-		_persons.add(new Manager("4", "经理111", "山东高密2", 65));
+		_persons.add(new Manager("2", "财务部经理", "河南安阳", 65));
+		_persons.add(new Person("3", "李四", "山西大同", 65));
+		_persons.add(new Person("4", "王小五", "湖北武汉", 65));
+		_persons.add(new Manager("5", "人力资源经理", "广东广州", 65));
 	}
 	
 	public ConverterFunction converteX = (Object data)->{
@@ -198,7 +198,7 @@ public class Test implements Page, INotifyPropertyChanged {
 	}
 	 
 	public MouseEventHandler addChild = (MouseEvent event)->{
-		persons.add(new Manager("child1", "新增张三", "山东高密新增", 35));
+		persons.add(new Manager("child1", "新增员工1", "广东广州", 35));
 	};
 	 
 	public MouseEventHandler deleteChild =  (MouseEvent event)->{

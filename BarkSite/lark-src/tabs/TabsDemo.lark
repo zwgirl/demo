@@ -3,6 +3,8 @@ package tabs;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import clock.ClockTemplate;
+
 public class TabsDemo implements Page, INotifyPropertyChanged, PropertyChangeListener {
 	<%
 	<html>
@@ -68,47 +70,16 @@ public class TabsDemo implements Page, INotifyPropertyChanged, PropertyChangeLis
 			}
 		</style>
 		
-		<style>
-			#flexContainer { 
-			  display: flex;
-			  flex-direction: row;
-			  align-items: center;
-			} 
-			.item {
-			  width: 120px;
-//			  background:#6ABD27;
-			  flex: 1 1 auto;
-			  vertical-align: middle;
-			}
-			.item ul {	
-				width: 581px;
-				color white;
-				list-style: none;
-				padding-left: 6px;
-				padding-right: 0px;
-				vertical-align: middle;
-			}
-			 
-//			.item ul li {
-//				vertical-align: middle;
-//				height: 26px;
-//				font-family: "Microsoft", sans-serif;
-//				background: url('imagens/botoes-cat/cat-bg.png') no-repeat;
-//				color: #fff;
-//				font-size: 14px;
-//				border: 1px solid white;
-//			}
-
-		</style>
+		<link rel="stylesheet" type="text/css" href="../clock/css/clock.css" media="screen, projection" />
 		</head>
 		<body id="测试">
-			<div className="tabBox">
-			    <ul className="tabs">
+			<div class="tabBox">
+			    <ul class="tabs">
 			    	<Iterator items = {Binding property="pages" }>
 			    		<TabItemHeader />
 			    	</Iterator>
 			    </ul>
-			    <div className="content" >
+			    <div class="content" >
 			    	<Iterator items = {Binding property="pages" }>
 			    		<TabItemContent dataContext = {DataContext property="poem" name="poem" ancestor="current"} />
 			    	</Iterator>
@@ -118,12 +89,17 @@ public class TabsDemo implements Page, INotifyPropertyChanged, PropertyChangeLis
 			<p>
 			唐诗精选
 			</p>
+			<div >
+				<ClockTemplate />
+				<ClockTemplate />
+			</div>
 		</body>
 	</html>
 	%>
 	public TabsDemo() {
 		this._pages = new ArrayList<TabPage>();
-		TabPage p = new TabPage("长恨歌", "this is page" + 1, false);
+		TabPage p = new TabPage("长恨歌", "this is page" + 1, true);
+		this._page = p;
 		_pages.add(p);
 		p.poem = new Poem("白居易", "images/th0.jpg", 
 							"汉皇重色思倾国，御宇多年求不得。杨家有女初长成，养在深闺人未识。", 

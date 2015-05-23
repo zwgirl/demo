@@ -19,82 +19,100 @@ public class Test1 implements Page, INotifyPropertyChanged {
 		<meta http-equiv="cache-control" content="no-cache, must-revalidate" /> 
 		<meta http-equiv="expires" content="wed, 26 feb 1997 08:21:57 gmt" /> 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-			<style>
-			.rect {
-			    border: 5px solid red;
-			}  
-			</style>
+		<style type="text/css"> 
+			body,table{ 
+				font-size:12px; 
+			} 
+			table{ 
+				table-layout:fixed; 
+				empty-cells:show; 
+				border-collapse: collapse; 
+//				margin:0 auto; 
+			} 
+			td{ 
+				height:30px; 
+			} 
+			h1,h2,h3{ 
+				font-size:12px; 
+				margin:0; 
+				padding:0; 
+			} 
+			.table{ 
+				border:1px solid #cad9ea; 
+				color:#666; 
+			} 
+			.table th { 
+				background-repeat:repeat-x; 
+				height:30px; 
+			} 
+			.table td,.table th{ 
+				border:1px solid #cad9ea; 
+				padding:0 1em 0; 
+			} 
+			.table tr.alter{ 
+				background-color:#f5fafe; 
+			} 
+		</style> 
 		</head>
 		<body > 
-			<Iterator items={Binding property="persons"}>
-				<h1 textContent = {Binding property="name" context="current"} />
-			</Iterator>
 			<If data={Binding property="flag" }>
 				<p>
-				skahsja 
+				IF Tag Output 
 				</p> 
 				<h1>  h1 </h1>
 			</If> 
 	
+			<p>Choose </p>
 			<Choose data={Binding property="age" }>
 				<When value=71>
-					<p> 
-					age 
-					</p>
-					<h1>  Age </h1>
+					<h1>  When value=71 </h1>
 				</When>
 				<Otherwise>
-					<h1>
-					Otherwise
-					</h1>
+					<h1>  Otherwise </h1>
 				</Otherwise>
 			</Choose>
+			<br />
+			<br />
 			<input type="text" value = {Binding property = "name" mode="TwoWay" trigger="PropertyChanged"} />
 			<input type="text" value = {Binding property = "name" mode="TwoWay" trigger="PropertyChanged"} />
 			
-			<table> 
-			<thead className="tabs" >
+			<br />
+			<br />
+			<h1> 迭代器 </h1>
+			<table border="1"> 
+			<thead class="tabs" >
 				<tr>
 				<td ></td> 
-				<td>序号</td><td>姓名</td> <td>地址</td><td onmouseover=function{return false;}> 年龄</td> 
+				<td>序号</td><td>姓名</td> <td>地址</td><td > 年龄</td> <td> SVG Name </td>
 				</tr> 
 		    </thead> 
-		    <tbody>
-				<ManagerTableRow /> 
-		    </tbody>
-			<tbody className="tabs" >
+
+			<tbody class="tabs" >
 				<Iterator items = {Binding property="persons"}>
 					<TableRow />
 				</Iterator>
 		    </tbody>
+				
+			<tbody>
+				<tr >
+				<td colSpan=3> 
+					<button onclick="addChild"  >
+						新增
+					</button>
+				</td>
+				<td colSpan=3> 
+					<button onclick = "deleteChild" >
+						删除 
+					</button> 
+				</td>
+				</tr>
+			</tbody>
 		</table>
-		<button onclick="addChild"  >
-			新增
-		</button>
-		<button onclick = "deleteChild" >
-			删除 
-		</button> 
-			<{  
-//				HTMLElement e = (HTMLElement) document.getElementById("1");
-//				e.addEventListener("blur", (Event e1) ->{
-//					return false;
-//				}, false);
-			}>
-		<button onclick = "nextPage">
-			下一页
-		</button>
+
 			<svg width="500" height="200" style="2121">
 				
 				<line x1="20" y1="180" x2="400" y2="180" style="stroke:black;stroke-width:1px;"/>
 				<XAxis />
-				<!--
-				<text x="30" y="200">2001</text>
-				<text x="80" y="200">2002</text>
-				<text x="130" y="200">2003</text>
-				<text x="180" y="200">2004</text>
-				<text x="230" y="200">2004</text>
-				-->
-				
 				<line x1="20" y1="180" x2="20" y2="10" style="stroke:black;stroke-width:1px;"/>
 				<text x="1" y="150">10</text>
 				<text x="1" y="120">20</text>
@@ -108,37 +126,22 @@ public class Test1 implements Page, INotifyPropertyChanged {
 				<rect x="190" y="70"  width="20" height="110" fill = "red" /> 
 				<rect x="240" y="150"  width="20" height="30" fill = "red" /> 
 			</svg>
-			
-			<table> 
-			<thead className="tabs" >
-				<tr>
-				<td ><input type="checkbox" checked = {Binding property = "allSelected" mode="TwoWay" trigger="PropertyChanged"} /></td> 
-				<td>序号</td><td>姓名</td> <td>地址</td><td onmouseover=function{return false;}> 年龄</td> 
-				</tr> 
-		    </thead> 
-		    <!--
-			<tbody className="tabs" >
-		    	<lark:collection-template name="__t" selector="FirstTemplateSelector" property="persons"/>  
-		    </tbody>
-		    -->
-	
-		    </table>
 		</body> 
 	</html>
-	%>
+	%> 
 
 	/**
 	*@see Test1#name
 	 */ 
 	public Test1(){
 		_persons.add(new Person("1", "张三", "山东高密", 65));
-		_persons.add(new Manager("4", "经理3", "山东高密2", 65));
-		_persons.add(new Person("2", "张三1", "山东高密1", 65));
-		_persons.add(new Person("3", "张三2", "山东高密2", 65));
-		_persons.add(new Manager("4", "经理111", "山东高密2", 65));
+		_persons.add(new Manager("2", "财务部经理", "河南安阳", 65));
+		_persons.add(new Person("3", "李四", "山西大同", 65));
+		_persons.add(new Person("4", "王小五", "湖北武汉", 65));
+		_persons.add(new Manager("5", "人力资源经理", "广东广州", 65));
 	}
 	
-	private String _name = "sss";
+	private String _name = "测试文本";
 	
 	public String name{
 		&{
@@ -209,22 +212,9 @@ public class Test1 implements Page, INotifyPropertyChanged {
 		}
 	}
 	
-	EventHandler h = (Event e)->{
-		alert("Hello world");
-	};
-	
-	@Override
-	public String toString() {
-		return this._name + "2" + "; age : " + this._age;
-	}
-	
-	public ConverterFunction to=(Object data) ->{
-		return data + "px";
-	};
-	
-	public ConverterFunction from=(Object data) ->{
-		return data;
-	};
+//	EventHandler h = (Event e)->{
+//		alert("Hello world");
+//	};
 	
 	private Collection<Person> _persons = new ObservableCollection<>();
 	public Collection<Person> persons{
@@ -252,36 +242,5 @@ public class Test1 implements Page, INotifyPropertyChanged {
 			persons.removeAll(toBeDeleted);
 		}
 	};
-	
-	public MouseEventHandler nextPage =  (MouseEvent event)->{
-		ObservableCollection<Person> nextPage = new ObservableCollection<Person>();
-		nextPage.add(new Person("11" + Math.random(), "张三1" + Math.random(), "山东高密", 65));
-		nextPage.add(new Person("21" + Math.random(), "张三11" + Math.random(), "山东高密1", 65));
-		nextPage.add(new Person("31" + Math.random(), "张三21" + Math.random(), "山东高密2", 65));
-		nextPage.add(new Person("41" + Math.random(), "张三31" + Math.random(), "山东高密2", 65)); 
-		
-		if(persons != null){ 
-			persons.clear(); 
-		}
-		persons.addAll(nextPage); 
-	};
-	
-	native void  ggg() /*-{
-	
-	}-*/;
 } 
-
-//class FirstTemplateSelector extends TemplateSelector{
-//
-//	@Override
-//	protected Template doSelect(Object data) {
-//		if(data instanceof Manager){
-//			return new ManagerTableRow();
-//		}  else if(data instanceof Person){
-//			return new TableRow();
-//		}
-//		return null;
-//	}
-//	
-//}
 

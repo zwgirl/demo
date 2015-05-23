@@ -294,7 +294,7 @@ public class FireFox implements Page {
 //												return wdapi_apkdl_m(this, "source");
 												return false;
 											}
-											name="Firefox for Android">豌豆荚一键安装</a>
+											name="Firefox for Android1">豌豆荚一键安装</a>
 										</small>
 									</div>
 								</div>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>tag</title>
+<script type='text/javascript'>   //结果集页签切换方法   function selectchjgTag(showContent,selfObj){     // 操作标签     var tag = document.getElementById("tags").getElementsByTagName("li");     var taglength = tag.length;     for(i=0; i<taglength; i++){      tag[i].className = "";     }     selfObj.parentNode.className = "selectTag";     // 操作内容     for(i=0; j=document.getElementById("chjgxx"+i); i++){      j.style.display = "none";     }     document.getElementById(showContent).style.display = "block";   }   </script>
+</head>
+<body>
+	<table style='bottom: 0; border-collapse: collapse; font-size: 12px'>
+		<div id='con'
+			style='height: 30%; position: relative; font-size: 12px; width: 800px; margin: 0 auto'
+			class='dragAble'>
+			<ul id='tags'
+				style='height: 23px; width: 800px; margin: 0; padding: 0; margin-left: 10px'>
+				<li class='selectTag'
+					style='float: left; margin-right: 1px; background: url(images/tagleft.gif) no-repeat left bottom; height: 23px; list-style-type: none'><a
+					href='javascript:void(0)' id='chxxxx0' onclick='selectchjgTag('
+					chjgxx0',this)' style='text-decoration: none; float: left; background: url(images/tabright.gif) no-repeat right bottom; height: 23px; padding: 0px 10px; line-height: 23px; color: #999'>同户人员</a></li>
+				<li
+					style='float: left; margin-right: 1px; background: url(images/tagleft.gif) no-repeat left bottom; height: 23px; list-style-type: none'><a
+					href='javascript:void(0)' id='chxxxx1' onclick='selectchjgTag('
+					chjgxx1',this)' style='display: block; text-decoration: none; float: left; background: url(images/tabright.gif) no-repeat right bottom; height: 23px; padding: 0px 10px; line-height: 23px; color: #999'>联系方式</a></li>
+				<li
+					style='float: left; margin-right: 1px; background: url(images/tagleft.gif) no-repeat left bottom; height: 23px; list-style-type: none'><a
+					href='javascript:void(0)' id='chxxxx2' onclick='selectchjgTag('
+					chjgxx2',this)' style='text-decoration: none; float: left; background: url(images/tabright.gif) no-repeat right bottom; height: 23px; padding: 0px 10px; line-height: 23px; color: #999'>居住历史记录</a></li>
+				<li
+					style='float: left; margin-right: 1px; background: url(images/tagleft.gif) no-repeat left bottom; height: 23px; list-style-type: none'><a
+					href='javascript:void(0)' id='chxxxx3' onclick='selectchjgTag('
+					chjgxx3',this)' style='text-decoration: none; float: left; background: url(images/tabright.gif) no-repeat right bottom; height: 23px; padding: 0px 10px; line-height: 23px; color: #999'>关系人</a></li>
+				<li
+					style='float: left; margin-right: 1px; background: url(images/tagleft.gif) no-repeat left bottom; height: 23px; list-style-type: none'><a
+					href='javascript:void(0)' id='chxxxx4' onclick='selectchjgTag('
+					chjgxx4',this)' style='display: block; text-decoration: none; float: left; background: url(images/tabright.gif) no-repeat right bottom; height: 23px; padding: 0px 10px; line-height: 23px; color: #999'>体貌特征</a></li>
+				<li
+					style='float: left; margin-right: 1px; background: url(images/tagleft.gif) no-repeat left bottom; height: 23px; list-style-type: none'><a
+					href='javascript:void(0)' id='chxxxx5' onclick='selectchjgTag('
+					chjgxx5',this)' style='display: block; text-decoration: none; float: left; background: url(images/tabright.gif) no-repeat right bottom; height: 23px; padding: 0px 10px; line-height: 23px; color: #999'>特殊特征</a></li>
+				<li
+					style='float: left; margin-right: 1px; background: url(images/tagleft.gif) no-repeat left bottom; height: 23px; list-style-type: none'><a
+					href='javascript:void(0)' id='chxxxx6' onclick='selectchjgTag('
+					chjgxx6',this)' style='display: block; text-decoration: none; float: left; background: url(images/tabright.gif) no-repeat right bottom; height: 23px; padding: 0px 10px; line-height: 23px; color: #999'>涉警记录</a></li>
+				<li
+					style='float: left; margin-right: 1px; background: url(images/tagleft.gif) no-repeat left bottom; height: 23px; list-style-type: none'><a
+					href='javascript:void(0)' id='chxxxx7' onclick='selectchjgTag('
+					chjgxx7',this)' style='display: block; text-decoration: none; float: left; background: url(images/tabright.gif) no-repeat right bottom; height: 23px; padding: 0px 10px; line-height: 23px; color: #999'>涉案记录</a></li>
+				<li
+					style='float: left; margin-right: 1px; background: url(images/tagleft.gif) no-repeat left bottom; height: 23px; list-style-type: none'><a
+					href='javascript:void(0)' id='chxxxx8' onclick='selectchjgTag('
+					chjgxx8',this)' style='text-decoration: none; float: left; background: url(images/tabright.gif) no-repeat right bottom; height: 23px; padding: 0px 10px; line-height: 23px; color: #999'>从业记录</a></li>
+			</ul>
+			<div id='tagContent'
+				style='padding: 1px; background-color: #fff; border-top: 2px solid #4a98af;'>
+				<div id='chjgxx0' class='tagContent selectTag'
+					style='display: block; background: url(images/bg.gif) repeat-x; height: 180px; padding: 10px; color: #474747; width: 800px; display: none'></div>
+				<div id='chjgxx1' class='tagContent'
+					style='background: url(images/bg.gif) repeat-x; height: 180px; padding: 10px; color: #474747; width: 800px; display: none'>2</div>
+				<div id='chjgxx2' class='tagContent'
+					style='background: url(images/bg.gif) repeat-x; height: 180px; padding: 10px; color: #474747; width: 800px; display: none'>3</div>
+				<div id='chjgxx3' style='OVERFLOW-Y: scroll;' class='tagContent'
+					style='background:url(images/bg.gif) repeat-x; height:180px; padding:10px; color:#474747; width:800px; display:none'>点击具体房间号查看人员情况</div>
+				<div id='chjgxx4' style='OVERFLOW-Y: scroll;' class='tagContent'
+					style='background:url(images/bg.gif) repeat-x; height:180px; padding:10px; color:#474747; width:800px; display:none'></div>
+				<div id='chjgxx5' style='OVERFLOW-Y: scroll;' class='tagContent'
+					style='background:url(images/bg.gif) repeat-x; height:180px; padding:10px; color:#474747; width:800px; display:none'></div>
+				<div id='chjgxx6' class='tagContent'
+					style='background: url(images/bg.gif) repeat-x; height: 180px; padding: 10px; color: #474747; width: 800px; display: none'>7</div>
+				<div id='chjgxx7' class='tagContent'
+					style='background: url(images/bg.gif) repeat-x; height: 180px; padding: 10px; color: #474747; width: 800px; display: none'>8</div>
+				<div id='chjgxx8' style='OVERFLOW-Y: scroll;' class='tagContent'
+					style='background:url(images/bg.gif) repeat-x; height:180px; padding:10px; color:#474747; width:800px; display:none'>8</div>
+			</div>
+		</div>
+	</table>
+<body>
+</html>

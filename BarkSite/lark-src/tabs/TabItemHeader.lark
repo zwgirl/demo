@@ -7,7 +7,7 @@ import org.w3c.event.MouseEventHandler;
 
 public class TabItemHeader extends Template{
 	<%
-	    <li className={Binding property="selected1" mode = "OneWay" context="current"} onclick="OnClick">
+	    <li class={Binding property="selected1" mode = "OneWay" context="current" converteTo="to"} onclick="OnClick" >
 	    	<a href="#" textContent = {Binding property="header" context="current"}></a>
 	    </li>
     %>
@@ -16,15 +16,17 @@ public class TabItemHeader extends Template{
 	}
 
 	MouseEventHandler OnClick=(MouseEvent event) ->{
+		console.log("MouseEventHandler");
 		TabPage p =(TabPage) ((Element) event.target).getDataContext("current").dataItem;
 		p.selected1  = true;
 	};
 	
-//	UpdateTargetCallback callback = (Object target, String[] properties, Object value)->{
-//		if((Boolean)value == true){
-//			((HTMLElement)target).className = "selected";
-//		} else { 
-//			((HTMLElement)target).className = "";
-//		}
-//	}; 
+	ConverterFunction to = (Object data)->{
+		if((boolean)data){
+			console.log("ConverterFunction");
+			return "selected";
+		} else {
+			return "";
+		}
+	};
 } 

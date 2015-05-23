@@ -165,7 +165,7 @@
     }
     if(binding.updateTargetCallback != null)
     {
-      binding.updateTargetCallback(this, properties, data);
+      binding.updateTargetCallback(this, properties[0], properties[1], data);
     }
     else
     {
@@ -208,7 +208,7 @@
       old.moveDependentTo(context);
     }
     contexts.set(context.name, context);
-    if(context.name == "ROOT" || context.name == "TEMPLATE" || context.ancestor == null)
+    if(context["_standalone"])
     {
       return;
     }
@@ -251,28 +251,31 @@
     if(context != null)
     {
       context.clearDependents();
-      if(this.logicParent != null)
+      if(! context["_standalone"])
       {
-        var parent = this.logicParent.getDataContext(context.ancestor);
-        if(parent != null)
+        if(this.logicParent != null)
         {
-          parent.addDependent(context);
+          var parent = this.logicParent.getDataContext(context.ancestor);
+          if(parent != null)
+          {
+            parent.addDependent(context);
+          }
+          else
+          {
+            console.log("the ancestor DataContext with name " + context.ancestor + " in DataContext[" + context.name + "] does not exists!");
+          }
         }
-        else
+        else if(this.parentNode != null)
         {
-          console.log("the ancestor DataContext with name " + context.ancestor + " in DataContext[" + context.name + "] does not exists!");
-        }
-      }
-      else if(this.parentNode != null)
-      {
-        var parent = Node.prototype.getDataContext.call(this.parentNode, context.ancestor);
-        if(parent != null)
-        {
-          parent.addDependent(context);
-        }
-        else
-        {
-          console.log("the ancestor DataContext with name " + context.ancestor + " in DataContext[" + context.name + "] does not exists!");
+          var parent = Node.prototype.getDataContext.call(this.parentNode, context.ancestor);
+          if(parent != null)
+          {
+            parent.addDependent(context);
+          }
+          else
+          {
+            console.log("the ancestor DataContext with name " + context.ancestor + " in DataContext[" + context.name + "] does not exists!");
+          }
         }
       }
       contexts.delete(name);
@@ -325,7 +328,7 @@
   function INotifyPropertyChanged(){};
   __cache["java.lang.INotifyPropertyChanged"] = INotifyPropertyChanged;
   INotifyPropertyChanged.prototype.notifyChanged = function(property){
-    var event = new (__lc("java.lang.PropertyChangeEvent", "java.lang.bindings"))(property);
+    var event = new (__lc("java.lang.PropertyChangeEvent"))(property);
     var _listeners = this["__listeners"];
     if(_listeners != null)
     {
@@ -518,11 +521,11 @@
   __cache["java.lang.CollectionChangedAction"] = CollectionChangedAction;
   CollectionChangedAction.valueOf = function(name) { return CollectionChangedAction[name]; };
   CollectionChangedAction.values = function() { return [CollectionChangedAction.Add, CollectionChangedAction.Move, CollectionChangedAction.Remove, CollectionChangedAction.Replace, CollectionChangedAction.Reset]; };
-  CollectionChangedAction.Add = new (__lc("java.lang.CollectionChangedAction", "java.lang.bindings"))("Add", 0);
-  CollectionChangedAction.Move = new (__lc("java.lang.CollectionChangedAction", "java.lang.bindings"))("Move", 1);
-  CollectionChangedAction.Remove = new (__lc("java.lang.CollectionChangedAction", "java.lang.bindings"))("Remove", 2);
-  CollectionChangedAction.Replace = new (__lc("java.lang.CollectionChangedAction", "java.lang.bindings"))("Replace", 3);
-  CollectionChangedAction.Reset = new (__lc("java.lang.CollectionChangedAction", "java.lang.bindings"))("Reset", 4);
+  CollectionChangedAction.Add = new (CollectionChangedAction)("Add", 0);
+  CollectionChangedAction.Move = new (CollectionChangedAction)("Move", 1);
+  CollectionChangedAction.Remove = new (CollectionChangedAction)("Remove", 2);
+  CollectionChangedAction.Replace = new (CollectionChangedAction)("Replace", 3);
+  CollectionChangedAction.Reset = new (CollectionChangedAction)("Reset", 4);
   CollectionChangedAction.prototype.__class = new (__lc('java.lang.Class'))("java.lang.CollectionChangedAction", CollectionChangedAction, __lc("java.lang.Enum").prototype.__class, [], 3);
   return  CollectionChangedAction;
 })();
@@ -765,9 +768,9 @@
   __cache["java.lang.UpdateSourceTrigger"] = UpdateSourceTrigger;
   UpdateSourceTrigger.valueOf = function(name) { return UpdateSourceTrigger[name]; };
   UpdateSourceTrigger.values = function() { return [UpdateSourceTrigger.PropertyChanged, UpdateSourceTrigger.LostFocus, UpdateSourceTrigger.Explicit]; };
-  UpdateSourceTrigger.PropertyChanged = new (__lc("java.lang.UpdateSourceTrigger", "java.lang.bindings"))("PropertyChanged", 0);
-  UpdateSourceTrigger.LostFocus = new (__lc("java.lang.UpdateSourceTrigger", "java.lang.bindings"))("LostFocus", 1);
-  UpdateSourceTrigger.Explicit = new (__lc("java.lang.UpdateSourceTrigger", "java.lang.bindings"))("Explicit", 2);
+  UpdateSourceTrigger.PropertyChanged = new (UpdateSourceTrigger)("PropertyChanged", 0);
+  UpdateSourceTrigger.LostFocus = new (UpdateSourceTrigger)("LostFocus", 1);
+  UpdateSourceTrigger.Explicit = new (UpdateSourceTrigger)("Explicit", 2);
   UpdateSourceTrigger.prototype.__class = new (__lc('java.lang.Class'))("java.lang.UpdateSourceTrigger", UpdateSourceTrigger, __lc("java.lang.Enum").prototype.__class, [], 3);
   return  UpdateSourceTrigger;
 })();
@@ -779,9 +782,9 @@
   __cache["java.lang.BindingMode"] = BindingMode;
   BindingMode.valueOf = function(name) { return BindingMode[name]; };
   BindingMode.values = function() { return [BindingMode.TwoWay, BindingMode.OneWay, BindingMode.OneTime]; };
-  BindingMode.TwoWay = new (__lc("java.lang.BindingMode", "java.lang.bindings"))("TwoWay", 0);
-  BindingMode.OneWay = new (__lc("java.lang.BindingMode", "java.lang.bindings"))("OneWay", 1);
-  BindingMode.OneTime = new (__lc("java.lang.BindingMode", "java.lang.bindings"))("OneTime", 2);
+  BindingMode.TwoWay = new (BindingMode)("TwoWay", 0);
+  BindingMode.OneWay = new (BindingMode)("OneWay", 1);
+  BindingMode.OneTime = new (BindingMode)("OneTime", 2);
   BindingMode.prototype.__class = new (__lc('java.lang.Class'))("java.lang.BindingMode", BindingMode, __lc("java.lang.Enum").prototype.__class, [], 3);
   return  BindingMode;
 })();
@@ -1017,6 +1020,7 @@
     this._name = null;
     this._property = null;
     this._ancestor = null;
+    this._standalone = false;
     this._bindings = [];
     this._dependents = new Array();
     this._dataItem = null;
@@ -1054,6 +1058,10 @@
     else
     {
       if(this._name != "ROOT") this._ancestor = "ROOT"
+    }
+    if(options["standalone"] != undefined)
+    {
+      this._standalone = options["standalone"];
     }
   }
   DataContext.prototype.__proto__ = Object.prototype;
@@ -1149,7 +1157,7 @@
   };
   DataContext.prototype.addDependent = function(dependent){
     this._dependents.push(dependent);
-    if(this._dataItem != null)
+    if(this._dataItem != null && dependent.property != null)
     {
       dependent.dataItem = this.dataItem[dependent.property];
     }
@@ -1172,10 +1180,10 @@
   };
   DataContext.prototype.dirty = function(data){
     this._bindings.forEach((function(binding, index, array){
-      binding.propertyChange(this.dataItem, new (__lc("java.lang.PropertyChangeEvent", "java.lang.bindings"))(binding.property));
+      binding.propertyChange(this.dataItem, new (__lc("java.lang.PropertyChangeEvent"))(binding.property));
     }).bind(this));
     this._dependents.forEach((function(dc, index, array){
-      dc.propertyChange(this.dataItem, new (__lc("java.lang.PropertyChangeEvent", "java.lang.bindings"))(dc.property));
+      dc.propertyChange(this.dataItem, new (__lc("java.lang.PropertyChangeEvent"))(dc.property));
     }).bind(this));
   };
   DataContext.prototype.replaceDataItem = function(newDataItem){
@@ -1249,7 +1257,8 @@
     var options = new Object();
     options["name"] = "TEMPLATE";
     options["dataItem"] = this;
-    this.addDataContext(new (__lc("java.lang.DataContext", "java.lang.bindings"))(options));
+    options["standalone"] = true;
+    this.addDataContext(new (__lc("java.lang.DataContext"))(options));
   }
   Template.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
   __cache["java.lang.Template"] = Template;
@@ -1259,29 +1268,6 @@
   };Template.prototype.doBody = function(__p, __l, __ctx) {};
   Template.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Template", Template, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
   return  Template;
-})();
-(function(){ 
-  function Router(options) {    
-    this._page = null;
-    if(options["page"] != undefined)
-    {
-      this._page = options["page"];
-    }
-  }
-  Router.prototype.__proto__ = Object.prototype;
-  __cache["java.lang.Router"] = Router;
-  Object.defineProperty(Router.prototype, "page", {
-    get : function() {
-      return this._page;
-    }, 
-    set : function(value) {
-      this._page = value;
-    }
-  });
-  Router.prototype.inject = function(target, properties){
-  };
-  Router.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Router", Router, Object.prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class], 1);
-  return  Router;
 })();
 (function(){ 
   function Iterator(parent) {    
@@ -1347,7 +1333,7 @@
     var options = new Object();
     options["name"] = "status";
     options["dataItem"] = this._status;
-    this.addDataContext(new (__lc("java.lang.DataContext", "java.lang.bindings"))(options));
+    this.addDataContext(new (__lc("java.lang.DataContext"))(options));
   }
   Iterator.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
   __cache["java.lang.Iterator"] = Iterator;
@@ -1392,14 +1378,15 @@
     var options = new Object();
     options["name"] = "current";
     options["dataItem"] = data;
-    item.addDataContext(new (__lc("java.lang.DataContext", "java.lang.bindings"))(options));
+    options["standalone"] = true;
+    item.addDataContext(new (__lc("java.lang.DataContext"))(options));
     return item;
   }
   Iterator.prototype.doBody = function(parentNode, logicParent, context){
     this["__ctx"] = context;
     if(this.items != null)
     {
-      if(__lc("java.util.Collection", "java.util.Collection").prototype.__class.isInstance(this.items))
+      if(__lc("java.util.Collection").prototype.__class.isInstance(this.items))
       {
         var index = 0;
         var size = this.items.size;

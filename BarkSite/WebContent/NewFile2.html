@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>tag</title>
+		<script type='text/javascript'>
+			//结果集页签切换方法
+			function selectchjgTag(showContent,selfObj){ 
+				// 操作标签 
+				var tag = document.getElementById("tags").getElementsByTagName("li"); 
+				var taglength = tag.length; 
+				for(i=0; i<taglength; i++){ 
+					tag[i].className = ""; 
+				} 
+				selfObj.parentNode.className = "selectTag"; 
+				// 操作内容 
+				for(i=0; j=document.getElementById("chjgxx"+i); i++){ 
+					j.style.display = "none"; 
+				} 
+				document.getElementById(showContent).style.display = "block";
+			}	
+		</script>
+		<style type='text/css'>
+			ol li { margin:8px} 
+			table{border-collapse:collapse;font-size:12px}
+			#con { font-size:12px; width:800px; margin:0 auto} 
+			#tags { height:23px; width:800px; margin:0; padding:0; margin-left:10px} 
+			#tags li { float:left; margin-right:1px; background:url(images/tagleft.gif) no-repeat left bottom; height:23px; list-style-type:none} 
+			#tags li a { text-decoration:none; float:left; background:url(images/tabright.gif) no-repeat right bottom; height:23px; padding:0px 10px; line-height:23px; color:#999} 
+			#tags li.emptyTag { width:4px; background:none} 
+			#tags li.selectTag { background-position: left top; position:relative; height:25px; margin-bottom:-2px} 
+			#tags li.selectTag a { background-position: right top; color:#000; height:25px; line-height:25px;} 
+			#tagContent { padding:1px; background-color:#fff; border-top:2px solid #4a98af;} 
+			.tagContent { background:url(images/bg.gif) repeat-x; height:180px; padding:10px; color:#474747; width:800px; display:none} 
+			#tagContent div.selectTag{ display:block}	
+		</style>
+	</head>
+	<body>
+			 <table style="bottom:0">
+		    <div id="con" style="height:30% ;position:relative;" class="dragAble">
+					<ul id="tags"> 
+						<li class="selectTag"><a href="javascript:void(0)" id="chxxxx0" onclick="selectchjgTag('chjgxx0',this)">房屋类型</a></li> 
+						<li><a href="javascript:void(0)" id="chxxxx1" onclick="selectchjgTag('chjgxx1',this)" style="display:block">房屋等级</a></li> 
+						<li><a href="javascript:void(0)" id="chxxxx2" onclick="selectchjgTag('chjgxx2',this)">房主信息</a></li> 
+						<li><a href="javascript:void(0)" id="chxxxx3" onclick="selectchjgTag('chjgxx3',this)">户籍人员</a></li> 
+						<li><a href="javascript:void(0)" id="chxxxx4" onclick="selectchjgTag('chjgxx4',this)" style="display:block">租住人员</a></li> 
+						<li><a href="javascript:void(0)" id="chxxxx5" onclick="selectchjgTag('chjgxx5',this)" style="display:block">历史住客</a></li> 
+						<li><a href="javascript:void(0)" id="chxxxx6" onclick="selectchjgTag('chjgxx6',this)" style="display:block">企业信息</a></li>
+						<li><a href="javascript:void(0)" id="chxxxx7" onclick="selectchjgTag('chjgxx7',this)" style="display:block">商铺信息</a></li>
+						<li><a href="javascript:void(0)" id="chxxxx8" onclick="selectchjgTag('chjgxx8',this)">人员查询</a></li>
+					</ul> 
+					<div id="tagContent"> 
+						<div id="chjgxx0" class="tagContent selectTag"></div> 
+						<div id="chjgxx1" class="tagContent">2</div> 
+						<div id="chjgxx2" class="tagContent">3</div> 
+						<div id="chjgxx3" style="OVERFLOW-Y: scroll;" class="tagContent">点击具体房间号查看人员情况</div> 
+						<div id="chjgxx4" style="OVERFLOW-Y: scroll;" class="tagContent"></div> 
+						<div id="chjgxx5" style="OVERFLOW-Y: scroll;" class="tagContent"></div> 
+						<div id="chjgxx6" class="tagContent">7</div>
+						<div id="chjgxx7" class="tagContent">8</div>
+						<div id="chjgxx8" style="OVERFLOW-Y: scroll;" class="tagContent">8</div>
+					</div>
+		</div>
+		</table>
+	<body>
+</html>

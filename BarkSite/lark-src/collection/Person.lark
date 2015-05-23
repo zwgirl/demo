@@ -8,15 +8,12 @@ class Person implements INotifyPropertyChanged{
 		this._address = _address;
 		this._age = _age;
 	}
+	
 	private String _ordinal;
 	public String ordinal {
-		&{
-			return this._ordinal;
-		}
+		&{return this._ordinal; }
 		+{
-			if(this._ordinal === value){
-				return;
-			}
+			if(this._ordinal === value) return;
 			this._ordinal = value;
 			notifyChanged("ordinal");
 		}
@@ -24,13 +21,9 @@ class Person implements INotifyPropertyChanged{
 	
 	private String _name;
 	public String name {
-		&{
-			return this._name;
-		}
+		&{ return this._name; }
 		+{
-			if(this._name === value){
-				return;
-			}
+			if(this._name === value) return;
 			this._name = value;
 			notifyChanged("name");
 		}
@@ -38,13 +31,9 @@ class Person implements INotifyPropertyChanged{
 	
 	private String _address;
 	public String address {
-		&{
-			return this._address;
-		}
+		&{ return this._address; }
 		+{
-			if(this._address === value){
-				return;
-			}
+			if(this._address === value) return;
 			this._address = value;
 			notifyChanged("address");
 		}
@@ -52,13 +41,9 @@ class Person implements INotifyPropertyChanged{
 	
 	private int _age;
 	public int age {
-		&{
-			return this._age;
-		}
+		&{ return this._age; }
 		+{
-			if(this._age === value){
-				return;
-			}
+			if(this._age === value) return;
 			this._age = value;
 			notifyChanged("age");
 		}
@@ -66,18 +51,21 @@ class Person implements INotifyPropertyChanged{
 	
 	private boolean _selected;
 	public boolean selected {
-		&{
-			return this._selected;
-		}
+		&{ return this._selected; }
 		+{
-			if(this._selected === value){
-				return;
-			}
+			if(this._selected === value) return;
 			this._selected = value;
 			notifyChanged("selected");
 		}
 	}
 	
 	private Person[] _child;
-	public Person[] child{}
+	public Person[] child{
+		&{ return this._child; }
+		+{
+			if(this._child === value) return;
+			this._child = value;
+			notifyChanged("child");
+		}
+	}
 }

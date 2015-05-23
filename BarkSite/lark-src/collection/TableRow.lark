@@ -12,7 +12,7 @@ public class TableRow extends Template {
 		<td>
 			<input type="checkbox" checked = {Binding property="selected" mode="TwoWay" trigger="PropertyChanged" context="current"}/>
 		</td>
-		<td textContent = {Binding property="index" context="status"}></td> 
+		<td textContent = {Binding property="ordinal" context="current"}></td> 
 		<td>
 			<a href="#" textContent = {Binding property="name" context="current"}> </a>
 		</td>
@@ -33,6 +33,6 @@ public class TableRow extends Template {
 	}
 
 	MouseEventHandler click = (MouseEvent e) ->{
-		alert("sasas");
+//		alert("sasas");
 	};
 }

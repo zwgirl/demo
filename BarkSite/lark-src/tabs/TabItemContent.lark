@@ -5,18 +5,18 @@ import org.w3c.html.HTMLElement;
 
 public class TabItemContent extends Template{
 	<%
-    <div style.display = {Binding property="selected1" mode="OneWay"  context="current"} >
+    <div style.display = {Binding property="selected1" mode="OneWay"  context="current" converteTo = "to"} >
     	<h3 textContent={Binding property="author" context="poem"}></h3>
     	<div id="flexContainer" >
-			<div className="item">
+			<div class="item">
     			<img src = {Binding property="img" context="poem"} />
     		</div>
-    		<div className="item">
+    		<div class="item">
 				<ul>
-					<li textContent = {Binding property="first" context="poem"}></li>
-					<li textContent = {Binding property="second" context="poem"}></li>
-					<li textContent = {Binding property="three" context="poem"}></li>
-					<li textContent = {Binding property="four" context="poem"}></li>
+					<li style="list-style-type:none" textContent = {Binding property="first" context="poem"}></li>
+					<li style="list-style-type:none" textContent = {Binding property="second" context="poem"}></li>
+					<li style="list-style-type:none" textContent = {Binding property="three" context="poem"}></li>
+					<li style="list-style-type:none" textContent = {Binding property="four" context="poem"}></li>
 				</ul>
     		</div>
 		</div>
@@ -26,12 +26,12 @@ public class TabItemContent extends Template{
 		super(parent);
 	} 
 
-//	UpdateTargetCallback callback = (Object target, Array<String> tagProperties, Object value)->{
-//		if((Boolean)value == true){
-//			((HTMLElement)target).style.display = "block";
-//		} else {
-//			((HTMLElement)target).style.display = "none";
-//		}
-//	};
+	ConverterFunction to = (Object data)->{
+		if((boolean)data){
+			return "block";
+		} else {
+			return "none";
+		}
+	};
 }
   

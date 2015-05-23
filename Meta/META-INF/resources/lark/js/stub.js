@@ -314,7 +314,8 @@ function __invoke(remotingModel){
 //	var formdata = new FormData();
 //	formdata.append("rpc", "11111111111111"); 
 //	xhr.setRequestHeder("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
-	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//	xhr.setRequestHeader("Content-type:"application/x-www-form-urlencoded; charset=utf-8",
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
 	xhr.send("rpc="+rpc);
 	
 //	xhr.send(formdata);
@@ -323,29 +324,29 @@ function __invoke(remotingModel){
 	return li.readObject(json);
 }
 
-var $ = window.$ = function(id){ 
+var _$ = window._$ = function(id){ 
 	return document.getElementById(id);
 };
 
-$.n = function(type){
+_$.n = function(type){
 	return document.createElement(type)
 }
-$.ns = function(ns, type){
+_$.ns = function(ns, type){
 	return document.createElementNS(ns, type)
 }
-$.svg = function(type){
+_$.svg = function(type){
 	return document.createElementNS("http://www.w3.org/2000/svg", type)
 }
-$.t = function(text){
+_$.t = function(text){
 	return document.createTextNode(text);
 }
-$.a = function(p,c){
+_$.a = function(p,c){
 	return p.appendChild(c);
 }
-$.attr = function(n,attr,value){
+_$.attr = function(n,attr,value){
 	n.setAttribute(attr, value);
 }
-$.attrNS = function(ns,n,attr,value){
+_$.attrNS = function(ns,n,attr,value){
 	n.setAttributeNS(ns,attr,value);
 }
 

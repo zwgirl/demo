@@ -366,11 +366,11 @@
   }
   Exception.__f = {
     "1" : function() {    
-  __lc('java.lang.Throwable').call(this);
+  __lc("java.lang.Throwable", "java.lang.buildins").call(this);
     this._message = null;
   }, 
     "2" : function(message) {    
-  __lc('java.lang.Throwable').call(this);
+  __lc("java.lang.Throwable", "java.lang.buildins").call(this);
     this._message = null;
     this._message = message;
   }
@@ -393,10 +393,10 @@
   }
   RuntimeException.__f = {
     "1" : function() {    
-  __lc('java.lang.Exception').call(this, "1");
+  __lc("java.lang.Exception", "java.lang.buildins").call(this, "1");
   }, 
     "2" : function(message) {    
-  __lc('java.lang.Exception').call(this, message, "2");
+  __lc("java.lang.Exception", "java.lang.buildins").call(this, message, "2");
   }
   };
   RuntimeException.prototype.__proto__ = __lc("java.lang.Exception").prototype;
@@ -411,10 +411,10 @@
   }
   NullPointerException.__f = {
     "null" : function() {    
-  __lc('java.lang.RuntimeException').call(this, "1");
+  __lc("java.lang.RuntimeException", "java.lang.buildins").call(this, "1");
   }, 
     "null" : function(s) {    
-  __lc('java.lang.RuntimeException').call(this, s, "2");
+  __lc("java.lang.RuntimeException", "java.lang.buildins").call(this, s, "2");
   }
   };
   NullPointerException.prototype.__proto__ = __lc("java.lang.RuntimeException").prototype;
@@ -429,10 +429,10 @@
   }
   ClassNotFoundException.__f = {
     "null" : function() {    
-  __lc('java.lang.RuntimeException').call(this, "1");
+  __lc("java.lang.RuntimeException", "java.lang.buildins").call(this, "1");
   }, 
     "null" : function(s) {    
-  __lc('java.lang.RuntimeException').call(this, s, "2");
+  __lc("java.lang.RuntimeException", "java.lang.buildins").call(this, s, "2");
   }
   };
   ClassNotFoundException.prototype.__proto__ = __lc("java.lang.RuntimeException").prototype;
@@ -447,10 +447,10 @@
   }
   CloneNotSupportedException.__f = {
     "null" : function() {    
-  __lc('java.lang.Exception').call(this, "1");
+  __lc("java.lang.Exception", "java.lang.buildins").call(this, "1");
   }, 
     "null" : function(s) {    
-  __lc('java.lang.Exception').call(this, s, "2");
+  __lc("java.lang.Exception", "java.lang.buildins").call(this, s, "2");
   }
   };
   CloneNotSupportedException.prototype.__proto__ = __lc("java.lang.Exception").prototype;
@@ -478,13 +478,14 @@
   function Iterable(){};
   __cache["java.lang.Iterable"] = Iterable;
   Iterable.prototype.forEach = function(action){
-    __lc("java.util.Objects", "java.util.Objects").requireNonNull(action);
     var __coll = this, __i = __coll.iterator();
     while(__i.hasNext()) {
       var t = __i.next();
       action(t);
     }
   };
+  Iterable.prototype.__readObject = function(json, handlers, obj) {};
+  Iterable.prototype.__writeObject = function(obj, handlers) {};
   Iterable.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Iterable", Iterable, Object.prototype.__class, [], 2);
   return  Iterable;
 })();
@@ -517,7 +518,7 @@
     return Object.prototype.hashCode.call(this);
   };
   Enum.prototype.clone = function(){
-    throw new (__lc('java.lang.CloneNotSupportedException'))();
+    throw new (__lc("java.lang.CloneNotSupportedException"))();
   };
   Enum.prototype.compareTo = function(o){
     var other = o;
@@ -540,10 +541,10 @@
   }
   IllegalArgumentException.__f = {
     "null" : function() {    
-  __lc('java.lang.RuntimeException').call(this, "1");
+  __lc("java.lang.RuntimeException", "java.lang.buildins").call(this, "1");
   }, 
     "null" : function(s) {    
-  __lc('java.lang.RuntimeException').call(this, s, "2");
+  __lc("java.lang.RuntimeException", "java.lang.buildins").call(this, s, "2");
   }
   };
   IllegalArgumentException.prototype.__proto__ = __lc("java.lang.RuntimeException").prototype;
@@ -558,10 +559,10 @@
   }
   IllegalStateException.__f = {
     "null" : function() {    
-  __lc('java.lang.RuntimeException').call(this, "1");
+  __lc("java.lang.RuntimeException", "java.lang.buildins").call(this, "1");
   }, 
     "null" : function(s) {    
-  __lc('java.lang.RuntimeException').call(this, s, "2");
+  __lc("java.lang.RuntimeException", "java.lang.buildins").call(this, s, "2");
   }
   };
   IllegalStateException.prototype.__proto__ = __lc("java.lang.RuntimeException").prototype;
@@ -576,10 +577,10 @@
   }
   UnsupportedOperationException.__f = {
     "null" : function() {    
-  __lc('java.lang.RuntimeException').call(this, "1");
+  __lc("java.lang.RuntimeException", "java.lang.buildins").call(this, "1");
   }, 
     "null" : function(message) {    
-  __lc('java.lang.RuntimeException').call(this, message, "2");
+  __lc("java.lang.RuntimeException", "java.lang.buildins").call(this, message, "2");
   }
   };
   UnsupportedOperationException.prototype.__proto__ = __lc("java.lang.RuntimeException").prototype;
@@ -606,6 +607,12 @@
   __cache["java.lang.JSON"] = JSON;
   JSON.prototype.__class = new (__lc('java.lang.Class'))("java.lang.JSON", JSON, Object.prototype.__class, [], 1);
   return  JSON;
+})();
+(function(){ 
+  Date.prototype.__proto__ = Object.prototype;
+  __cache["java.lang.Date"] = Date;
+  Date.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Date", Date, Object.prototype.__class, [], 1);
+  return  Date;
 })();
 (function(){ 
   function xlink() {    
