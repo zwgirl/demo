@@ -13,6 +13,6 @@
   };
   NoSuchElementException.prototype.__proto__ = __lc("java.lang.RuntimeException").prototype;
   __cache["java.util.NoSuchElementException"] = NoSuchElementException;
-  NoSuchElementException.prototype.__class = new (__lc('java.lang.Class'))("java.util.NoSuchElementException", NoSuchElementException, __lc("java.lang.RuntimeException").prototype.__class, [], 1);
+  NoSuchElementException.__class = new (__lc('java.lang.Class'))("java.util.NoSuchElementException", NoSuchElementException, __lc("java.lang.RuntimeException").__class, [], 1);
   return  NoSuchElementException;
 })();

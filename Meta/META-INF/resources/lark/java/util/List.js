@@ -13,6 +13,6 @@
   };
   List.prototype.__readObject = function(json, handlers, obj) {};
   List.prototype.__writeObject = function(obj, handlers) {};
-  List.prototype.__class = new (__lc('java.lang.Class'))("java.util.List", List, Object.prototype.__class, [__lc("java.util.Collection", "java.util.Collection").prototype.__class], 2);
+  List.__class = new (__lc('java.lang.Class'))("java.util.List", List, Object.__class, [__lc("java.util.Collection").__class], 2);
   return  List;
 })();

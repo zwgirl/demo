@@ -3,7 +3,7 @@
   Object.defineProperty(CSSRuleList.prototype, "length", {
 
   });
-  CSSRuleList.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSRuleList", CSSRuleList, Object.prototype.__class, [], 2);
+  CSSRuleList.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSRuleList", CSSRuleList, Object.prototype.__class, [], 2);
   return  CSSRuleList;
 })();
 (function(){ 
@@ -15,22 +15,22 @@
   CSSRule.MEDIA_RULE = 4;
   CSSRule.FONT_FACE_RULE = 5;
   CSSRule.PAGE_RULE = 6;
-  CSSRule.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSRule", CSSRule, Object.prototype.__class, [], 2);
+  CSSRule.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSRule", CSSRule, Object.prototype.__class, [], 2);
   return  CSSRule;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.CSSStyleRule"] = CSSStyleRule;
-  CSSStyleRule.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSStyleRule", CSSStyleRule, Object.prototype.__class, [CSSStyleRule.prototype.__class], 2);
+  CSSStyleRule.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSStyleRule", CSSStyleRule, Object.prototype.__class, [CSSStyleRule.prototype.__class], 2);
   return  CSSStyleRule;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.CSSMediaRule"] = CSSMediaRule;
-  CSSMediaRule.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSMediaRule", CSSMediaRule, Object.prototype.__class, [CSSMediaRule.prototype.__class], 2);
+  CSSMediaRule.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSMediaRule", CSSMediaRule, Object.prototype.__class, [CSSMediaRule.prototype.__class], 2);
   return  CSSMediaRule;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.CSSFontFaceRule"] = CSSFontFaceRule;
-  CSSFontFaceRule.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSFontFaceRule", CSSFontFaceRule, Object.prototype.__class, [CSSFontFaceRule.prototype.__class], 2);
+  CSSFontFaceRule.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSFontFaceRule", CSSFontFaceRule, Object.prototype.__class, [CSSFontFaceRule.prototype.__class], 2);
   return  CSSFontFaceRule;
 })();
 (function(){ 
@@ -38,27 +38,27 @@
   Object.defineProperty(CSSPageRule.prototype, "selectorText", {
 
   });
-  CSSPageRule.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSPageRule", CSSPageRule, Object.prototype.__class, [CSSPageRule.prototype.__class], 2);
+  CSSPageRule.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSPageRule", CSSPageRule, Object.prototype.__class, [CSSPageRule.prototype.__class], 2);
   return  CSSPageRule;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.CSSImportRule"] = CSSImportRule;
-  CSSImportRule.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSImportRule", CSSImportRule, Object.prototype.__class, [CSSImportRule.prototype.__class], 2);
+  CSSImportRule.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSImportRule", CSSImportRule, Object.prototype.__class, [CSSImportRule.prototype.__class], 2);
   return  CSSImportRule;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.CSSCharsetRule"] = CSSCharsetRule;
-  CSSCharsetRule.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSCharsetRule", CSSCharsetRule, Object.prototype.__class, [CSSCharsetRule.prototype.__class], 2);
+  CSSCharsetRule.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSCharsetRule", CSSCharsetRule, Object.prototype.__class, [CSSCharsetRule.prototype.__class], 2);
   return  CSSCharsetRule;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.CSSUnknownRule"] = CSSUnknownRule;
-  CSSUnknownRule.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSUnknownRule", CSSUnknownRule, Object.prototype.__class, [CSSUnknownRule.prototype.__class], 2);
+  CSSUnknownRule.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSUnknownRule", CSSUnknownRule, Object.prototype.__class, [CSSUnknownRule.prototype.__class], 2);
   return  CSSUnknownRule;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.CSSStyleDeclaration"] = CSSStyleDeclaration;
-  CSSStyleDeclaration.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSStyleDeclaration", CSSStyleDeclaration, Object.prototype.__class, [CSSStyleDeclaration.prototype.__class, CSSStyleDeclaration.prototype.__class, CSSStyleDeclaration.prototype.__class, CSSStyleDeclaration.prototype.__class], 2);
+  CSSStyleDeclaration.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSStyleDeclaration", CSSStyleDeclaration, Object.prototype.__class, [CSSStyleDeclaration.prototype.__class, CSSStyleDeclaration.prototype.__class, CSSStyleDeclaration.prototype.__class, CSSStyleDeclaration.prototype.__class], 2);
   return  CSSStyleDeclaration;
 })();
 (function(){ 
@@ -67,7 +67,7 @@
   CSSValue.CSS_PRIMITIVE_VALUE = 1;
   CSSValue.CSS_VALUE_LIST = 2;
   CSSValue.CSS_CUSTOM = 3;
-  CSSValue.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSValue", CSSValue, Object.prototype.__class, [], 2);
+  CSSValue.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSValue", CSSValue, Object.prototype.__class, [], 2);
   return  CSSValue;
 })();
 (function(){ 
@@ -101,7 +101,7 @@
   CSSPrimitiveValue.CSS_COUNTER = 23;
   CSSPrimitiveValue.CSS_RECT = 24;
   CSSPrimitiveValue.CSS_RGBCOLOR = 25;
-  CSSPrimitiveValue.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSPrimitiveValue", CSSPrimitiveValue, Object.prototype.__class, [CSSPrimitiveValue.prototype.__class], 2);
+  CSSPrimitiveValue.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSPrimitiveValue", CSSPrimitiveValue, Object.prototype.__class, [CSSPrimitiveValue.prototype.__class], 2);
   return  CSSPrimitiveValue;
 })();
 (function(){ 
@@ -109,7 +109,7 @@
   Object.defineProperty(CSSValueList.prototype, "length", {
 
   });
-  CSSValueList.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSValueList", CSSValueList, Object.prototype.__class, [CSSValueList.prototype.__class], 2);
+  CSSValueList.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSValueList", CSSValueList, Object.prototype.__class, [CSSValueList.prototype.__class], 2);
   return  CSSValueList;
 })();
 (function(){ 
@@ -123,7 +123,7 @@
   Object.defineProperty(RGBColor.prototype, "blue", {
 
   });
-  RGBColor.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.RGBColor", RGBColor, Object.prototype.__class, [], 2);
+  RGBColor.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.RGBColor", RGBColor, Object.prototype.__class, [], 2);
   return  RGBColor;
 })();
 (function(){ 
@@ -140,7 +140,7 @@
   Object.defineProperty(Rect.prototype, "left", {
 
   });
-  Rect.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.Rect", Rect, Object.prototype.__class, [], 2);
+  Rect.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.Rect", Rect, Object.prototype.__class, [], 2);
   return  Rect;
 })();
 (function(){ 
@@ -154,7 +154,7 @@
   Object.defineProperty(Counter.prototype, "separator", {
 
   });
-  Counter.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.Counter", Counter, Object.prototype.__class, [], 2);
+  Counter.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.Counter", Counter, Object.prototype.__class, [], 2);
   return  Counter;
 })();
 (function(){ 
@@ -162,7 +162,7 @@
   Object.defineProperty(ElementCSSInlineStyle.prototype, "style", {
 
   });
-  ElementCSSInlineStyle.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.ElementCSSInlineStyle", ElementCSSInlineStyle, Object.prototype.__class, [], 2);
+  ElementCSSInlineStyle.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.ElementCSSInlineStyle", ElementCSSInlineStyle, Object.prototype.__class, [], 2);
   return  ElementCSSInlineStyle;
 })();
 (function(){ 
@@ -512,22 +512,22 @@
   Object.defineProperty(CSS2Properties.prototype, "visibility", {
 
   });
-  CSS2Properties.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSS2Properties", CSS2Properties, Object.prototype.__class, [], 2);
+  CSS2Properties.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSS2Properties", CSS2Properties, Object.prototype.__class, [], 2);
   return  CSS2Properties;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.Transition"] = Transition;
-  Transition.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.Transition", Transition, Object.prototype.__class, [], 2);
+  Transition.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.Transition", Transition, Object.prototype.__class, [], 2);
   return  Transition;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.Animation"] = Animation;
-  Animation.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.Animation", Animation, Object.prototype.__class, [], 2);
+  Animation.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.Animation", Animation, Object.prototype.__class, [], 2);
   return  Animation;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.Transform"] = Transform;
-  Transform.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.Transform", Transform, Object.prototype.__class, [], 2);
+  Transform.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.Transform", Transform, Object.prototype.__class, [], 2);
   return  Transform;
 })();
 (function(){ 
@@ -538,21 +538,21 @@
   Object.defineProperty(CSSStyleSheet.prototype, "cssRules", {
 
   });
-  CSSStyleSheet.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSStyleSheet", CSSStyleSheet, Object.prototype.__class, [CSSStyleSheet.prototype.__class], 2);
+  CSSStyleSheet.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.CSSStyleSheet", CSSStyleSheet, Object.prototype.__class, [CSSStyleSheet.prototype.__class], 2);
   return  CSSStyleSheet;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.ViewCSS"] = ViewCSS;
-  ViewCSS.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.ViewCSS", ViewCSS, Object.prototype.__class, [ViewCSS.prototype.__class], 2);
+  ViewCSS.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.ViewCSS", ViewCSS, Object.prototype.__class, [ViewCSS.prototype.__class], 2);
   return  ViewCSS;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.DocumentCSS"] = DocumentCSS;
-  DocumentCSS.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.DocumentCSS", DocumentCSS, Object.prototype.__class, [DocumentCSS.prototype.__class], 2);
+  DocumentCSS.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.DocumentCSS", DocumentCSS, Object.prototype.__class, [DocumentCSS.prototype.__class], 2);
   return  DocumentCSS;
 })();
 (function(){ 
   __cache["org.w3c.dom.css.DOMImplementationCSS"] = DOMImplementationCSS;
-  DOMImplementationCSS.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.DOMImplementationCSS", DOMImplementationCSS, Object.prototype.__class, [DOMImplementationCSS.prototype.__class], 2);
+  DOMImplementationCSS.__class = new (__lc('java.lang.Class'))("org.w3c.dom.css.DOMImplementationCSS", DOMImplementationCSS, Object.prototype.__class, [DOMImplementationCSS.prototype.__class], 2);
   return  DOMImplementationCSS;
 })();

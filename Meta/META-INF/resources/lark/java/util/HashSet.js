@@ -57,6 +57,6 @@
     __r["_set"] = __propVal == null ? null : handlers.shared(__propVal);
     return __r;
   };
-  HashSet.prototype.__class = new (__lc('java.lang.Class'))("java.util.HashSet", HashSet, Object.prototype.__class, [__lc("java.util.Set", "java.util.Set").prototype.__class], 1);
+  HashSet.__class = new (__lc('java.lang.Class'))("java.util.HashSet", HashSet, Object.__class, [__lc("java.util.Set").__class], 1);
   return  HashSet;
 })();

@@ -48,17 +48,17 @@
   Object.defineProperty(CanvasRenderingContext2D.prototype, "textBaseline", {
 
   });
-  CanvasRenderingContext2D.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.canvas.CanvasRenderingContext2D", CanvasRenderingContext2D, Object.prototype.__class, [], 2);
+  CanvasRenderingContext2D.__class = new (__lc('java.lang.Class'))("org.w3c.canvas.CanvasRenderingContext2D", CanvasRenderingContext2D, Object.prototype.__class, [], 2);
   return  CanvasRenderingContext2D;
 })();
 (function(){ 
   __cache["org.w3c.canvas.CanvasGradient"] = CanvasGradient;
-  CanvasGradient.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.canvas.CanvasGradient", CanvasGradient, Object.prototype.__class, [], 2);
+  CanvasGradient.__class = new (__lc('java.lang.Class'))("org.w3c.canvas.CanvasGradient", CanvasGradient, Object.prototype.__class, [], 2);
   return  CanvasGradient;
 })();
 (function(){ 
   __cache["org.w3c.canvas.CanvasPattern"] = CanvasPattern;
-  CanvasPattern.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.canvas.CanvasPattern", CanvasPattern, Object.prototype.__class, [], 2);
+  CanvasPattern.__class = new (__lc('java.lang.Class'))("org.w3c.canvas.CanvasPattern", CanvasPattern, Object.prototype.__class, [], 2);
   return  CanvasPattern;
 })();
 (function(){ 
@@ -66,7 +66,7 @@
   Object.defineProperty(TextMetrics.prototype, "width", {
 
   });
-  TextMetrics.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.canvas.TextMetrics", TextMetrics, Object.prototype.__class, [], 2);
+  TextMetrics.__class = new (__lc('java.lang.Class'))("org.w3c.canvas.TextMetrics", TextMetrics, Object.prototype.__class, [], 2);
   return  TextMetrics;
 })();
 (function(){ 
@@ -80,7 +80,7 @@
   Object.defineProperty(ImageData.prototype, "data", {
 
   });
-  ImageData.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.canvas.ImageData", ImageData, Object.prototype.__class, [], 2);
+  ImageData.__class = new (__lc('java.lang.Class'))("org.w3c.canvas.ImageData", ImageData, Object.prototype.__class, [], 2);
   return  ImageData;
 })();
 (function(){ 
@@ -88,6 +88,6 @@
   Object.defineProperty(CanvasPixelArray.prototype, "length", {
 
   });
-  CanvasPixelArray.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.canvas.CanvasPixelArray", CanvasPixelArray, Object.prototype.__class, [], 2);
+  CanvasPixelArray.__class = new (__lc('java.lang.Class'))("org.w3c.canvas.CanvasPixelArray", CanvasPixelArray, Object.prototype.__class, [], 2);
   return  CanvasPixelArray;
 })();

@@ -3,6 +3,6 @@
   __cache["java.util.Deque"] = Deque;
   Deque.prototype.__readObject = function(json, handlers, obj) {};
   Deque.prototype.__writeObject = function(obj, handlers) {};
-  Deque.prototype.__class = new (__lc('java.lang.Class'))("java.util.Deque", Deque, Object.prototype.__class, [__lc("java.util.Queue", "java.util.Queue").prototype.__class], 2);
+  Deque.__class = new (__lc('java.lang.Class'))("java.util.Deque", Deque, Object.__class, [__lc("java.util.Queue").__class], 2);
   return  Deque;
 })();

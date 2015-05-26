@@ -15,7 +15,7 @@
   Object.defineProperty(MessageEvent.prototype, "ports", {
 
   });
-  MessageEvent.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.webmessaging.MessageEvent", MessageEvent, Object.prototype.__class, [MessageEvent.prototype.__class], 2);
+  MessageEvent.__class = new (__lc('java.lang.Class'))("org.w3c.webmessaging.MessageEvent", MessageEvent, Object.prototype.__class, [MessageEvent.prototype.__class], 2);
   return  MessageEvent;
 })();
 (function(){ 
@@ -27,7 +27,7 @@
   Object.defineProperty(MessageChannel.prototype, "port2", {
 
   });
-  MessageChannel.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.webmessaging.MessageChannel", MessageChannel, Object.prototype.__class, [], 1);
+  MessageChannel.__class = new (__lc('java.lang.Class'))("org.w3c.webmessaging.MessageChannel", MessageChannel, Object.prototype.__class, [], 1);
   return  MessageChannel;
 })();
 (function(){ 
@@ -35,6 +35,6 @@
   Object.defineProperty(MessagePort.prototype, "onmessage", {
 
   });
-  MessagePort.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.webmessaging.MessagePort", MessagePort, Object.prototype.__class, [], 2);
+  MessagePort.__class = new (__lc('java.lang.Class'))("org.w3c.webmessaging.MessagePort", MessagePort, Object.prototype.__class, [], 2);
   return  MessagePort;
 })();

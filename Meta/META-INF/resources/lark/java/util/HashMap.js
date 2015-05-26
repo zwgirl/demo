@@ -27,6 +27,41 @@
   HashMap.prototype.clear = function(){
     this._map.clear();
   };
+  HashMap.prototype.iterator = function(){
+    return (function(){
+      var r = {__enclosing : this, __proto__: __lc('java.util.HashMap$Itr').prototype};
+      __lc('java.util.HashMap$Itr').apply(r, arguments);
+      return r;
+    }).call(this);
+  };
+  HashMap.Itr = (function(){
+    function Itr() {      
+      this.entries = new Array();
+      this.cursor = 0;
+      this.lastRet = - 1;
+      this.__enclosing._map.forEach((function(value, key, map){
+        this.entries.push((function(){
+          var r = {__enclosing : this, __proto__: __lc('java.util.Map$Entry').prototype};
+          __lc('java.util.Map$Entry').apply(r, arguments);
+          return r;
+        }).call(this, key, value));
+      }).bind(this));
+    }
+    Itr.prototype.__proto__ = Object.prototype;
+    __cache["java.util.HashMap$Itr"] = Itr;
+    Itr.prototype.hasNext = function(){
+      return this.cursor != this.entries.length;
+    };
+    Itr.prototype.next = function(){
+      var i = this.cursor;
+      if(i >= this.entries.length) throw new (__lc("java.util.NoSuchElementException"))()
+      this.cursor = i + 1;
+      return this.entries[this.lastRet = i];
+    };
+    Itr.__class = new (__lc('java.lang.Class'))("java.util.HashMap$Itr", Itr, Object.__class, [__lc("java.util.Iterator").__class], 1);
+    return  Itr;
+    return Itr;
+  })();
   HashMap.prototype.__readObject = function(json, handlers, obj) {
     var __propVal = null;
         __propVal = json["_map"];
@@ -39,6 +74,6 @@
     __r["_map"] = __propVal == null ? null : handlers.shared(__propVal);
     return __r;
   };
-  HashMap.prototype.__class = new (__lc('java.lang.Class'))("java.util.HashMap", HashMap, Object.prototype.__class, [__lc("java.util.Map", "java.util.Map").prototype.__class], 1);
+  HashMap.__class = new (__lc('java.lang.Class'))("java.util.HashMap", HashMap, Object.__class, [__lc("java.util.Map").__class], 1);
   return  HashMap;
 })();

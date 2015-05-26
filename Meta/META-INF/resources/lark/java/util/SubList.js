@@ -6,12 +6,12 @@
     this._size = 0;
     if(fromIndex < 0) throw new Error(0, "from index out of boundsException! ")
     if(toIndex > list.size) throw new Error(0, "toIndex out of boundsException! ")
-    if(fromIndex > toIndex) throw new (__lc("java.lang.IllegalArgumentException", "java.lang.buildins"))("fromIndex(" + fromIndex + ") > toIndex(" + toIndex + ")")
+    if(fromIndex > toIndex) throw new (__lc("java.lang.IllegalArgumentException"))("fromIndex(" + fromIndex + ") > toIndex(" + toIndex + ")")
     this.l = list;
     this.offset = fromIndex;
     this._size = toIndex - fromIndex;
   }
-  SubList.prototype.__proto__ = __lc("java.util.AbstractList", "java.util.AbstractList").prototype;
+  SubList.prototype.__proto__ = __lc("java.util.AbstractList").prototype;
   __cache["java.util.SubList"] = SubList;
   Object.defineProperty(SubList.prototype, "size", {
     get : function() {
@@ -64,14 +64,14 @@
       };
       Anonym.prototype.next = function(){
         if(this.hasNext()) return this.i.next()
-        else throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
+        else throw new (__lc("java.util.NoSuchElementException"))()
       };
       Anonym.prototype.hasPrevious = function(){
         return this.previousIndex() >= 0;
       };
       Anonym.prototype.previous = function(){
         if(this.hasPrevious()) return this.i.previous()
-        else throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
+        else throw new (__lc("java.util.NoSuchElementException"))()
       };
       Anonym.prototype.nextIndex = function(){
         return this.i.nextIndex() - this.__enclosing.offset;
@@ -80,7 +80,7 @@
         return this.i.previousIndex() - this.__enclosing.offset;
       };
       Anonym.prototype.remove = function(){
-        __lc("java.util.Iterator", "java.util.Iterator").prototype.remove.call(this.i);
+        __lc("java.util.Iterator").prototype.remove.call(this.i);
         this.__enclosing._size --;
       };
       Anonym.prototype.set = function(e){
@@ -90,13 +90,13 @@
         this.i.add(e);
         this.__enclosing._size ++;
       };
-      Anonym.prototype.__class = new (__lc('java.lang.Class'))("java.util.SubList$1", Anonym, Object.prototype.__class, [__lc("java.util.ListIterator", "java.util.ListIterator").prototype.__class], 1);
+      Anonym.__class = new (__lc('java.lang.Class'))("java.util.SubList$1", Anonym, Object.__class, [__lc("java.util.ListIterator").__class], 1);
       return  Anonym;
       return ;
     })())();
   };
   SubList.prototype.subList = function(fromIndex, toIndex){
-    return new (__lc("java.util.SubList", "java.util.AbstractList"))(this, fromIndex, toIndex);
+    return new (SubList)(this, fromIndex, toIndex);
   };
   function rangeCheck(index){
     if(index < 0 || index >= this.size) throw new Error(0, "index out of bounds" + outOfBoundsMsg.call(this, index))
@@ -107,6 +107,6 @@
   function outOfBoundsMsg(index){
     return "Index: " + index + ", Size: " + this.size;
   }
-  SubList.prototype.__class = new (__lc('java.lang.Class'))("java.util.SubList", SubList, __lc("java.util.AbstractList", "java.util.AbstractList").prototype.__class, [], 1);
+  SubList.__class = new (__lc('java.lang.Class'))("java.util.SubList", SubList, __lc("java.util.AbstractList").__class, [], 1);
   return  SubList;
 })();

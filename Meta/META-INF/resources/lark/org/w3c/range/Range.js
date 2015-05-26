@@ -1,6 +1,6 @@
 (function(){ 
   function RangeException() {    
-  __lc('java.lang.Exception').call(this, "1");
+  __lc("java.lang.Exception", "java.lang.buildins").call(this, "1");
   }
   RangeException.prototype.__proto__ = __lc("java.lang.Exception").prototype;
   __cache["org.w3c.range.RangeException"] = RangeException;
@@ -9,7 +9,7 @@
   });
   RangeException.BAD_BOUNDARYPOINTS_ERR = 1;
   RangeException.INVALID_NODE_TYPE_ERR = 2;
-  RangeException.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.range.RangeException", RangeException, __lc("java.lang.Exception").prototype.__class, [], 1);
+  RangeException.__class = new (__lc('java.lang.Class'))("org.w3c.range.RangeException", RangeException, __lc("java.lang.Exception").prototype.__class, [], 1);
   return  RangeException;
 })();
 (function(){ 
@@ -36,6 +36,6 @@
   Range.START_TO_END = 1;
   Range.END_TO_END = 2;
   Range.END_TO_START = 3;
-  Range.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.range.Range", Range, Object.prototype.__class, [], 2);
+  Range.__class = new (__lc('java.lang.Class'))("org.w3c.range.Range", Range, Object.prototype.__class, [], 2);
   return  Range;
 })();

@@ -2,35 +2,21 @@
   function AbstractList() {    
   __lc("java.util.AbstractCollection", "java.util.AbstractCollection").call(this);
   }
-  AbstractList.prototype.__proto__ = __lc("java.util.AbstractCollection", "java.util.AbstractCollection").prototype;
+  AbstractList.prototype.__proto__ = __lc("java.util.AbstractCollection").prototype;
   __cache["java.util.AbstractList"] = AbstractList;
   AbstractList.prototype.add = function(e){
     this.addAt(this.size, e);
   };
   AbstractList.prototype.addAt = function(index, element){
-    throw new (__lc("java.lang.UnsupportedOperationException", "java.lang.buildins"))();
+    throw new (__lc("java.lang.UnsupportedOperationException"))();
   };
   AbstractList.prototype.get = function(index){
   };
   AbstractList.prototype.set = function(index, element){
-    throw new (__lc("java.lang.UnsupportedOperationException", "java.lang.buildins"))();
+    throw new (__lc("java.lang.UnsupportedOperationException"))();
   };
   AbstractList.prototype.removeAt = function(index){
-    throw new (__lc("java.lang.UnsupportedOperationException", "java.lang.buildins"))();
-  };
-  AbstractList.prototype.indexOf = function(o){
-    var it = this.listIterator();
-    if(o == null)
-    {
-      while (it.hasNext())
-        if(it.next() == null) return it.previousIndex()
-    }
-    else
-    {
-      while (it.hasNext())
-        if(o.equals(it.next())) return it.previousIndex()
-    }
-    return - 1;
+    throw new (__lc("java.lang.UnsupportedOperationException"))();
   };
   AbstractList.prototype.lastIndexOf = function(o){
     var it = this.listIteratorAt(this.size);
@@ -42,7 +28,7 @@
     else
     {
       while (it.hasPrevious())
-        if(o.equals(it.previous())) return it.nextIndex()
+        if(Object.equals(it.previous())) return it.nextIndex()
     }
     return - 1;
   };
@@ -76,11 +62,11 @@
     }).call(this, index);
   };
   AbstractList.prototype.subList = function(fromIndex, toIndex){
-    return new (__lc("java.util.SubList", "java.util.AbstractList"))(this, fromIndex, toIndex);
+    return new (__lc("java.util.SubList"))(this, fromIndex, toIndex);
   };
   AbstractList.prototype.equals = function(o){
     if(o == this) return true
-    if(! __lc("java.util.List", "java.util.List").prototype.__class.isInstance(o)) return false
+    if(! __lc("java.util.List").__class.isInstance(o)) return false
     var e1 = this.listIterator();
     var e2 = o.listIterator();
     while (e1.hasNext() && e2.hasNext())
@@ -88,25 +74,16 @@
     {
       var o1 = e1.next();
       var o2 = e2.next();
-      if(! o1 == null ? o2 == null : o1.equals(o2)) return false
+      if(! o1 == null ? o2 == null : Object.equals(o2)) return false
     }
     return ! e1.hasNext() || e2.hasNext();
-  };
-  AbstractList.prototype.hashCode = function(){
-    var hashCode = 1;
-    var __coll = this, __i = __coll.iterator();
-    while(__i.hasNext()) {
-      var e = __i.next();
-      hashCode = 31 * hashCode + (e == null ? 0 : e.hashCode());
-    }
-    return hashCode;
   };
   AbstractList.prototype.removeRange = function(fromIndex, toIndex){
     var it = this.listIteratorAt(fromIndex);
     for (var i = 0, n = toIndex - fromIndex; i < n; i ++) 
     {
       it.next();
-      __lc("java.util.Iterator", "java.util.Iterator").prototype.remove.call(it);
+      __lc("java.util.Iterator").prototype.remove.call(it);
     }
   };
   function rangeCheckForAdd(index){
@@ -133,12 +110,12 @@
       return next;
     };
     Itr.prototype.remove = function(){
-      if(this.lastRet < 0) throw new (__lc("java.lang.IllegalStateException", "java.lang.buildins"))()
+      if(this.lastRet < 0) throw new (__lc("java.lang.IllegalStateException"))()
       this.__enclosing.remove(this.lastRet);
       if(this.lastRet < this.cursor) this.cursor --
       this.lastRet = - 1;
     };
-    Itr.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractList$Itr", Itr, Object.prototype.__class, [__lc("java.util.Iterator", "java.util.Iterator").prototype.__class], 1);
+    Itr.__class = new (__lc('java.lang.Class'))("java.util.AbstractList$Itr", Itr, Object.__class, [__lc("java.util.Iterator").__class], 1);
     return  Itr;
     return Itr;
   })();
@@ -161,7 +138,7 @@
         return previous;
       }catch(e)
       {
-        throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))();
+        throw new (__lc("java.util.NoSuchElementException"))();
       }
     };
     ListItr.prototype.nextIndex = function(){
@@ -171,7 +148,7 @@
       return this.cursor - 1;
     };
     ListItr.prototype.set = function(e){
-      if(this.lastRet < 0) throw new (__lc("java.lang.IllegalStateException", "java.lang.buildins"))()
+      if(this.lastRet < 0) throw new (__lc("java.lang.IllegalStateException"))()
       this.__enclosing.set(this.lastRet, e);
     };
     ListItr.prototype.add = function(e){
@@ -180,14 +157,14 @@
       this.lastRet = - 1;
       this.cursor = i + 1;
     };
-    ListItr.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractList$ListItr", ListItr, __lc("java.util.AbstractList").Itr.prototype.__class, [__lc("java.util.ListIterator", "java.util.ListIterator").prototype.__class], 1);
+    ListItr.__class = new (__lc('java.lang.Class'))("java.util.AbstractList$ListItr", ListItr, __lc("java.util.AbstractList").Itr.__class, [__lc("java.util.ListIterator").__class], 1);
     return  ListItr;
     return ListItr;
   })();
   AbstractList.prototype.__readObject = function(json, handlers, obj) {
-    __lc("java.util.AbstractCollection", "java.util.AbstractCollection").prototype.__readObject(json, handlers, obj);};
+    __lc("java.util.AbstractCollection").prototype.__readObject(json, handlers, obj);};
   AbstractList.prototype.__writeObject = function(obj, handlers) {
-    __lc("java.util.AbstractCollection", "java.util.AbstractCollection").prototype.__writeObject(obj, handlers);};
-  AbstractList.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractList", AbstractList, __lc("java.util.AbstractCollection", "java.util.AbstractCollection").prototype.__class, [__lc("java.util.List", "java.util.List").prototype.__class], 1);
+    __lc("java.util.AbstractCollection").prototype.__writeObject(obj, handlers);};
+  AbstractList.__class = new (__lc('java.lang.Class'))("java.util.AbstractList", AbstractList, __lc("java.util.AbstractCollection").__class, [__lc("java.util.List").__class], 1);
   return  AbstractList;
 })();

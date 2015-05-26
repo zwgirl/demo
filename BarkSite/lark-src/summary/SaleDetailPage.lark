@@ -12,27 +12,28 @@ public class SaleDetailPage implements Page, INotifyPropertyChanged {
 	<%
 	<html xmlns:lark = "http://www.lark.org/2012">
 		<head> 
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-			<style>
-			.rect {
-			    border: 5px solid red;   
-			}  
-			</style>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		   <title>Bootstrap 销售订单</title>
+		   <link href="/scripts/bootstrap.min.css" rel="stylesheet" />
+		   <script src="/scripts/jquery.min.js"></script>
+		   <script src="/scripts/bootstrap.min.js"></script>
 		</head>
 		<body >
-		<table> 
-			<thead className="tabs" >
+		
+		<table class="table"> 
+		<caption>基本的表格布局</caption>
+			<thead >
 				<tr>
 				<td ><input type="checkbox" checked = {Binding property = "allSelected" mode="TwoWay" trigger="PropertyChanged"} /></td> 
 				<td>序号</td><td>品名</td> <td>数量</td><td>单价</td><td onmouseover=function{return false;}> 小计</td> 
 				</tr> 
 		    </thead> 
-			<tbody className="tabs" >
+			<tbody  >
 				<Iterator items = {Binding property = "saleDetails" }>
 					<Record />
 				</Iterator>
 		    </tbody>
-			<tbody className="tabs" id="1111" >
+			<tbody  id="1111" >
 				<tr>
 					<td colSpan=4> 总计 </td>
 					<td textContent={Binding property = "grandTotal" mode="OneWay"}> 0.0 </td>

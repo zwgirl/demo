@@ -65,7 +65,7 @@
   };
   Class.prototype.isInstance = function(obj){
     if(obj == null) return false
-    return this.isAssignableFrom(obj.getClass());
+    return this.isAssignableFrom(obj.constructor["__class"]);
   };
   Class.prototype.isAssignableFrom = function(cls){
     if(cls == null) return false
@@ -105,9 +105,6 @@
     }
     return false;
   };
-  Class.prototype.hashCode = function(){
-    return this._id;
-  };
   Class.prototype.newInstance = function(){
 	  	return new (this._factory)();
   	};
@@ -120,48 +117,15 @@
   Class.ARRAY = 0x10;
   Class.PRIMITIVE = 0x20;
   Class.__index = 0;
-  Class.prototype.__class = new Class("java.lang.Class", Class, Object.prototype.__class, [], 1);
+  Class.__class = new Class("java.lang.Class", Class, Object.__class, [], 1);
   return  Class;
 })();
 (function(){ 
   __cache["java.lang.Object"] = Object;
-  Object.registerPrimitiveClass = function(){
-		var c = __lc('java.lang.Class');
-		__cache["<B"] = new c("<B", null, Object.prototype.__class, [], 0x21);
-		__cache["<C"] = new c("<C", null, Object.prototype.__class, [], 0x21);
-		__cache["<S"] = new c("<B", null, Object.prototype.__class, [], 0x21);
-		__cache["<I"] = new c("<B", null, Object.prototype.__class, [], 0x21);
-		__cache["<L"] = new c("<B", null, Object.prototype.__class, [], 0x21);
-		__cache["<F"] = new c("<B", null, Object.prototype.__class, [], 0x21);
-		__cache["<D"] = new c("<B", null, Object.prototype.__class, [], 0x21);
-		__cache["<Z"] = new c("<B", null, Object.prototype.__class, [], 0x21);
-		
-	}
-  Object.prototype.hashCode = function(){
-    return 0;
-  };
-  Object.prototype.getClass = function()
-	{
-		return this.__class; 
-	}
-	;
-  Object.prototype.equals = function(that){
-    if(this == that)
-    {
-      return true;
-    }
-    return false;
-  };
-  Object.prototype.clone = function(){
-    return this.__proto__;
-  };
   Object.equals = function(left, right){
     return false;
   };
-  {
-    Object.registerPrimitiveClass.call(this);
-  }
-  Object.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Object", Object, null, [], 1);
+  Object.__class = new (__lc('java.lang.Class'))("java.lang.Object", Object, null, [], 1);
   return  Object;
 })();
 (function(){ 
@@ -175,19 +139,19 @@
   Object.defineProperty(Throwable.prototype, "description", {
 
   });
-  Throwable.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Throwable", Throwable, Object.prototype.__class, [], 1);
+  Throwable.__class = new (__lc('java.lang.Class'))("java.lang.Throwable", Throwable, Object.__class, [], 1);
   return  Throwable;
 })();
 (function(){ 
   Error.prototype.__proto__ = __lc("java.lang.Throwable").prototype;
   __cache["java.lang.Error"] = Error;
-  Error.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Error", Error, __lc("java.lang.Throwable").prototype.__class, [], 1);
+  Error.__class = new (__lc('java.lang.Class'))("java.lang.Error", Error, __lc("java.lang.Throwable").__class, [], 1);
   return  Error;
 })();
 (function(){ 
   Array.prototype.__proto__ = Object.prototype;
   __cache["java.lang.Array"] = Array;
-  Array.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Array", Array, Object.prototype.__class, [], 17);
+  Array.__class = new (__lc('java.lang.Class'))("java.lang.Array", Array, Object.__class, [], 17);
   return  Array;
 })();
 (function(){ 
@@ -199,7 +163,7 @@
   Boolean.prototype.valueOf = function(){
     return this.value;
   };
-  Boolean.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Boolean", Boolean, Object.prototype.__class, [], 1);
+  Boolean.__class = new (__lc('java.lang.Class'))("java.lang.Boolean", Boolean, Object.__class, [], 1);
   return  Boolean;
 })();
 (function(){ 
@@ -215,7 +179,7 @@
   Byte.prototype.valueOf = function(){
     return this.value;
   };
-  Byte.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Byte", Byte, Number.prototype.__class, [], 1);
+  Byte.__class = new (__lc('java.lang.Class'))("java.lang.Byte", Byte, Number.__class, [], 1);
   return  Byte;
 })();
 (function(){ 
@@ -231,7 +195,7 @@
   Double.prototype.valueOf = function(){
     return this.value;
   };
-  Double.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Double", Double, Number.prototype.__class, [], 1);
+  Double.__class = new (__lc('java.lang.Class'))("java.lang.Double", Double, Number.__class, [], 1);
   return  Double;
 })();
 (function(){ 
@@ -247,13 +211,13 @@
   Float.prototype.valueOf = function(){
     return this.value;
   };
-  Float.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Float", Float, Number.prototype.__class, [], 1);
+  Float.__class = new (__lc('java.lang.Class'))("java.lang.Float", Float, Number.__class, [], 1);
   return  Float;
 })();
 (function(){ 
   Function.prototype.__proto__ = Object.prototype;
   __cache["java.lang.Function"] = Function;
-  Function.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Function", Function, Object.prototype.__class, [], 1);
+  Function.__class = new (__lc('java.lang.Class'))("java.lang.Function", Function, Object.__class, [], 1);
   return  Function;
 })();
 (function(){ 
@@ -266,7 +230,7 @@
 (function(){ 
   Number.prototype.__proto__ = Object.prototype;
   __cache["java.lang.Number"] = Number;
-  Number.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Number", Number, Object.prototype.__class, [], 1);
+  Number.__class = new (__lc('java.lang.Class'))("java.lang.Number", Number, Object.__class, [], 1);
   return  Number;
 })();
 (function(){ 
@@ -284,13 +248,13 @@
     return false;
   };
   String.Empty = "";
-  String.prototype.__class = new (__lc('java.lang.Class'))("java.lang.String", String, Object.prototype.__class, [], 1);
+  String.__class = new (__lc('java.lang.Class'))("java.lang.String", String, Object.__class, [], 1);
   return  String;
 })();
 (function(){ 
   RegExp.prototype.__proto__ = Object.prototype;
   __cache["java.lang.RegExp"] = RegExp;
-  RegExp.prototype.__class = new (__lc('java.lang.Class'))("java.lang.RegExp", RegExp, Object.prototype.__class, [], 1);
+  RegExp.__class = new (__lc('java.lang.Class'))("java.lang.RegExp", RegExp, Object.__class, [], 1);
   return  RegExp;
 })();
 (function(){ 
@@ -306,7 +270,7 @@
   Short.prototype.valueOf = function(){
     return this.value;
   };
-  Short.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Short", Short, Number.prototype.__class, [], 1);
+  Short.__class = new (__lc('java.lang.Class'))("java.lang.Short", Short, Number.__class, [], 1);
   return  Short;
 })();
 (function(){ 
@@ -322,7 +286,7 @@
   Character.prototype.valueOf = function(){
     return this.value;
   };
-  Character.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Character", Character, Object.prototype.__class, [], 1);
+  Character.__class = new (__lc('java.lang.Class'))("java.lang.Character", Character, Object.__class, [], 1);
   return  Character;
 })();
 (function(){ 
@@ -338,7 +302,7 @@
   Long.prototype.valueOf = function(){
     return this.value;
   };
-  Long.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Long", Long, Number.prototype.__class, [], 1);
+  Long.__class = new (__lc('java.lang.Class'))("java.lang.Long", Long, Number.__class, [], 1);
   return  Long;
 })();
 (function(){ 
@@ -356,7 +320,7 @@
   };
   Integer.MIN_VALUE = 0x80000000;
   Integer.MAX_VALUE = 0x7fffffff;
-  Integer.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Integer", Integer, Number.prototype.__class, [], 1);
+  Integer.__class = new (__lc('java.lang.Class'))("java.lang.Integer", Integer, Number.__class, [], 1);
   return  Integer;
 })();
 (function(){ 
@@ -383,7 +347,7 @@
   Exception.prototype.getLocalizedMessage = function(){
     return this._message;
   };
-  Exception.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Exception", Exception, __lc("java.lang.Throwable").prototype.__class, [], 1);
+  Exception.__class = new (__lc('java.lang.Class'))("java.lang.Exception", Exception, __lc("java.lang.Throwable").__class, [], 1);
   return  Exception;
 })();
 (function(){ 
@@ -401,7 +365,7 @@
   };
   RuntimeException.prototype.__proto__ = __lc("java.lang.Exception").prototype;
   __cache["java.lang.RuntimeException"] = RuntimeException;
-  RuntimeException.prototype.__class = new (__lc('java.lang.Class'))("java.lang.RuntimeException", RuntimeException, __lc("java.lang.Exception").prototype.__class, [], 1);
+  RuntimeException.__class = new (__lc('java.lang.Class'))("java.lang.RuntimeException", RuntimeException, __lc("java.lang.Exception").__class, [], 1);
   return  RuntimeException;
 })();
 (function(){ 
@@ -419,7 +383,7 @@
   };
   NullPointerException.prototype.__proto__ = __lc("java.lang.RuntimeException").prototype;
   __cache["java.lang.NullPointerException"] = NullPointerException;
-  NullPointerException.prototype.__class = new (__lc('java.lang.Class'))("java.lang.NullPointerException", NullPointerException, __lc("java.lang.RuntimeException").prototype.__class, [], 1);
+  NullPointerException.__class = new (__lc('java.lang.Class'))("java.lang.NullPointerException", NullPointerException, __lc("java.lang.RuntimeException").__class, [], 1);
   return  NullPointerException;
 })();
 (function(){ 
@@ -437,7 +401,7 @@
   };
   ClassNotFoundException.prototype.__proto__ = __lc("java.lang.RuntimeException").prototype;
   __cache["java.lang.ClassNotFoundException"] = ClassNotFoundException;
-  ClassNotFoundException.prototype.__class = new (__lc('java.lang.Class'))("java.lang.ClassNotFoundException", ClassNotFoundException, __lc("java.lang.RuntimeException").prototype.__class, [], 1);
+  ClassNotFoundException.__class = new (__lc('java.lang.Class'))("java.lang.ClassNotFoundException", ClassNotFoundException, __lc("java.lang.RuntimeException").__class, [], 1);
   return  ClassNotFoundException;
 })();
 (function(){ 
@@ -455,7 +419,7 @@
   };
   CloneNotSupportedException.prototype.__proto__ = __lc("java.lang.Exception").prototype;
   __cache["java.lang.CloneNotSupportedException"] = CloneNotSupportedException;
-  CloneNotSupportedException.prototype.__class = new (__lc('java.lang.Class'))("java.lang.CloneNotSupportedException", CloneNotSupportedException, __lc("java.lang.Exception").prototype.__class, [], 1);
+  CloneNotSupportedException.__class = new (__lc('java.lang.Class'))("java.lang.CloneNotSupportedException", CloneNotSupportedException, __lc("java.lang.Exception").__class, [], 1);
   return  CloneNotSupportedException;
 })();
 (function(){ 
@@ -465,13 +429,13 @@
 (function(){ 
   Set.prototype.__proto__ = Object.prototype;
   __cache["java.lang.Set"] = Set;
-  Set.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Set", Set, Object.prototype.__class, [], 1);
+  Set.__class = new (__lc('java.lang.Class'))("java.lang.Set", Set, Object.__class, [], 1);
   return  Set;
 })();
 (function(){ 
   Map.prototype.__proto__ = Object.prototype;
   __cache["java.lang.Map"] = Map;
-  Map.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Map", Map, Object.prototype.__class, [], 1);
+  Map.__class = new (__lc('java.lang.Class'))("java.lang.Map", Map, Object.__class, [], 1);
   return  Map;
 })();
 (function(){ 
@@ -486,7 +450,7 @@
   };
   Iterable.prototype.__readObject = function(json, handlers, obj) {};
   Iterable.prototype.__writeObject = function(obj, handlers) {};
-  Iterable.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Iterable", Iterable, Object.prototype.__class, [], 2);
+  Iterable.__class = new (__lc('java.lang.Class'))("java.lang.Iterable", Iterable, Object.__class, [], 2);
   return  Iterable;
 })();
 (function(){ 
@@ -514,24 +478,7 @@
   Enum.prototype.equals = function(other){
     return this === other;
   };
-  Enum.prototype.hashCode = function(){
-    return Object.prototype.hashCode.call(this);
-  };
-  Enum.prototype.clone = function(){
-    throw new (__lc("java.lang.CloneNotSupportedException"))();
-  };
-  Enum.prototype.compareTo = function(o){
-    var other = o;
-    var self = this;
-    if(self.getClass() != other.getClass() && self.getDeclaringClass() != other.getDeclaringClass()) throw new Error()
-    return self.ordinal - other.ordinal;
-  };
-  Enum.prototype.getDeclaringClass = function(){
-    var clazz = this.getClass();
-    var zuper = clazz.superClass;
-    return (zuper == __lc("java.lang.Enum").prototype.__class) ? clazz : zuper;
-  };
-  Enum.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Enum", Enum, Object.prototype.__class, [__lc("java.lang.Comparable").prototype.__class], 1);
+  Enum.__class = new (__lc('java.lang.Class'))("java.lang.Enum", Enum, Object.__class, [], 1);
   return  Enum;
 })();
 (function(){ 
@@ -549,7 +496,7 @@
   };
   IllegalArgumentException.prototype.__proto__ = __lc("java.lang.RuntimeException").prototype;
   __cache["java.lang.IllegalArgumentException"] = IllegalArgumentException;
-  IllegalArgumentException.prototype.__class = new (__lc('java.lang.Class'))("java.lang.IllegalArgumentException", IllegalArgumentException, __lc("java.lang.RuntimeException").prototype.__class, [], 1);
+  IllegalArgumentException.__class = new (__lc('java.lang.Class'))("java.lang.IllegalArgumentException", IllegalArgumentException, __lc("java.lang.RuntimeException").__class, [], 1);
   return  IllegalArgumentException;
 })();
 (function(){ 
@@ -567,7 +514,7 @@
   };
   IllegalStateException.prototype.__proto__ = __lc("java.lang.RuntimeException").prototype;
   __cache["java.lang.IllegalStateException"] = IllegalStateException;
-  IllegalStateException.prototype.__class = new (__lc('java.lang.Class'))("java.lang.IllegalStateException", IllegalStateException, __lc("java.lang.RuntimeException").prototype.__class, [], 1);
+  IllegalStateException.__class = new (__lc('java.lang.Class'))("java.lang.IllegalStateException", IllegalStateException, __lc("java.lang.RuntimeException").__class, [], 1);
   return  IllegalStateException;
 })();
 (function(){ 
@@ -585,19 +532,19 @@
   };
   UnsupportedOperationException.prototype.__proto__ = __lc("java.lang.RuntimeException").prototype;
   __cache["java.lang.UnsupportedOperationException"] = UnsupportedOperationException;
-  UnsupportedOperationException.prototype.__class = new (__lc('java.lang.Class'))("java.lang.UnsupportedOperationException", UnsupportedOperationException, __lc("java.lang.RuntimeException").prototype.__class, [], 1);
+  UnsupportedOperationException.__class = new (__lc('java.lang.Class'))("java.lang.UnsupportedOperationException", UnsupportedOperationException, __lc("java.lang.RuntimeException").__class, [], 1);
   return  UnsupportedOperationException;
 })();
 (function(){ 
   function Comparable(){};
   __cache["java.lang.Comparable"] = Comparable;
-  Comparable.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Comparable", Comparable, Object.prototype.__class, [], 2);
+  Comparable.__class = new (__lc('java.lang.Class'))("java.lang.Comparable", Comparable, Object.__class, [], 2);
   return  Comparable;
 })();
 (function(){ 
   function Cloneable(){ };
   __cache["java.lang.Cloneable"] = Cloneable;
-  Cloneable.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Cloneable", Cloneable, Object.prototype.__class, [], 2);
+  Cloneable.__class = new (__lc('java.lang.Class'))("java.lang.Cloneable", Cloneable, Object.__class, [], 2);
   return  Cloneable;
 })();
 (function(){ 
@@ -605,13 +552,13 @@
   }
   JSON.prototype.__proto__ = Object.prototype;
   __cache["java.lang.JSON"] = JSON;
-  JSON.prototype.__class = new (__lc('java.lang.Class'))("java.lang.JSON", JSON, Object.prototype.__class, [], 1);
+  JSON.__class = new (__lc('java.lang.Class'))("java.lang.JSON", JSON, Object.__class, [], 1);
   return  JSON;
 })();
 (function(){ 
   Date.prototype.__proto__ = Object.prototype;
   __cache["java.lang.Date"] = Date;
-  Date.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Date", Date, Object.prototype.__class, [], 1);
+  Date.__class = new (__lc('java.lang.Class'))("java.lang.Date", Date, Object.__class, [], 1);
   return  Date;
 })();
 (function(){ 
@@ -632,7 +579,7 @@
 
   });
   xlink.xmlns = "http://www.w3.org/1999/xlink";
-  xlink.prototype.__class = new (__lc('java.lang.Class'))("java.lang.xlink", xlink, Object.prototype.__class, [], 1);
+  xlink.__class = new (__lc('java.lang.Class'))("java.lang.xlink", xlink, Object.__class, [], 1);
   return  xlink;
 })();
 (function(){ 
@@ -644,7 +591,7 @@
 
   });
   lark.xmlns = "http://www.lark.org/2015/x";
-  lark.prototype.__class = new (__lc('java.lang.Class'))("java.lang.lark", lark, Object.prototype.__class, [], 1);
+  lark.__class = new (__lc('java.lang.Class'))("java.lang.lark", lark, Object.__class, [], 1);
   return  lark;
 })();
 (function(){ 
@@ -659,6 +606,6 @@
 
   });
   xml.xmlns = "http://www.w3c.org/xml";
-  xml.prototype.__class = new (__lc('java.lang.Class'))("java.lang.xml", xml, Object.prototype.__class, [], 1);
+  xml.__class = new (__lc('java.lang.Class'))("java.lang.xml", xml, Object.__class, [], 1);
   return  xml;
 })();

@@ -19,7 +19,7 @@
     set : function(value) {
     }
   });
-  Bindable.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Bindable", Bindable, Object.prototype.__class, [], 2);
+  Bindable.__class = new (__lc('java.lang.Class'))("java.lang.Bindable", Bindable, Object.__class, [], 2);
   return  Bindable;
 })();
 (function(){ 
@@ -31,7 +31,7 @@
     set : function(value) {
     }
   });
-  Tag.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Tag", Tag, Object.prototype.__class, [], 2);
+  Tag.__class = new (__lc('java.lang.Class'))("java.lang.Tag", Tag, Object.__class, [], 2);
   return  Tag;
 })();
 (function(){ 
@@ -312,7 +312,7 @@
   AbstractBindable.prototype.setAttributeNS = function(namespaceURI, qualifiedName, value){
     this[name] = value;
   };
-  AbstractBindable.prototype.__class = new (__lc('java.lang.Class'))("java.lang.AbstractBindable", AbstractBindable, Object.prototype.__class, [__lc("java.lang.Bindable").prototype.__class, __lc("java.lang.Tag").prototype.__class], 1);
+  AbstractBindable.__class = new (__lc('java.lang.Class'))("java.lang.AbstractBindable", AbstractBindable, Object.__class, [__lc("java.lang.Bindable").__class, __lc("java.lang.Tag").__class], 1);
   return  AbstractBindable;
 })();
 (function(){ 
@@ -321,7 +321,7 @@
   Object.defineProperty(PropertyChangeListener.prototype, "propertyChange", {
 
   });
-  PropertyChangeListener.prototype.__class = new (__lc('java.lang.Class'))("java.lang.PropertyChangeListener", PropertyChangeListener, Object.prototype.__class, [], 2);
+  PropertyChangeListener.__class = new (__lc('java.lang.Class'))("java.lang.PropertyChangeListener", PropertyChangeListener, Object.__class, [], 2);
   return  PropertyChangeListener;
 })();
 (function(){ 
@@ -479,7 +479,7 @@
       }
     }).bind(this));
   };
-  INotifyPropertyChanged.prototype.__class = new (__lc('java.lang.Class'))("java.lang.INotifyPropertyChanged", INotifyPropertyChanged, Object.prototype.__class, [], 2);
+  INotifyPropertyChanged.__class = new (__lc('java.lang.Class'))("java.lang.INotifyPropertyChanged", INotifyPropertyChanged, Object.__class, [], 2);
   return  INotifyPropertyChanged;
 })();
 (function(){ 
@@ -510,7 +510,7 @@
       }
     }).bind(this));
   };
-  INotifyCollectionChanged.prototype.__class = new (__lc('java.lang.Class'))("java.lang.INotifyCollectionChanged", INotifyCollectionChanged, Object.prototype.__class, [], 2);
+  INotifyCollectionChanged.__class = new (__lc('java.lang.Class'))("java.lang.INotifyCollectionChanged", INotifyCollectionChanged, Object.__class, [], 2);
   return  INotifyCollectionChanged;
 })();
 (function(){ 
@@ -526,7 +526,7 @@
   CollectionChangedAction.Remove = new (CollectionChangedAction)("Remove", 2);
   CollectionChangedAction.Replace = new (CollectionChangedAction)("Replace", 3);
   CollectionChangedAction.Reset = new (CollectionChangedAction)("Reset", 4);
-  CollectionChangedAction.prototype.__class = new (__lc('java.lang.Class'))("java.lang.CollectionChangedAction", CollectionChangedAction, __lc("java.lang.Enum").prototype.__class, [], 3);
+  CollectionChangedAction.__class = new (__lc('java.lang.Class'))("java.lang.CollectionChangedAction", CollectionChangedAction, __lc("java.lang.Enum").__class, [], 3);
   return  CollectionChangedAction;
 })();
 (function(){ 
@@ -736,7 +736,7 @@
     initializeAdd.call(this, action, newItems, startingIndex);
     initializeRemove.call(this, action, oldItems, oldStartingIndex);
   }
-  CollectionChangedEvent.prototype.__class = new (__lc('java.lang.Class'))("java.lang.CollectionChangedEvent", CollectionChangedEvent, Object.prototype.__class, [], 1);
+  CollectionChangedEvent.__class = new (__lc('java.lang.Class'))("java.lang.CollectionChangedEvent", CollectionChangedEvent, Object.__class, [], 1);
   return  CollectionChangedEvent;
 })();
 (function(){ 
@@ -751,13 +751,13 @@
       return this._property;
     }
   });
-  PropertyChangeEvent.prototype.__class = new (__lc('java.lang.Class'))("java.lang.PropertyChangeEvent", PropertyChangeEvent, Object.prototype.__class, [], 1);
+  PropertyChangeEvent.__class = new (__lc('java.lang.Class'))("java.lang.PropertyChangeEvent", PropertyChangeEvent, Object.__class, [], 1);
   return  PropertyChangeEvent;
 })();
 (function(){ 
   function MarkupExtension(){};
   __cache["java.lang.MarkupExtension"] = MarkupExtension;
-  MarkupExtension.prototype.__class = new (__lc('java.lang.Class'))("java.lang.MarkupExtension", MarkupExtension, Object.prototype.__class, [], 2);
+  MarkupExtension.__class = new (__lc('java.lang.Class'))("java.lang.MarkupExtension", MarkupExtension, Object.__class, [], 2);
   return  MarkupExtension;
 })();
 (function(){ 
@@ -771,7 +771,7 @@
   UpdateSourceTrigger.PropertyChanged = new (UpdateSourceTrigger)("PropertyChanged", 0);
   UpdateSourceTrigger.LostFocus = new (UpdateSourceTrigger)("LostFocus", 1);
   UpdateSourceTrigger.Explicit = new (UpdateSourceTrigger)("Explicit", 2);
-  UpdateSourceTrigger.prototype.__class = new (__lc('java.lang.Class'))("java.lang.UpdateSourceTrigger", UpdateSourceTrigger, __lc("java.lang.Enum").prototype.__class, [], 3);
+  UpdateSourceTrigger.__class = new (__lc('java.lang.Class'))("java.lang.UpdateSourceTrigger", UpdateSourceTrigger, __lc("java.lang.Enum").__class, [], 3);
   return  UpdateSourceTrigger;
 })();
 (function(){ 
@@ -785,7 +785,7 @@
   BindingMode.TwoWay = new (BindingMode)("TwoWay", 0);
   BindingMode.OneWay = new (BindingMode)("OneWay", 1);
   BindingMode.OneTime = new (BindingMode)("OneTime", 2);
-  BindingMode.prototype.__class = new (__lc('java.lang.Class'))("java.lang.BindingMode", BindingMode, __lc("java.lang.Enum").prototype.__class, [], 3);
+  BindingMode.__class = new (__lc('java.lang.Class'))("java.lang.BindingMode", BindingMode, __lc("java.lang.Enum").__class, [], 3);
   return  BindingMode;
 })();
 (function(){ 
@@ -1012,7 +1012,7 @@
     }
     this._target.detach(this);
   };
-  Binding.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Binding", Binding, Object.prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class, __lc("java.lang.PropertyChangeListener").prototype.__class], 1);
+  Binding.__class = new (__lc('java.lang.Class'))("java.lang.Binding", Binding, Object.__class, [__lc("java.lang.MarkupExtension").__class, __lc("java.lang.PropertyChangeListener").__class], 1);
   return  Binding;
 })();
 (function(){ 
@@ -1117,7 +1117,7 @@
       __lc("java.lang.INotifyPropertyChanged").prototype.addPropertyChangeListener.call(this, "dataItem", binding.propertyChange);
       if(binding.trace)
       {
-        if(__lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
+        if(__lc("java.lang.INotifyPropertyChanged").__class.isInstance(this._dataItem))
         {
           __lc("java.lang.INotifyPropertyChanged").prototype.addAllPropertyChangeListener.call(this._dataItem, binding.propertyChange);
         }
@@ -1125,7 +1125,7 @@
     }
     else
     {
-      if(__lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
+      if(__lc("java.lang.INotifyPropertyChanged").__class.isInstance(this._dataItem))
       {
         __lc("java.lang.INotifyPropertyChanged").prototype.addPropertyChangeListener.call(this._dataItem, binding.property, binding.propertyChange);
       }
@@ -1149,7 +1149,7 @@
     }
     else
     {
-      if(__lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
+      if(__lc("java.lang.INotifyPropertyChanged").__class.isInstance(this._dataItem))
       {
         __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(this._dataItem, binding.property, binding.propertyChange);
       }
@@ -1187,7 +1187,7 @@
     }).bind(this));
   };
   DataContext.prototype.replaceDataItem = function(newDataItem){
-    if(this._dataItem != null && __lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(this._dataItem))
+    if(this._dataItem != null && __lc("java.lang.INotifyPropertyChanged").__class.isInstance(this._dataItem))
     {
       var oldPc = this._dataItem;
       this._dependents.forEach((function(dc, index, array){
@@ -1198,7 +1198,7 @@
         __lc("java.lang.INotifyPropertyChanged").prototype.removePropertyChangeListener.call(oldPc, this._bindings[i].property, this._bindings[i].propertyChange);
       }
     }
-    if(newDataItem != null && __lc("java.lang.INotifyPropertyChanged").prototype.__class.isInstance(newDataItem))
+    if(newDataItem != null && __lc("java.lang.INotifyPropertyChanged").__class.isInstance(newDataItem))
     {
       var newPc = newDataItem;
       this._dependents.forEach((function(dc, index, array){
@@ -1247,7 +1247,7 @@
       }
     }
   };
-  DataContext.prototype.__class = new (__lc('java.lang.Class'))("java.lang.DataContext", DataContext, Object.prototype.__class, [__lc("java.lang.PropertyChangeListener").prototype.__class, __lc("java.lang.INotifyPropertyChanged").prototype.__class, __lc("java.lang.MarkupExtension").prototype.__class], 1);
+  DataContext.__class = new (__lc('java.lang.Class'))("java.lang.DataContext", DataContext, Object.__class, [__lc("java.lang.PropertyChangeListener").__class, __lc("java.lang.INotifyPropertyChanged").__class, __lc("java.lang.MarkupExtension").__class], 1);
   return  DataContext;
 })();
 (function(){ 
@@ -1266,7 +1266,7 @@
     this._childs.forEach((function(node, index, array){
     }).bind(this));
   };Template.prototype.doBody = function(__p, __l, __ctx) {};
-  Template.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Template", Template, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  Template.__class = new (__lc('java.lang.Class'))("java.lang.Template", Template, __lc("java.lang.AbstractBindable").__class, [], 1);
   return  Template;
 })();
 (function(){ 
@@ -1386,7 +1386,7 @@
     this["__ctx"] = context;
     if(this.items != null)
     {
-      if(__lc("java.util.Collection").prototype.__class.isInstance(this.items))
+      if(__lc("java.util.Collection").__class.isInstance(this.items))
       {
         var index = 0;
         var size = this.items.size;
@@ -1421,7 +1421,7 @@
             break;
           }
         }
-        if(__lc("java.util.ObservableCollection", "java.util.ObservableCollection").prototype.__class.isInstance(this.items))
+        if(__lc("java.util.ObservableCollection", "java.util.ObservableCollection").__class.isInstance(this.items))
         {
           __lc("java.lang.INotifyCollectionChanged").prototype.addCollectionChangedListener.call(this.items, this.onCollectionChanged);
         }
@@ -1520,7 +1520,7 @@
         return this.__enclosing._step;
       }
     });
-    LoopStatus.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Iterator$LoopStatus", LoopStatus, Object.prototype.__class, [], 1);
+    LoopStatus.__class = new (__lc('java.lang.Class'))("java.lang.Iterator$LoopStatus", LoopStatus, Object.__class, [], 1);
     return  LoopStatus;
     return LoopStatus;
   })();
@@ -1530,11 +1530,11 @@
     }
     Item.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
     __cache["java.lang.Iterator$Item"] = Item;
-    Item.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Iterator$Item", Item, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+    Item.__class = new (__lc('java.lang.Class'))("java.lang.Iterator$Item", Item, __lc("java.lang.AbstractBindable").__class, [], 1);
     return  Item;
     return Item;
   })();
-  Iterator.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Iterator", Iterator, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  Iterator.__class = new (__lc('java.lang.Class'))("java.lang.Iterator", Iterator, __lc("java.lang.AbstractBindable").__class, [], 1);
   return  Iterator;
 })();
 (function(){ 
@@ -1582,7 +1582,7 @@
     }
     return result;
   };
-  Choose.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Choose", Choose, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  Choose.__class = new (__lc('java.lang.Class'))("java.lang.Choose", Choose, __lc("java.lang.AbstractBindable").__class, [], 1);
   return  Choose;
 })();
 (function(){ 
@@ -1605,7 +1605,7 @@
     {
       return;
     }
-    if(! __lc("java.lang.Choose").prototype.__class.isInstance(this.logicParent))
+    if(! __lc("java.lang.Choose").__class.isInstance(this.logicParent))
     {
       return;
     }
@@ -1615,7 +1615,7 @@
       this.bodyHandler(parentNode, this, context);
     }
   };
-  When.prototype.__class = new (__lc('java.lang.Class'))("java.lang.When", When, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  When.__class = new (__lc('java.lang.Class'))("java.lang.When", When, __lc("java.lang.AbstractBindable").__class, [], 1);
   return  When;
 })();
 (function(){ 
@@ -1625,7 +1625,7 @@
   Otherwise.prototype.__proto__ = __lc("java.lang.AbstractBindable").prototype;
   __cache["java.lang.Otherwise"] = Otherwise;
   Otherwise.prototype.doBody = function(parentNode, logicParent, context){
-    if(! __lc("java.lang.Choose").prototype.__class.isInstance(this.logicParent))
+    if(! __lc("java.lang.Choose").__class.isInstance(this.logicParent))
     {
       return;
     }
@@ -1635,7 +1635,7 @@
       this.bodyHandler(parentNode, this, context);
     }
   };
-  Otherwise.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Otherwise", Otherwise, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  Otherwise.__class = new (__lc('java.lang.Class'))("java.lang.Otherwise", Otherwise, __lc("java.lang.AbstractBindable").__class, [], 1);
   return  Otherwise;
 })();
 (function(){ 
@@ -1678,7 +1678,7 @@
       }
     }
   };
-  If.prototype.__class = new (__lc('java.lang.Class'))("java.lang.If", If, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  If.__class = new (__lc('java.lang.Class'))("java.lang.If", If, __lc("java.lang.AbstractBindable").__class, [], 1);
   return  If;
 })();
 (function(){ 
@@ -1708,7 +1708,7 @@
     }).bind(ParameterUtils));
     return result;
   };
-  ParameterUtils.prototype.__class = new (__lc('java.lang.Class'))("java.lang.ParameterUtils", ParameterUtils, Object.prototype.__class, [], 1);
+  ParameterUtils.__class = new (__lc('java.lang.Class'))("java.lang.ParameterUtils", ParameterUtils, Object.__class, [], 1);
   return  ParameterUtils;
 })();
 (function(){ 
@@ -1747,7 +1747,7 @@
   function update(){
     this._target.href = this.URL() + "?" + __lc("java.lang.ParameterUtils").encodeRequest(this._propValues);
   }
-  ProxyPage.prototype.__class = new (__lc('java.lang.Class'))("java.lang.ProxyPage", ProxyPage, __lc("java.lang.AbstractBindable").prototype.__class, [], 1);
+  ProxyPage.__class = new (__lc('java.lang.Class'))("java.lang.ProxyPage", ProxyPage, __lc("java.lang.AbstractBindable").__class, [], 1);
   return  ProxyPage;
 })();
 (function(){ 
@@ -1755,6 +1755,6 @@
   __cache["java.lang.Page"] = Page;
   Page.prototype.inject = function(a, properties){
   };
-  Page.prototype.__class = new (__lc('java.lang.Class'))("java.lang.Page", Page, Object.prototype.__class, [__lc("java.lang.MarkupExtension").prototype.__class], 2);
+  Page.__class = new (__lc('java.lang.Class'))("java.lang.Page", Page, Object.__class, [__lc("java.lang.MarkupExtension").__class], 2);
   return  Page;
 })();

@@ -8,20 +8,6 @@
   AbstractCollection.prototype.isEmpty = function(){
     return this.size == 0;
   };
-  AbstractCollection.prototype.contains = function(o){
-    var it = this.iterator();
-    if(o == null)
-    {
-      while (it.hasNext())
-        if(it.next() == null) return true
-    }
-    else
-    {
-      while (it.hasNext())
-        if(o.equals(it.next())) return true
-    }
-    return false;
-  };
   AbstractCollection.prototype.toArray = function(){
     var r = new Array();
     var it = this.iterator();
@@ -34,35 +20,7 @@
     return r;
   };
   AbstractCollection.prototype.add = function(e){
-    throw new (__lc("java.lang.UnsupportedOperationException", "java.lang.buildins"))();
-  };
-  AbstractCollection.prototype.remove = function(o){
-    var it = this.iterator();
-    if(o == null)
-    {
-      while (it.hasNext())
-
-      {
-        if(it.next() == null)
-        {
-          __lc("java.util.Iterator", "java.util.Iterator").prototype.remove.call(it);
-          return true;
-        }
-      }
-    }
-    else
-    {
-      while (it.hasNext())
-
-      {
-        if(o.equals(it.next()))
-        {
-          __lc("java.util.Iterator", "java.util.Iterator").prototype.remove.call(it);
-          return true;
-        }
-      }
-    }
-    return false;
+    throw new (__lc("java.lang.UnsupportedOperationException"))();
   };
   AbstractCollection.prototype.containsAll = function(c){
     var __coll = c, __i = __coll.iterator();
@@ -80,14 +38,13 @@
     }
   };
   AbstractCollection.prototype.removeAll = function(c){
-    __lc("java.util.Objects", "java.util.Objects").requireNonNull(c);
     var it = this.iterator();
     while (it.hasNext())
 
     {
       if(c.contains(it.next()))
       {
-        __lc("java.util.Iterator", "java.util.Iterator").prototype.remove.call(it);
+        __lc("java.util.Iterator").prototype.remove.call(it);
       }
     }
   };
@@ -99,7 +56,7 @@
     {
       if(! c.contains(it.next()))
       {
-        __lc("java.util.Iterator", "java.util.Iterator").prototype.remove.call(it);
+        __lc("java.util.Iterator").prototype.remove.call(it);
         modified = true;
       }
     }
@@ -111,7 +68,7 @@
 
     {
       it.next();
-      __lc("java.util.Iterator", "java.util.Iterator").prototype.remove.call(it);
+      __lc("java.util.Iterator").prototype.remove.call(it);
     }
   };
   AbstractCollection.prototype.toString = function(){
@@ -134,6 +91,6 @@
   };
   AbstractCollection.prototype.__readObject = function(json, handlers, obj) {};
   AbstractCollection.prototype.__writeObject = function(obj, handlers) {};
-  AbstractCollection.prototype.__class = new (__lc('java.lang.Class'))("java.util.AbstractCollection", AbstractCollection, Object.prototype.__class, [__lc("java.util.Collection", "java.util.Collection").prototype.__class], 1);
+  AbstractCollection.__class = new (__lc('java.lang.Class'))("java.util.AbstractCollection", AbstractCollection, Object.__class, [__lc("java.util.Collection").__class], 1);
   return  AbstractCollection;
 })();

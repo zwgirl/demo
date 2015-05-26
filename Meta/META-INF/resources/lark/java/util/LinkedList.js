@@ -17,7 +17,7 @@
     this.addAll(c);
   }
   };
-  LinkedList.prototype.__proto__ = __lc("java.util.AbstractSequentialList", "java.util.AbstractSequentialList").prototype;
+  LinkedList.prototype.__proto__ = __lc("java.util.AbstractSequentialList").prototype;
   __cache["java.util.LinkedList"] = LinkedList;
   Object.defineProperty(LinkedList.prototype, "size", {
     get : function() {
@@ -110,22 +110,22 @@
   };
   LinkedList.prototype.getFirst = function(){
     var f = this.first;
-    if(f == null) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
+    if(f == null) throw new (__lc("java.util.NoSuchElementException"))()
     return f.item;
   };
   LinkedList.prototype.getLast = function(){
     var l = this.last;
-    if(l == null) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
+    if(l == null) throw new (__lc("java.util.NoSuchElementException"))()
     return l.item;
   };
   LinkedList.prototype.removeFirst = function(){
     var f = this.first;
-    if(f == null) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
+    if(f == null) throw new (__lc("java.util.NoSuchElementException"))()
     return unlinkFirst.call(this, f);
   };
   LinkedList.prototype.removeLast = function(){
     var l = this.last;
-    if(l == null) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
+    if(l == null) throw new (__lc("java.util.NoSuchElementException"))()
     return unlinkLast.call(this, l);
   };
   LinkedList.prototype.addFirst = function(e){
@@ -159,7 +159,7 @@
     {
       for (var x = this.first; x != null; x = x.next) 
       {
-        if(o.equals(x.item))
+        if(Object.equals(x.item))
         {
           this.unlink(x);
           return true;
@@ -288,7 +288,7 @@
     {
       for (var x = this.first; x != null; x = x.next) 
       {
-        if(o.equals(x.item)) return index
+        if(Object.equals(x.item)) return index
         index ++;
       }
     }
@@ -309,7 +309,7 @@
       for (var x = this.last; x != null; x = x.prev) 
       {
         index --;
-        if(o.equals(x.item)) return index
+        if(Object.equals(x.item)) return index
       }
     }
     return - 1;
@@ -380,7 +380,7 @@
     {
       for (var x = this.last; x != null; x = x.prev) 
       {
-        if(o.equals(x.item))
+        if(Object.equals(x.item))
         {
           this.unlink(x);
           return true;
@@ -407,7 +407,7 @@
   function superClone(){
     try
     {
-      return __lc("java.util.AbstractSequentialList", "java.util.AbstractSequentialList").prototype.clone.call(this);
+      return __lc("java.util.AbstractSequentialList").prototype.clone.call(this);
     }catch(e)
     {
       throw new Error();
@@ -442,7 +442,7 @@
       return this.nextIndex < this.__enclosing.size;
     };
     ListItr.prototype.next = function(){
-      if(! this.hasNext()) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
+      if(! this.hasNext()) throw new (__lc("java.util.NoSuchElementException"))()
       this.lastReturned = this.next;
       this.next = this.next.next;
       this.nextIndex ++;
@@ -452,7 +452,7 @@
       return this.nextIndex > 0;
     };
     ListItr.prototype.previous = function(){
-      if(! this.hasPrevious()) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
+      if(! this.hasPrevious()) throw new (__lc("java.util.NoSuchElementException"))()
       this.lastReturned = this.next = (this.next == null) ? this.__enclosing.last : this.next.prev;
       this.nextIndex --;
       return this.lastReturned.item;
@@ -464,7 +464,7 @@
       return this.nextIndex - 1;
     };
     ListItr.prototype.remove = function(){
-      if(this.lastReturned == null) throw new (__lc("java.lang.IllegalStateException", "java.lang.buildins"))()
+      if(this.lastReturned == null) throw new (__lc("java.lang.IllegalStateException"))()
       var lastNext = this.lastReturned.next;
       this.__enclosing.unlink(this.lastReturned);
       if(this.next == this.lastReturned) this.next = lastNext
@@ -472,7 +472,7 @@
       this.lastReturned = null;
     };
     ListItr.prototype.set = function(e){
-      if(this.lastReturned == null) throw new (__lc("java.lang.IllegalStateException", "java.lang.buildins"))()
+      if(this.lastReturned == null) throw new (__lc("java.lang.IllegalStateException"))()
       this.lastReturned.item = e;
     };
     ListItr.prototype.add = function(e){
@@ -481,7 +481,7 @@
       else this.__enclosing.linkBefore(e, this.next)
       this.nextIndex ++;
     };
-    ListItr.prototype.__class = new (__lc('java.lang.Class'))("java.util.LinkedList$ListItr", ListItr, Object.prototype.__class, [__lc("java.util.ListIterator", "java.util.ListIterator").prototype.__class], 1);
+    ListItr.__class = new (__lc('java.lang.Class'))("java.util.LinkedList$ListItr", ListItr, Object.__class, [__lc("java.util.ListIterator").__class], 1);
     return  ListItr;
     return ListItr;
   })();
@@ -496,7 +496,7 @@
     }
     Node.prototype.__proto__ = Object.prototype;
     __cache["java.util.LinkedList$Node"] = Node;
-    Node.prototype.__class = new (__lc('java.lang.Class'))("java.util.LinkedList$Node", Node, Object.prototype.__class, [], 1);
+    Node.__class = new (__lc('java.lang.Class'))("java.util.LinkedList$Node", Node, Object.__class, [], 1);
     return  Node;
     return Node;
   })();
@@ -519,20 +519,20 @@
     DescendingIterator.prototype.remove = function(){
       this.itr.remove();
     };
-    DescendingIterator.prototype.__class = new (__lc('java.lang.Class'))("java.util.LinkedList$DescendingIterator", DescendingIterator, Object.prototype.__class, [__lc("java.util.Iterator", "java.util.Iterator").prototype.__class], 1);
+    DescendingIterator.__class = new (__lc('java.lang.Class'))("java.util.LinkedList$DescendingIterator", DescendingIterator, Object.__class, [__lc("java.util.Iterator").__class], 1);
     return  DescendingIterator;
     return DescendingIterator;
   })();
   LinkedList.prototype.__readObject = function(json, handlers, obj) {
-    __lc("java.util.AbstractSequentialList", "java.util.AbstractSequentialList").prototype.__readObject(json, handlers, obj);
+    __lc("java.util.AbstractSequentialList").prototype.__readObject(json, handlers, obj);
     var __propVal = null;
   };
   LinkedList.prototype.__writeObject = function(obj, handlers) {
-    __lc("java.util.AbstractSequentialList", "java.util.AbstractSequentialList").prototype.__writeObject(obj, handlers);
+    __lc("java.util.AbstractSequentialList").prototype.__writeObject(obj, handlers);
     var __r = {"__clazz" : "java.util.LinkedList"};
     var __propVal = null;
     return __r;
   };
-  LinkedList.prototype.__class = new (__lc('java.lang.Class'))("java.util.LinkedList", LinkedList, __lc("java.util.AbstractSequentialList", "java.util.AbstractSequentialList").prototype.__class, [__lc("java.util.List", "java.util.List").prototype.__class, __lc("java.util.Deque", "java.util.Deque").prototype.__class, __lc("java.lang.Cloneable").prototype.__class], 1);
+  LinkedList.__class = new (__lc('java.lang.Class'))("java.util.LinkedList", LinkedList, __lc("java.util.AbstractSequentialList").__class, [__lc("java.util.List").__class, __lc("java.util.Deque").__class, __lc("java.lang.Cloneable").__class], 1);
   return  LinkedList;
 })();

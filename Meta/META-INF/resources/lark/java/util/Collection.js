@@ -5,7 +5,6 @@
 
   });
   Collection.prototype.removeIf = function(filter){
-    __lc("java.util.Objects", "java.util.Objects").requireNonNull(filter);
     var removed = false;
     var each = this.iterator();
     while (each.hasNext())
@@ -13,7 +12,7 @@
     {
       if(filter(each.next()))
       {
-        __lc("java.util.Iterator", "java.util.Iterator").prototype.remove.call(each);
+        __lc("java.util.Iterator").prototype.remove.call(each);
         removed = true;
       }
     }
@@ -27,6 +26,6 @@
     var __propVal = null;
     return __r;
   };
-  Collection.prototype.__class = new (__lc('java.lang.Class'))("java.util.Collection", Collection, Object.prototype.__class, [__lc("java.lang.Iterable").prototype.__class], 2);
+  Collection.__class = new (__lc('java.lang.Class'))("java.util.Collection", Collection, Object.__class, [__lc("java.lang.Iterable").__class], 2);
   return  Collection;
 })();

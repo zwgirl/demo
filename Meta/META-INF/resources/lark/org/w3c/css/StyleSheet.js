@@ -21,7 +21,7 @@
   Object.defineProperty(StyleSheet.prototype, "media", {
 
   });
-  StyleSheet.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.css.StyleSheet", StyleSheet, Object.prototype.__class, [], 2);
+  StyleSheet.__class = new (__lc('java.lang.Class'))("org.w3c.css.StyleSheet", StyleSheet, Object.prototype.__class, [], 2);
   return  StyleSheet;
 })();
 (function(){ 
@@ -29,7 +29,7 @@
   Object.defineProperty(StyleSheetList.prototype, "length", {
 
   });
-  StyleSheetList.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.css.StyleSheetList", StyleSheetList, Object.prototype.__class, [], 2);
+  StyleSheetList.__class = new (__lc('java.lang.Class'))("org.w3c.css.StyleSheetList", StyleSheetList, Object.prototype.__class, [], 2);
   return  StyleSheetList;
 })();
 (function(){ 
@@ -40,7 +40,7 @@
   Object.defineProperty(MediaList.prototype, "length", {
 
   });
-  MediaList.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.css.MediaList", MediaList, Object.prototype.__class, [], 2);
+  MediaList.__class = new (__lc('java.lang.Class'))("org.w3c.css.MediaList", MediaList, Object.prototype.__class, [], 2);
   return  MediaList;
 })();
 (function(){ 
@@ -48,7 +48,7 @@
   Object.defineProperty(LinkStyle.prototype, "sheet", {
 
   });
-  LinkStyle.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.css.LinkStyle", LinkStyle, Object.prototype.__class, [], 2);
+  LinkStyle.__class = new (__lc('java.lang.Class'))("org.w3c.css.LinkStyle", LinkStyle, Object.prototype.__class, [], 2);
   return  LinkStyle;
 })();
 (function(){ 
@@ -56,6 +56,6 @@
   Object.defineProperty(DocumentStyle.prototype, "styleSheets", {
 
   });
-  DocumentStyle.prototype.__class = new (__lc('java.lang.Class'))("org.w3c.css.DocumentStyle", DocumentStyle, Object.prototype.__class, [], 2);
+  DocumentStyle.__class = new (__lc('java.lang.Class'))("org.w3c.css.DocumentStyle", DocumentStyle, Object.prototype.__class, [], 2);
   return  DocumentStyle;
 })();

@@ -9,7 +9,7 @@
   RemotingServiceFactory.prototype.getService = function(clazz){
     return clazz.prototype;
   };
-  RemotingServiceFactory.INSTANCE = new (__lc('java.lang.RemotingServiceFactory'))();
-  RemotingServiceFactory.prototype.__class = new (__lc('java.lang.Class'))("java.lang.RemotingServiceFactory", RemotingServiceFactory, Object.prototype.__class, [], 1);
+  RemotingServiceFactory.INSTANCE = new (RemotingServiceFactory)();
+  RemotingServiceFactory.__class = new (__lc('java.lang.Class'))("java.lang.RemotingServiceFactory", RemotingServiceFactory, Object.__class, [], 1);
   return  RemotingServiceFactory;
 })();
