@@ -1,22 +1,22 @@
 @CHARSET "UTF-8";
     
-    #clock {
-    	position: relative;
-    	width: 700px;
-    	height: 600px;
-    	margin: 20px auto 0 auto;
+   	#clock {
+	  	position: relative;
+	  	width: 600px;
+	  	height: 600px;
+	 	margin: 20px auto 0 auto;
     	background: url(images/clockface.jpg);
     	list-style: none;
    	}
     
     #sec, #min, #hour {
-    	position: absolute;
-    	width: 30px;
-    	height: 600px;
-    	top: 0px;
-    	left: 285px;
-   	}
-    
+	  position: absolute;
+	  width: 30px;
+	  height: 600px;
+	  top: 0px;
+	  left: 285px;
+	}
+
     #sec {
     	background: url(images/sechand.png);
     	z-index: 3;

@@ -13,31 +13,14 @@ public class Clock implements Page{
 		</head>
 	
 		<body>
-	
-		    <div id="demo-top-bar">
-			  <div id="demo-bar-inside">
-			    <h2 id="demo-bar-badge">
-			      <a href="/">Lark CSS-Tricks Example</a>
-			    </h2>
-			    <div id="demo-bar-buttons">
-		        </div>
-			  </div>
-			</div>
-		    <p><a href="/css3-clock/">&lt; 模拟钟表</a></p>
+		    <h2 id="demo-bar-badge">
+		      <a href="/">Lark 模拟钟表</a>
+		    </h2>
 			<ul id="clock">	
 			   	<li id="sec" x:name="sec"></li>
 			   	<li id="hour" x:name="hour"></li>
 				<li id="min" x:name="min"></li>
 			</ul>
-			
-			<!--
-			<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
-			  <g> 
-			    <text font-family="microsoft yahei" font-size="120" y="160" x="160">马</text>
-			    <animateTransform attributeName="transform" begin="0s" dur="10s" type="rotate" from="0 160 160" to="360 160 160" repeatCount="indefinite"/>
-			  </g>
-			</svg>
-			-->
 		</body>
 	</html>
 	%>

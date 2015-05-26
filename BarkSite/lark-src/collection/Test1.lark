@@ -110,7 +110,6 @@ public class Test1 implements Page, INotifyPropertyChanged {
 		</table>
 
 			<svg width="500" height="200" style="2121">
-				
 				<line x1="20" y1="180" x2="400" y2="180" style="stroke:black;stroke-width:1px;"/>
 				<XAxis />
 				<line x1="20" y1="180" x2="20" y2="10" style="stroke:black;stroke-width:1px;"/>
@@ -211,10 +210,6 @@ public class Test1 implements Page, INotifyPropertyChanged {
 			notifyChanged("height");
 		}
 	}
-	
-//	EventHandler h = (Event e)->{
-//		alert("Hello world");
-//	};
 	
 	private Collection<Person> _persons = new ObservableCollection<>();
 	public Collection<Person> persons{

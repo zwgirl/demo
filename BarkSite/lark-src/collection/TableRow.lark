@@ -14,13 +14,13 @@ public class TableRow extends Template {
 		</td>
 		<td textContent = {Binding property="ordinal" context="current"}></td> 
 		<td>
-			<a href="#" textContent = {Binding property="name" context="current"}> </a>
+			<a href={PersonDetail id={Binding property="name" context="current"}} textContent = {Binding property="name" context="current"}> </a>
 		</td>
 		<td textContent = {Binding property="address" context="current"}></td>  
 		<td textContent = {Binding property="age" context="current"}></td>
 		
 		<td>
-			<svg width="240" height="170"  xmlns:xlink="http://www.w3.org/1999/xlink">
+			<svg width="240" height="30"  xmlns:xlink="http://www.w3.org/1999/xlink">
 			<g style="font-size: 18pt">
 			<text x="20" y="20" style="font-weight:bold;"><Text textContent = {Binding property="name" context="current"}/></text>
 			</g>

@@ -21,7 +21,7 @@ public class SaleDetailPage implements Page, INotifyPropertyChanged {
 		<body >
 		
 		<table class="table"> 
-		<caption>基本的表格布局</caption>
+		<caption>订单明细</caption>
 			<thead >
 				<tr>
 				<td ><input type="checkbox" checked = {Binding property = "allSelected" mode="TwoWay" trigger="PropertyChanged"} /></td> 
@@ -43,14 +43,6 @@ public class SaleDetailPage implements Page, INotifyPropertyChanged {
 		<button onclick="add" >
 			新增
 		</button>
-		<button onclick = "delete">
-			删除 
-		</button> 
-			<a href="/lark/summary/Hello.html">测试</a>
-			
-		<button onclick = function{location.href="/lark/summary/Hello.html"; return false;}>
-			隐藏 
-		</button> 
 		</body> 
 		
 	</html>
@@ -69,16 +61,6 @@ public class SaleDetailPage implements Page, INotifyPropertyChanged {
 		});
 	}
 	
-	boolean flag = false;
-	MouseEventHandler fold = (MouseEvent event)->{
-		if(flag){
-			document.getElementById("1111").style.display="table-row-group";
-		} else {
-			document.getElementById("1111").style.display="none";
-		}
-		flag = !flag;
-	};
-	
 	PropertyChange changeHandler = (Object source, PropertyChangeEvent evt)->{
 		notifyChanged("grandTotal");
 	};
@@ -92,22 +74,20 @@ public class SaleDetailPage implements Page, INotifyPropertyChanged {
 	}
 	
 	private ObservableCollection<SaleDetail> _saleDetails = new ObservableCollection<>();
-
-	
 	{
-		SaleDetail sd = new SaleDetail("产品11", 23.4, 3);
+		SaleDetail sd = new SaleDetail("茅台", 23, 1);
 		sd.addPropertyChangeListener("summary", changeHandler);
 		_saleDetails.add(sd);
 		
-		sd = new SaleDetail("产品12", 23.4, 3);
+		sd = new SaleDetail("长城干红", 98, 2);
 		sd.addPropertyChangeListener("summary", changeHandler);
 		_saleDetails.add(sd);
 		
-		sd = new SaleDetail("产品13", 23.4, 3);
+		sd = new SaleDetail("费列罗巧克力", 48, 3);
 		sd.addPropertyChangeListener("summary", changeHandler);
 		_saleDetails.add(sd);
 		
-		sd = new SaleDetail("产品14", 23.4, 3);
+		sd = new SaleDetail("百威啤酒", 6.5, 4);
 		sd.addPropertyChangeListener("summary", changeHandler);
 		_saleDetails.add(sd);
 	}
@@ -135,14 +115,6 @@ public class SaleDetailPage implements Page, INotifyPropertyChanged {
 		SaleDetail sd = new SaleDetail("产品11", 23.4, 3);
 		sd.addPropertyChangeListener("summary", changeHandler);
 		_saleDetails.add(sd);
-	};
-	 
-	public MouseEventHandler delete =  (MouseEvent event)->{
-		List<SaleDetail> toBeDeleted = new ArrayList<SaleDetail>();
-		
-		if(toBeDeleted.size>0){
-			_saleDetails.removeAll(toBeDeleted);
-		}
 	};
 }
 

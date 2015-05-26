@@ -1,3 +1,0 @@
-http://www.nws.noaa.gov/pub/stninfo/nsd_cccc.txt
-
-    4-letter ICAO codes
