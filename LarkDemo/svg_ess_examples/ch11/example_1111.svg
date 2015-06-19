@@ -1,0 +1,16 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="300" height="200" viewBox="0 0 300 200">
+<title>Example of animateTransform</title>
+<g transform="translate(120,60)">
+<rect x="-10" y="-10" width="20" height="20"
+	style="fill: #ff9; stroke: black;">
+    <animateTransform attributeType="XML"
+        attributeName="transform" type="scale"
+        from="1" to="4 2"
+        begin="0s" dur="4s" fill="freeze"/>
+    Stretch
+</rect>
+</g>
+</svg>

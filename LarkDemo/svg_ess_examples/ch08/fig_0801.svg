@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="200" height="200" viewBox="0 0 200 200">
+
+<text font-size="24" font-family="serif" x="20" y="30">glyphs</text>
+<text font-size="24" font-family="sans-serif" x="120" y="30">glyphs</text>
+</svg>

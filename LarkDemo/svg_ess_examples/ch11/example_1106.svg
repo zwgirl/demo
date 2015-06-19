@@ -1,0 +1,17 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="300" height="200" viewBox="0 0 300 200">
+<title>Example of Repeated Animation</title>
+<circle cx="60" cy="60" r="30" style="fill: none; stroke: red;">
+    <animate attributeName="cx" attributeType="XML"
+        begin="0s" dur="5s" repeatCount="2"
+        from="60" to="260" fill="freeze"/>
+</circle>
+
+<circle cx="260" cy="130" r="30" style="fill: #ccf; stroke: black;">
+    <animate attributeName="cx" attributeType="XML"
+        begin="0s" dur="5s" repeatDur="8s"
+        from="260" to="60" fill="freeze"/>
+</circle>
+</svg>

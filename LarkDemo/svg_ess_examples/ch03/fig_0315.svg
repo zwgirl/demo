@@ -1,0 +1,23 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20001102//EN"
+   "http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd">
+
+<svg width="200" height="200">
+	<title>stroke-linecap</title>
+	<desc>Shows lines with stroke-linecap's various values.</desc>
+	
+	<g style="shape-rendering: crispEdges; stroke: black;"
+		 transform="translate(20,20)">
+		<line x1="10" y1="15" x2="50" y2="15"
+			style="stroke-linecap: butt; stroke-width: 15;"/>
+
+		<line x1="10" y1="45" x2="50" y2="45"
+			style="stroke-linecap: round; stroke-width: 15;"/> 
+
+		<line x1="10" y1="75" x2="50" y2="75"
+			style="stroke-linecap: square; stroke-width: 15;"/> 
+
+		<!-- guide lines -->
+		<line x1="10" y1="0" x2="10" y2="100" style="stroke: #999;"/>
+		<line x1="50" y1="0" x2="50" y2="100" style="stroke: #999;"/>
+	</g>
+</svg>

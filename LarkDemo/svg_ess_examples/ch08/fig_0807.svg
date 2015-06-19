@@ -1,0 +1,11 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="200px" height="100px" viewBox="0 0 200 100">
+   <title>Vertical positioning with dy</title>
+<text x="10" y="30" style="font-size:12pt;">
+    F <tspan dy="4">a</tspan>
+    <tspan dy="8">l</tspan>
+    <tspan dy="12">l</tspan>
+</text>
+</svg>

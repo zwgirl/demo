@@ -1,0 +1,46 @@
+fig_0701.svg
+	Figure 7-1. Zoomed-in view of pattern tile
+
+fig_0702.svg
+	Figure 7-2. Tiles spaced by objectBoundingBox
+
+fig_0703.svg
+	Figure 7-3. Tiles spaced by userSpaceOnUse
+
+fig_0704.svg
+	Figure 7-4. patternContentUnits set to objectBoundingBox
+
+fig_0705.svg
+	Figure 7-5. Pattern scaled with viewBox
+
+fig_0706.svg
+	Figure 7-6. Patterns within patterns
+
+fig_0707.svg
+	Figure 7-7. Simple two-color gradient
+
+fig_0708.svg
+	Figure 7-8. Three-stop gradient
+
+fig_0709.svg
+	Figure 7-9. Defining vectors for a linear gradient
+
+fig_0710.svg
+	Figure 7-10. spreadMethod values pad, repeat, and reflect for a linear
+	gradient
+
+fig_0711.svg
+	Figure 7-11. Radial gradient with three stops
+
+fig_0712.svg
+	Figure 7-12. Setting limits for a radial gradient
+
+fig_0713.svg
+	Figure 7-13. Setting focal point for a radial gradient
+
+fig_0714.svg
+	Figure 7-14. spreadMethod values pad, repeat, and reflect for a radial
+	gradient
+
+fig_0715.svg
+	Figure 7-15. Transformation of a pattern and gradient

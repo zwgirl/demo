@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg viewBox="0 0 350 200" height="200" width="350">
+<defs>
+<path style="stroke:black; fill: none;" d="M 40 40 h 25" id="wind-line"/>
+</defs>
+<text style="font-size: 10pt;" y="20" x="10">RKSL, SEOUL</text>
+<g transform="translate(10, 40)" id="thermometer">
+<path style="stroke: none; fill: red;" d="M 25 27.5 25 90 A 10 10 0 1 0 35 90 L 35 27.5 Z"/>
+<path style="stroke: black; fill: none;" d="M 25 0 25 90 A 10 10 0 1 0 35 90 L 35 0 Z"/>
+<g style="font-size: 8pt; font-family: sans-serif;" id="thermometer-text">
+<text style="text-anchor: end;" y="95" x="20">-40</text>
+<text style="text-anchor: end;" y="55" x="20">0</text>
+<text style="text-anchor: end;" y="5" x="20">50</text>
+<text style="text-anchor: end;" y="110" x="10">C</text>
+<text y="95" x="40">-40</text>
+<text y="55" x="40">32</text>
+<text y="5" x="40">120</text>
+<text y="110" x="50">F</text>
+<text tstyle="ext-anchor: middle;" y="130" x="30">Temp.</text>
+<text style="text-anchor: middle;" y="145" x="30">22.5 /
+            73</text>
+</g>
+</g>
+<g transform="translate(110, 70)" font-family="sans-serif" font-size="8pt" id="compass">
+<circle style="stroke: black; fill: none;" r="30" cy="40" cx="40"/>
+<path style="stroke: black; fill: none;" d="M 40 10 L 40 14             M 70 40 L 66 40             M 40 70 L 40 66             M 10 40 L 14 40"/>
+<use xlink:href="#wind-line" transform="rotate(-60,40,40)" stroke-dasharray="3 3"/>
+<use xlink:href="#wind-line" transform="rotate(-20,40,40)" stroke-dasharray="3 3"/>
+<text text-anchor="middle" y="9" x="40">N</text>
+<text y="44" x="73">E</text>
+<text text-anchor="middle" y="80" x="40">S</text>
+<text text-anchor="end" y="44" x="8">W</text>
+<text text-anchor="middle" y="100" x="40">Wind (m/sec)</text>
+<text text-anchor="middle" y="115" x="40"> 1.5</text>
+</g>
+<g text-anchor="middle" font-size="8pt" transform="translate(220,110)" id="visbar">
+<rect height="20" width="55" y="0" x="0" stroke="none" fill="green"/>
+<rect fill="none" stroke="black" height="20" width="100" y="0" x="0"/>
+<path d="M 25 20 L 25 25 M 50 20 L 50 25 M 75 20 L 75 25" stroke="black" fill="none"/>
+<text y="35" x="0">0</text>
+<text y="35" x="25">10</text>
+<text y="35" x="50">20</text>
+<text y="35" x="75">30</text>
+<text y="35" x="100">40+</text>
+<text y="60" x="50">
+        Visibility (km)
+    </text>
+<text y="75" x="50">22</text>
+</g>
+</svg>

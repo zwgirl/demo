@@ -3,15 +3,15 @@ package collection;
 import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 import org.w3c.event.MouseEvent;
-import org.w3c.event.MouseEventHandler;
+import org.w3c.event.MouseEventHandler; 
 
 public class TableRow extends Template {  
 	<%
 	<tr style.backgroundColor={Binding property="selected" mode="TwoWay"} onclick="click">
 		
-		<td>
+		<td>   
 			<input type="checkbox" checked = {Binding property="selected" mode="TwoWay" trigger="PropertyChanged" context="current"}/>
-		</td>
+		</td> 
 		<td textContent = {Binding property="ordinal" context="current"}></td> 
 		<td>
 			<a href={PersonDetail id={Binding property="name" context="current"}} textContent = {Binding property="name" context="current"}> </a>

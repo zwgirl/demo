@@ -63,6 +63,6 @@
     __r["_parameterTypes"] = __propVal == null ? null : handlers.shared(__propVal);
     return __r;
   };
-  RemotingModel.__class = new (__lc('java.lang.Class'))("org.bark.remoting.RemotingModel", RemotingModel, Object.prototype.__class, [], 1);
+  RemotingModel.__class = new (__lc('java.lang.Class'))("org.bark.remoting.RemotingModel", RemotingModel, Object.__class, [], 1);
   return  RemotingModel;
 })();

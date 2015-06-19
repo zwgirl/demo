@@ -1,0 +1,13 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="300" height="200" viewBox="0 0 300 200">
+<title>Example of animateColor</title>
+<circle cx="60" cy="60" r="30"
+	style="fill: #ff9; stroke: gray; stroke-width:10;">
+    <animateColor attributeName="fill"
+        begin="2s" dur="4s" from="#ff9" to="red" fill="freeze"/>
+    <animateColor attributeName="stroke"
+        begin="2s" dur="4s" from="gray" to="blue" fill="freeze"/>
+</circle>
+</svg>

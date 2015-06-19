@@ -22,7 +22,7 @@ public class Test implements Page, INotifyPropertyChanged {
 			<style>
 			.rect {
 			    border: 5px solid red;
-			}  
+			}   
 			</style> 
 		</head>
 		<body >

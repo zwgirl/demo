@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>SVG and HTML</title>
+<script language="Javascript">
+<!--
+function updateSVG( which, amount )
+{
+    amount = parseInt( amount );
+    if (!isNaN(amount))
+    {
+        window.setShirtColor( which, amount );
+    }
+}
+
+function updateHTMLField( which, percent )
+{
+    document.rgbForm[ "fld" + which ].value = percent;
+}
+// -->
+</script>
+</head>
+
+<body bgcolor="white">
+<h2>SVG and HTML</h2>
+
+<div align="center">
+<embed src="shirt_interact.svg"
+    width="400" height="250"
+    type="image/svg+xml" />
+
+<form name="rgbForm">
+    Red: <input id="fld0" type="text" size="5" value="100"
+            onchange="updateSVG(0, this.value)" />% <br /> 
+    Green: <input id="fld1" type="text" size="5" value="100"
+            onchange="updateSVG(1, this.value)" />% <br />
+    Blue: <input id="fld2" type="text" size="5" value="100"
+            onchange="updateSVG(2, this.value)" />%    
+</form>
+</div>
+</body>
+</html>

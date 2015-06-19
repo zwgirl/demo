@@ -1,0 +1,70 @@
+default_ruler.svg
+	Draws vertical and horizontal grid lines every ten units;
+	used by fig_0301.svg, fig_0302.svg, fig_0306.svg, fig_0308.svg,
+	fig_0309.svg, and fig_0310.svg
+
+
+fig_0301.svg
+	Figure 3-1. Basic lines, with grid in background
+
+fig_0301a.svg
+	Same as figure 3-1 without grid
+
+fig_0302.svg
+	Figure 3-2. Demonstration of stroke-width, with grid in background
+
+fig_0302a.svg
+	Same as Figure 3-2 without grid
+
+fig_0303.svg
+	Figure 3-3. Demonstration of stroke color
+
+fig_0304.svg
+	Figure 3-4. Demonstration of stroke-opacity
+
+fig_0305.svg
+	Figure 3-5. Demonstration of stroke-dasharray
+
+fig_0306.svg
+	Figure 3-6. Demonstration of the rect element, with grid in background
+	Note: Figure 3-7 in the book is simply a closeup of this figure.
+
+fig_0306a.svg
+	Same as Figure 3-6 without grid
+
+fig_0308.svg
+	Figure 3-8. Demonstration of rounded rectangles, with reference grid
+
+fig_0308a.svg
+	Same as Figure 3-8 without grid
+
+fig_0309.svg
+	Figure 3-9. Demonstration of circle and ellipse elements,
+	with reference grid
+
+fig_0309a.svg
+	Same as Figure 3-9 without grid
+
+fig_0310.svg
+	Figure 3-10. Demonstration of the polygon element, with reference grid
+
+fig_0310a.svg
+	Same as Figure 3-10 without grid
+
+fig_0311.svg
+	Figure 3-11. Unfilled polygon with intersecting lines
+
+fig_0312.svg
+	Figure 3-12. Effect of different fill-rules
+
+fig_0313.svg
+	Figure 3-13. Example of the polyline element
+
+fig_0314.svg
+	Figure 3-14. Example of filled polyline
+
+fig_0315.svg
+	Figure 3-15. Values of the stroke-linecap attribute
+
+fig_0316.svg
+	Figure 3-16. Values of the stroke-linejoin attribute

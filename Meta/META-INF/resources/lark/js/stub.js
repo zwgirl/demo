@@ -37,7 +37,8 @@ LarkOutput.prototype.write = function(obj){
 		var array = [];
 		var referenceProcessor = new ReferenceProcessor();
 		referenceProcessor.shared(obj);
-		if(obj.getClass().isArray){
+//		if(obj.getClass().isArray){
+		if(obj.constructor.__class.isArray){
 			array[0] = this.writeArray(obj, referenceProcessor);
 		} else {
 			array[0] = this.writeObject0(obj, referenceProcessor);
@@ -47,7 +48,8 @@ LarkOutput.prototype.write = function(obj){
 		var length = references.length, i = 1;
 		while(i < references.length){
 			var other = references[i];
-			if(other.getClass().isArray){
+//			if(other.getClass().isArray){
+			if(other.constructor.__class.isArray){
 				array[i++] = this.writeArray(other, referenceProcessor);
 			} else {
 				array[i++] = this.writeObject0(other, referenceProcessor);
@@ -59,15 +61,16 @@ LarkOutput.prototype.write = function(obj){
 };
 
 LarkOutput.prototype.writeObject0 = function(obj, handlers){
-	var clazz = obj.getClass();
+//	var clazz = obj.getClass();
+	var clazz = obj.constructor.__class;
 	var r = {"__clazz":clazz.name};
-	if(clazz === Number.prototype.__class){
+	if(clazz === Number.__class){
 		r["value"] = obj;
-	} else if(clazz === String.prototype.__class){
+	} else if(clazz === String.__class){
 		r["value"] = obj;
-	} else if(clazz === Date.prototype.__class){
+	} else if(clazz === Date.__class){
 		r["value"] = obj;
-	} else if(clazz === Number.prototype.__class){
+	} else if(clazz === Number.__class){
 		r["value"] = obj;
 	} else if(clazz.name == "java.lang.Byte"){
 		r["value"] = obj;
@@ -98,7 +101,7 @@ LarkOutput.prototype.writeObject0 = function(obj, handlers){
 	} else if(clazz.isArray){
 		r["value"] = obj == null ? null : handlers.shared(obj);
 		element
-	} else if(clazz === Object.prototype.__class){
+	} else if(clazz === Object.__class){
 		r["value"] = obj == null ? null : handlers.shared(obj);
 	} else {
 		return obj.__proto__.__writeObject(obj, handlers);
@@ -155,10 +158,10 @@ LarkInput.prototype.readObject = function (json){
 			done[i] = Array;
 		} else {
 			var clazz = __lc(clazzName);
-			if(clazz.prototype.__class.name == "java.util.HashMap"){
+			if(clazz.__class.name == "java.util.HashMap"){
 				done[i] = clazz;
 				references[i] = new clazz();
-			} else if(clazz.prototype.__class.name == "java.util.HashSet"){
+			} else if(clazz.__class.name == "java.util.HashSet"){
 				done[i] = clazz;
 				references[i] = new clazz();
 			} else if(clazz === Number){
@@ -167,27 +170,27 @@ LarkInput.prototype.readObject = function (json){
 				references[i] = array[i]["value"];
 			} else if(clazz == Date){
 				references[i] = new Date(array[i]["value"]);
-			} else if(clazz.prototype.__class.name == "java.lang.Byte"){
+			} else if(clazz.__class.name == "java.lang.Byte"){
 				references[i] = new (__lc("java.lang.Byte"))(array[i]["value"]);
-			} else if(clazz.prototype.__class.name == "java.lang.Short"){
+			} else if(clazz.__class.name == "java.lang.Short"){
 				references[i] = new (__lc("java.lang.Short"))(array[i]["value"]);
-			} else if(clazz.prototype.__class.name == "java.lang.Character"){
+			} else if(clazz.__class.name == "java.lang.Character"){
 				references[i] = new (__lc("java.lang.Character"))(array[i]["value"]);
-			} else if(clazz.prototype.__class.name == "java.lang.Integer"){
+			} else if(clazz.__class.name == "java.lang.Integer"){
 				references[i] = new (__lc("java.lang.Integer"))(array[i]["value"]);
 			} else if(clazz.prototype.__class.name == "java.lang.Long"){
 				references[i] = new (__lc("java.lang.Long"))(array[i]["value"]);
-			} else if(clazz.prototype.__class.name == "java.lang.Float"){
+			} else if(clazz.__class.name == "java.lang.Float"){
 				references[i] = new (__lc("java.lang.Float"))(array[i]["value"]);
-			} else if(clazz.prototype.__class.name == "java.lang.Double"){
+			} else if(clazz.__class.name == "java.lang.Double"){
 				references[i] = new (__lc("java.lang.Double"))(array[i]["value"]);
-			} else if(clazz.prototype.__class.name == "java.lang.Boolean"){
+			} else if(clazz.__class.name == "java.lang.Boolean"){
 				references[i] = new Boolean(array[i]["value"]);
-			} else if(clazz.prototype.__class.name == "java.lang.Class"){
+			} else if(clazz.__class.name == "java.lang.Class"){
 				references[i] = __lc(array[i]["value"]).prototype.__class;
-			} else if(clazz.prototype.__class.isArray){
+			} else if(clazz.__class.isArray){
 				references[i] = [];
-			} else if(clazz.prototype.__class.isEnum){
+			} else if(clazz.__class.isEnum){
 				references[i] = clazz.factory.valueOf(array[i]["value"]);
 			} else {
 				var ref = new clazz(0);
@@ -214,11 +217,11 @@ LarkInput.prototype.readObject = function (json){
 			continue;
 		}
 		
-		if(done[i].prototype.__class.name == "java.util.HashMap"){
+		if(done[i].__class.name == "java.util.HashMap"){
 			this.readHashMap(array[i], references, references[i]);
-		} else if(done[i].prototype.__class.name == "java.util.HashSet"){
+		} else if(done[i].__class.name == "java.util.HashSet"){
 			this.readHashSet(array[i], references, references[i]);
-		} else if(done[i].prototype.__class.name == "java.util.ArrayList"){
+		} else if(done[i].__class.name == "java.util.ArrayList"){
 			this.readArrayList(array[i], references, references[i]);
 		} else {
 			done[i].prototype.__readObject(array[i], references, references[i]);

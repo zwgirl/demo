@@ -146,23 +146,16 @@
     var r = 0;
     var w = 0;
     var modified = false;
-    try
+    var targets = c["elements"];
+    for (var i = 0; i < targets.length; i ++) 
     {
-      for (; r < elementData.length; r ++) 
-        if(c.contains(elementData[r]) == complement) elementData[w ++] = elementData[r]
-    }
-    finally
-    {
-      if(r != elementData.length)
+      for (var j = 0; j < elementData.length; j ++) 
       {
-        elementData.concat(elementData.slice(r, elementData.length));
-        w+=elementData.length - r;
-      }
-      if(w != elementData.length)
-      {
-        for (var i = w; i < elementData.length; i ++) 
-          elementData[i] = null;
-        modified = true;
+        if(targets[i] === elementData[j])
+        {
+          elementData.splice(j, 1);
+          break;
+        }
       }
     }
     return modified;
@@ -228,7 +221,7 @@
     };
     Itr.prototype.next = function(){
       var i = this.cursor;
-      if(i >= this.__enclosing.elements.length) throw new (__lc("java.util.NoSuchElementException"))()
+      if(i >= this.__enclosing.elements.length) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
       var elements = this.__enclosing.elements;
       this.cursor = i + 1;
       return elements[this.lastRet = i];
@@ -278,7 +271,7 @@
     };
     ListItr.prototype.previous = function(){
       var i = this.cursor - 1;
-      if(i < 0) throw new (__lc("java.util.NoSuchElementException"))()
+      if(i < 0) throw new (__lc("java.util.NoSuchElementException", "java.util.NoSuchElementException"))()
       var elementData = this.__enclosing.elements;
       this.cursor = i;
       return elementData[this.lastRet = i];

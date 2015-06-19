@@ -1,0 +1,30 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="300" height="200" viewBox="0 0 300 200">
+<script type="text/ecmascript">
+<![CDATA[
+function enlarge_circle(evt)
+{
+    var circle = evt.getTarget();
+
+    circle.setAttribute("r", 50);
+}
+
+function shrink_circle(evt)
+{
+    var circle = evt.getTarget();
+
+    circle.setAttribute("r", 25);
+}
+// ]]>
+</script>
+18 
+<circle cx="150" cy="100" r="25" fill="red"
+    onmouseover="enlarge_circle(evt)"
+    onmouseout="shrink_circle(evt)"/>
+
+<text x="150" y="175" style="text-anchor: middle;">
+    Mouse over the circle to change its size.
+</text>
+</svg>

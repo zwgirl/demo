@@ -1,0 +1,365 @@
+Creating hashmap
+Putting http://www.w3.org/2000/xmlns/:xmlns at 0 663727692
+Putting null:zoomAndPan at 2 981303545
+Putting null:contentScriptType at 0 419628030
+Putting null:contentStyleType at 2 1776731154
+Putting null:preserveAspectRatio at 1 1365218471
+Creating hashmap
+Putting http://www.w3.org/2000/xmlns/:xmlns at 0 663727692
+Putting null:zoomAndPan at 2 981303545
+Putting null:contentScriptType at 0 419628030
+Putting null:contentStyleType at 2 1776731154
+Putting null:preserveAspectRatio at 1 1365218471
+Putting null:height at 2 926454055
+Putting null:viewBox at 10 454200550
+Putting null:width at 4 113126854
+Putting http://www.w3.org/2000/xmlns/:xmlns at 12 663727692
+Creating hashmap
+Putting null:d at 1 100
+Putting null:fill at 0 3143043
+Putting null:id at 1 3355
+Putting null:stroke at 6 1255503416
+Creating hashmap
+Putting null:fill at 0 3143043
+Putting http://www.w3.org/2000/svg:height at 0 1499538912
+Putting null:stroke at 2 1255503416
+Putting null:width at 1 113126854
+Putting null:x at 1 120
+Putting null:y at 2 121
+Creating hashmap
+Putting null:cx at 0 3189
+Putting null:cy at 1 3190
+Putting null:fill at 0 3143043
+Putting http://www.w3.org/2000/svg:r at 6 1851372725
+Putting null:stroke at 6 1255503416
+#document
+  svg
+   contentScriptType= "text/ecmascript"
+   width= "350"
+   zoomAndPan= "magnify"
+   contentStyleType= "text/css"
+   viewBox= "0 0 350 200"
+   height= "200"
+   preserveAspectRatio= "xMidYMid meet"
+   xmlns= "http://www.w3.org/2000/svg"
+    defs
+Creating hashmap
+      path
+       fill= "none"
+       id= "wind-arrow"
+       d= "M 40 40 h 25"
+       stroke= "black"
+    g
+Creating hashmap
+      rect
+       x= "10"
+       y= "10"
+       fill= "blue"
+       width= "30"
+       stroke= "none"
+       height= "20"
+    g
+Creating hashmap
+      circle
+       fill= "red"
+       cx= "50"
+       cy= "50"
+       stroke= "none"
+       r= "20"
+Creating hashmap
+Putting http://www.w3.org/2000/xmlns/:xmlns at 0 663727692
+Putting null:zoomAndPan at 2 981303545
+Putting null:contentScriptType at 0 419628030
+Putting null:contentStyleType at 2 1776731154
+Putting null:preserveAspectRatio at 1 1365218471
+looking for http://www.w3.org/2000/xmlns/:xmlns starting at 5 663727692
+Putting null:width at 1 113126854
+Putting null:height at 10 926454055
+Putting null:viewBox at 10 454200550
+Putting http://www.w3.org/XML/1998/namespace:space at 14 1927332569
+Putting null:contentStyleType at 9 1776731154
+Putting null:contentScriptType at 0 419628030
+Putting http://www.w3.org/2000/xmlns/:xmlns at 12 663727692
+Putting null:preserveAspectRatio at 11 1365218471
+Putting null:zoomAndPan at 5 981303545
+Creating hashmap
+Putting null:id at 1 3355
+Putting null:style at 0 109780401
+Creating hashmap
+Putting null:id at 1 3355
+Putting null:style at 0 109780401
+Creating hashmap
+Putting null:id at 1 3355
+Putting null:style at 0 109780401
+Putting null:d at 1 100
+Creating hashmap
+Putting null:id at 1 3355
+Putting null:style at 0 109780401
+Putting null:d at 1 100
+Creating hashmap
+Putting null:id at 1 3355
+Putting null:style at 0 109780401
+Putting null:d at 1 100
+Creating hashmap
+Putting null:id at 1 3355
+Putting null:style at 0 109780401
+Putting null:d at 1 100
+Creating hashmap
+Putting null:id at 1 3355
+Putting null:style at 0 109780401
+Putting null:d at 1 100
+Creating hashmap
+Putting null:id at 1 3355
+Putting null:fill at 0 3143043
+Putting null:stroke at 2 1255503416
+Putting null:stroke-width at 2 474623473
+Creating hashmap
+Putting null:d at 1 100
+Creating hashmap
+Putting null:d at 1 100
+looking for null:width starting at 4 113126854
+Table has 15 entries 
+0: 419628030 null contentScriptType
+4: 113126854 null width
+5: 981303545 null zoomAndPan
+9: 1776731154 null contentStyleType
+10: 454200550 org.apache.batik.dom.AbstractElement$Entry@32efa7 viewBox
+11: 1365218471 null preserveAspectRatio
+12: 663727692 null xmlns
+14: 1927332569 null xml:space
+looking for null:height starting at 10 926454055
+looking for null:style starting at 6 109780401
+looking for null:viewBox starting at 10 454200550
+looking for null:preserveAspectRatio starting at 11 1365218471
+looking for null:style starting at 6 109780401
+looking for null:style starting at 0 109780401
+looking for null:style starting at 0 109780401
+looking for null:transform starting at 2 1052666732
+looking for null:style starting at 0 109780401
+looking for null:style starting at 0 109780401
+looking for null:transform starting at 2 1052666732
+looking for null:style starting at 3 109780401
+looking for null:style starting at 3 109780401
+looking for null:transform starting at 5 1052666732
+looking for null:d starting at 2 100
+looking for null:contentScriptType starting at 0 419628030
+looking for null:onfocusin starting at 4 1128068414
+looking for null:onfocusout starting at 3 610388565
+looking for null:onactivate starting at 4 1049334738
+looking for null:onclick starting at 6 825133833
+looking for null:onmousedown starting at 3 699573192
+looking for null:onmouseup starting at 5 914693953
+looking for null:onmouseover starting at 5 699907066
+looking for null:onmouseout starting at 3 438219624
+looking for null:onmousemove starting at 3 699841271
+looking for null:onload starting at 0 1135266629
+looking for null:style starting at 3 109780401
+looking for null:style starting at 3 109780401
+looking for null:transform starting at 5 1052666732
+looking for null:d starting at 2 100
+looking for null:contentScriptType starting at 0 419628030
+looking for null:onfocusin starting at 4 1128068414
+looking for null:onfocusout starting at 3 610388565
+looking for null:onactivate starting at 4 1049334738
+looking for null:onclick starting at 6 825133833
+looking for null:onmousedown starting at 3 699573192
+looking for null:onmouseup starting at 5 914693953
+looking for null:onmouseover starting at 5 699907066
+looking for null:onmouseout starting at 3 438219624
+looking for null:onmousemove starting at 3 699841271
+looking for null:onload starting at 0 1135266629
+looking for null:style starting at 3 109780401
+looking for null:style starting at 3 109780401
+looking for null:transform starting at 5 1052666732
+looking for null:d starting at 2 100
+looking for null:contentScriptType starting at 0 419628030
+looking for null:onfocusin starting at 4 1128068414
+looking for null:onfocusout starting at 3 610388565
+looking for null:onactivate starting at 4 1049334738
+looking for null:onclick starting at 6 825133833
+looking for null:onmousedown starting at 3 699573192
+looking for null:onmouseup starting at 5 914693953
+looking for null:onmouseover starting at 5 699907066
+looking for null:onmouseout starting at 3 438219624
+looking for null:onmousemove starting at 3 699841271
+looking for null:onload starting at 0 1135266629
+looking for null:style starting at 3 109780401
+looking for null:style starting at 3 109780401
+looking for null:transform starting at 5 1052666732
+looking for null:d starting at 2 100
+looking for null:contentScriptType starting at 0 419628030
+looking for null:onfocusin starting at 4 1128068414
+looking for null:onfocusout starting at 3 610388565
+looking for null:onactivate starting at 4 1049334738
+looking for null:onclick starting at 6 825133833
+looking for null:onmousedown starting at 3 699573192
+looking for null:onmouseup starting at 5 914693953
+looking for null:onmouseover starting at 5 699907066
+looking for null:onmouseout starting at 3 438219624
+looking for null:onmousemove starting at 3 699841271
+looking for null:onload starting at 0 1135266629
+looking for null:style starting at 3 109780401
+looking for null:style starting at 3 109780401
+looking for null:style starting at 0 109780401
+looking for null:style starting at 0 109780401
+looking for null:style starting at 0 109780401
+looking for null:style starting at 0 109780401
+looking for null:style starting at 6 109780401
+looking for null:transform starting at 5 1052666732
+looking for null:d starting at 2 100
+looking for null:contentScriptType starting at 0 419628030
+looking for null:onfocusin starting at 4 1128068414
+looking for null:onfocusout starting at 3 610388565
+looking for null:onactivate starting at 4 1049334738
+looking for null:onclick starting at 6 825133833
+looking for null:onmousedown starting at 3 699573192
+looking for null:onmouseup starting at 5 914693953
+looking for null:onmouseover starting at 5 699907066
+looking for null:onmouseout starting at 3 438219624
+looking for null:onmousemove starting at 3 699841271
+looking for null:onload starting at 0 1135266629
+looking for null:style starting at 3 109780401
+looking for null:transform starting at 5 1052666732
+looking for null:style starting at 0 109780401
+looking for null:transform starting at 2 1052666732
+looking for null:d starting at 1 100
+looking for null:contentScriptType starting at 0 419628030
+looking for null:onfocusin starting at 2 1128068414
+looking for null:onfocusout starting at 0 610388565
+looking for null:onactivate starting at 0 1049334738
+looking for null:onclick starting at 0 825133833
+looking for null:onmousedown starting at 0 699573192
+looking for null:onmouseup starting at 1 914693953
+looking for null:onmouseover starting at 1 699907066
+looking for null:onmouseout starting at 0 438219624
+looking for null:onmousemove starting at 2 699841271
+looking for null:onload starting at 2 1135266629
+looking for null:style starting at 0 109780401
+looking for null:transform starting at 2 1052666732
+looking for null:d starting at 1 100
+looking for null:contentScriptType starting at 0 419628030
+looking for null:onfocusin starting at 2 1128068414
+looking for null:onfocusout starting at 0 610388565
+looking for null:onactivate starting at 0 1049334738
+looking for null:onclick starting at 0 825133833
+looking for null:onmousedown starting at 0 699573192
+looking for null:onmouseup starting at 1 914693953
+looking for null:onmouseover starting at 1 699907066
+looking for null:onmouseout starting at 0 438219624
+looking for null:onmousemove starting at 2 699841271
+looking for null:onload starting at 2 1135266629
+looking for null:contentScriptType starting at 0 419628030
+looking for null:onfocusin starting at 4 1128068414
+looking for null:onfocusout starting at 3 610388565
+looking for null:onactivate starting at 4 1049334738
+looking for null:onclick starting at 6 825133833
+looking for null:onmousedown starting at 3 699573192
+looking for null:onmouseup starting at 5 914693953
+looking for null:onmouseover starting at 5 699907066
+looking for null:onmouseout starting at 3 438219624
+looking for null:onmousemove starting at 3 699841271
+looking for null:onload starting at 0 1135266629
+looking for null:contentScriptType starting at 0 419628030
+looking for null:onfocusin starting at 2 1128068414
+looking for null:onfocusout starting at 0 610388565
+looking for null:onactivate starting at 0 1049334738
+looking for null:onclick starting at 0 825133833
+looking for null:onmousedown starting at 0 699573192
+looking for null:onmouseup starting at 1 914693953
+looking for null:onmouseover starting at 1 699907066
+looking for null:onmouseout starting at 0 438219624
+looking for null:onmousemove starting at 2 699841271
+looking for null:onload starting at 2 1135266629
+looking for null:contentScriptType starting at 0 419628030
+looking for null:onfocusin starting at 2 1128068414
+looking for null:onfocusout starting at 0 610388565
+looking for null:onactivate starting at 0 1049334738
+looking for null:onclick starting at 0 825133833
+looking for null:onmousedown starting at 0 699573192
+looking for null:onmouseup starting at 1 914693953
+looking for null:onmouseover starting at 1 699907066
+looking for null:onmouseout starting at 0 438219624
+looking for null:onmousemove starting at 2 699841271
+looking for null:onload starting at 2 1135266629
+looking for null:width starting at 4 113126854
+Table has 15 entries 
+0: 419628030 null contentScriptType
+4: 113126854 null width
+5: 981303545 null zoomAndPan
+9: 1776731154 null contentStyleType
+10: 454200550 org.apache.batik.dom.AbstractElement$Entry@1d5a0 viewBox
+11: 1365218471 null preserveAspectRatio
+12: 663727692 null xmlns
+looking for null:height starting at 10 926454055
+looking for null:style starting at 6 109780401
+looking for null:viewBox starting at 10 454200550
+looking for null:preserveAspectRatio starting at 11 1365218471
+looking for null:style starting at 0 109780401
+looking for null:style starting at 0 109780401
+looking for null:transform starting at 2 1052666732
+looking for null:style starting at 6 109780401
+looking for null:style starting at 0 109780401
+looking for null:style starting at 6 109780401
+looking for null:transform starting at 2 1052666732
+looking for null:x starting at 0 120
+looking for null:y starting at 1 121
+looking for null:width starting at 4 113126854
+Table has 15 entries 
+0: 120 null x
+1: 121 null y
+3: 3143043 null fill
+4: 113126854 null width
+11: 1255503416 null stroke
+12: 1499538912 null height
+looking for null:height starting at 10 926454055
+org.apache.batik.bridge.BridgeException: null:0
+The attribute 'height' of the element <rect> is required
+	at org.apache.batik.bridge.SVGRectElementBridge.buildShape(SVGRectElementBridge.java:89)
+	at org.apache.batik.bridge.SVGShapeElementBridge.createGraphicsNode(SVGShapeElementBridge.java:44)
+	at org.apache.batik.bridge.GVTBuilder.buildGraphicsNode(GVTBuilder.java:170)
+	at org.apache.batik.bridge.GVTBuilder.buildComposite(GVTBuilder.java:136)
+	at org.apache.batik.bridge.GVTBuilder.buildGraphicsNode(GVTBuilder.java:176)
+	at org.apache.batik.bridge.GVTBuilder.buildComposite(GVTBuilder.java:136)
+	at org.apache.batik.bridge.GVTBuilder.build(GVTBuilder.java:69)
+	at org.apache.batik.transcoder.image.ImageTranscoder.transcode(ImageTranscoder.java:155)
+	at org.apache.batik.transcoder.XMLAbstractTranscoder.transcode(XMLAbstractTranscoder.java:126)
+	at TransformApp.emitPNG(TransformApp.java:184)
+	at TransformApp.do_it_all(TransformApp.java:68)
+	at TransformApp.main(TransformApp.java:60)
+org.apache.batik.bridge.BridgeException: null:0
+The attribute 'height' of the element <rect> is required
+	at org.apache.batik.bridge.SVGRectElementBridge.buildShape(SVGRectElementBridge.java:89)
+	at org.apache.batik.bridge.SVGShapeElementBridge.createGraphicsNode(SVGShapeElementBridge.java:44)
+	at org.apache.batik.bridge.GVTBuilder.buildGraphicsNode(GVTBuilder.java:170)
+	at org.apache.batik.bridge.GVTBuilder.buildComposite(GVTBuilder.java:136)
+	at org.apache.batik.bridge.GVTBuilder.buildGraphicsNode(GVTBuilder.java:176)
+	at org.apache.batik.bridge.GVTBuilder.buildComposite(GVTBuilder.java:136)
+	at org.apache.batik.bridge.GVTBuilder.build(GVTBuilder.java:69)
+	at org.apache.batik.transcoder.image.ImageTranscoder.transcode(ImageTranscoder.java:155)
+	at org.apache.batik.transcoder.XMLAbstractTranscoder.transcode(XMLAbstractTranscoder.java:126)
+	at TransformApp.emitPNG(TransformApp.java:184)
+	at TransformApp.do_it_all(TransformApp.java:68)
+	at TransformApp.main(TransformApp.java:60)
+org.apache.batik.bridge.BridgeException: null:-1
+The attribute 'height' of the element <rect> is required
+	at org.apache.batik.bridge.SVGRectElementBridge.buildShape(SVGRectElementBridge.java:89)
+	at org.apache.batik.bridge.SVGShapeElementBridge.createGraphicsNode(SVGShapeElementBridge.java:44)
+	at org.apache.batik.bridge.GVTBuilder.buildGraphicsNode(GVTBuilder.java:170)
+	at org.apache.batik.bridge.GVTBuilder.buildComposite(GVTBuilder.java:136)
+	at org.apache.batik.bridge.GVTBuilder.buildGraphicsNode(GVTBuilder.java:176)
+	at org.apache.batik.bridge.GVTBuilder.buildComposite(GVTBuilder.java:136)
+	at org.apache.batik.bridge.GVTBuilder.build(GVTBuilder.java:69)
+	at org.apache.batik.transcoder.image.ImageTranscoder.transcode(ImageTranscoder.java:155)
+	at org.apache.batik.transcoder.XMLAbstractTranscoder.transcode(XMLAbstractTranscoder.java:126)
+	at TransformApp.emitPNG(TransformApp.java:184)
+	at TransformApp.do_it_all(TransformApp.java:68)
+	at TransformApp.main(TransformApp.java:60)
+org.apache.batik.transcoder.TranscoderException: null
+Enclosed Exception:
+null:-1
+The attribute 'height' of the element <rect> is required
+	at org.apache.batik.transcoder.image.ImageTranscoder.transcode(ImageTranscoder.java:157)
+	at org.apache.batik.transcoder.XMLAbstractTranscoder.transcode(XMLAbstractTranscoder.java:126)
+	at TransformApp.emitPNG(TransformApp.java:184)
+	at TransformApp.do_it_all(TransformApp.java:68)
+	at TransformApp.main(TransformApp.java:60)

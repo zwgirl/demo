@@ -1,0 +1,38 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="375px" height="200px" viewBox="0 0 375 200">
+   <title>Multilingual text</title>
+
+<g style="font-size: 14pt;">
+
+<text x="10" y="30">Greek: </text>
+<text x="100" y="30">
+   &#x3b1;&#x3b2;&#x3b3;&#x3b4;&#x3b5;
+</text>
+
+<text x="10" y="50">Russian:</text>
+<text x="100" y="50">
+   &#x430;&#x431;&#x432;&#x433;&#x434;
+</text>
+
+<text x="10" y="70">Hebrew:</text>
+<text x="100" y="70">
+    &#x5d0;&#x5d1;&#x5d2;&#x5d3;&#x5d4; (written right to left)
+</text>
+
+<text x="10" y="90">Arabic:</text>
+<text x="100" y="90">
+    &#x627;&#x628;&#x629;&#x62a; (written right to left)
+</text>
+
+<text x="10" y="130">
+   This is 
+      <tspan style="direction: rtl; unicode-bidi: bidi-override; font-weight: bold;">
+         right-to-left
+      </tspan> 
+   text.
+</text>
+</g>
+
+</svg>

@@ -1,0 +1,77 @@
+default_ruler.svg
+	Draws grid lines and labels; used in fig_0502.svg, fig_0503.svg,
+	fig_0505.svg, fig_0509.svg, fig_0511.svg, fig_0512.svg,
+	and fig_0517.svg
+
+fig_0501.svg
+	Figure 5-1. Result of moving with use; with grid in background
+
+fig_0501a.svg
+	Same as Figure 5-1, without grid
+
+fig_0502.svg
+	Figure 5-2. How moving appears to work (but really doesn't); with
+	grid in background
+
+fig_0502a.svg
+	Same as Figure 5-2, without grid
+
+fig_0503.svg
+	Figure 5-3. How moving with translate really works
+
+fig_0504.svg
+	Figure 5-4. Result of using scale transformation; with grid lines
+
+fig_0504a.svg
+	Same as Figure 5-4, without grid
+
+fig_0505.svg
+	Figure 5-5. How the scale transformation works
+
+fig_0506.svg
+	Figure 5-6. Result of using non-uniform scale transformation
+	
+fig_0507.svg
+	Figure 5-7. Result of transforming a single graphic
+
+fig_0508.svg
+	Figure 5-8. Result of trranslate followed by scale
+
+fig_0509.svg
+	Figure 5-9. How translate followed by scale works
+
+fig_0510.svg
+	Figure 5-10. Result of scale followed by translate
+
+fig_0511.svg
+	Figure 5-10. How scale followed by translate works
+
+fig_0512.svg
+	Figure 5-12. Trapezoid drawn with Cartesian coordinates
+
+fig_0513.svg
+	Figure 5-13. Result of using original Cartesian coordinates
+
+fig_0514.svg
+	Figure 5-14. Transformed Cartesian coordinates
+
+fig_0515.svg
+	Figure 5-15. Default measurement of angles
+
+fig_0516.svg
+	Figure 5-16. Result of rotation around the origin
+
+fig_0517.svg
+	Figure 5-17. How rotation around the origin works
+
+fig_0518.svg
+	Figure 5-18. Result of rotation around a center point
+	
+fig_0519.svg
+	Figure 5-19. Result of scaling around a center point
+
+fig_0520.svg
+	Figure 5-20. Result of skewX and skewY transformations
+	
+scale2_ruler.svg
+	Rulers scaled by a factor of two; used in fig_0505.svg

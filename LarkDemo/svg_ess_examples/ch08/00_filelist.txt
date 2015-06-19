@@ -1,0 +1,65 @@
+fig_0801.svg
+	Figure 8-1. Two sets of glyphs
+
+fig_0802.svg
+	Figure 8-2. Glyph measurements
+
+fig_0803.svg
+	Figure 8-3. Text placement and outlining
+
+fig_0804.svg
+	Figure 8-4. Text weight, style, decoration, and spacing
+
+fig_0805.svg
+	Figure 8-5. Result of using text-anchor
+
+fig_0806.svg
+	Figure 8-6. Style changed with tspan
+
+fig_0807.svg
+	Figure 8-7. Vertical positioning with dy
+
+fig_0808.svg
+	Figure 8-8. Absolutely positioned poetry
+
+fig_0809.svg
+	Figure 8-9. Multiple horizontal and vertical offsets
+
+fig_0810.svg
+	Figure 8-10. Subscripts and superscripts
+
+fig_0811.svg
+	Figure 8-11. Effects of varying textLength and lengthAdjust
+
+fig_0812.svg
+	Figure 8-12. Vertical text
+
+fig_0812a.svg
+	Same as Figure 8-12, with demonstration of tightened spacing
+
+fig_0813.svg
+	Figure 8-13. Multilingual text
+
+fig_0814.svg
+	Figure 8-14. Source for combined screenshots as seen with different
+	language preferences
+
+fig_0815.svg
+	Figure 8-15. Korean syllables from an external font; uses
+	kfont.svg
+
+fig_0816.svg
+	Figure 8-16. Text along a path (with paths shown)
+
+fig_0817.svg
+	Figure 8-17. Text along a path (paths not shown)
+
+fig_0818.svg
+	Figure 8-18. Effects of long text and startOffset
+
+fig_0819.svg
+	Figure 8-19. Text along a path added to graphic
+
+kfont.svg
+	Syllables from a Korean font; used in fig_0815.svg and fig_0819.svg
+
